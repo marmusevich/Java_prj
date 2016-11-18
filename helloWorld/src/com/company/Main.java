@@ -8,6 +8,8 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
 
+        System.out.println("line");
+/*
         try
         {
             Socket s = new Socket("time-A.timefreq.bldrdoc.gov",13);
@@ -28,6 +30,6 @@ public class Main {
         {
             e.printStackTrace();
         }
-
+*/
     }
 }
