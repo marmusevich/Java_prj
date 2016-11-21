@@ -36,6 +36,7 @@ public class ServerIO {
         try {
             server = new ServerSocket(Parameters.Port);
 
+            System.out.println("Server start");
             while (true) {
                 Socket socket = server.accept();
 
@@ -105,10 +106,13 @@ public class ServerIO {
         public Connection(Socket socket) {
             this.socket = socket;
 
+
+
             try {
                 in = new BufferedReader(new InputStreamReader(
                         socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -125,6 +129,7 @@ public class ServerIO {
          */
         @Override
         public void run() {
+            System.out.println("Port: " + this.socket.getPort() + "   LocalPort: " + this.socket.getLocalPort());
             try {
                 name = in.readLine();
                 // Отправляем всем клиентам сообщение о том, что зашёл новый пользователь
@@ -138,6 +143,9 @@ public class ServerIO {
                 String str = "";
                 while (true) {
                     str = in.readLine();
+
+                    System.out.println(   name + ": " + str);
+
                     if(str.equals("exit")) break;
 
                     // Отправляем всем клиентам очередное сообщение
@@ -145,6 +153,7 @@ public class ServerIO {
                         Iterator<Connection> iter = connections.iterator();
                         while(iter.hasNext()) {
                             ((Connection) iter.next()).out.println(name + ": " + str);
+
                         }
                     }
                 }
