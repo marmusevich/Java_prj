@@ -1,1 +1,5 @@
-/helloWorld/out
+target/
+classes/
+out/
+*.iml
+.idea 
