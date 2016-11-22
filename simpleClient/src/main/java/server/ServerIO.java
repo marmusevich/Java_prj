@@ -89,9 +89,9 @@ public class ServerIO {
      */
     private class Connection extends Thread {
         private BufferedReader in;
-        //private PrintWriter out;
+        private PrintWriter out;
         //private BufferedWriter out;
-        private OutputStreamWriter out;
+        //private OutputStreamWriter out;
         private Socket socket;
 
         private String name = "";
@@ -106,9 +106,8 @@ public class ServerIO {
             System.out.println("connect Port: " + this.socket.getPort() + "   LocalPort: " + this.socket.getLocalPort());
             try {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "windows-1251"));
-                //out = new PrintWriter(socket.getOutputStream(), true);
-                //out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "windows-1251"));
-                out = new OutputStreamWriter(socket.getOutputStream(), "windows-1251");
+                out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "windows-1251"), true);
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -147,9 +146,8 @@ public class ServerIO {
                     synchronized (connections) {
                         Iterator<Connection> iter = connections.iterator();
                         while (iter.hasNext()) {
-                            //((Connection) iter.next()).out.println(name + ": " + str);
-                            ((Connection) iter.next()).out.write(str);
-                            ((Connection) iter.next()).out.flush();
+                            ((Connection) iter.next()).out.println(name + ": " + str);
+
                         }
                     }
                 }
