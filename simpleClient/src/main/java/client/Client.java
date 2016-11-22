@@ -1,5 +1,7 @@
 package client;
 
+import main.Parameters;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,12 +9,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-import main.Parameters;
-
 
 /**
  * Обеспечивает работу программы в режиме клиента
- *
  */
 
 
@@ -34,7 +33,7 @@ public class Client {
 
         String ip = scan.nextLine();
 
-        if(ip.length() == 0)
+        if (ip.length() == 0)
             ip = "127.000.000.001";
 
         try {

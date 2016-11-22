@@ -1,9 +1,8 @@
 package server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import main.Parameters;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -11,11 +10,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import main.Parameters;
 
 /**
  * Обеспечивает работу программы в режиме сервера
- *
  */
 public class ServerIO {
 
@@ -66,9 +63,9 @@ public class ServerIO {
             // Перебор всех Connection и вызов метода close() для каждого. Блок
             // synchronized {} необходим для правильного доступа к одним данным
             // их разных нитей
-            synchronized(connections) {
+            synchronized (connections) {
                 Iterator<Connection> iter = connections.iterator();
-                while(iter.hasNext()) {
+                while (iter.hasNext()) {
                     ((Connection) iter.next()).close();
                 }
             }
@@ -92,7 +89,9 @@ public class ServerIO {
      */
     private class Connection extends Thread {
         private BufferedReader in;
-        private PrintWriter out;
+        //private PrintWriter out;
+        //private BufferedWriter out;
+        private OutputStreamWriter out;
         private Socket socket;
 
         private String name = "";
@@ -100,19 +99,16 @@ public class ServerIO {
         /**
          * Инициализирует поля объекта и получает имя пользователя
          *
-         * @param socket
-         *            сокет, полученный из server.accept()
+         * @param socket сокет, полученный из server.accept()
          */
         public Connection(Socket socket) {
             this.socket = socket;
-
-
-
+            System.out.println("connect Port: " + this.socket.getPort() + "   LocalPort: " + this.socket.getLocalPort());
             try {
-                in = new BufferedReader(new InputStreamReader(
-                        socket.getInputStream()));
-                out = new PrintWriter(socket.getOutputStream(), true);
-
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "windows-1251"));
+                //out = new PrintWriter(socket.getOutputStream(), true);
+                //out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "windows-1251"));
+                out = new OutputStreamWriter(socket.getOutputStream(), "windows-1251");
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -129,41 +125,42 @@ public class ServerIO {
          */
         @Override
         public void run() {
-            System.out.println("Port: " + this.socket.getPort() + "   LocalPort: " + this.socket.getLocalPort());
             try {
+                /*
                 name = in.readLine();
                 // Отправляем всем клиентам сообщение о том, что зашёл новый пользователь
-                synchronized(connections) {
+                synchronized (connections) {
                     Iterator<Connection> iter = connections.iterator();
-                    while(iter.hasNext()) {
+                    while (iter.hasNext()) {
                         ((Connection) iter.next()).out.println(name + " cames now");
                     }
                 }
-
+                */
+                name = "";
                 String str = "";
                 while (true) {
                     str = in.readLine();
+                    System.out.println("" + str + "   -> Port: " + this.socket.getPort() + "   LocalPort: " + this.socket.getLocalPort());
 
-                    System.out.println(   name + ": " + str);
-
-                    if(str.equals("exit")) break;
-
+                    if (str.equals("exit")) break;
                     // Отправляем всем клиентам очередное сообщение
-                    synchronized(connections) {
+                    synchronized (connections) {
                         Iterator<Connection> iter = connections.iterator();
-                        while(iter.hasNext()) {
-                            ((Connection) iter.next()).out.println(name + ": " + str);
-
+                        while (iter.hasNext()) {
+                            //((Connection) iter.next()).out.println(name + ": " + str);
+                            ((Connection) iter.next()).out.write(str);
+                            ((Connection) iter.next()).out.flush();
                         }
                     }
                 }
-
-                synchronized(connections) {
-                    Iterator<Connection> iter = connections.iterator();
-                    while(iter.hasNext()) {
-                        ((Connection) iter.next()).out.println(name + " has left");
-                    }
-                }
+//                synchronized (connections) {
+//                    Iterator<Connection> iter = connections.iterator();
+//                    while (iter.hasNext()) {
+//                        //((Connection) iter.next()).out.println(name + " has left");
+//                        ((Connection) iter.next()).out.write(" has left");
+//
+//                    }
+//                }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
