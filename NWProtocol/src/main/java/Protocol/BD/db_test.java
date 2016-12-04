@@ -1,4 +1,4 @@
-package Protocol.BD;
+package protocol.bd;
 
 /**
  * Created by asus on 04.12.2016.

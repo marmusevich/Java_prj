@@ -1,11 +1,13 @@
-package Protocol;
+package protocol;
 
-import Protocol.Net.NetServer;
+import protocol.net.NetServer;
 
 /**
  * 
  */
 public final class Server {
+
+    private static CommandExecutor commandExecutor;
 
     /**
      * @param args
@@ -16,7 +18,7 @@ public final class Server {
         // еще какой то поток для управления сервером
 
 
-        //CommandExecutor cmd = new CommandExecutor(1);
+        commandExecutor = new CommandExecutor(1);
 
 
         try {
@@ -25,5 +27,12 @@ public final class Server {
             e.printStackTrace();
         }
     }
+
+
+
+    public static CommandExecutor getCommandExecutor(){
+        return commandExecutor;
+    }
+
 
 }

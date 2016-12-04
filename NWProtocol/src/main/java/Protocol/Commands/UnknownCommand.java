@@ -1,4 +1,4 @@
-package Protocol.Commands;
+package protocol.commands;
 
 /**
  * 
@@ -26,7 +26,6 @@ public class UnknownCommand extends AbstractCommand {
      */
 	 @Override
     public String[] getResult(){
-         String[] ret = {"Unknown command"};
-         return ret;
+         return new String[] {"Unknown command"};
      }
 }

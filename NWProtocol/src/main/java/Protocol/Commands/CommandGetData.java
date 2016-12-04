@@ -1,4 +1,6 @@
-package Protocol.Commands;
+package protocol.commands;
+
+import java.util.Date;
 
 /**
  * 
@@ -17,7 +19,9 @@ public class CommandGetData extends AbstractCommand {
      */
 	@Override
     public  void execute(){
+	    // а ничего и не делаем
 
+        //System.out.println("        CommandGetData - execute()");
     }
 
     /**
@@ -26,8 +30,9 @@ public class CommandGetData extends AbstractCommand {
      */
 	@Override
     public  String[] getResult(){
-
-	    return null;
+	    // поигратся потом с фарматом
+       String str = new Date().toString();
+        return new String[] { str };
     }
 
 }

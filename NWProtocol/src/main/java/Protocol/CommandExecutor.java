@@ -1,6 +1,7 @@
-package Protocol;
+package protocol;
 
-import Protocol.Commands.AbstractCommand;
+import protocol.commands.AbstractCommand;
+import io.netty.channel.ChannelHandlerContext;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -12,8 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
  public final class CommandExecutor implements Runnable
 {
-
-    private final BlockingQueue<AbstractCommand> commandQueue;
+    private final BlockingQueue<Session> commandQueue;
     private final ExecutorService threadPool;
     private int   threadPoolSize;
 
@@ -22,7 +22,7 @@ import java.util.concurrent.LinkedBlockingQueue;
     {
         this.threadPoolSize = threadPoolSize;
         this.threadPool     = Executors.newFixedThreadPool( threadPoolSize );
-        this.commandQueue   = new LinkedBlockingQueue();
+        this.commandQueue   = new LinkedBlockingQueue<Session>();
         
         initThreadPool();
     }
@@ -36,11 +36,11 @@ import java.util.concurrent.LinkedBlockingQueue;
     }
     
     // добавление сесси в очередь на обработку
-    public void addCommandToProcess( AbstractCommand сommand )
+    public void addCommandToProcess(AbstractCommand сommand, ChannelHandlerContext ctx )
     {
-        if ( сommand  != null )
+        if ( сommand != null && ctx != null)
         {
-            this.commandQueue.add( сommand );
+            this.commandQueue.add( new Session(сommand, ctx)  );
         }
     }    
     
@@ -50,16 +50,13 @@ import java.util.concurrent.LinkedBlockingQueue;
         while ( true ) //isActive
         {
                 // Получаем следующую сессию для обработки
-                //AbstractCommand сommand = (AbstractCommand) this.commandQueue.take();
-                
-				//сommand.execute();
-				
-                // Здесь происходит обработка игровых сообщений
-                // получаем пакет
-                //packet = session.getReadPacketQueue().take();
-
-                // далее получаем и обрабатываем данные из него
-                //data =  packet.getData();
+            try {
+                Session session = this.commandQueue.take();
+                session.execute();
+                session.sendResult();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }    
 }	

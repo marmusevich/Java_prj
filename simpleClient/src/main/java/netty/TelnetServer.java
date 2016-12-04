@@ -51,7 +51,7 @@ public final class TelnetServer {
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class)
              .handler(new LoggingHandler(LogLevel.INFO))
-             .option(ChannelOption.SO_BACKLOG,128) // количество одновременных подключени
+             //.option(ChannelOption.SO_BACKLOG,128) // количество одновременных подключени
              //.childOption(ChannelOption.SO_TIMEOUT,128)
              .childOption(ChannelOption.SO_KEEPALIVE, true) // проверить а соеденение активно ли?
              .childHandler(new TelnetServerInitializer(sslCtx));

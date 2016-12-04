@@ -21,9 +21,6 @@ import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import java.net.InetAddress;
-import java.util.Date;
-
 /**
  * Handles a server-side channel.
  */
@@ -33,9 +30,9 @@ public class TelnetServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         // Send greeting for a new connection.
-        ctx.write("Welcome to " + InetAddress.getLocalHost().getHostName() + "!\r\n");
-        ctx.write("It is " + new Date() + " now.\r\n");
-        ctx.flush();
+//        ctx.write("Welcome to " + InetAddress.getLocalHost().getHostName() + "!\r\n");
+//        ctx.write("It is " + new Date() + " now.\r\n");
+//        ctx.flush();
     }
 
     @Override

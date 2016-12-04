@@ -1,4 +1,4 @@
-package Protocol.Net;
+package protocol.net;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -15,7 +15,7 @@ import java.nio.charset.Charset;
 
     private static final BateToCommandDecoder DECODER_BATE_TO_COMMAND = new BateToCommandDecoder( Charset.forName("windows-1251") );
     private static final StringEncoder ENCODER_STRING_TO_BATE = new StringEncoder( Charset.forName("windows-1251") );
-    private static final CommandToBateEncoder ENCODER_COMMAND_TO_STRING = new CommandToBateEncoder( );
+    private static final CommandToStringEncoder ENCODER_COMMAND_TO_STRING = new CommandToStringEncoder();
     private static final CommandHandler SERVER_HANDLER = new CommandHandler( );
 
 
@@ -36,6 +36,7 @@ import java.nio.charset.Charset;
         //pipeline.addLast(new LoggingHandler(LogLevel.INFO));
 
         pipeline.addLast(DECODER_BATE_TO_COMMAND);
+
         pipeline.addLast(ENCODER_STRING_TO_BATE);
         pipeline.addLast(ENCODER_COMMAND_TO_STRING);
 

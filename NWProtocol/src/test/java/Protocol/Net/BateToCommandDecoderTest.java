@@ -1,4 +1,4 @@
-package Protocol.Net;
+package protocol.net;
 
 import org.junit.Test;
 

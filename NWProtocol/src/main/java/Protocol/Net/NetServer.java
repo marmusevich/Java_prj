@@ -1,4 +1,4 @@
-package Protocol.Net;
+package protocol.net;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelOption;

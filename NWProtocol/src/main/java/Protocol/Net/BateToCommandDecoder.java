@@ -1,5 +1,7 @@
-package Protocol.Net;
+package protocol.net;
 
+import protocol.commands.AbstractCommand;
+import protocol.commands.Parser;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -11,6 +13,7 @@ import java.util.List;
  * Created by asus on 04.12.2016.
  */
 class BateToCommandDecoder extends ByteToMessageDecoder {
+    private static final Parser parser = new Parser( );
 
     private final Charset charset;
 
@@ -25,25 +28,29 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-
         Object decoded = decode(ctx, in);
         if (decoded != null) {
             out.add(decoded);
+            in.skipBytes(in.readableBytes());
         }
     }
 
     private Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
 
-        System.out.println("readerIndex = " + buffer.readerIndex() + "    readableBytes = " + buffer.readableBytes());
-
         ByteBuf msg = buffer.retainedSlice(buffer.readerIndex(), buffer.readableBytes());
-        buffer.skipBytes(buffer.readableBytes());
 
-        System.out.println("readerIndex = " + buffer.readerIndex() + "    readableBytes = " + buffer.readableBytes());
+        // версия со строками
+        String msgString = msg.toString(charset);
 
-        System.out.println(msg.toString(charset));
+        // получить имя команды
+        String cammandName = parser.getCammandName(msgString);
 
-        return null;
+        //построить команду
+        AbstractCommand cmd = null;
+        if(cammandName != null){
+            cmd = parser.tryParseCommand(cammandName, msgString);
+        }
+        return cmd;
     }
 
 

@@ -1,4 +1,4 @@
-package Protocol;
+package protocol;
 
 /**
  * Created by asus on 04.12.2016.
