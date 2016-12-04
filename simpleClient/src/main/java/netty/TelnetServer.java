@@ -19,6 +19,7 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.ChannelOption;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslContext;
@@ -50,6 +51,9 @@ public final class TelnetServer {
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class)
              .handler(new LoggingHandler(LogLevel.INFO))
+             .option(ChannelOption.SO_BACKLOG,128) // количество одновременных подключени
+             //.childOption(ChannelOption.SO_TIMEOUT,128)
+             .childOption(ChannelOption.SO_KEEPALIVE, true) // проверить а соеденение активно ли?
              .childHandler(new TelnetServerInitializer(sslCtx));
 
             b.bind(PORT).sync().channel().closeFuture().sync();

@@ -25,10 +25,13 @@ import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.ssl.SslContext;
 
+import io.netty.handler.codec.json.JsonObjectDecoder;
 import io.netty.handler.logging.LoggingHandler;
 
 import java.nio.charset.Charset;
 
+
+import io.netty.handler.codec.http.HttpServerCodec;
 /**
  * Creates a newly configured {@link ChannelPipeline} for a new channel.
  */
@@ -53,8 +56,11 @@ public class TelnetServerInitializer extends ChannelInitializer<SocketChannel> {
             pipeline.addLast(sslCtx.newHandler(ch.alloc()));
         }
 
+        //pipeline.addLast(new LoggingHandler(LogLevel.INFO));
+        pipeline.addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.nulDelimiter()));
+        //pipeline.addLast(new MyBateDecodor());
+
         // Add the text line codec combination first,
-        pipeline.addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
         // the encoder and decoder are static as these are sharable
         pipeline.addLast(DECODER);
         pipeline.addLast(ENCODER);
@@ -62,6 +68,12 @@ public class TelnetServerInitializer extends ChannelInitializer<SocketChannel> {
         //pipeline.addLast(new LoggingHandler(LogLevel.INFO));
 
         // and then business logic.
-        pipeline.addLast(SERVER_HANDLER);
+        //pipeline.addLast(SERVER_HANDLER);
+
+
+
+
+        pipeline.addLast(new MyDecodor());
+
     }
 }

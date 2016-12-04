@@ -32,4 +32,21 @@ public class MyHandler extends SimpleChannelInboundHandler<String> {
         cause.printStackTrace();
         ctx.close();
     }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        // Send greeting for a new connection.
+        ctx.write("Welcome to " + InetAddress.getLocalHost().getHostName() + "!\r\n");
+        ctx.write("It is " + new Date() + " now.\r\n");
+        ctx.flush();
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        // Send greeting for a new connection.
+        ctx.write("Welcome to " + InetAddress.getLocalHost().getHostName() + "!\r\n");
+        ctx.write("It is " + new Date() + " now.\r\n");
+        ctx.flush();
+    }
+
 }
