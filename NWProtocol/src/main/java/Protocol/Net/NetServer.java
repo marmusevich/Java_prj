@@ -16,21 +16,43 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
  */
 public final class NetServer {
 
-    static final boolean SSL = System.getProperty("ssl") != null;
+    EventLoopGroup bossGroup;
+    EventLoopGroup workerGroup;
+    SslContext sslCtx;
 
+    /**
+     * иницилизировать, количество потоков на усмотрение системы
+     */
+    public NetServer() {
+        this(0,0);
+    }
 
-    static public void start(int PORT) throws Exception {
+    /**
+     * иницилизировать, количество потоков задать
+     */
+    public NetServer(int bossThreads, int workerThreads) {
+        if(bossThreads == 0)
+            bossGroup = new NioEventLoopGroup();
+        else
+            bossGroup = new NioEventLoopGroup(bossThreads);
+
+        if(workerThreads == 0)
+            workerGroup = new NioEventLoopGroup();
+        else
+            workerGroup = new NioEventLoopGroup(workerThreads);
+    }
+
+    public void ConfigureSSL(boolean SSL) throws Exception {
         // Configure SSL.
-        final SslContext sslCtx;
         if (SSL) {
             SelfSignedCertificate ssc = new SelfSignedCertificate();
             sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
         } else {
             sslCtx = null;
         }
+    }
 
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+    public void start(int PORT) throws Exception {
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
@@ -46,11 +68,11 @@ public final class NetServer {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
-
-
     }
 
-    public static void stop() {
+    public void stop() {
+        bossGroup.shutdownGracefully();
+        workerGroup.shutdownGracefully();
     }
 
 

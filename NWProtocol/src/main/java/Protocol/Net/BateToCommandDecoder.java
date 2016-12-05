@@ -13,7 +13,8 @@ import java.util.List;
  * Created by asus on 04.12.2016.
  */
 class BateToCommandDecoder extends ByteToMessageDecoder {
-    private static final Parser parser = new Parser();
+
+    private final Parser parser = new Parser();
 
     private final Charset charset;
 
@@ -39,6 +40,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
 
         ByteBuf msg = buffer.retainedSlice(buffer.readerIndex(), buffer.readableBytes());
 
+        //TODO сейчас работаем на строках, воможно надо работать с байтами
         // версия со строками
         String msgString = msg.toString(charset);
 

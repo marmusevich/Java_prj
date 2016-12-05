@@ -5,12 +5,11 @@ import protocol.bd.DBContext;
 import java.util.Date;
 
 /**
- *
+ * получить дату с сервера
  */
 public class CommandGetData extends AbstractCommand {
 
     /**
-     * Default constructor
      */
     public CommandGetData() {
     }

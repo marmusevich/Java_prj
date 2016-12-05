@@ -1,7 +1,7 @@
 package protocol.commands;
 
 /**
- *
+ * парсить данные в каманду
  */
 public class Parser {
 
@@ -13,13 +13,11 @@ public class Parser {
 
     /**
      * распарсить имя команды
-     *
      * @param commandData
      * @return
      */
-
     public String getCammandName(String commandData) {
-        // TODO implement here
+        //TODO распарсить имя команды
         return "DATE";
     }
 
@@ -27,13 +25,13 @@ public class Parser {
     /**
      * Пытается распарсить команду
      *
-     * @param cammandName имя команды
+     * @param commandName имя команды
      * @param commandData данные команды
      * @return распарсеную команду
      */
-    public AbstractCommand tryParseCommand(String cammandName, String commandData) {
+    public AbstractCommand tryParseCommand(String commandName, String commandData) {
         AbstractCommand ret = null;
-        switch (cammandName.toUpperCase()) {
+        switch (commandName.toUpperCase()) {
             case "DATE": // получить время
                 ret = parseGetData(commandData);
                 break;
@@ -41,10 +39,23 @@ public class Parser {
             default: // неопознаная командв
                 ret = new UnknownCommand();
         }
-
-
         return ret;
     }
+
+    /**
+     * получить данные одного параметра
+     * @param commandData
+     * @param parametrName
+     * @return
+     */
+    private String getParametrData(String commandData, String parametrName) {
+        return "";
+    }
+
+
+
+    //TODO как сделать парсер для каждой команды
+    //TODO или статическая функция у каждой команды или ??
 
     // impliment
     // реализация парсинга для каждой команды

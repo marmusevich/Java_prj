@@ -1,16 +1,17 @@
 package protocol;
 
 import protocol.bd.DBContext;
+import protocol.commands.AbstractCommand;
 
 /**
- *
+ * поток исполнения команд
  */
 public final class CommandExecutor implements Runnable {
     DBContext dbContext;
 
 
     public CommandExecutor() {
-        //подключится к базе
+        //TODO здесь както с базой решить подключится к базе или в сервере команд
         dbContext = null;
 
     }
@@ -19,15 +20,17 @@ public final class CommandExecutor implements Runnable {
     public void run() {
         while (true) //isActive
         {
-            // Получаем следующую сессию для обработки
+            //TODO  както с потоком разобратся, если поток проснулся что ли
             try {
-                Session session = Server.getCommandExecutorContext().getCommandSession();
-                session.execute(dbContext);
-                session.sendResult();
+                AbstractCommand command = Server.getCommandExecutorContext().getCommandToDo();
+                //TODO проверить аунтификацию, не выполнять команду
+                if(command.checkUserNameAndPass(dbContext))
+                    command.execute(dbContext);
+                command.sendResult();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-}	
+}
 

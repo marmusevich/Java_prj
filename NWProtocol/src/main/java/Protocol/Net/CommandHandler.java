@@ -20,7 +20,7 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
 //        ctx.write("channelRead0. \r\n");
 //        System.out.println("channelRead0. \r\n");
 
-        Server.getCommandExecutorContext().addCommandToProcess(сommand, ctx);
+        Server.getCommandExecutorContext().addCommandToProcess(сommand.setChannelHandlerContext( ctx ));
     }
 
 
