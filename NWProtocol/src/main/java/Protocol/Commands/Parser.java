@@ -1,7 +1,7 @@
 package protocol.commands;
 
 /**
- * 
+ *
  */
 public class Parser {
 
@@ -13,6 +13,7 @@ public class Parser {
 
     /**
      * распарсить имя команды
+     *
      * @param commandData
      * @return
      */
@@ -23,16 +24,16 @@ public class Parser {
     }
 
 
-
     /**
      * Пытается распарсить команду
+     *
      * @param cammandName имя команды
      * @param commandData данные команды
      * @return распарсеную команду
      */
     public AbstractCommand tryParseCommand(String cammandName, String commandData) {
         AbstractCommand ret = null;
-        switch (cammandName.toUpperCase()){
+        switch (cammandName.toUpperCase()) {
             case "DATE": // получить время
                 ret = parseGetData(commandData);
                 break;
@@ -42,20 +43,18 @@ public class Parser {
         }
 
 
-
         return ret;
     }
 
     // impliment
     // реализация парсинга для каждой команды
-    private AbstractCommand parseGetData(String commandData){
+    private AbstractCommand parseGetData(String commandData) {
         AbstractCommand ret = null;
 
         ret = new CommandGetData();
 
         return ret;
     }
-
 
 
 }

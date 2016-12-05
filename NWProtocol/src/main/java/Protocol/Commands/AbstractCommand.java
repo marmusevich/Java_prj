@@ -1,5 +1,7 @@
 package protocol.commands;
 
+import protocol.bd.DBContext;
+
 /**
  * Абстастная команда
  */
@@ -16,7 +18,7 @@ public abstract class AbstractCommand {
      * Выполнить команду
      * здесь реализовать логику
      */
-    public abstract void execute();
+    public abstract void execute(DBContext dbContext);
 
     /**
      * Вернуть результат
@@ -24,8 +26,6 @@ public abstract class AbstractCommand {
      * @return набор строк результата
      */
     public abstract String[] getResult();
-
-
 
 
 }

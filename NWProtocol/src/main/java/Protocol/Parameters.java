@@ -6,6 +6,4 @@ package protocol;
 public class Parameters {
 
 
-
-
 }

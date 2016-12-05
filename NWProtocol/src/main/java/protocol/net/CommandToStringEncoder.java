@@ -1,8 +1,8 @@
 package protocol.net;
 
-import protocol.commands.AbstractCommand;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
+import protocol.commands.AbstractCommand;
 
 import java.util.List;
 

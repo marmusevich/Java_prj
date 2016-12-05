@@ -11,12 +11,12 @@ import java.nio.charset.Charset;
 /**
  * Created by asus on 04.12.2016.
  */
- class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
+class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
 
-    private static final BateToCommandDecoder DECODER_BATE_TO_COMMAND = new BateToCommandDecoder( Charset.forName("windows-1251") );
-    private static final StringEncoder ENCODER_STRING_TO_BATE = new StringEncoder( Charset.forName("windows-1251") );
+    private static final BateToCommandDecoder DECODER_BATE_TO_COMMAND = new BateToCommandDecoder(Charset.forName("windows-1251"));
+    private static final StringEncoder ENCODER_STRING_TO_BATE = new StringEncoder(Charset.forName("windows-1251"));
     private static final CommandToStringEncoder ENCODER_COMMAND_TO_STRING = new CommandToStringEncoder();
-    private static final CommandHandler SERVER_HANDLER = new CommandHandler( );
+    private static final CommandHandler SERVER_HANDLER = new CommandHandler();
 
 
     private final SslContext sslCtx;

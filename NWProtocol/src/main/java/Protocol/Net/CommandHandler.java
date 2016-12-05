@@ -1,14 +1,14 @@
 package protocol.net;
 
-import protocol.commands.AbstractCommand;
-import protocol.Server;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import protocol.Server;
+import protocol.commands.AbstractCommand;
 
 /**
  * Created by asus on 04.12.2016.
  */
-class CommandHandler  extends SimpleChannelInboundHandler<AbstractCommand> {
+class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -20,7 +20,7 @@ class CommandHandler  extends SimpleChannelInboundHandler<AbstractCommand> {
 //        ctx.write("channelRead0. \r\n");
 //        System.out.println("channelRead0. \r\n");
 
-        Server.getCommandExecutor().addCommandToProcess(сommand, ctx);
+        Server.getCommandExecutorContext().addCommandToProcess(сommand, ctx);
     }
 
 
@@ -28,6 +28,7 @@ class CommandHandler  extends SimpleChannelInboundHandler<AbstractCommand> {
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
     }
+
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
     }

@@ -3,22 +3,22 @@ package protocol;
 import protocol.net.NetServer;
 
 /**
- * 
+ *
  */
 public final class Server {
 
-    private static CommandExecutor commandExecutor;
+    private static CommandExecutorContext commandExecutorContext;
 
     /**
      * @param args
      */
-    public static void main(String[]  args) {
-        // TODO implement here
+    public static void main(String[] args) {
+
         // насоздовать тут всего
         // еще какой то поток для управления сервером
 
 
-        commandExecutor = new CommandExecutor(1);
+        commandExecutorContext = new CommandExecutorContext(1);
 
 
         try {
@@ -29,9 +29,8 @@ public final class Server {
     }
 
 
-
-    public static CommandExecutor getCommandExecutor(){
-        return commandExecutor;
+    public static CommandExecutorContext getCommandExecutorContext() {
+        return commandExecutorContext;
     }
 
 

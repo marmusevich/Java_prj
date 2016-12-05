@@ -1,7 +1,9 @@
 package protocol.commands;
 
+import protocol.bd.DBContext;
+
 /**
- * 
+ *
  */
 public class UnknownCommand extends AbstractCommand {
 
@@ -15,17 +17,18 @@ public class UnknownCommand extends AbstractCommand {
      * Выполнить команду
      * здесь реализовать логику
      */
-	 @Override
-    public void execute(){
+    @Override
+    public void execute(DBContext dbContext) {
 
-     }
+    }
 
     /**
      * Вернуть результат
+     *
      * @return набор строк результата
      */
-	 @Override
-    public String[] getResult(){
-         return new String[] {"Unknown command"};
-     }
+    @Override
+    public String[] getResult() {
+        return new String[]{"Unknown command"};
+    }
 }

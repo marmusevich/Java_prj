@@ -1,10 +1,10 @@
 package protocol.net;
 
-import protocol.commands.AbstractCommand;
-import protocol.commands.Parser;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import protocol.commands.AbstractCommand;
+import protocol.commands.Parser;
 
 import java.nio.charset.Charset;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by asus on 04.12.2016.
  */
 class BateToCommandDecoder extends ByteToMessageDecoder {
-    private static final Parser parser = new Parser( );
+    private static final Parser parser = new Parser();
 
     private final Charset charset;
 
@@ -47,7 +47,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
 
         //построить команду
         AbstractCommand cmd = null;
-        if(cammandName != null){
+        if (cammandName != null) {
             cmd = parser.tryParseCommand(cammandName, msgString);
         }
         return cmd;
