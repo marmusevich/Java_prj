@@ -9,13 +9,11 @@ import protocol.commands.Parser;
 import java.nio.charset.Charset;
 import java.util.List;
 
-/**
- * Created by asus on 04.12.2016.
- */
+
+//@ChannelHandler.Sharable
 class BateToCommandDecoder extends ByteToMessageDecoder {
 
     private final Parser parser = new Parser();
-
     private final Charset charset;
 
 

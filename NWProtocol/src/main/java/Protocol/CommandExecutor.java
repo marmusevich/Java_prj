@@ -23,9 +23,7 @@ public final class CommandExecutor implements Runnable {
             //TODO  както с потоком разобратся, если поток проснулся что ли
             try {
                 AbstractCommand command = Server.getCommandExecutorContext().getCommandToDo();
-                //TODO проверить аунтификацию, не выполнять команду
-                if(command.checkUserNameAndPass(dbContext))
-                    command.execute(dbContext);
+                command.execute(dbContext);
                 command.sendResult();
             } catch (InterruptedException e) {
                 e.printStackTrace();

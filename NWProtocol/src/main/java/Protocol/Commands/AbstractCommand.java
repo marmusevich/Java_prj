@@ -26,15 +26,13 @@ public abstract class AbstractCommand {
     }
 
 
-
-
     private String userName;
     private String userPass;
-    public void setUserNameAndPass(String userName, String userPass){
+    final public void setUserNameAndPass(String userName, String userPass){
         this.userName = userName;
         this.userPass = userPass;
     }
-    public boolean checkUserNameAndPass(DBContext dbContext){
+    final public boolean checkUserNameAndPass(DBContext dbContext){
         //TODO имя пользователя и пароль, проверка, как отправить ошибку аунтификацию
         return true;
     }
@@ -44,18 +42,34 @@ public abstract class AbstractCommand {
      * Выполнить команду
      * здесь реализовать логику
      */
-    public abstract void execute(DBContext dbContext);
+    final public void execute(DBContext dbContext){
+        //TODO проверить аунтификацию, не выполнять команду
+        if(checkUserNameAndPass(dbContext))
+            executeImpl(dbContext);
+    }
 
+    /**
+     * переопределить в наследниках
+     * @param dbContext
+     */
+    public abstract void executeImpl(DBContext dbContext);
+
+
+    protected String[] result;
     /**
      * Вернуть результат
      * @return набор строк результата
      */
-    public abstract String[] getResult();
+    final public String[] getResult(){
+        return result;
+    }
+
+
 
     /**
      * отправить результат если он есть
      */
-    public void sendResult() {
+    final public void sendResult() {
         //TODO проверить а активно ли соеденение
         //TODO  убивать не активные каналы
         if (ctx != null)

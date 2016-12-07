@@ -18,17 +18,9 @@ public class UnknownCommand extends AbstractCommand {
      * здесь реализовать логику
      */
     @Override
-    public void execute(DBContext dbContext) {
-
+    public void executeImpl(DBContext dbContext) {
+        result = new String[]{"Unknown command"};
+        System.out.println(result);
     }
 
-    /**
-     * Вернуть результат
-     *
-     * @return набор строк результата
-     */
-    @Override
-    public String[] getResult() {
-        return new String[]{"Unknown command"};
-    }
 }

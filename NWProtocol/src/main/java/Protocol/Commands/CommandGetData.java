@@ -19,22 +19,10 @@ public class CommandGetData extends AbstractCommand {
      * здесь реализовать логику
      */
     @Override
-    public void execute(DBContext dbContext) {
-        // а ничего и не делаем
-
-        //System.out.println("        CommandGetData - execute()");
-    }
-
-    /**
-     * Вернуть результат
-     *
-     * @return набор строк результата
-     */
-    @Override
-    public String[] getResult() {
+    public void executeImpl(DBContext dbContext) {
         // поигратся потом с фарматом
         String str = new Date().toString();
-        return new String[]{str};
+        result = new String[]{str};
     }
 
 }
