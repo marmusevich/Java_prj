@@ -2,6 +2,9 @@ package protocol;
 
 import protocol.net.NetServer;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 //TODO добавить логирование
 //TODO еще какой то поток для управления сервером или команда терминала с локалхоста
 //TODO правильно перехватывать исключения из потоков
@@ -18,6 +21,7 @@ public final class Server {
      * @param args
      */
     public static void main(String[] args) {
+        Logger.getGlobal().setLevel(Level.ALL); //все
         start();
     }
 
