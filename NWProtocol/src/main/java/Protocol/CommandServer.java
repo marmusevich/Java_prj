@@ -7,6 +7,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
+//TODO управление потоками?
+
 /**
  * Created by lexa on 05.12.2016.
  */

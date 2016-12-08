@@ -39,6 +39,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         ByteBuf msg = buffer.retainedSlice(buffer.readerIndex(), buffer.readableBytes());
 
         //TODO сейчас работаем на строках, воможно надо работать с байтами
+        //TODO есть утечька в буфере
         // версия со строками
         String msgString = msg.toString(charset);
 

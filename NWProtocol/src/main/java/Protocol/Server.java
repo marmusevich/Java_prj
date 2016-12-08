@@ -2,6 +2,9 @@ package protocol;
 
 import protocol.net.NetServer;
 
+//TODO добавить логирование
+//TODO еще какой то поток для управления сервером или команда терминала с локалхоста
+//TODO правильно перехватывать исключения из потоков
 /**
  *
  */
@@ -15,14 +18,6 @@ public final class Server {
      * @param args
      */
     public static void main(String[] args) {
-
-//        protocol.commands.Parser p = new protocol.commands.Parser();
-//
-//        String str ="ID_TERM=2 \n"+"PASSWORD=qazwsx12 \n"+"CMD=DATE";
-//
-//        System.out.println(str);
-//
-//        System.out.println("<"+p.getCammandName(str) + ">");
         start();
     }
 
@@ -30,8 +25,6 @@ public final class Server {
      * запустить
      */
     public static void start() {
-        //TODO еще какой то поток для управления сервером
-
         parameters = new Parameters();
 
         try {
