@@ -16,7 +16,6 @@ public class CommandToStringEncoder extends MessageToMessageEncoder<AbstractComm
         String[] res = сommand.getResult();
         if (res != null && res.length > 0) {
             for (String str : res) {
-                //System.out.println("encode = " + str);
                 ctx.write(str + "\n\r");
             }
         }

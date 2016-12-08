@@ -52,6 +52,4 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         }
         return cmd;
     }
-
-
 }

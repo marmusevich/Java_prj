@@ -1,5 +1,7 @@
 package protocol;
 
+import java.nio.charset.Charset;
+
 /**
  * Created by asus on 04.12.2016.
  */
@@ -29,6 +31,16 @@ public class Parameters {
      * количество потоков выполняющих команды
      */
     public int commandExecutorThreads = 4;
+
+    /**
+     * кодировка для сообщений из сети
+     */
+    public Charset netCharset = Charset.forName("windows-1251");
+
+    /**
+     * кодировка для сообщений в базе
+     */
+    public Charset bdCharset = Charset.forName("windows-1251");
 
     /**
      * здесь при необходимости, загрузить откудото или переопределить

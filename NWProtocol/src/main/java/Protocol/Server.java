@@ -39,7 +39,7 @@ public final class Server {
 
             netServer = new NetServer(parameters.netBossThreads, parameters.netWorkerThreads);
             netServer.ConfigureSSL(parameters.isSSL);
-            netServer.start(parameters.port);
+            netServer.start(parameters.port, parameters.netCharset);
 
         } catch (Exception e) {
             stop();

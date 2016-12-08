@@ -11,6 +11,8 @@ import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
 
+import java.nio.charset.Charset;
+
 /**
  *
  */
@@ -52,16 +54,16 @@ public final class NetServer {
         }
     }
 
-    public void start(int PORT) throws Exception {
+    public void start(int PORT, Charset netCharset) throws Exception {
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     //.option(ChannelOption.SO_BACKLOG,128) // количество одновременных подключени
-                    //.childOption(ChannelOption.SO_TIMEOUT,128)
+                    .childOption(ChannelOption.SO_TIMEOUT,128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true) // проверить а соеденение активно ли?
-                    .childHandler(new NetServerChannelInitializer(sslCtx));
+                    .childHandler(new NetServerChannelInitializer(sslCtx, netCharset ));
 
             b.bind(PORT).sync().channel().closeFuture().sync();
         } finally {
@@ -74,6 +76,4 @@ public final class NetServer {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
     }
-
-
 }
