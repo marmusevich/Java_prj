@@ -3,6 +3,8 @@ package protocol.commands;
 import io.netty.channel.ChannelHandlerContext;
 import protocol.bd.DBContext;
 
+import java.util.ArrayList;
+
 /**
  * Абстастная команда
  * все остальные команды наследовать от нее
@@ -45,22 +47,22 @@ public abstract class AbstractCommand {
     final public void execute(DBContext dbContext){
         //TODO проверить аунтификацию, не выполнять команду
         if(checkUserNameAndPass(dbContext))
-            executeImpl(dbContext);
+            doWorck(dbContext);
     }
 
     /**
      * переопределить в наследниках
      * @param dbContext
      */
-    public abstract void executeImpl(DBContext dbContext);
+    public abstract void doWorck(DBContext dbContext);
 
 
-    protected String[] result;
+    protected ArrayList<String> result = new ArrayList<String>();
     /**
      * Вернуть результат
      * @return набор строк результата
      */
-    final public String[] getResult(){
+    final public ArrayList<String> getResult(){
         return result;
     }
 

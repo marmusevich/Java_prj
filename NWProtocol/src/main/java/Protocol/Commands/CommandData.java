@@ -18,10 +18,10 @@ import java.util.Date;
 public class CommandData  extends AbstractCommand {
 
     @Override
-    public void executeImpl(DBContext dbContext) {
+    public void doWorck(DBContext dbContext) {
         // поигратся потом с фарматом
         String str = new Date().toString();
-        result = new String[]{str};
+        result.add(str);
     }
 
 }

@@ -22,6 +22,6 @@ import protocol.bd.DBContext;
  */
 public class CommandGetCounter extends AbstractCommand {
     @Override
-    public void executeImpl(DBContext dbContext) {
+    public void doWorck(DBContext dbContext) {
     }
 }

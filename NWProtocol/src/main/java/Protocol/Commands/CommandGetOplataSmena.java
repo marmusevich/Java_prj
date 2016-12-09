@@ -23,6 +23,6 @@ import protocol.bd.DBContext;
  */
 public class CommandGetOplataSmena extends AbstractCommand {
     @Override
-    public void executeImpl(DBContext dbContext) {
+    public void doWorck(DBContext dbContext) {
     }
 }
