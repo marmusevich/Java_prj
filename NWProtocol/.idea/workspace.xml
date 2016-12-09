@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,8 +25,8 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="860">
-              <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+            <state relative-caret-position="340">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <marker date="1481213023304" expanded="true" signature="117:118" ph="/**...*/" />
@@ -114,8 +113,6 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/CommandExecutorContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/Protocol/CommandExecutor.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/CommandExecutor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/Parameters.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/net/NetServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/net/NetServerChannelInitializer.java" />
@@ -132,7 +129,6 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddrTerm.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
@@ -156,6 +152,9 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/net/BateToCommandDecoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/CommandServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/Server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" />
       </list>
     </option>
   </component>
@@ -320,6 +319,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="protocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NWProtocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NWProtocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commands" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -639,6 +668,14 @@
       <option name="presentableId" value="Default" />
       <updated>1480848029834</updated>
     </task>
+    <task id="LOCAL-00001" summary="*">
+      <created>1481278463456</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1481278463456</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -687,6 +724,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
+    <MESSAGE value="*" />
+    <option name="LAST_COMMIT_MESSAGE" value="*" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -727,6 +766,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -734,20 +774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="73" column="39" lean-forward="false" selection-start-line="73" selection-start-column="39" selection-end-line="73" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -819,7 +845,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" />
@@ -832,7 +857,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandChekSmena.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddres.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandChkUpdate.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" />
@@ -873,10 +897,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandChekSmena.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+          <folding>
+            <element signature="e#337#338#0" expanded="true" />
+            <element signature="e#382#383#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="59" column="45" lean-forward="false" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
+          <folding>
+            <element signature="e#1408#1416#0" expanded="true" />
+            <element signature="e#1545#1546#0" expanded="true" />
+            <element signature="e#1574#1575#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="860">
-          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+        <state relative-caret-position="340">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <marker date="1481213023304" expanded="true" signature="117:118" ph="/**...*/" />
