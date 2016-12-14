@@ -18,9 +18,9 @@ import java.nio.charset.Charset;
  */
 public final class NetServer {
 
-    EventLoopGroup bossGroup;
-    EventLoopGroup workerGroup;
-    SslContext sslCtx;
+    private EventLoopGroup bossGroup;
+    private EventLoopGroup workerGroup;
+    private SslContext sslCtx;
 
     /**
      * иницилизировать, количество потоков на усмотрение системы
