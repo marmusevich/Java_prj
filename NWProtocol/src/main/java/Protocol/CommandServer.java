@@ -41,6 +41,7 @@ public class CommandServer {
             this.commandQueue.add(сommand);
             //TODO разбудить поток ?
             //this.threadPool.invokeAll();
+            //threadPool.invokeAny()
         }
     }
 

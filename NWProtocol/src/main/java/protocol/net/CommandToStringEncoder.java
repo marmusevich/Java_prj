@@ -4,6 +4,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
 import protocol.commands.AbstractCommand;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +14,8 @@ public class CommandToStringEncoder extends MessageToMessageEncoder<AbstractComm
 
     @Override
     protected void encode(ChannelHandlerContext ctx, AbstractCommand сommand, List<Object> out) throws Exception {
-        String[] res = сommand.getResult();
-        if (res != null && res.length > 0) {
+        ArrayList<String> res = сommand.getResult();
+        if (res != null && !res.isEmpty()) {
             for (String str : res) {
                 ctx.write(str + "\n\r");
             }

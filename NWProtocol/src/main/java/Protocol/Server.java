@@ -1,9 +1,10 @@
 package protocol;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import protocol.net.NetServer;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 //TODO добавить логирование
 //TODO еще какой то поток для управления сервером или команда терминала с локалхоста
@@ -12,18 +13,24 @@ import java.util.logging.Logger;
  *
  */
 public final class Server {
-
     private static CommandServer commandServer;
     private static NetServer netServer;
     private static Parameters parameters;
+
+
 
     /**
      * @param args
      */
     public static void main(String[] args) {
-        Logger.getGlobal().setLevel(Level.ALL); //все
-        start();
+        loggerSetup();
+        //start();
+
     }
+
+    public static void loggerSetup() {
+    }
+
 
     /**
      * запустить
