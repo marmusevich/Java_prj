@@ -18,6 +18,8 @@ public final class Server {
     private static Parameters parameters;
 
 
+    private static Logger logger = LoggerFactory.getLogger(Server.class);
+
 
     /**
      * @param args
@@ -29,6 +31,8 @@ public final class Server {
     }
 
     public static void loggerSetup() {
+
+        logger.info("Hello111 World");
     }
 
 
