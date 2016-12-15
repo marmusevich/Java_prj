@@ -22,8 +22,9 @@
     </turboFilter>
     <!-- Логгеры -->
     <!-- Корневой логгер -->
-    <root level="trace">
-        <!--<appender-ref ref="file" />-->
+    <!--<root level="trace">-->
+    <root level="info">
+        <appender-ref ref="file" />
         <appender-ref ref="sout" />
     </root>
     <!-- Логгер нашего класса  -->

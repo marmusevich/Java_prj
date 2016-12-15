@@ -8,6 +8,7 @@ import protocol.net.NetServer;
 //TODO добавить логирование
 //TODO еще какой то поток для управления сервером или команда терминала с локалхоста
 //TODO правильно перехватывать исключения из потоков
+
 /**
  *
  */
@@ -55,7 +56,7 @@ public final class Server {
         if (netServer != null)
             netServer.stop();
         if (commandServer != null)
-            commandServer.stop();
+            commandServer.stop(true);
 
         logger.trace("server stop");
     }

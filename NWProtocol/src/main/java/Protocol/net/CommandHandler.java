@@ -18,6 +18,7 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
     @Override
     public void channelRead0(ChannelHandlerContext ctx, AbstractCommand сommand) throws Exception {
         Server.getCommandExecutorContext().addCommandToProcess(сommand.setChannelHandlerContext( ctx ));
+
     }
 
 

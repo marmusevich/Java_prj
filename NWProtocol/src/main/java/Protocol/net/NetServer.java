@@ -10,6 +10,8 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.Charset;
 
@@ -21,6 +23,9 @@ public final class NetServer {
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
     private SslContext sslCtx;
+
+    private static final Logger logger = LoggerFactory.getLogger(NetServer.class);
+
 
     /**
      * иницилизировать, количество потоков на усмотрение системы
@@ -61,11 +66,18 @@ public final class NetServer {
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     //.option(ChannelOption.SO_BACKLOG,128) // количество одновременных подключени
-                    .childOption(ChannelOption.SO_TIMEOUT,128)
+//                    .childOption(ChannelOption.SO_TIMEOUT,128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true) // проверить а соеденение активно ли?
                     .childHandler(new NetServerChannelInitializer(sslCtx, netCharset ));
 
-            int i = 10 / 0;
+                //поиск утечьки буфера
+                //ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.PARANOID);
+                //ERROR io.netty.util.ResourceLeakDetector - LEAK:
+                //ByteBuf.release() was not called before it's garbage-collected. Enable advanced leak reporting to find out where the leak occurred.
+                //To enable advanced leak reporting, specify the JVM option '-Dio.netty.leakDetection.level=advanced' or call ResourceLeakDetector.setLevel()
+                //See http://netty.io/wiki/reference-counted-objects.html for more information.
+
+
 
             b.bind(PORT).sync().channel().closeFuture().sync();
         } finally {

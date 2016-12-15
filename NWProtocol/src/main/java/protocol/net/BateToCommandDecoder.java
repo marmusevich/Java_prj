@@ -30,7 +30,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         Object decoded = decode(ctx, in);
         if (decoded != null) {
             out.add(decoded);
-            in.skipBytes(in.readableBytes());
+            in.release();
         }
     }
 

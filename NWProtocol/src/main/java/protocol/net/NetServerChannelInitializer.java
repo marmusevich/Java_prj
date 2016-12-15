@@ -5,6 +5,8 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.ssl.SslContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.Charset;
 
@@ -12,6 +14,8 @@ import java.nio.charset.Charset;
  * Created by asus on 04.12.2016.
  */
 class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
+
+    private static final Logger logger = LoggerFactory.getLogger(NetServerChannelInitializer.class);
 
     private final SslContext sslCtx;
     private  Charset netCharset;

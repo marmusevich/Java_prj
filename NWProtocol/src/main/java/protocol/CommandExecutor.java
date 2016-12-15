@@ -22,7 +22,7 @@ public final class CommandExecutor implements Runnable {
 
     @Override
     public void run() {
-        while (true) //isActive
+        //while (true) //isActive
         {
             //TODO  както с потоком разобратся, если поток проснулся что ли
             try {
