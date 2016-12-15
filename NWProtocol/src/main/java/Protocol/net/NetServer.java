@@ -65,6 +65,8 @@ public final class NetServer {
                     .childOption(ChannelOption.SO_KEEPALIVE, true) // проверить а соеденение активно ли?
                     .childHandler(new NetServerChannelInitializer(sslCtx, netCharset ));
 
+            int i = 10 / 0;
+
             b.bind(PORT).sync().channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();

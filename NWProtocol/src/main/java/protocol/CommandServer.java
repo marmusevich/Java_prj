@@ -1,5 +1,7 @@
 package protocol;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import protocol.commands.AbstractCommand;
 
 import java.util.concurrent.BlockingQueue;
@@ -17,6 +19,8 @@ public class CommandServer {
     private final BlockingQueue<AbstractCommand> commandQueue;
     private final ExecutorService threadPool;
     private int threadPoolSize;
+
+    private static Logger logger = LoggerFactory.getLogger(Server.class);
 
 
     public CommandServer(int threadPoolSize) {

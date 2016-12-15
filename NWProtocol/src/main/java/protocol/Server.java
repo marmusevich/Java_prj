@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import protocol.net.NetServer;
 
 
-
 //TODO добавить логирование
 //TODO еще какой то поток для управления сервером или команда терминала с локалхоста
 //TODO правильно перехватывать исключения из потоков
@@ -17,24 +16,16 @@ public final class Server {
     private static NetServer netServer;
     private static Parameters parameters;
 
-
     private static Logger logger = LoggerFactory.getLogger(Server.class);
-
 
     /**
      * @param args
      */
     public static void main(String[] args) {
-        loggerSetup();
-        //start();
+        logger.info(" Before start server...");
+        start();
 
     }
-
-    public static void loggerSetup() {
-
-        logger.info("Hello111 World");
-    }
-
 
     /**
      * запустить
@@ -51,7 +42,9 @@ public final class Server {
 
         } catch (Exception e) {
             stop();
-            e.printStackTrace();
+            logger.error(" server stoped on start. ", e);
+            //e.printStackTrace();
+            //todo сервер не останавливается при ошибке
         }
 
     }
