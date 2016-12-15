@@ -31,7 +31,8 @@ public class CommandServer {
                 .build();
 
 
-        threadPool = Executors.newCachedThreadPool(threadFactory);
+        //threadPool = Executors.newCachedThreadPool(threadFactory);
+        threadPool = Executors.newFixedThreadPool(this.threadPoolSize, threadFactory);
         commandQueue = new LinkedBlockingQueue<AbstractCommand>();
 
         initThreadPool();
