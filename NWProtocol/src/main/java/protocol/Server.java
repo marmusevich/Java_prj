@@ -16,13 +16,13 @@ public final class Server {
     private static NetServer netServer;
     private static Parameters parameters;
 
-    private static Logger logger = LoggerFactory.getLogger(Server.class);
+    private static final Logger logger = LoggerFactory.getLogger(Server.class);
 
     /**
      * @param args
      */
     public static void main(String[] args) {
-        logger.info(" Before start server...");
+        logger.trace(" Before start server...");
         start();
 
     }
@@ -46,10 +46,7 @@ public final class Server {
             //e.printStackTrace();
             //todo сервер не останавливается при ошибке
         }
-
     }
-
-
 
     /**
      * остановить сервер
@@ -59,6 +56,8 @@ public final class Server {
             netServer.stop();
         if (commandServer != null)
             commandServer.stop();
+
+        logger.trace("server stop");
     }
 
     public static CommandServer getCommandExecutorContext() {

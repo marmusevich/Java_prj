@@ -1,5 +1,7 @@
 package protocol;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import protocol.bd.DBContext;
 import protocol.commands.AbstractCommand;
 
@@ -7,7 +9,9 @@ import protocol.commands.AbstractCommand;
  * поток исполнения команд
  */
 public final class CommandExecutor implements Runnable {
-    DBContext dbContext;
+    private DBContext dbContext;
+
+    private static final Logger logger = LoggerFactory.getLogger(CommandExecutor.class);
 
 
     public CommandExecutor() {

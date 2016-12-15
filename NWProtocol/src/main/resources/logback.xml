@@ -22,11 +22,12 @@
     </turboFilter>
     <!-- Логгеры -->
     <!-- Корневой логгер -->
-    <root level="info">
-        <appender-ref ref="file" />
+    <root level="trace">
+        <!--<appender-ref ref="file" />-->
+        <appender-ref ref="sout" />
     </root>
     <!-- Логгер нашего класса  -->
-    <logger name="logging.logback.LoggingLogback" level="info" >
-        <appender-ref ref="sout" />
-    </logger>
+    <!--<logger name="protocol.Server" level="trace" >-->
+        <!--<appender-ref ref="sout" />-->
+    <!--</logger>-->
 </configuration>

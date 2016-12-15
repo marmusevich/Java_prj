@@ -1,6 +1,8 @@
 package protocol.commands;
 
 import io.netty.channel.ChannelHandlerContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import protocol.bd.DBContext;
 
 import java.util.ArrayList;
@@ -10,6 +12,9 @@ import java.util.ArrayList;
  * все остальные команды наследовать от нее
  */
 public abstract class AbstractCommand {
+
+    private static final Logger logger = LoggerFactory.getLogger(AbstractCommand.class);
+
 
     protected ChannelHandlerContext ctx;
     /**

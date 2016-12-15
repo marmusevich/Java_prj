@@ -20,7 +20,7 @@ public class CommandServer {
     private final ExecutorService threadPool;
     private int threadPoolSize;
 
-    private static Logger logger = LoggerFactory.getLogger(Server.class);
+    private static final Logger logger = LoggerFactory.getLogger(CommandServer.class);
 
 
     public CommandServer(int threadPoolSize) {
@@ -46,12 +46,16 @@ public class CommandServer {
             //TODO разбудить поток ?
             //this.threadPool.invokeAll();
             //threadPool.invokeAny()
+
+            logger.trace("addCommandToProcess");
         }
     }
 
     public AbstractCommand getCommandToDo() throws InterruptedException {
         //TODO безопасное извлечение
+        logger.trace("getCommandToDo");
         return this.commandQueue.take();
+
     }
 
     public void stop() {

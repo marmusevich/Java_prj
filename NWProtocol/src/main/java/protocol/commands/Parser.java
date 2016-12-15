@@ -1,9 +1,15 @@
 package protocol.commands;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * парсить данные в каманду
  */
 public class Parser {
+
+    private static final Logger logger = LoggerFactory.getLogger(Parser.class);
+
     /**
      * распарсить имя команды
      * @param commandData

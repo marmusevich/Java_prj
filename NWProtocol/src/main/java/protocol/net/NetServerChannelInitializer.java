@@ -4,8 +4,6 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.string.StringEncoder;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslContext;
 
 import java.nio.charset.Charset;
@@ -29,7 +27,7 @@ class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
         if (sslCtx != null) {
             pipeline.addLast(sslCtx.newHandler(ch.alloc()));
         }
-        pipeline.addLast(new LoggingHandler(LogLevel.INFO));
+        //pipeline.addLast(new LoggingHandler(LogLevel.INFO));
 
         pipeline.addLast(new BateToCommandDecoder(netCharset));
         pipeline.addLast(new StringEncoder(netCharset));

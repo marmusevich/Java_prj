@@ -8,6 +8,8 @@ package protocol.commands;
 //        ГГГГ – год , в четырехзначном представлении;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import protocol.bd.DBContext;
 
 import java.util.Date;
@@ -17,8 +19,14 @@ import java.util.Date;
  */
 public class CommandData  extends AbstractCommand {
 
+    private static final Logger logger = LoggerFactory.getLogger(CommandData.class);
+
+
     @Override
     public void doWorck(DBContext dbContext) {
+
+        logger.trace("doWorck");
+
         // поигратся потом с фарматом
         String str = new Date().toString();
         result.add(str);
