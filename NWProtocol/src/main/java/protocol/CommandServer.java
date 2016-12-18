@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import protocol.commands.AbstractCommand;
 
+import java.io.Closeable;
 import java.util.concurrent.*;
 
 
@@ -13,9 +14,9 @@ import java.util.concurrent.*;
 /**
  * Created by lexa on 05.12.2016.
  */
-public class CommandServer {
+public class CommandServer implements Closeable {
 
-    private final BlockingQueue<AbstractCommand> commandQueue;
+    private final LinkedBlockingQueue<AbstractCommand> commandQueue;
     private final ExecutorService threadPool;
     private int threadPoolSize;
 
@@ -29,36 +30,21 @@ public class CommandServer {
                 .setNameFormat("CommandExecutor-%d")
                 .setDaemon(false)
                 .build();
-
-
-        //threadPool = Executors.newCachedThreadPool(threadFactory);
         threadPool = Executors.newFixedThreadPool(this.threadPoolSize, threadFactory);
+
         commandQueue = new LinkedBlockingQueue<AbstractCommand>();
 
-        initThreadPool();
-    }
-
-    private void initThreadPool() {
-//        for (int i = 0; i < this.threadPoolSize; i++) {
-//            threadPool.submit(new CommandExecutor());
-//            //TODO здесь както с базой решить или в конструкторе
-//        }
     }
 
     // добавление сесси в очередь на обработку
     public void addCommandToProcess(AbstractCommand сommand) {
         if (сommand != null) {
             commandQueue.add(сommand);
-            threadPool.submit(new CommandExecutor());
+            CommandExecutor ce = new CommandExecutor(commandQueue, null);
+            threadPool.submit(ce);
             //TODO разбудить поток ?
             logger.trace("addCommandToProcess");
         }
-    }
-
-    public AbstractCommand getCommandToDo() throws InterruptedException {
-        //TODO безопасное извлечение
-        logger.trace("getCommandToDo");
-        return this.commandQueue.take();
     }
 
     public void stop(boolean shutdownNow) {
@@ -69,4 +55,15 @@ public class CommandServer {
         else
             threadPool.shutdown();
     }
+
+    @Override
+    public void finalize() {
+        logger.info("finalize");
+    }
+
+    @Override
+    public void close() {
+        logger.info("close");
+    }
+
 }

@@ -25,7 +25,6 @@ public final class Server {
     public static void main(String[] args) {
         logger.trace(" Before start server...");
         start();
-
     }
 
     /**
@@ -56,7 +55,7 @@ public final class Server {
         if (netServer != null)
             netServer.stop();
         if (commandServer != null)
-            commandServer.stop(true);
+            commandServer.stop(false);
 
         logger.trace("server stop");
     }
@@ -70,6 +69,5 @@ public final class Server {
     public static Parameters getParameters() {
         return parameters;
     }
-
 
 }

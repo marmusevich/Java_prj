@@ -5,16 +5,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import protocol.bd.DBContext;
 
+import java.io.Closeable;
 import java.util.ArrayList;
 
 /**
  * Абстастная команда
  * все остальные команды наследовать от нее
  */
-public abstract class AbstractCommand {
+public abstract class AbstractCommand implements Closeable {
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractCommand.class);
-
 
     protected ChannelHandlerContext ctx;
     /**
@@ -41,6 +41,7 @@ public abstract class AbstractCommand {
     }
     final public boolean checkUserNameAndPass(DBContext dbContext){
         //TODO имя пользователя и пароль, проверка, как отправить ошибку аунтификацию
+        logger.trace("checkUserNameAndPass");
         return true;
     }
 
@@ -51,6 +52,7 @@ public abstract class AbstractCommand {
      */
     final public void execute(DBContext dbContext){
         //TODO проверить аунтификацию, не выполнять команду
+        logger.trace("execute{}", ctx.pipeline().channel().remoteAddress().toString());
         if(checkUserNameAndPass(dbContext))
             doWorck(dbContext);
     }
@@ -79,7 +81,22 @@ public abstract class AbstractCommand {
     final public void sendResult() {
         //TODO проверить а активно ли соеденение
         //TODO  убивать не активные каналы
+        logger.trace("sendResult {}", ctx.pipeline().channel().remoteAddress().toString());
+
         if (ctx != null)
             ctx.writeAndFlush(this);
     }
+
+    @Override
+    public void finalize() {
+        logger.info("finalize");
+
+    }
+
+    @Override
+    public void close() {
+        logger.info("close");
+
+    }
+
 }

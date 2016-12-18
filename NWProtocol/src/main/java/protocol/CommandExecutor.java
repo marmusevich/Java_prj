@@ -5,34 +5,46 @@ import org.slf4j.LoggerFactory;
 import protocol.bd.DBContext;
 import protocol.commands.AbstractCommand;
 
+import java.io.Closeable;
+import java.util.concurrent.LinkedBlockingQueue;
+
 /**
  * поток исполнения команд
  */
-public final class CommandExecutor implements Runnable {
+public final class CommandExecutor implements Runnable, Closeable {
     private DBContext dbContext;
+    private LinkedBlockingQueue<AbstractCommand> commandQueue;
 
     private static final Logger logger = LoggerFactory.getLogger(CommandExecutor.class);
 
 
-    public CommandExecutor() {
-        //TODO здесь както с базой решить подключится к базе или в сервере команд
-        dbContext = null;
-
+    public CommandExecutor(LinkedBlockingQueue<AbstractCommand> commandQueue, DBContext dbContext) {
+        this.dbContext = dbContext;
+        this.commandQueue = commandQueue;
     }
 
     @Override
     public void run() {
-        //while (true) //isActive
-        {
-            //TODO  както с потоком разобратся, если поток проснулся что ли
-            try {
-                AbstractCommand command = Server.getCommandExecutorContext().getCommandToDo();
-                command.execute(dbContext);
-                command.sendResult();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        try {
+            AbstractCommand command = commandQueue.take();
+            command.execute(dbContext);
+            command.sendResult();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+    }
+
+
+    @Override
+    public void finalize() {
+        logger.info("finalize");
+
+    }
+
+    @Override
+    public void close() {
+        logger.info("close");
+
     }
 }
 
