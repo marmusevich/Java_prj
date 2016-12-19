@@ -32,21 +32,32 @@ public class CommandServer implements Closeable {
                 .build();
         threadPool = Executors.newFixedThreadPool(this.threadPoolSize, threadFactory);
 
-        commandQueue = new LinkedBlockingQueue<AbstractCommand>();
+        //TODO ограничить емкость, задать в параметре
+        commandQueue = new LinkedBlockingQueue<AbstractCommand>(100);
+
+        //TODO инитить пул БД
 
     }
 
     // добавление сесси в очередь на обработку
     public void addCommandToProcess(AbstractCommand сommand) {
         if (сommand != null) {
+            logger.trace("addCommandToProcess");
+
+            //TODO таймаут добавления
             commandQueue.add(сommand);
+
+            //TODO разбудить поток ?, что то здесь не так
             CommandExecutor ce = new CommandExecutor(commandQueue, null);
             threadPool.submit(ce);
-            //TODO разбудить поток ?
-            logger.trace("addCommandToProcess");
         }
     }
 
+
+    /**
+     * остановить сервер команд
+     * @param shutdownNow
+     */
     public void stop(boolean shutdownNow) {
         //TODO остановить пул потоков
         logger.trace(" stop shutdownNow={}", shutdownNow);
@@ -56,6 +67,8 @@ public class CommandServer implements Closeable {
             threadPool.shutdown();
     }
 
+
+    //для теста
     @Override
     public void finalize() {
         logger.info("finalize");

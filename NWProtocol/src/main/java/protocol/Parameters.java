@@ -25,12 +25,12 @@ public class Parameters {
     /**
      * количество потоков обрабатывающие подключения
      */
-    public int netWorkerThreads = 2;
+    public int netWorkerThreads = 1;
 
     /**
      * количество потоков выполняющих команды
      */
-    public int commandExecutorThreads = 4;
+    public int commandExecutorThreads = 2;
 
     /**
      * кодировка для сообщений из сети

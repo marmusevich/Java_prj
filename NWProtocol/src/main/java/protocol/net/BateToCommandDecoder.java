@@ -3,6 +3,8 @@ package protocol.net;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import protocol.commands.AbstractCommand;
 import protocol.commands.Parser;
 
@@ -12,6 +14,7 @@ import java.util.List;
 
 //@ChannelHandler.Sharable
 class BateToCommandDecoder extends ByteToMessageDecoder {
+    private static final Logger logger = LoggerFactory.getLogger(BateToCommandDecoder.class);
 
     private final Parser parser = new Parser();
     private final Charset charset;
@@ -26,6 +29,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+        //logger.info("decode");
         Object decoded = decode(ctx, in);
         if (decoded != null) {
             out.add(decoded);
@@ -38,7 +42,6 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         ByteBuf msg = buffer.retainedSlice(buffer.readerIndex(), buffer.readableBytes());
 
         //TODO сейчас работаем на строках, воможно надо работать с байтами
-        //TODO есть утечька в буфере
         // версия со строками
         String msgString = msg.toString(charset);
 

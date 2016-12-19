@@ -60,7 +60,7 @@ public final class Server {
         logger.trace("server stop");
     }
 
-    public static CommandServer getCommandExecutorContext() {
+    public static CommandServer getCommandServer() {
         return commandServer;
     }
     public static NetServer getNetServer() {

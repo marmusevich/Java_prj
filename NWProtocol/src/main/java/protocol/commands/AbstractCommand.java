@@ -94,8 +94,11 @@ public abstract class AbstractCommand implements Closeable {
     final public void execute(DBContext dbContext) {
         Connection connection = null;
         try {
-            connection = dbContext.getConnection(); // получить соеденение из пула
+            //TODO connection = dbContext.getConnection(); // получить соеденение из пула
             result = new ArrayList<String>();
+
+            logger.info("execute");
+
 
             //TODO проверить аунтификацию, не выполнять команду
             if (checkUserNameAndPass(connection))

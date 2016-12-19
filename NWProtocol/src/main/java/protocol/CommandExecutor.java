@@ -17,7 +17,6 @@ public final class CommandExecutor implements Runnable, Closeable {
 
     private static final Logger logger = LoggerFactory.getLogger(CommandExecutor.class);
 
-
     public CommandExecutor(LinkedBlockingQueue<AbstractCommand> commandQueue, DBContext dbContext) {
         this.dbContext = dbContext;
         this.commandQueue = commandQueue;
@@ -29,7 +28,7 @@ public final class CommandExecutor implements Runnable, Closeable {
     public void printMsg() {
         Thread t = Thread.currentThread();
         String name = t.getName();
-        System.out.println("name=" + name);
+        logger.info("Thread name=" + name);
     }
 
 
@@ -46,16 +45,14 @@ public final class CommandExecutor implements Runnable, Closeable {
     }
 
 
+    //для теста
     @Override
     public void finalize() {
         logger.info("finalize");
-
     }
-
     @Override
     public void close() {
         logger.info("close");
-
     }
 }
 
