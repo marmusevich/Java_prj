@@ -15,13 +15,19 @@ package protocol.commands;
 //        В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
 
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  * Created by lexa on 08.12.2016.
  */
 public class CommandStartSmen extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandStartSmen.class);
+
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }

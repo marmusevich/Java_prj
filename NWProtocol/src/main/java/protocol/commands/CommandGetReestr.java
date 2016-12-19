@@ -1,6 +1,10 @@
 package protocol.commands;
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 //Команда getreestr
 //        Выполняет процедуру получения данных о реестре платежей данного платежного терминала по указанной смене, в формате TString (массив строк)
@@ -22,7 +26,9 @@ import protocol.bd.DBContext;
  * Created by lexa on 08.12.2016.
  */
 public class CommandGetReestr extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandGetReestr.class);
+
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }

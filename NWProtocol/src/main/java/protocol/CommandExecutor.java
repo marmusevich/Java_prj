@@ -23,8 +23,19 @@ public final class CommandExecutor implements Runnable, Closeable {
         this.commandQueue = commandQueue;
     }
 
+    /**
+     * вывод имени текущего потока
+     */
+    public void printMsg() {
+        Thread t = Thread.currentThread();
+        String name = t.getName();
+        System.out.println("name=" + name);
+    }
+
+
     @Override
     public void run() {
+        printMsg();
         try {
             AbstractCommand command = commandQueue.take();
             command.execute(dbContext);

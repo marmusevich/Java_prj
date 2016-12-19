@@ -1,6 +1,10 @@
 package protocol.commands;
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 //Команда seterrormsg
 //        Добавляет записи в таблицу TERMINAL_ERROR ошибок, команда выполняется в несколько этапов:
@@ -19,8 +23,10 @@ import protocol.bd.DBContext;
 /**
  * Created by lexa on 08.12.2016.
  */
-public class CommandSetErrorMsg  extends AbstractCommand {
+public class CommandSetErrorMsg extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandSetErrorMsg.class);
+
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }

@@ -2,28 +2,18 @@ package protocol.commands;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import protocol.bd.DBContext;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  *
  */
 public class UnknownCommand extends AbstractCommand {
-
     private static final Logger logger = LoggerFactory.getLogger(UnknownCommand.class);
 
-    /**
-     * Default constructor
-     */
-    public UnknownCommand() {
-    }
-
-    /**
-     * Выполнить команду
-     * здесь реализовать логику
-     */
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
         result.add("Unknown command");
     }
-
 }

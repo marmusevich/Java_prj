@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import protocol.bd.DBContext;
 
 import java.io.Closeable;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -13,58 +15,120 @@ import java.util.ArrayList;
  * все остальные команды наследовать от нее
  */
 public abstract class AbstractCommand implements Closeable {
-
     private static final Logger logger = LoggerFactory.getLogger(AbstractCommand.class);
 
-    protected ChannelHandlerContext ctx;
     /**
+     * контекст сетевого подключения
      */
-    public AbstractCommand() {
-    }
+    protected ChannelHandlerContext ctx;
 
     /**
-     * устоновить сонтекст конала
+     * устоновить сонтекст подключения
      * @param ctx
-     * @return
      */
-    public AbstractCommand setChannelHandlerContext(ChannelHandlerContext ctx) {
+    public void setChannelHandlerContext(ChannelHandlerContext ctx) {
         this.ctx = ctx;
-        return this;
     }
 
 
     private String userName;
     private String userPass;
+    /**
+     *  установить имя пользователя и пароль
+     * @param userName - пользователь
+     * @param userPass - пароль
+     */
     final public void setUserNameAndPass(String userName, String userPass){
         this.userName = userName;
         this.userPass = userPass;
     }
-    final public boolean checkUserNameAndPass(DBContext dbContext){
-        //TODO имя пользователя и пароль, проверка, как отправить ошибку аунтификацию
+
+    /**
+     * проверить уровень доступа
+     * @param connection - подключение к БД
+     * @return
+     */
+    final public boolean checkUserNameAndPass(Connection connection) throws SQLException {
+        //TODO проверить аунтификацию, не выполнять команду
         logger.trace("checkUserNameAndPass");
         return true;
+
+        // todo logger.trace("execute{}", ctx.pipeline().channel().remoteAddress().toString()); - адрес подключения
+
+
+        // пример подключения
+
+//
+//        PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS_TERM_STATE");
+////            ps.setInt(1, 1);
+////                PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS_TERM_STATE WHERE id = ?");
+////                ps.setInt(1, 1);
+//        ResultSet rs = ps.executeQuery();
+//        while (rs.next()) {
+//            System.out.println("LOGIN = " + rs.getString("LOGIN") + ", USERNAME = " + rs.getString("USERNAME"));
+//        }
+
+
+
+
+//    public int checkDostup( int ID, String passwd) throws SQLException {
+//        int dostup=0;
+//        String TERMINAL_ID = GetTerminalString(ID);
+//        String SQLText = "SELECT ADDRES, ID, BANK_ID FROM TERMINAL WHERE\n" +
+//                "    TERMINAL_ID=\'"+TERMINAL_ID+"\' AND\n"+
+//                "    BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN=\'"+passwd+"\') AND\n" +
+//                "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
+//        ResultSet rs = DB_TERMINAL.resultQuery(SQLText);
+//        while (rs.next()) {
+//            dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
+//        }
+//        return dostup;
+//    }
+
     }
 
 
     /**
      * Выполнить команду
-     * здесь реализовать логику
      */
-    final public void execute(DBContext dbContext){
-        //TODO проверить аунтификацию, не выполнять команду
-        logger.trace("execute{}", ctx.pipeline().channel().remoteAddress().toString());
-        if(checkUserNameAndPass(dbContext))
-            doWorck(dbContext);
+    final public void execute(DBContext dbContext) {
+        Connection connection = null;
+        try {
+            connection = dbContext.getConnection(); // получить соеденение из пула
+            result = new ArrayList<String>();
+
+            //TODO проверить аунтификацию, не выполнять команду
+            if (checkUserNameAndPass(connection))
+                doWorck(result, connection);
+            else
+                result.add("Error dostup");
+
+        } catch (SQLException e) {
+            //TODO SQLException
+            logger.error("getConnection() and work", e);
+            e.printStackTrace();
+        } finally {
+            if (connection != null)
+                try {
+                    connection.close(); // вернуть соеденение в пул
+                } catch (SQLException e) {
+                    //TODO SQLException
+                    logger.error("connection.close()", e);
+                    e.printStackTrace();
+                }
+        }
     }
 
     /**
      * переопределить в наследниках
-     * @param dbContext
+     * @param result результат - массив строк
+     * @param connection - соеденение к базе данных
      */
-    public abstract void doWorck(DBContext dbContext);
+    public abstract void doWorck(ArrayList<String> result, Connection connection);
 
 
-    protected ArrayList<String> result = new ArrayList<String>();
+    // результат
+    private ArrayList<String> result;
     /**
      * Вернуть результат
      * @return набор строк результата
@@ -87,16 +151,17 @@ public abstract class AbstractCommand implements Closeable {
             ctx.writeAndFlush(this);
     }
 
+
+
+
+    // для теста
     @Override
     public void finalize() {
         logger.info("finalize");
-
     }
-
+    // для теста
     @Override
     public void close() {
         logger.info("close");
-
     }
-
 }

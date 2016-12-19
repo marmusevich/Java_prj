@@ -1,6 +1,10 @@
 package protocol.commands;
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 
 //Команда getdata
@@ -44,11 +48,10 @@ import protocol.bd.DBContext;
 
 
 public class CommandGetData extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandGetData.class);
 
-    public CommandGetData() {
-    }
 
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }

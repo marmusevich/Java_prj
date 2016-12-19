@@ -16,13 +16,19 @@ package protocol.commands;
 //        5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
 
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  * Created by lexa on 08.12.2016.
  */
-public class CommandGetSmena  extends AbstractCommand {
+public class CommandGetSmena extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandGetSmena.class);
+
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }

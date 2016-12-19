@@ -1,6 +1,10 @@
 package protocol.commands;
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 //Команда findls
 //        Выполняет функции поиска данных по единому лицевому счету
@@ -43,7 +47,9 @@ import protocol.bd.DBContext;
  * Created by lexa on 08.12.2016.
  */
 public class CommandFindLs extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandFindLs.class);
+
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }

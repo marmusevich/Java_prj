@@ -24,7 +24,6 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         this.charset = charset;
     }
 
-
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         Object decoded = decode(ctx, in);

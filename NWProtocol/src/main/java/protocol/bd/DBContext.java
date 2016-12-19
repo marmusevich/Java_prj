@@ -2,6 +2,8 @@ package protocol.bd;
 
 //import org.firebirdsql.*;
 
+import org.firebirdsql.pool.*;
+
 import javax.sql.PooledConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +19,8 @@ public class DBContext {
     //E:\a.marmusevich\WORKING\WORKING.FDB
 
     // заглушка
+
+    //todo заменить пул соеденений
 
 //пример подключения с пулом
     public static void main(String[] args) throws Exception {
@@ -53,6 +57,35 @@ public class DBContext {
         }
 
     }
+
+
+    PooledConnection pooledCon;
+
+    public  void init() throws Exception {
+        org.firebirdsql.pool.FBConnectionPoolDataSource pool = new FBConnectionPoolDataSource();
+//        org.firebirdsql.pool.FBPooledConnection pool = new org.firebirdsql.pool.FBPooledConnection();
+
+        pool.setMaxPoolSize(5);
+        pool.setMinPoolSize(2);
+        pool.setMaxStatements(10);
+        pool.setMaxIdleTime(30 * 60 * 60);
+        pool.setEncoding("WIN1251");
+        //pool.setSqlDialect("3");
+        pool.setDatabase("localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB");
+        //pool.setDatabase("localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB");
+        pool.setUserName("SYSDBA");
+        pool.setPassword("masterkey");
+        // obtain a physical connection to the database
+        pooledCon = pool.getPooledConnection();
+
+    }
+
+    public Connection getConnection() throws SQLException {
+        return pooledCon.getConnection();
+    }
+
+
+
 
 
 

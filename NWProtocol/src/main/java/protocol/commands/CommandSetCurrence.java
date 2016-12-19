@@ -1,6 +1,10 @@
 package protocol.commands;
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 //Команда setcurrence
 //        Выполняет процедуру регистрации пачки купюр. При вставке купюры в базу вносится ее номенклатура с указанием цифрового значения текущего генератора купюроприемника. Значение генератора наращивается на единицу лишь после выполнения команды startoplata.
@@ -24,7 +28,9 @@ import protocol.bd.DBContext;
  * Created by lexa on 08.12.2016.
  */
 public class CommandSetCurrence extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandSetCurrence.class);
+
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }

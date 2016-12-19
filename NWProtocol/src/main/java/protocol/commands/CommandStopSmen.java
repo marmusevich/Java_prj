@@ -1,7 +1,10 @@
 package protocol.commands;
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 
 
 //Команда stopsmen
@@ -38,7 +41,9 @@ import protocol.bd.DBContext;
  * Created by lexa on 08.12.2016.
  */
 public class CommandStopSmen extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandStopSmen.class);
+
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }

@@ -1,6 +1,10 @@
 package protocol.commands;
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 //Команда getaddres
 //        Выполняет запрос получения уникальных значений номеров домов, корпусов и квартир из базы абонентов в формат  TString (массив строк). Используется для синхронизации поисковых справочников на стороне клиента.
@@ -23,7 +27,9 @@ import protocol.bd.DBContext;
  * Created by lexa on 08.12.2016.
  */
 public class CommandGetAddres  extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandGetAddres.class);
+
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }

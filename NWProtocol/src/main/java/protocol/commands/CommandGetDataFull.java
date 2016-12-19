@@ -1,6 +1,10 @@
 package protocol.commands;
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 //Команда getdatafull
 //        Выполняет процедуру получения данных по л/с поставщика услуги (аналогична команде getdata но без привязки к коду организации) Выполняет поиск как по л/с поставщика услуги так и по единому л/с
@@ -42,8 +46,10 @@ import protocol.bd.DBContext;
  * Created by lexa on 08.12.2016.
  */
 public class CommandGetDataFull extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandGetDataFull.class);
+
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }
 

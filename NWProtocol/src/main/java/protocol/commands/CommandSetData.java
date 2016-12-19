@@ -40,13 +40,19 @@ package protocol.commands;
 //
 
 
-import protocol.bd.DBContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  * Created by lexa on 08.12.2016.
  */
 public class CommandSetData extends AbstractCommand {
+    private static final Logger logger = LoggerFactory.getLogger(CommandSetData.class);
+
     @Override
-    public void doWorck(DBContext dbContext) {
+    public void doWorck(ArrayList<String> result, Connection connection) {
     }
 }
