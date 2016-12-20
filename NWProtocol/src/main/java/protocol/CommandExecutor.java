@@ -34,13 +34,17 @@ public final class CommandExecutor implements Runnable, Closeable {
 
     @Override
     public void run() {
-        printMsg();
+
         try {
             AbstractCommand command = commandQueue.take();
+            //Thread.wait(5);
+            Thread.sleep(10);
+            //logger.info(" size() = {}}", commandQueue.size());
             command.execute(dbContext);
             command.sendResult();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            logger.error("  ", e);
         }
     }
 
@@ -48,11 +52,11 @@ public final class CommandExecutor implements Runnable, Closeable {
     //для теста
     @Override
     public void finalize() {
-        logger.info("finalize");
+        //logger.info("finalize");
     }
     @Override
     public void close() {
-        logger.info("close");
+        // logger.info("close");
     }
 }
 

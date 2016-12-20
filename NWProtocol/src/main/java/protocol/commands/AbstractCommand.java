@@ -97,8 +97,7 @@ public abstract class AbstractCommand implements Closeable {
             //TODO connection = dbContext.getConnection(); // получить соеденение из пула
             result = new ArrayList<String>();
 
-            logger.info("execute");
-
+            //logger.info("execute");
 
             //TODO проверить аунтификацию, не выполнять команду
             if (checkUserNameAndPass(connection))
@@ -154,17 +153,21 @@ public abstract class AbstractCommand implements Closeable {
             ctx.writeAndFlush(this);
     }
 
-
+    final public void sendError(ErrorFactory.Error error) {
+        result = new ArrayList<String>();
+        ErrorFactory.convertError(error, result);
+        sendResult();
+    }
 
 
     // для теста
     @Override
     public void finalize() {
-        logger.info("finalize");
+        //logger.info("finalize");
     }
     // для теста
     @Override
     public void close() {
-        logger.info("close");
+        //logger.info("close");
     }
 }

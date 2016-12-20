@@ -4,6 +4,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import protocol.commands.AbstractCommand;
+import protocol.commands.ErrorFactory;
 
 import java.io.Closeable;
 import java.util.concurrent.*;
@@ -33,7 +34,7 @@ public class CommandServer implements Closeable {
         threadPool = Executors.newFixedThreadPool(this.threadPoolSize, threadFactory);
 
         //TODO ограничить емкость, задать в параметре
-        commandQueue = new LinkedBlockingQueue<AbstractCommand>(100);
+        commandQueue = new LinkedBlockingQueue<AbstractCommand>(10);
 
         //TODO инитить пул БД
 
@@ -43,13 +44,30 @@ public class CommandServer implements Closeable {
     public void addCommandToProcess(AbstractCommand сommand) {
         if (сommand != null) {
             logger.trace("addCommandToProcess");
-
             //TODO таймаут добавления
-            commandQueue.add(сommand);
+            try {
+                if(! commandQueue.offer(сommand,10, TimeUnit.MILLISECONDS)) {
+//                    logger.info(" commandQueue.offer = false");
+                    logger.info(" commandQueue.size() = {}}", commandQueue.size());
+                    //TODO отправить ответ ошибка ожидания
+                    сommand.sendError(ErrorFactory.Error.Timeout);
+                }
+                else
+                {
 
-            //TODO разбудить поток ?, что то здесь не так
-            CommandExecutor ce = new CommandExecutor(commandQueue, null);
-            threadPool.submit(ce);
+                }
+
+                //logger.info(" commandQueue.size() = {}}", commandQueue.size());
+
+                //TODO разбудить поток ?, что то здесь не так
+                CommandExecutor ce = new CommandExecutor(commandQueue, null);
+                threadPool.submit(ce);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+
+                logger.error(" commandQueue.offer = Exception ", e);
+            }
         }
     }
 
