@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import protocol.bd.DBContext;
 
-import java.io.Closeable;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
  * Абстастная команда
  * все остальные команды наследовать от нее
  */
-public abstract class AbstractCommand implements Closeable {
+public abstract class AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(AbstractCommand.class);
 
     /**
@@ -164,10 +163,5 @@ public abstract class AbstractCommand implements Closeable {
     @Override
     public void finalize() {
         //logger.info("finalize");
-    }
-    // для теста
-    @Override
-    public void close() {
-        //logger.info("close");
     }
 }

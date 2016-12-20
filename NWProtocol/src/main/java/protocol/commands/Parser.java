@@ -29,6 +29,14 @@ public class Parser {
     public AbstractCommand tryParseCommand(String commandName, String commandData) {
         AbstractCommand ret = null;
         switch (commandName.toUpperCase()) {
+            case "STOP_SERVER":
+                ret = parseStopServer(commandData);
+                break;
+
+            case "STATISTIC_SERVER":
+                ret = parseStatisticServer(commandData);
+                break;
+
             case "DATE": // получить время
                 ret = parseData(commandData);
                 break;
@@ -185,7 +193,19 @@ public class Parser {
     //TODO парсить имя и пароль пользователя
 
     // impliment
-    // реализация парсинга для каждой команды
+    // todo реализация парсинга для каждой команды
+    private AbstractCommand parseStopServer(String commandData) {
+        AbstractCommand ret = null;
+        ret = new StopServerCommand();
+        return ret;
+    }
+
+    private AbstractCommand parseStatisticServer(String commandData) {
+        AbstractCommand ret = null;
+        ret = new StatisticServerCommand();
+        return ret;
+    }
+
     private AbstractCommand parseData(String commandData) {
         AbstractCommand ret = null;
         ret = new CommandData();

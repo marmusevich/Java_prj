@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import protocol.commands.AbstractCommand;
 import protocol.commands.ErrorFactory;
 
-import java.io.Closeable;
 import java.util.concurrent.*;
 
 
@@ -15,17 +14,21 @@ import java.util.concurrent.*;
 /**
  * Created by lexa on 05.12.2016.
  */
-public class CommandServer implements Closeable {
+public class CommandServer {
 
     private final LinkedBlockingQueue<AbstractCommand> commandQueue;
     private final ExecutorService threadPool;
     private int threadPoolSize;
+    private int blockingQueueCapacity;
+    private long commandAdTimeout;
 
     private static final Logger logger = LoggerFactory.getLogger(CommandServer.class);
 
 
-    public CommandServer(int threadPoolSize) {
+    public CommandServer(int threadPoolSize, int blockingQueueCapacity, long commandAdTimeout) {
         this.threadPoolSize = threadPoolSize;
+        this.blockingQueueCapacity = blockingQueueCapacity;
+        this.commandAdTimeout = commandAdTimeout;
 
         final ThreadFactory threadFactory = new ThreadFactoryBuilder()
                 .setNameFormat("CommandExecutor-%d")
@@ -34,10 +37,9 @@ public class CommandServer implements Closeable {
         threadPool = Executors.newFixedThreadPool(this.threadPoolSize, threadFactory);
 
         //TODO ограничить емкость, задать в параметре
-        commandQueue = new LinkedBlockingQueue<AbstractCommand>(10);
+        commandQueue = new LinkedBlockingQueue<AbstractCommand>(this.blockingQueueCapacity);
 
         //TODO инитить пул БД
-
     }
 
     // добавление сесси в очередь на обработку
@@ -46,9 +48,9 @@ public class CommandServer implements Closeable {
             logger.trace("addCommandToProcess");
             //TODO таймаут добавления
             try {
-                if(! commandQueue.offer(сommand,10, TimeUnit.MILLISECONDS)) {
+                if(! commandQueue.offer(сommand,this.commandAdTimeout, TimeUnit.MILLISECONDS)) {
 //                    logger.info(" commandQueue.offer = false");
-                    logger.info(" commandQueue.size() = {}}", commandQueue.size());
+                    //logger.info(" commandQueue.size() = {}}", commandQueue.size());
                     //TODO отправить ответ ошибка ожидания
                     сommand.sendError(ErrorFactory.Error.Timeout);
                 }
@@ -59,7 +61,7 @@ public class CommandServer implements Closeable {
 
                 //logger.info(" commandQueue.size() = {}}", commandQueue.size());
 
-                //TODO разбудить поток ?, что то здесь не так
+                //TODO разбудить поток или создать
                 CommandExecutor ce = new CommandExecutor(commandQueue, null);
                 threadPool.submit(ce);
 
@@ -91,10 +93,4 @@ public class CommandServer implements Closeable {
     public void finalize() {
         logger.info("finalize");
     }
-
-    @Override
-    public void close() {
-        logger.info("close");
-    }
-
 }

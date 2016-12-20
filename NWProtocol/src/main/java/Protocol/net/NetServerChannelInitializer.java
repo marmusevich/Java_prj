@@ -8,13 +8,12 @@ import io.netty.handler.ssl.SslContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Closeable;
 import java.nio.charset.Charset;
 
 /**
  * Created by asus on 04.12.2016.
  */
-class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> implements Closeable {
+class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     private static final Logger logger = LoggerFactory.getLogger(NetServerChannelInitializer.class);
 
@@ -44,10 +43,4 @@ class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> impl
     public void finalize() {
         logger.trace("finalize");
     }
-
-    @Override
-    public void close() {
-        logger.trace("close");
-    }
-
 }

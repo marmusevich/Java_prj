@@ -34,7 +34,11 @@ public final class Server {
         parameters = new Parameters();
 
         try {
-            commandServer = new CommandServer(parameters.commandExecutorThreads);
+
+            //TODO инитить пул БД
+
+
+            commandServer = new CommandServer(parameters.commandExecutorThreads, parameters.blockingQueueCapacity, parameters.commandAdTimeout);
 
             netServer = new NetServer(parameters.netBossThreads, parameters.netWorkerThreads);
             netServer.ConfigureSSL(parameters.isSSL);
