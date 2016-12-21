@@ -8,7 +8,6 @@ import io.netty.handler.codec.TooLongFrameException;
 import io.netty.util.ByteProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import protocol.commands.AbstractCommand;
 import protocol.commands.Parser;
 
 import java.nio.charset.Charset;
@@ -49,35 +48,101 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     }
 
     //TODO сейчас работаем на строках, воможно надо работать с байтами
-    private Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
-        AbstractCommand cmd = null;
-
-
-
-        ByteBuf msg = lineBasedDecoder_decode(ctx, buffer);
-        while( msg != null){
-            String msgString = msg.toString(charset);
-
-            logger.info("msgString= " + msgString);
-            msg = lineBasedDecoder_decode(ctx, buffer);
-        }
-
-
-
-
-
-//        ByteBuf msg = buffer.retainedSlice(buffer.readerIndex(), buffer.readableBytes());
+//    private Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
+//        AbstractCommand cmd = null;
 //
-//        // версия со строками
-//        String msgString = msg.toString(charset);
-//        // получить имя команды
-//        String cammandName = parser.getCammandName(msgString);
-//        //построить команду
-//        if (cammandName != null) {
-//            cmd = parser.tryParseCommand(cammandName, msgString);
+//
+//
+//        ByteBuf msg = lineBasedDecoder_decode(ctx, buffer);
+//        while( msg != null){
+//            String msgString = msg.toString(charset);
+//
+//            logger.info("msgString= " + msgString);
+//            msg = lineBasedDecoder_decode(ctx, buffer);
 //        }
-        return cmd;
+//
+//
+//
+//
+//
+////        ByteBuf msg = buffer.retainedSlice(buffer.readerIndex(), buffer.readableBytes());
+////
+////        // версия со строками
+////        String msgString = msg.toString(charset);
+////        // получить имя команды
+////        String cammandName = parser.getCammandName(msgString);
+////        //построить команду
+////        if (cammandName != null) {
+////            cmd = parser.tryParseCommand(cammandName, msgString);
+////        }
+//        return cmd;
+//    }
+
+
+
+
+    protected Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
+        final int eol = findEndOfLine(buffer);
+        if (!discarding) {
+            if (eol >= 0) {
+                final ByteBuf frame;
+                final int length = eol - buffer.readerIndex();
+                final int delimLength = buffer.getByte(eol) == '\r'? 2 : 1;
+
+                if (length > maxLength) {
+                    buffer.readerIndex(eol + delimLength);
+                    fail(ctx, length);
+                    return null;
+                }
+
+
+                // это читает до первого разделителя,
+                // а надо последовательно, до каждого и пока небудет распарсена команда
+                if (stripDelimiter) {
+                    frame = buffer.readRetainedSlice(length);
+                    buffer.skipBytes(delimLength);
+                } else {
+                    frame = buffer.readRetainedSlice(length + delimLength);
+                }
+
+                //frame = buffer.retainedSlice(length + delimLength);
+
+
+
+                return frame;
+            } else {
+                final int length = buffer.readableBytes();
+                if (length > maxLength) {
+                    discardedBytes = length;
+                    buffer.readerIndex(buffer.writerIndex());
+                    discarding = true;
+                    if (failFast) {
+                        fail(ctx, "over " + discardedBytes);
+                    }
+                }
+                return null;
+            }
+        } else {
+            if (eol >= 0) {
+                final int length = discardedBytes + eol - buffer.readerIndex();
+                final int delimLength = buffer.getByte(eol) == '\r'? 2 : 1;
+                buffer.readerIndex(eol + delimLength);
+                discardedBytes = 0;
+                discarding = false;
+                if (!failFast) {
+                    fail(ctx, length);
+                }
+            } else {
+                discardedBytes += buffer.readableBytes();
+                buffer.readerIndex(buffer.writerIndex());
+            }
+            return null;
+        }
     }
+
+
+
+
 
 
 
@@ -88,8 +153,8 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     /** Maximum length of a frame we're willing to decode.  */
     private final int maxLength = 32384;
     /** Whether or not to throw an exception as soon as we exceed maxLength. */
-    private final boolean failFast = true;
-    private final boolean stripDelimiter = false;
+    private final boolean failFast = false;
+    private final boolean stripDelimiter = true;
     /** True if we're discarding input because we're already over maxLength.  */
     private boolean discarding;
     private int discardedBytes;

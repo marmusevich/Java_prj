@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/CommandHandler.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/CommandHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/net/BateToCommandDecoder.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/net/BateToCommandDecoder.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -48,11 +44,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BateToCommandDecoder.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BateToCommandDecoder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/net/BateToCommandDecoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="689">
-              <caret line="174" column="0" lean-forward="true" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+            <state relative-caret-position="529">
+              <caret line="231" column="28" lean-forward="false" selection-start-line="231" selection-start-column="28" selection-end-line="231" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ByteBuf.java" pinned="false" current-in-tab="true">
+        <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.6.Final/netty-all-4.1.6.Final-sources.jar!/io/netty/buffer/ByteBuf.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="2035" column="24" lean-forward="false" selection-start-line="2035" selection-start-column="24" selection-end-line="2035" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -79,8 +85,8 @@
       <file leaf-file-name="LineBasedFrameDecoder.java" pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.6.Final/netty-all-4.1.6.Final-sources.jar!/io/netty/handler/codec/LineBasedFrameDecoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="35" />
+            <state relative-caret-position="394">
+              <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -103,6 +109,7 @@
       <find>user</find>
       <find>encoding</find>
       <find>Closeable</find>
+      <find>stripDelimiter</find>
     </findStrings>
     <replaceStrings>
       <replace>command</replace>
@@ -1333,14 +1340,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.6.Final/netty-all-4.1.6.Final-sources.jar!/io/netty/buffer/ByteBuf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="2131" column="65" lean-forward="true" selection-start-line="2131" selection-start-column="65" selection-end-line="2131" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -1409,16 +1408,24 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.6.Final/netty-all-4.1.6.Final-sources.jar!/io/netty/handler/codec/LineBasedFrameDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="35" />
+        <state relative-caret-position="394">
+          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/net/BateToCommandDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="174" column="0" lean-forward="true" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+        <state relative-caret-position="529">
+          <caret line="231" column="28" lean-forward="false" selection-start-line="231" selection-start-column="28" selection-end-line="231" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.6.Final/netty-all-4.1.6.Final-sources.jar!/io/netty/buffer/ByteBuf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="2035" column="24" lean-forward="false" selection-start-line="2035" selection-start-column="24" selection-end-line="2035" selection-end-column="24" />
           <folding />
         </state>
       </provider>
