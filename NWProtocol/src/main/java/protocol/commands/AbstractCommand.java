@@ -95,7 +95,10 @@ public abstract class AbstractCommand {
 
             if (checkUserNameAndPass(connection)) {
                 result = new ArrayList<String>();
+
                 doWorck(result, connection);
+
+                result.add("   userName = ("+userName+") userPass = ("+userPass+")" );
             }
             else
                 sendError( ErrorFactory.Error.AccessDenied);

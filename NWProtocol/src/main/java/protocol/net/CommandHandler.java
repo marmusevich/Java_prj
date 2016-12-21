@@ -7,12 +7,10 @@ import org.slf4j.LoggerFactory;
 import protocol.Server;
 import protocol.commands.AbstractCommand;
 
-import java.io.Closeable;
-
 /**
  * Created by asus on 04.12.2016.
  */
-class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> implements Closeable {
+class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand>{
     private static final Logger logger = LoggerFactory.getLogger(CommandHandler.class);
 
     @Override
@@ -34,7 +32,6 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> implem
     }
 
 
-
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
@@ -50,8 +47,4 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> implem
         logger.info("finalize");
     }
 
-    @Override
-    public void close() {
-        logger.info("close");
-    }
 }
