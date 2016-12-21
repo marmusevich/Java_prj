@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
  * парсить данные в каманду
  */
 public class Parser {
-
     private static final Logger logger = LoggerFactory.getLogger(Parser.class);
 
     /**
@@ -28,6 +27,10 @@ public class Parser {
      */
     public AbstractCommand tryParseCommand(String commandName, String commandData) {
         AbstractCommand ret = null;
+
+        logger.info("commandName ({}) commandData = '{}'", commandName, commandData);
+
+
         switch (commandName.toUpperCase()) {
             case "STOP_SERVER":
                 ret = parseStopServer(commandData);
@@ -189,6 +192,17 @@ public class Parser {
         return null;
     }
 
+    private String getUserName(String commandData){
+        return getParametrData(commandData,"ID_TERM");
+    }
+    private String getUserPass(String commandData ){
+        return getParametrData(commandData,"PASSWORD");
+    }
+    private boolean checkIsEmptyUserAndPassword(String userName, String userPass){
+        return userName != null &&  userPass != null;
+    }
+
+
     //TODO реализация парсинга комманд
     //TODO парсить имя и пароль пользователя
 
@@ -196,19 +210,50 @@ public class Parser {
     // todo реализация парсинга для каждой команды
     private AbstractCommand parseStopServer(String commandData) {
         AbstractCommand ret = null;
-        ret = new StopServerCommand();
+
+        boolean flOK = false;
+
+        String userName = getUserName(commandData);
+        String userPass = getUserPass(commandData);;
+        flOK = checkIsEmptyUserAndPassword(userName, userPass);
+
+        if(flOK){
+            ret = new StopServerCommand();
+            ret.setUserNameAndPass(userName, userPass);
+        }
         return ret;
     }
 
     private AbstractCommand parseStatisticServer(String commandData) {
         AbstractCommand ret = null;
-        ret = new StatisticServerCommand();
+
+        boolean flOK = false;
+
+        String userName = getUserName(commandData);
+        String userPass = getUserPass(commandData);;
+        flOK = checkIsEmptyUserAndPassword(userName, userPass);
+
+        if(flOK){
+            ret = new StatisticServerCommand();
+            ret.setUserNameAndPass(userName, userPass);
+        }
+
         return ret;
     }
 
     private AbstractCommand parseData(String commandData) {
         AbstractCommand ret = null;
-        ret = new CommandData();
+
+        boolean flOK = false;
+
+        String userName = getUserName(commandData);
+        String userPass = getUserPass(commandData);;
+        flOK = checkIsEmptyUserAndPassword(userName, userPass);
+
+        if(flOK){
+            ret = new CommandData();
+            ret.setUserNameAndPass(userName, userPass);
+        }
         return ret;
     }
 

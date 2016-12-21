@@ -3,6 +3,8 @@ package protocol.commands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -14,7 +16,12 @@ public class StatisticServerCommand extends AbstractCommand {
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connection) {
-        logger.info("StatisticServerCommand");
-        //todo StatisticServerCommand
+        InetAddress remoteAddress = ((InetSocketAddress)ctx.pipeline().channel().remoteAddress()).getAddress();
+        InetAddress localAddress = ((InetSocketAddress)ctx.pipeline().channel().localAddress()).getAddress();
+
+        if(remoteAddress.equals(localAddress)){
+            logger.info("Command = 'Statistic Server' in adress ({}) user = '{}'", remoteAddress.getHostAddress(), userName);
+            //todo StatisticServerCommand
+        }
     }
 }

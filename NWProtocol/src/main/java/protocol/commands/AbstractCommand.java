@@ -30,8 +30,8 @@ public abstract class AbstractCommand {
     }
 
 
-    private String userName;
-    private String userPass;
+    protected String userName;
+    protected String userPass;
     /**
      *  установить имя пользователя и пароль
      * @param userName - пользователь
@@ -40,6 +40,8 @@ public abstract class AbstractCommand {
     final public void setUserNameAndPass(String userName, String userPass){
         this.userName = userName;
         this.userPass = userPass;
+
+        logger.info("setUserNameAndPass: userName = ({}) userPass = ({})", userName, userPass);
     }
 
     /**
@@ -49,15 +51,11 @@ public abstract class AbstractCommand {
      */
     final public boolean checkUserNameAndPass(Connection connection) throws SQLException {
         //TODO проверить аунтификацию, не выполнять команду
-        logger.trace("checkUserNameAndPass");
+        logger.info("checkUserNameAndPass: userName = ({}) userPass = ({})", userName, userPass);
         return true;
-
-        // todo logger.trace("execute{}", ctx.pipeline().channel().remoteAddress().toString()); - адрес подключения
 
 
         // пример подключения
-
-//
 //        PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS_TERM_STATE");
 ////            ps.setInt(1, 1);
 ////                PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS_TERM_STATE WHERE id = ?");
@@ -94,20 +92,17 @@ public abstract class AbstractCommand {
         Connection connection = null;
         try {
             //TODO connection = dbContext.getConnection(); // получить соеденение из пула
-            result = new ArrayList<String>();
 
-            //logger.info("execute");
-
-            //TODO проверить аунтификацию, не выполнять команду
-            if (checkUserNameAndPass(connection))
+            if (checkUserNameAndPass(connection)) {
+                result = new ArrayList<String>();
                 doWorck(result, connection);
+            }
             else
-                result.add("Error dostup");
+                sendError( ErrorFactory.Error.AccessDenied);
 
         } catch (SQLException e) {
             //TODO SQLException
             logger.error("getConnection() and work", e);
-            e.printStackTrace();
         } finally {
             if (connection != null)
                 try {
@@ -115,7 +110,6 @@ public abstract class AbstractCommand {
                 } catch (SQLException e) {
                     //TODO SQLException
                     logger.error("connection.close()", e);
-                    e.printStackTrace();
                 }
         }
     }

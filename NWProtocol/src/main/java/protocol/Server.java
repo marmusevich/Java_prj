@@ -23,7 +23,7 @@ public final class Server {
      * @param args
      */
     public static void main(String[] args) {
-        logger.trace(" Before start server...");
+        logger.info(" Before start server...");
         start();
     }
 
@@ -39,16 +39,14 @@ public final class Server {
 
 
             commandServer = new CommandServer(parameters.commandExecutorThreads, parameters.blockingQueueCapacity, parameters.commandAdTimeout);
+            logger.info(" CommandServer started...");
 
             netServer = new NetServer(parameters.netBossThreads, parameters.netWorkerThreads);
             netServer.ConfigureSSL(parameters.isSSL);
             netServer.start(parameters.port, parameters.netCharset);
-
         } catch (Exception e) {
             stop();
-            logger.error(" server stoped on start. ", e);
-            //e.printStackTrace();
-            //todo сервер не останавливается при ошибке
+            logger.error(" server stoped on start. ERROR= ", e);
         }
     }
 
@@ -61,7 +59,7 @@ public final class Server {
         if (commandServer != null)
             commandServer.stop(false);
 
-        logger.trace("server stop");
+        logger.info("server stop");
     }
 
     public static CommandServer getCommandServer() {

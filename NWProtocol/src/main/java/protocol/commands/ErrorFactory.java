@@ -13,7 +13,8 @@ public class ErrorFactory {
 
     public enum Error
     {
-        Timeout
+        Timeout,
+        AccessDenied
     }
 
     public static void convertError(Error error, ArrayList<String>result){
@@ -21,6 +22,9 @@ public class ErrorFactory {
         switch (error) {
             case Timeout:
                 result.add("Timeout");
+                break;
+            case AccessDenied:
+                result.add(" Access Denied");
                 break;
         }
     }
