@@ -40,7 +40,7 @@ public class Parameters {
     /**
      * ёмкость блокирующей очереди для команд
      */
-    public int blockingQueueCapacity = 10;
+    public int blockingQueueCapacity = 1000;
 
     /**
      * время ожидания постоновки команды в очередь в милисикундах

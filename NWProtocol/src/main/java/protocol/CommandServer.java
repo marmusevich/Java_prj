@@ -9,7 +9,6 @@ import protocol.commands.ErrorFactory;
 import java.util.concurrent.*;
 
 
-//TODO управление потоками?
 
 /**
  * Created by lexa on 05.12.2016.
@@ -36,7 +35,6 @@ public class CommandServer {
                 .build();
         threadPool = Executors.newFixedThreadPool(this.threadPoolSize, threadFactory);
 
-        //TODO ограничить емкость, задать в параметре
         commandQueue = new LinkedBlockingQueue<AbstractCommand>(this.blockingQueueCapacity);
 
         //TODO инитить пул БД
@@ -46,12 +44,9 @@ public class CommandServer {
     public void addCommandToProcess(AbstractCommand сommand) {
         if (сommand != null) {
             logger.trace("addCommandToProcess");
-            //TODO таймаут добавления
             try {
                 if(! commandQueue.offer(сommand,this.commandAdTimeout, TimeUnit.MILLISECONDS)) {
-//                    logger.info(" commandQueue.offer = false");
-                    //logger.info(" commandQueue.size() = {}}", commandQueue.size());
-                    //TODO отправить ответ ошибка ожидания
+                    logger.info(" commandQueue.size() = {}}", commandQueue.size());
                     сommand.sendError(ErrorFactory.Error.Timeout);
                 }
                 else
@@ -79,7 +74,6 @@ public class CommandServer {
      * @param shutdownNow
      */
     public void stop(boolean shutdownNow) {
-        //TODO остановить пул потоков
         logger.trace(" stop shutdownNow={}", shutdownNow);
         if(shutdownNow)
             threadPool.shutdownNow();

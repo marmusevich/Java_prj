@@ -28,7 +28,7 @@ public class Parser {
     public AbstractCommand tryParseCommand(String commandName, String commandData) {
         AbstractCommand ret = null;
 
-        logger.info("commandName ({}) commandData = '{}'", commandName, commandData);
+        //logger.info("commandName ({}) commandData = '{}'", commandName, commandData);
 
 
         switch (commandName.toUpperCase()) {
@@ -178,10 +178,10 @@ public class Parser {
      * @return
      */
     private String getParametrData(String commandData, String parametrName) {
-        int i = commandData.indexOf(parametrName);
-        if(1 > -1)
+        int index = commandData.indexOf(parametrName);
+        if(index > -1)
         {
-            int begin = commandData.indexOf("=", i);
+            int begin = commandData.indexOf("=", index);
             if(begin > -1){
                 int end = commandData.indexOf("\n", begin);
                 if(end > -1 && end > begin) {

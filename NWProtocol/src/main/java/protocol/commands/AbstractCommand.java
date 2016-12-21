@@ -41,7 +41,7 @@ public abstract class AbstractCommand {
         this.userName = userName;
         this.userPass = userPass;
 
-        logger.info("setUserNameAndPass: userName = ({}) userPass = ({})", userName, userPass);
+        //logger.info("setUserNameAndPass: userName = ({}) userPass = ({})", userName, userPass);
     }
 
     /**
@@ -51,7 +51,7 @@ public abstract class AbstractCommand {
      */
     final public boolean checkUserNameAndPass(Connection connection) throws SQLException {
         //TODO проверить аунтификацию, не выполнять команду
-        logger.info("checkUserNameAndPass: userName = ({}) userPass = ({})", userName, userPass);
+        //logger.info("checkUserNameAndPass: userName = ({}) userPass = ({})", userName, userPass);
         return true;
 
 

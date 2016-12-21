@@ -33,19 +33,20 @@ public final class CommandExecutor implements Runnable{
 
     @Override
     public void run() {
-
+        AbstractCommand command = null;
         try {
-            AbstractCommand command = commandQueue.take();
+            command = commandQueue.take();
             //Thread.wait(5);
             //todo Thread.sleep(10);
-            Thread.sleep(10);
+            //Thread.sleep(10);
             //logger.info(" size() = {}}", commandQueue.size());
             command.execute(dbContext);
             command.sendResult();
         } catch (InterruptedException e) {
-            e.printStackTrace();
             //todo вывести клиенту ошибку
-            logger.error("  ", e);
+//            if(command != null)
+//                command.sendError(ErrorFactory.Error.Timeout);
+            logger.error(" CommandExecutor ", e);
         }
     }
 
