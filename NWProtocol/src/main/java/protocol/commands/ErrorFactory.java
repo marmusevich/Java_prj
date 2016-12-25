@@ -13,18 +13,25 @@ public class ErrorFactory {
 
     public enum Error
     {
-        Timeout,
-        AccessDenied
+        CommandExecutionError,  // ошибка при выполнении команды
+        Timeout,                // превышен интервал ожидания
+        AccessDenied            // нет доступа
     }
 
+
+    //500 ERROR
+
     public static void convertError(Error error, ArrayList<String>result){
-        logger.info("ErrorFactory {}", error);
+        logger.error("ErrorFactory->{}", error);
         switch (error) {
+            case CommandExecutionError:
+                result.add("500 ERROR");
+                break;
             case Timeout:
-                result.add("Timeout");
+                result.add("500 Timeout");
                 break;
             case AccessDenied:
-                result.add(" Access Denied");
+                result.add("500 Access Denied");
                 break;
         }
     }
