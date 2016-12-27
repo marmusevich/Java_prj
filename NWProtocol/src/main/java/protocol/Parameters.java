@@ -79,6 +79,9 @@ public class Parameters {
      * строка подключения к базе
      */
     public String terminalDBDatabase = "localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB";
+    //"localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB"
+    //"E:\a.marmusevich\TERMINAL\TERMINAL.FDB"
+
     /**
      * имя пользователя
      */
@@ -117,6 +120,8 @@ public class Parameters {
      * строка подключения к базе
      */
     public String workingDBDatabase = "localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB";
+    //"localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB"
+    //"E:\a.marmusevich\WORKING\WORKING.FDB"
     /**
      * имя пользователя
      */
@@ -125,15 +130,6 @@ public class Parameters {
      * пароль
      */
     public String workingDBPassword = "masterkey";
-
-
-
-    //1 база    setDatabase("localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB");
-    //2 база    setDatabase("localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB");
-        //E:\a.marmusevich\TERMINAL\TERMINAL.FDB
-        //E:\a.marmusevich\WORKING\WORKING.FDB
-
-
 
 
     /**
