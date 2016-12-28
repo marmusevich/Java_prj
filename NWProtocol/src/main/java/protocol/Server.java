@@ -2,6 +2,7 @@ package protocol;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import protocol.bd.DBContext;
 import protocol.net.NetServer;
 
 
@@ -30,14 +31,11 @@ public final class Server {
      */
     public static void start() {
         parameters = new Parameters();
-
         try {
-
-            //TODO инитить пул БД
-
+            //инитить пул БД
+            DBContext.init(parameters);
 
             commandServer = new CommandServer(parameters.commandExecutorThreads, parameters.blockingQueueCapacity, parameters.commandAdTimeout);
-            logger.info(" CommandServer started...");
 
             netServer = new NetServer(parameters.netBossThreads, parameters.netWorkerThreads);
             netServer.ConfigureSSL(parameters.isSSL);
@@ -52,6 +50,7 @@ public final class Server {
      * остановить сервер
      */
     public static void stop() {
+        DBContext.close();
         if (netServer != null)
             netServer.stop();
         if (commandServer != null)

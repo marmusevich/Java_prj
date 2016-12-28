@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import protocol.bd.DBContext;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -46,25 +48,31 @@ public abstract class AbstractCommand {
 
     /**
      * проверить уровень доступа
-     * @param connection - подключение к БД
+     * @param connectionToTerminalDB - подключение к БД
      * @return
      */
-    final public boolean checkUserNameAndPass(Connection connection) throws SQLException {
-        //TODO проверить аунтификацию, не выполнять команду
-        //logger.info("checkUserNameAndPass: userName = ({}) userPass = ({})", userName, userPass);
+    final public boolean checkUserNameAndPass(Connection connectionToTerminalDB) throws SQLException {
+        int dostup=0;
+
+        String SQLText = "SELECT ADDRES, ID, BANK_ID FROM TERMINAL WHERE \n" +
+                "    TERMINAL_ID= ? AND BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN= ?) AND \n"+
+                "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
+
+        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
+        ps.setString(1, userName);
+        ps.setString(2, userPass);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
+
+            System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+        }
+
+
+
         return true;
-
-
-        // пример подключения
-//        PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS_TERM_STATE");
-////            ps.setInt(1, 1);
-////                PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS_TERM_STATE WHERE id = ?");
-////                ps.setInt(1, 1);
-//        ResultSet rs = ps.executeQuery();
-//        while (rs.next()) {
-//            System.out.println("LOGIN = " + rs.getString("LOGIN") + ", USERNAME = " + rs.getString("USERNAME"));
-//        }
-
+        //return dostup != 0;
 
 
 
@@ -88,15 +96,18 @@ public abstract class AbstractCommand {
     /**
      * Выполнить команду
      */
-    final public void execute(DBContext dbContext) {
-        Connection connection = null;
+    final public void execute() {
+        Connection connectionToTerminalDB = null;
+        Connection connectionToWorkingDB = null;
         try {
+            connectionToTerminalDB = DBContext.getConnectionToTerminalDB();
+            connectionToWorkingDB = DBContext.getConnectionToWorkingDB();
             //TODO connection = dbContext.getConnection(); // получить соеденение из пула
 
-            if (checkUserNameAndPass(connection)) {
+            if (checkUserNameAndPass(connectionToTerminalDB)) {
                 result = new ArrayList<String>();
 
-                doWorck(result, connection);
+                doWorck(result, connectionToTerminalDB, connectionToWorkingDB);
 
                 result.add("   userName = ("+userName+") userPass = ("+userPass+")" );
             }
@@ -107,9 +118,16 @@ public abstract class AbstractCommand {
             //TODO SQLException
             logger.error("getConnection() and work", e);
         } finally {
-            if (connection != null)
+            if (connectionToTerminalDB != null)
                 try {
-                    connection.close(); // вернуть соеденение в пул
+                    connectionToTerminalDB.close(); // вернуть соеденение в пул
+                } catch (SQLException e) {
+                    //TODO SQLException
+                    logger.error("connection.close()", e);
+                }
+            if (connectionToWorkingDB != null)
+                try {
+                    connectionToWorkingDB.close(); // вернуть соеденение в пул
                 } catch (SQLException e) {
                     //TODO SQLException
                     logger.error("connection.close()", e);
@@ -120,9 +138,13 @@ public abstract class AbstractCommand {
     /**
      * переопределить в наследниках
      * @param result результат - массив строк
-     * @param connection - соеденение к базе данных
+     * @param connectionToTerminalDB - соеденение к базе данных
+     * @param connectionToWorkingDB - соеденение к базе данных
      */
-    public abstract void doWorck(ArrayList<String> result, Connection connection);
+    public abstract void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB);
+
+
+
 
 
     // результат

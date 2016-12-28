@@ -13,7 +13,7 @@ public class UnknownCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(UnknownCommand.class);
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connection) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
         result.add("Unknown command");
     }
 }

@@ -20,7 +20,7 @@ public class CommandData  extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandData.class);
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connection) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
         result.add(dateFormat.format( new Date() ));
     }

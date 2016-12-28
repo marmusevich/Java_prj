@@ -37,7 +37,6 @@ public class CommandServer {
 
         commandQueue = new LinkedBlockingQueue<AbstractCommand>(this.blockingQueueCapacity);
 
-        //TODO инитить пул БД
     }
 
     // добавление сесси в очередь на обработку
@@ -57,7 +56,7 @@ public class CommandServer {
                 //logger.info(" commandQueue.size() = {}}", commandQueue.size());
 
                 //TODO разбудить поток или создать
-                CommandExecutor ce = new CommandExecutor(commandQueue, null);
+                CommandExecutor ce = new CommandExecutor(commandQueue);
                 threadPool.submit(ce);
 
             } catch (InterruptedException e) {

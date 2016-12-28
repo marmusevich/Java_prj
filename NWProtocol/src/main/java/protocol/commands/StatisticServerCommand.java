@@ -15,7 +15,7 @@ public class StatisticServerCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(StatisticServerCommand.class);
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connection) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
         InetAddress remoteAddress = ((InetSocketAddress)ctx.pipeline().channel().remoteAddress()).getAddress();
         InetAddress localAddress = ((InetSocketAddress)ctx.pipeline().channel().localAddress()).getAddress();
 

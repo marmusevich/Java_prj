@@ -33,6 +33,6 @@ public class CommandChkUpdate  extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandChkUpdate.class);
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connection) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }

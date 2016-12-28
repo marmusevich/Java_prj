@@ -16,8 +16,7 @@ public final class CommandExecutor implements Runnable{
 
     private static final Logger logger = LoggerFactory.getLogger(CommandExecutor.class);
 
-    public CommandExecutor(LinkedBlockingQueue<AbstractCommand> commandQueue, DBContext dbContext) {
-        this.dbContext = dbContext;
+    public CommandExecutor(LinkedBlockingQueue<AbstractCommand> commandQueue) {
         this.commandQueue = commandQueue;
     }
 
@@ -40,7 +39,7 @@ public final class CommandExecutor implements Runnable{
             //todo Thread.sleep(10);
             //Thread.sleep(10);
             //logger.info(" size() = {}}", commandQueue.size());
-            command.execute(dbContext);
+            command.execute();
             command.sendResult();
         } catch (InterruptedException e) {
             //todo вывести клиенту ошибку

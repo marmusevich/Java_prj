@@ -28,6 +28,6 @@ public class CommandGetReportList extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetReportList.class);
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connection) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }

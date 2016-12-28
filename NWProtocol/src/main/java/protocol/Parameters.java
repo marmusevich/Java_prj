@@ -70,7 +70,7 @@ public class Parameters {
     /**
      * кодировка для сообщений в базе
      */
-    public Charset terminalDBCharset = Charset.forName("windows-1251");
+    public String  terminalDBCharset = "WIN1251";
     /**
      * диалект SQL
      */
@@ -111,7 +111,7 @@ public class Parameters {
     /**
      * кодировка для сообщений в базе
      */
-    public Charset workingDBCharset = Charset.forName("windows-1251");
+    public String workingDBCharset = "WIN1251";
     /**
      * диалект SQL
      */

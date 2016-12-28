@@ -52,6 +52,6 @@ public class CommandGetData extends AbstractCommand {
 
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connection) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }

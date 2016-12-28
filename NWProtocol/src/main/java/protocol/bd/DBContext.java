@@ -33,7 +33,7 @@ public class DBContext {
         poolToTerminalDB.setMinPoolSize(parameters.terminalDBMinPoolSize);
         poolToTerminalDB.setMaxStatements(parameters.terminalDBMaxStatements);
         poolToTerminalDB.setMaxIdleTime(parameters.terminalDBMaxIdleTime);
-        poolToTerminalDB.setEncoding(parameters.terminalDBCharset.name());
+        poolToTerminalDB.setEncoding(parameters.terminalDBCharset);
         poolToTerminalDB.setSqlDialect(parameters.terminalDBSqlDialect);
         poolToTerminalDB.setDatabase(parameters.terminalDBDatabase);
         poolToTerminalDB.setUserName(parameters.terminalDBUserName);
@@ -49,14 +49,33 @@ public class DBContext {
         poolToWorkingDB.setMinPoolSize(parameters.workingDBMinPoolSize);
         poolToWorkingDB.setMaxStatements(parameters.workingDBMaxStatements);
         poolToWorkingDB.setMaxIdleTime(parameters.workingDBMaxIdleTime);
-        poolToWorkingDB.setEncoding(parameters.workingDBCharset.name());
-        poolToWorkingDB.setSqlDialect(parameters.workingDBSqlDialect);
+        poolToWorkingDB.setEncoding(parameters.workingDBCharset);
+        //poolToWorkingDB.setSqlDialect(parameters.workingDBSqlDialect);
         poolToWorkingDB.setDatabase(parameters.workingDBDatabase);
         poolToWorkingDB.setUserName(parameters.workingDBUserName);
         poolToWorkingDB.setPassword(parameters.workingDBPassword);
         // obtain a physical connection to the database
         pooledConToWorkingDB = poolToWorkingDB.getPooledConnection();
     }
+
+
+    public static void close(){
+        if(pooledConToTerminalDB != null)
+            try {
+                pooledConToTerminalDB.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        if(pooledConToWorkingDB != null)
+            try {
+                pooledConToWorkingDB.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+    }
+
 
     /**
      * получить подключение к Terminal

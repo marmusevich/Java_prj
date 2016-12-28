@@ -28,6 +28,6 @@ public class CommandCloseOplata extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandCloseOplata.class);
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connection) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }

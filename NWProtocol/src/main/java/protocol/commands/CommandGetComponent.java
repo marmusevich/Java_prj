@@ -29,6 +29,6 @@ public class CommandGetComponent extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetComponent.class);
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connection) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }

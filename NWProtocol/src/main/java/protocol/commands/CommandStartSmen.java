@@ -28,6 +28,6 @@ public class CommandStartSmen extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandStartSmen.class);
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connection) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
