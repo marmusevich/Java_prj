@@ -1,48 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="">
+    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="change DB pool">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jolbox_bonecp_0_8_0_RELEASE.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/CommandExecutor.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/CommandExecutor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/CommandServer.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/CommandServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NWProtocol.iml" afterPath="$PROJECT_DIR$/NWProtocol.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/Parameters.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/Parameters.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/Server.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/Server.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/bd/DBContext.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/bd/DBContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChekSmena.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChekSmena.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChkUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChkUpdate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandCloseOplata.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandCloseOplata.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddrTerm.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddrTerm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddres.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddres.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetComponent.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplata.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplata.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplataSmena.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplataSmena.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplatals.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplatals.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -66,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="215">
-              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/CommandExecutor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+              <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
               <folding>
                 <element signature="e#555#556#0" expanded="true" />
                 <element signature="e#603#604#0" expanded="true" />
@@ -105,12 +70,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBContext.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DBContext.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/bd/DBContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="101" column="5" lean-forward="true" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="370">
+              <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Parameters.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Parameters.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="715">
+              <caret line="117" column="23" lean-forward="false" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,18 +100,6 @@
             <state relative-caret-position="154">
               <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Parameters.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Parameters.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="113" column="18" lean-forward="false" selection-start-line="113" selection-start-column="18" selection-end-line="113" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -174,7 +141,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/protocol/logging.properties" />
         <option value="$PROJECT_DIR$/logback.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/net/CommandToStringEncoder.java" />
         <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/net/NetServerChannelInitializer.java" />
@@ -220,9 +186,10 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/CommandExecutor.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/CommandServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/Server.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/bd/DBContext.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/Parameters.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/Parameters.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/bd/DBContext.java" />
       </list>
     </option>
   </component>
@@ -235,6 +202,38 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="NWProtocol" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Dependencies" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="com.jolbox:bonecp:0.8.0.RELEASE" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="NWProtocol" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Dependencies" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+      </PATH>
       <PATH>
         <PATH_ELEMENT>
           <option name="myItemId" value="" />
@@ -389,6 +388,16 @@
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NWProtocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="NWProtocol" />
@@ -890,31 +899,31 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5011521" sideWeight="0.49730563" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32681242" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26927504" sideWeight="0.5041152" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14102565" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1990232" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64400923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46720368" sideWeight="0.49588478" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6432681" sideWeight="0.49588478" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24542125" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1984127" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24934839" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23820484" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47295743" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6168549" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294621" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739422" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4365256" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
@@ -944,11 +953,12 @@
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
     <MESSAGE value="*" />
     <MESSAGE value="log" />
-    <option name="LAST_COMMIT_MESSAGE" value="log" />
+    <MESSAGE value="change DB pool" />
+    <option name="LAST_COMMIT_MESSAGE" value="change DB pool" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="26" />
+      <option name="time" value="27" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -957,39 +967,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/net/NetServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="73" column="18" lean-forward="false" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/firebirdsql/jdbc/jaybird-jdk17/2.2.5/jaybird-jdk17-2.2.5.jar!/org/firebirdsql/pool/BasicAbstractConnectionPool.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="93" column="16" lean-forward="false" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="16" />
-          <folding>
-            <element signature="e#3458#3459#0" expanded="true" />
-            <element signature="e#3504#3505#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/firebirdsql/jdbc/jaybird-jdk17/2.2.5/jaybird-jdk17-2.2.5-sources.jar!/org/firebirdsql/pool/AbstractConnectionPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="37" column="22" lean-forward="false" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/firebirdsql/jdbc/jaybird-jdk17/2.2.5/jaybird-jdk17-2.2.5-sources.jar!/org/firebirdsql/pool/BasicAbstractConnectionPool.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1285,18 +1262,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="117" lean-forward="false" selection-start-line="22" selection-start-column="117" selection-end-line="22" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/CommandExecutor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
           <folding>
             <element signature="e#555#556#0" expanded="true" />
             <element signature="e#603#604#0" expanded="true" />
@@ -1340,14 +1309,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
           <caret line="107" column="28" lean-forward="false" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/bd/DBContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="101" column="5" lean-forward="true" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1427,15 +1388,339 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
-          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/jolbox/bonecp/0.8.0.RELEASE/bonecp-0.8.0.RELEASE-sources.jar!/com/jolbox/bonecp/BoneCP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="16" column="26" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Parameters.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="113" column="18" lean-forward="false" selection-start-line="113" selection-start-column="18" selection-end-line="113" selection-end-column="18" />
+        <state relative-caret-position="715">
+          <caret line="117" column="23" lean-forward="false" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/util/Properties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1190">
+          <caret line="121" column="6" lean-forward="false" selection-start-line="121" selection-start-column="6" selection-end-line="121" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="22" column="117" lean-forward="false" selection-start-line="22" selection-start-column="117" selection-end-line="22" selection-end-column="117" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/jolbox/bonecp/0.8.0.RELEASE/bonecp-0.8.0.RELEASE-sources.jar!/com/jolbox/bonecp/BoneCPConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="1049" column="16" lean-forward="true" selection-start-line="1049" selection-start-column="16" selection-end-line="1049" selection-end-column="35" />
+          <folding>
+            <element signature="docComment;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#USER#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#PASSWORD#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#serialVersionUID#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#CONFIG_TOSTRING#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#CONFIG_DS_TOSTRING#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#logger#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#minConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#maxConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#acquireIncrement#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#partitionCount#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#jdbcUrl#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#username#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#password#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#idleConnectionTestPeriodInSeconds#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#idleMaxAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#connectionTestStatement#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#statementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#statementsCachedPerConnection#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#releaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#statementReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#connectionHook#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#initSQL#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#closeConnectionWatch#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#logStatementsEnabled#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#acquireRetryDelayInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#acquireRetryAttempts#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#lazyInit#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#transactionRecoveryEnabled#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#connectionHookClassName#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#classLoader#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#poolName#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#disableJMX#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#datasourceBean#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#queryExecuteTimeLimitInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#poolAvailabilityThreshold#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#disableConnectionTracking#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#driverProperties#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#connectionTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#closeConnectionWatchTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#maxConnectionAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#configFile#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#serviceOrder#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#statisticsEnabled#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#defaultAutoCommit#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#defaultReadOnly#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#defaultTransactionIsolation#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#defaultCatalog#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#defaultTransactionIsolationValue#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#externalAuth#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#deregisterDriverOnClose#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#nullOnConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#resetConnectionOnClose#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#detectUnresolvedTransactions#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#poolStrategy#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#closeOpenStatements#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#detectUnclosedStatements#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;field#clientInfo#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getPoolName#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setPoolName#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getMinConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setMinConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setMinConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getMaxConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setMaxConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setMaxConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getAcquireIncrement#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setAcquireIncrement#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getPartitionCount#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setPartitionCount#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getJdbcUrl#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setJdbcUrl#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getUsername#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setUsername#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setUser#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getUser#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getPassword#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setPassword#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getIdleConnectionTestPeriod#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getIdleConnectionTestPeriod#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setIdleConnectionTestPeriod#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setIdleConnectionTestPeriod#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getIdleConnectionTestPeriodInMinutes#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getIdleConnectionTestPeriod#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getIdleConnectionTestPeriod#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setIdleConnectionTestPeriodInMinutes#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setIdleConnectionTestPeriodInMinutes#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="e#14825#14906#0" expanded="false" />
+            <element signature="docComment;method#setIdleConnectionTestPeriodInSeconds#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setIdleConnectionTestPeriodInSeconds#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setIdleConnectionTestPeriod#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setIdleConnectionTestPeriod#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getIdleMaxAge#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getIdleMaxAge#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getIdleMaxAge#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getIdleMaxAgeInMinutes#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setIdleMaxAge#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setIdleMaxAge#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setIdleMaxAgeInMinutes#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setIdleMaxAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getConnectionTestStatement#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setConnectionTestStatement#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setConnectionTestStatement#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getPreparedStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getPreparedStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getPreparedStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getPreparedStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setPreparedStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setPreparedStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getStatementsCachedPerConnection#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setStatementsCachedPerConnection#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setStatementsCachedPerConnection#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getConnectionHook#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setConnectionHook#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getInitSQL#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setInitSQL#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isCloseConnectionWatch#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setCloseConnectionWatch#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isLogStatementsEnabled#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setLogStatementsEnabled#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getAcquireRetryDelay#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getAcquireRetryDelay#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setAcquireRetryDelay#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setAcquireRetryDelay#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getAcquireRetryDelayInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getAcquireRetryDelay#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getAcquireRetryDelay#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setAcquireRetryDelayInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setAcquireRetryDelayInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setAcquireRetryDelay#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isLazyInit#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setLazyInit#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isTransactionRecoveryEnabled#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setTransactionRecoveryEnabled#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setTransactionRecoveryEnabled#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getAcquireRetryAttempts#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setAcquireRetryAttempts#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setConnectionHookClassName#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setConnectionHookClassName#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getConnectionHookClassName#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isDisableJMX#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDisableJMX#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getDatasourceBean#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDatasourceBean#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getQueryExecuteTimeLimit#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getQueryExecuteTimeLimit#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setQueryExecuteTimeLimit#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setQueryExecuteTimeLimit#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getQueryExecuteTimeLimitInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getQueryExecuteTimeLimit#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getQueryExecuteTimeLimit#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setQueryExecuteTimeLimitInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setQueryExecuteTimeLimitInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setQueryExecuteTimeLimit#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setQueryExecuteTimeLimit#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getPoolAvailabilityThreshold#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setPoolAvailabilityThreshold#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setPoolAvailabilityThreshold#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isDisableConnectionTracking#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDisableConnectionTracking#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setDisableConnectionTracking#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getConnectionTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getConnectionTimeout#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getConnectionTimeout#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setConnectionTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setConnectionTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setConnectionTimeout#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getDriverProperties#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="e#38120#38204#0" expanded="false" />
+            <element signature="docComment;method#getCloseConnectionWatchTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getCloseConnectionWatchTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setCloseConnectionWatchTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setCloseConnectionWatchTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getCloseConnectionWatchTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getCloseConnectionWatchTimeout#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getCloseConnectionWatchTimeout#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setCloseConnectionWatchTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setCloseConnectionWatchTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setCloseConnectionWatchTimeout#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setCloseConnectionWatchTimeout#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getStatementReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setStatementReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setStatementReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getMaxConnectionAge#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getMaxConnectionAge#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getMaxConnectionAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getMaxConnectionAge#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#getMaxConnectionAge#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setMaxConnectionAge#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setMaxConnectionAge#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setMaxConnectionAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setMaxConnectionAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setMaxConnectionAge#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setMaxConnectionAge#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getConfigFile#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setConfigFile#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getServiceOrder#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setServiceOrder#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isStatisticsEnabled#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setStatisticsEnabled#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getDefaultAutoCommit#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDefaultAutoCommit#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getDefaultReadOnly#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDefaultReadOnly#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getDefaultCatalog#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDefaultCatalog#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getDefaultTransactionIsolation#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDefaultTransactionIsolation#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setDefaultTransactionIsolation#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getDefaultTransactionIsolationValue#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDefaultTransactionIsolationValue#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setDefaultTransactionIsolationValue#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#BoneCPConfig#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#BoneCPConfig#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#BoneCPConfig#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#BoneCPConfig#1;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#BoneCPConfig#2;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#BoneCPConfig#2;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#BoneCPConfig#3;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#BoneCPConfig#3;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setXMLProperties#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setXMLProperties#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#lowerFirst#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#parseXML#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#parseXML#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isExternalAuth#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setExternalAuth#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#sanitize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#sanitize#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#loadProperties#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#loadProperties#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#toString#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#loadClass#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#loadClass#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getClassLoader#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setClassLoader#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#clone#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#hasSameConfiguration#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#hasSameConfiguration#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isDeregisterDriverOnClose#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDeregisterDriverOnClose#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setDeregisterDriverOnClose#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isNullOnConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setNullOnConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setNullOnConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isResetConnectionOnClose#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setResetConnectionOnClose#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setResetConnectionOnClose#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isDetectUnresolvedTransactions#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDetectUnresolvedTransactions#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setDetectUnresolvedTransactions#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getPoolStrategy#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setPoolStrategy#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isCloseOpenStatements#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setCloseOpenStatements#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#isDetectUnclosedStatements#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setDetectUnclosedStatements#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="method#setDetectUnclosedStatements#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#setClientInfo#0;class#BoneCPConfig#0" expanded="false" />
+            <element signature="docComment;method#getClientInfo#0;class#BoneCPConfig#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/bd/DBContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -1,8 +1,6 @@
 package protocol.bd;
 
-//import org.firebirdsql.*;
 
-import org.firebirdsql.pool.*;
 import protocol.Parameters;
 
 import javax.sql.PooledConnection;
@@ -10,14 +8,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+
+import com.jolbox.bonecp.BoneCP;
+import com.jolbox.bonecp.BoneCPConfig;
+
 
 /**
  * контекст базы данных, т.е. здесь подключение и еще что то
  */
 public class DBContext {
     // ссылки на пулы
-    static private PooledConnection pooledConToTerminalDB = null;
-    static private PooledConnection pooledConToWorkingDB = null;
+    static private BoneCP pooledConToTerminalDB = null;
+    static private BoneCP pooledConToWorkingDB = null;
 
     /**
      * инициация подключений к базе данных
@@ -25,55 +30,58 @@ public class DBContext {
      * @throws Exception
      */
     public static void init(Parameters parameters) throws Exception{
-        //todo заменить пул соеденений
+
+
+        try {
+            // load the database driver (make sure this is in your classpath!)
+            Class.forName("org.firebirdsql.jdbc.FBDriver");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
 
         // Terminal DB
-        org.firebirdsql.pool.FBConnectionPoolDataSource poolToTerminalDB = new FBConnectionPoolDataSource();
-        poolToTerminalDB.setMaxPoolSize(parameters.terminalDBMaxPoolSize);
-        poolToTerminalDB.setMinPoolSize(parameters.terminalDBMinPoolSize);
-        poolToTerminalDB.setMaxStatements(parameters.terminalDBMaxStatements);
-        poolToTerminalDB.setMaxIdleTime(parameters.terminalDBMaxIdleTime);
-        poolToTerminalDB.setEncoding(parameters.terminalDBCharset);
-        poolToTerminalDB.setSqlDialect(parameters.terminalDBSqlDialect);
-        poolToTerminalDB.setDatabase(parameters.terminalDBDatabase);
-        poolToTerminalDB.setUserName(parameters.terminalDBUserName);
-        poolToTerminalDB.setPassword(parameters.terminalDBPassword);
-        // obtain a physical connection to the database
-        pooledConToTerminalDB = poolToTerminalDB.getPooledConnection();
-
+        BoneCPConfig configToTerminalDB = new BoneCPConfig();
+        configToTerminalDB.setJdbcUrl(parameters.terminalDBDatabase); // jdbc url specific to your database, eg jdbc:mysql://127.0.0.1/yourdb
+        configToTerminalDB.setUsername(parameters.terminalDBUserName);
+        configToTerminalDB.setPassword(parameters.terminalDBPassword);
+        configToTerminalDB.setPoolName("Terminal DB");
+        configToTerminalDB.setMinConnectionsPerPartition(parameters.terminalDBMinPoolSize);
+        configToTerminalDB.setMaxConnectionsPerPartition(parameters.terminalDBMaxPoolSize);
+        configToTerminalDB.setPartitionCount(parameters.terminalDBMaxStatements);
+        configToTerminalDB.setConnectionTimeoutInMs(parameters.terminalDBConnectionTimeout);
+        configToTerminalDB.setIdleMaxAgeInSeconds(parameters.terminalDBMaxIdleTime);
+        Properties propertiesToTerminalDB = new Properties();
+        propertiesToTerminalDB.setProperty("encoding", parameters.terminalDBCharset);
+        propertiesToTerminalDB.setProperty("sql_dialect", parameters.terminalDBSqlDialect);
+        configToTerminalDB.setDriverProperties(propertiesToTerminalDB);
+        pooledConToTerminalDB = new BoneCP(configToTerminalDB); // setup the connection pool
 
         //Working DB
-
-        org.firebirdsql.pool.FBConnectionPoolDataSource poolToWorkingDB = new FBConnectionPoolDataSource();
-        poolToWorkingDB.setMaxPoolSize(parameters.workingDBMaxPoolSize);
-        poolToWorkingDB.setMinPoolSize(parameters.workingDBMinPoolSize);
-        poolToWorkingDB.setMaxStatements(parameters.workingDBMaxStatements);
-        poolToWorkingDB.setMaxIdleTime(parameters.workingDBMaxIdleTime);
-        poolToWorkingDB.setEncoding(parameters.workingDBCharset);
-        //poolToWorkingDB.setSqlDialect(parameters.workingDBSqlDialect);
-        poolToWorkingDB.setDatabase(parameters.workingDBDatabase);
-        poolToWorkingDB.setUserName(parameters.workingDBUserName);
-        poolToWorkingDB.setPassword(parameters.workingDBPassword);
-        // obtain a physical connection to the database
-        pooledConToWorkingDB = poolToWorkingDB.getPooledConnection();
+        BoneCPConfig configToWorkingDB = new BoneCPConfig();
+        configToWorkingDB.setJdbcUrl(parameters.workingDBDatabase); // jdbc url specific to your database, eg jdbc:mysql://127.0.0.1/yourdb
+        configToWorkingDB.setUsername(parameters.workingDBUserName);
+        configToWorkingDB.setPassword(parameters.workingDBPassword);
+        configToWorkingDB.setPoolName("Working DB");
+        configToWorkingDB.setMinConnectionsPerPartition(parameters.workingDBMinPoolSize);
+        configToWorkingDB.setMaxConnectionsPerPartition(parameters.workingDBMaxPoolSize);
+        configToWorkingDB.setPartitionCount(parameters.workingDBMaxStatements);
+        configToWorkingDB.setConnectionTimeoutInMs(parameters.workingDBConnectionTimeout);
+        configToWorkingDB.setIdleMaxAgeInSeconds(parameters.workingDBMaxIdleTime);
+        Properties propertiesToWorkingDB = new Properties();
+        propertiesToWorkingDB.setProperty("encoding", parameters.workingDBCharset);
+        propertiesToWorkingDB.setProperty("sql_dialect", parameters.workingDBSqlDialect);
+        configToTerminalDB.setDriverProperties(propertiesToWorkingDB);
+        pooledConToWorkingDB = new BoneCP(configToWorkingDB); // setup the connection pool
     }
 
 
     public static void close(){
         if(pooledConToTerminalDB != null)
-            try {
-                pooledConToTerminalDB.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+                pooledConToTerminalDB.shutdown();
 
         if(pooledConToWorkingDB != null)
-            try {
-                pooledConToWorkingDB.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
+                pooledConToWorkingDB.shutdown();
     }
 
 
@@ -85,7 +93,6 @@ public class DBContext {
     static public Connection getConnectionToTerminalDB() throws SQLException {
         if(pooledConToTerminalDB != null)
                 return pooledConToTerminalDB.getConnection();
-
         return null;
     }
 
@@ -97,7 +104,6 @@ public class DBContext {
     static public Connection getConnectionToWorkingDB() throws SQLException {
         if(pooledConToWorkingDB != null)
             return pooledConToWorkingDB.getConnection();
-
         return null;
     }
 

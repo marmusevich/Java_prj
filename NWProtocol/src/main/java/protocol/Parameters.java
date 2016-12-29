@@ -62,11 +62,15 @@ public class Parameters {
     /**
      * количество закешированых запросов в одном подключении
      */
-    public int terminalDBMaxStatements = 10;
+    public int terminalDBMaxStatements = 4;
     /**
      * тайм аут простоя подключенийя в секундах
      */
-    public int terminalDBMaxIdleTime = 30 * 60;
+    public long terminalDBMaxIdleTime = 30 * 60;
+    /**
+     * время ожидания при подключении
+     */
+    public long terminalDBConnectionTimeout = 500;
     /**
      * кодировка для сообщений в базе
      */
@@ -78,7 +82,7 @@ public class Parameters {
     /**
      * строка подключения к базе
      */
-    public String terminalDBDatabase = "localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB";
+    public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB";
     //"localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB"
     //"E:\a.marmusevich\TERMINAL\TERMINAL.FDB"
 
@@ -103,11 +107,16 @@ public class Parameters {
     /**
      * количество закешированых запросов в одном подключении
      */
-    public int workingDBMaxStatements  = 10;
+    public int workingDBMaxStatements  = 4;
     /**
      * тайм аут простоя подключенийя в секундах
      */
-    public int workingDBMaxIdleTime = 30 * 60;
+    public long workingDBMaxIdleTime = 30 * 60;
+    /**
+     * время ожидания при подключении
+     */
+    public long workingDBConnectionTimeout = 500;
+
     /**
      * кодировка для сообщений в базе
      */
@@ -119,7 +128,7 @@ public class Parameters {
     /**
      * строка подключения к базе
      */
-    public String workingDBDatabase = "localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB";
+    public String workingDBDatabase = "jdbc:firebirdsql:localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB";
     //"localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB"
     //"E:\a.marmusevich\WORKING\WORKING.FDB"
     /**
