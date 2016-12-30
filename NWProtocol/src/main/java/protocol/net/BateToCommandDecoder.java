@@ -50,6 +50,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                 msgString = msgString + msg.toString(charset);
                 // получить имя команды
                 String cammandName = parser.getCammandName(msgString);
+                //ctx.write(cammandName + "\n\r"); - НЕ РАБОТАЕТ - НЕТ ПРЕОБРОЗОВАНИЯ ИЗ КОМАНДЫ
                 //построить команду
                 if (cammandName != null) {
                     cmd = parser.tryParseCommand(cammandName, msgString);
@@ -64,7 +65,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
             // байты закончились и команды нет, ждем следующих байтов
         } finally {
             //logger.info("do msg.refCnt() = {}", msg.refCnt());
-//            msg.release();
+            msg.release();
 //            logger.info("release msg.refCnt() = {}", msg.refCnt());
         }
         return cmd;
