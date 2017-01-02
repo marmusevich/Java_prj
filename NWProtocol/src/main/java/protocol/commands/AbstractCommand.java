@@ -67,7 +67,6 @@ public abstract class AbstractCommand {
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
         }
         //return true;
         return dostup != 0;

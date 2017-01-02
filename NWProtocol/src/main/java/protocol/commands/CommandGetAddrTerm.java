@@ -8,23 +8,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-//Команда getaddrterm
-//        Возвращает значение адреса терминала
-//        1.	getaddrterm при успешном выполнении возвращает GADDRTRM
-//        2.	Возвращение результата выполнения команды
-//        В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        Количество передаваемых параметров – два. В случае неправильного написания наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//        3.	Далее сервер возвращает адрес терминала строкой в формате ADDRES=АДРЕС ТЕРМИНАЛА;
-//        4.	Возвращение результата выполнения команды
-//        В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
-
-
 /**
- * Created by lexa on 08.12.2016.
+* Команда getaddrterm
+*         Возвращает значение адреса терминала
+*         1.	getaddrterm при успешном выполнении возвращает GADDRTRM
+*         2.	Возвращение результата выполнения команды
+*         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится
+ *         сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
+*         Наименования параметров:
+*         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+*         LOGIN = Выданный логин, обязательный параметр;
+*         Количество передаваемых параметров – два. В случае неправильного написания наименования параметров, параметр
+ *         будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных
+ *         параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
+*         3.	Далее сервер возвращает адрес терминала строкой в формате ADDRES=АДРЕС ТЕРМИНАЛА;
+*         4.	Возвращение результата выполнения команды
+*         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится
+ *         сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
+
  */
 public class CommandGetAddrTerm extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetAddrTerm.class);
@@ -33,62 +34,58 @@ public class CommandGetAddrTerm extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "GADDRTRM";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandGetAddrTerm tryParseCommand(String commandData) {
-        CommandData ret = null;
+        CommandGetAddrTerm ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
         if (flOK) {
-            ret = new CommandData();
+            ret = new CommandGetAddrTerm();
             ret.setUserNameAndPass(uad);
         }
 
-
-//////////////////////////////////////////////////////////////////////////
-//        else if SameText(trim(LCmd), 'getaddrterm') then
-//        begin
-//        AContext.Connection.Socket.WriteLn('GADDRTRM');
-//        AContext.Connection.Socket.ReadStrings(Str,2,TEncoding.UTF8); //Пока указываю жестко количество параметров
-//        {Подключение функции проверки и занесения данных в базу}
-//        Results:=DM1.GetAddrTerm(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
-//        if Results = '200 OK' then
-//        begin
-//        AContext.Connection.Socket.WriteLn(GET_USLUGA.Strings[0],TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
-//        GET_USLUGA.Free;
-//        end
-//        else
-//        begin
-//        AContext.Connection.Socket.WriteLn(Results);
-//        AContext.Connection.Socket.Close;
-//        end;
-//        // AContext.Connection.Socket.Close;
-//        end
-        return null;
+        return ret;
     }
 
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText =
-                "  " +
-                        "  ";
+                "SELECT ADDRES, ID, BANK_ID FROM TERMINAL WHERE " +
+                        "    TERMINAL_ID= ? AND BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN= ?) AND " +
+                        "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setString(1, userAuthenticationData.name);
+        ps.setString(2, userAuthenticationData.pass);
+
         ResultSet rs = ps.executeQuery();
+        int terminalID=0;
         while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+            terminalID = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
         }
+        rs.close();
+        ps.close();
+
+        if(terminalID >0){
+            SQLText = " SELECT ADDRES FROM TERMINAL WHERE ID = ? ";
+
+            ps = connectionToTerminalDB.prepareStatement(SQLText);
+            ps.setInt(1, terminalID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                result.add("ADDRES=" + rs.getString("ADDRES"));
+            }
+        }
+
 
         ////Возвращает адрес терминала
 //        function TDM1.GetAddrTerm(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
