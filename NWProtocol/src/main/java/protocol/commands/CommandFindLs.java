@@ -56,7 +56,7 @@ public class CommandFindLs extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "FINDLS";
 
     /**
      * попытатся распарсить данные команды
