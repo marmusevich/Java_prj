@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 //todo какаята статистика по серверу, думать
@@ -41,7 +42,7 @@ public class StatisticServerCommand extends AbstractCommand {
     }
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         InetAddress remoteAddress = ((InetSocketAddress)ctx.pipeline().channel().remoteAddress()).getAddress();
         InetAddress localAddress = ((InetSocketAddress)ctx.pipeline().channel().localAddress()).getAddress();
 

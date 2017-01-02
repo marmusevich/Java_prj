@@ -4,6 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -102,8 +105,21 @@ public class CommandGetData extends AbstractCommand {
 
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-////Получение данных по л/с поставщика услуг
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
+        String SQLText =
+                "  " +
+                        "  ";
+
+        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
+        ps.setString(1, userAuthenticationData.name);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
+            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+        }
+
+
+        ////Получение данных по л/с поставщика услуг
 //        function TDM1.GetData(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
 //        var
 //        LS:integer;

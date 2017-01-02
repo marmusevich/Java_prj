@@ -4,6 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 //Команда getaddres
@@ -79,7 +82,18 @@ public class CommandGetAddres extends AbstractCommand {
 
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
+        String SQLText =
+                "  " +
+                        "  ";
+
+        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
+        ps.setString(1, userAuthenticationData.name);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
+            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+        }
 
 ////Возвращает список уникальных значений домов, корпусов или квартир
 //        function TDM1.GetAddres(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
