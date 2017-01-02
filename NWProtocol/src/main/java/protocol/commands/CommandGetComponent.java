@@ -28,11 +28,16 @@ import java.util.ArrayList;
 public class CommandGetComponent extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetComponent.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
 
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetComponent tryParseCommand(String commandData) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -60,6 +65,13 @@ public class CommandGetComponent extends AbstractCommand {
 
 
 
+        return null;
+    }
+
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Возвращает перечень разрешенных компонентов программы
 //        function TDM1.GetComponent(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
 //        var
@@ -172,3 +184,7 @@ public class CommandGetComponent extends AbstractCommand {
 //        Result:=false;
 //        end;
 //
+    }
+}
+
+

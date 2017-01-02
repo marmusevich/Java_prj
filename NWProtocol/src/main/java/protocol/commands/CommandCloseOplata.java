@@ -27,11 +27,16 @@ import java.util.ArrayList;
 public class CommandCloseOplata extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandCloseOplata.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
 
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandCloseOplata tryParseCommand(String commandData) {
 //////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'closeoplata') then
 //        begin
@@ -42,6 +47,14 @@ public class CommandCloseOplata extends AbstractCommand {
 //        AContext.Connection.Socket.Close;
 //        end
 
+
+        return null;
+    }
+
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 
 ////Закрытие процедуры оплаты
 ////Процедуру будет отключена как устаревшая
@@ -76,3 +89,6 @@ public class CommandCloseOplata extends AbstractCommand {
 //        END ELSE Result:='500 Error connect FIB';
 //        end;
 //
+    }
+}
+

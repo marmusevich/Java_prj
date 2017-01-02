@@ -43,10 +43,17 @@ import java.util.ArrayList;
 public class CommandStopSmen extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandStopSmen.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandStopSmen tryParseCommand(String commandData) {
 /////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'stopsmen') then
 //        begin
@@ -69,7 +76,12 @@ public class CommandStopSmen extends AbstractCommand {
 ////    AContext.Connection.Disconnect;
 //        end
 
+        return null;
+    }
 
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Закрытие смены
 //        function TDM1.CloseSmen(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
 //        var
@@ -139,4 +151,7 @@ public class CommandStopSmen extends AbstractCommand {
 //        end;
 //        END ELSE Result:='Error connect FIB';
 //        end;
-//
+    }
+}
+
+

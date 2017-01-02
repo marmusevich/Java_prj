@@ -63,10 +63,17 @@ import java.util.ArrayList;
 public class CommandGetOplatals extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetOplatals.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetOplatals tryParseCommand(String commandData) {
 
 ///////////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getoplatals') then
@@ -104,6 +111,12 @@ public class CommandGetOplatals extends AbstractCommand {
 //        AContext.Connection.Disconnect;
 //        end
 
+        return null;
+    }
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 
 ////Получение данных оплаты по LS_POLUCH лицевому счету получателя
 //        function TDM1.GetOplataLS(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
@@ -160,3 +173,6 @@ public class CommandGetOplatals extends AbstractCommand {
 //        END ELSE Result:='500 Error connect FIB' //Подключение к базе
 //        end;
 //
+    }
+}
+

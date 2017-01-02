@@ -32,10 +32,16 @@ import java.util.ArrayList;
 public class CommandSetStorno extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandSetStorno.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandSetStorno tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'setstorno') then
 //        begin
@@ -47,8 +53,13 @@ public class CommandSetStorno extends AbstractCommand {
 //        //AContext.Connection.Socket.Close;
 //        end
 
+        return null;
+    }
 
 
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Оформление сторно платежа
 //
 //        function TDM1.SetStorno(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
@@ -122,3 +133,8 @@ public class CommandSetStorno extends AbstractCommand {
 //        END ELSE Result:='500 Error connect FIB';
 //        end;
 //
+    }
+}
+
+
+

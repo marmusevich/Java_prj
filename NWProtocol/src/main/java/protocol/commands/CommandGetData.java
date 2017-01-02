@@ -51,10 +51,16 @@ public class CommandGetData extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetData.class);
 
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetData tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getdata') then
 //        begin
@@ -80,7 +86,12 @@ public class CommandGetData extends AbstractCommand {
 //        // AContext.Connection.Socket.Close;
 //        end
 
+        return null;
+    }
 
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Получение данных по л/с поставщика услуг
 //        function TDM1.GetData(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
 //        var
@@ -149,3 +160,7 @@ public class CommandGetData extends AbstractCommand {
 //        END ELSE Result:='500 Error connect to FIB';
 //        end;
 //
+    }
+}
+
+

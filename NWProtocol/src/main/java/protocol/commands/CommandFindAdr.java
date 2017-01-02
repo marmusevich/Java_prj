@@ -54,11 +54,17 @@ import java.util.ArrayList;
 public class CommandFindAdr extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandFindAdr.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandFindAdr tryParseCommand(String commandData) {
 
 ////*///////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'findadr') then
@@ -85,7 +91,12 @@ public class CommandFindAdr extends AbstractCommand {
 //        // AContext.Connection.Socket.Close;
 //        end
 
+        return null;
+    }
 
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Поиск по адрему
 //        function TDM1.GetFindAdr(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
 //        var
@@ -230,3 +241,8 @@ public class CommandFindAdr extends AbstractCommand {
 //        END ELSE Result:='500 Error connect to FIB';
 //        end;
 //
+    }
+}
+
+
+

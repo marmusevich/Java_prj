@@ -15,6 +15,23 @@ import java.util.ArrayList;
 public class StopServerCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(StopServerCommand.class);
 
+
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static StopServerCommand tryParseCommand(String commandData) {
+
+        return null;
+    }
+
+
+
     //CMD=STOP_SERVER
 
     @Override

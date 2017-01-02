@@ -27,11 +27,17 @@ import java.util.ArrayList;
 public class CommandStartSmen extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandStartSmen.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandStartSmen tryParseCommand(String commandData) {
 //////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'startsmen') then
 //        begin
@@ -41,7 +47,12 @@ public class CommandStartSmen extends AbstractCommand {
 ////    AContext.Connection.Socket.WriteLn('200 OK');
 //        end
 
+        return null;
+    }
 
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Открытие смены
 //        function TDM1.StartSmen(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
 //        begin
@@ -89,3 +100,8 @@ public class CommandStartSmen extends AbstractCommand {
 //        END ELSE result:='500 Error connect FIB';
 //        end;
 //
+    }
+}
+
+
+

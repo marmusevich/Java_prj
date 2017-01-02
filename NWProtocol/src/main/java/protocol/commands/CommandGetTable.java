@@ -94,11 +94,17 @@ import java.util.ArrayList;
 public class CommandGetTable extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetTable.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetTable tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'gettable') then
 //        begin
@@ -135,7 +141,12 @@ public class CommandGetTable extends AbstractCommand {
 //        end
 
 
+        return null;
+    }
 
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 /////Формирование вывода запроса улицы
 //        function TDM1.GetTable(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
 //        var
@@ -217,3 +228,8 @@ public class CommandGetTable extends AbstractCommand {
 ////password:= 'aaaa';
 //        end;
 //
+    }
+}
+
+
+

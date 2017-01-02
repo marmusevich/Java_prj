@@ -27,10 +27,17 @@ import java.util.ArrayList;
 public class CommandGetReportList extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetReportList.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetReportList tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getreportlist') then
 //        begin
@@ -56,7 +63,12 @@ public class CommandGetReportList extends AbstractCommand {
 //        // AContext.Connection.Socket.Close;
 //        end
 
+        return null;
+    }
 
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Получение списка отчетов закрепленных на кассе
 //        function TDM1.GetReportList(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
 //        var
@@ -111,3 +123,7 @@ public class CommandGetReportList extends AbstractCommand {
 //        end;
 //
 //
+    }
+}
+
+

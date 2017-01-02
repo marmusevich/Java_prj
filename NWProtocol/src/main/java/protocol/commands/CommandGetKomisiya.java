@@ -40,10 +40,17 @@ import java.util.ArrayList;
 public class CommandGetKomisiya extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetKomisiya.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetKomisiya tryParseCommand(String commandData) {
 
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getkomisiya') then
@@ -69,6 +76,13 @@ public class CommandGetKomisiya extends AbstractCommand {
 //        //AContext.Connection.Socket.Close;
 //        end
 
+
+        return null;
+    }
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 
 ////Возвращает список расчета комиссии
 //        function TDM1.GetKomisiya(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
@@ -140,3 +154,5 @@ public class CommandGetKomisiya extends AbstractCommand {
 //        END ELSE Result:='500 Error connect FIB';
 //        end;
 //
+    }
+}

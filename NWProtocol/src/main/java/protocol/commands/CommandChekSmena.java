@@ -36,12 +36,43 @@ import java.util.ArrayList;
 public class CommandChekSmena extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandChekSmena.class);
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandChekSmena tryParseCommand(String commandData) {
+//        //////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'cheksmena') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('CHKSMENA');
+//        AContext.Connection.Socket.ReadStrings(Str,2,TEncoding.UTF8); //Пока указываю жестко количество параметров
+//        {Подключение функции проверки и занесения данных в базу}
+//        Results:=DM1.ChekSmena(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB,DB_WORK);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        AContext.Connection.Socket.WriteLn(Results);
+//        AContext.Connection.Socket.Close;
+//        end
+
+        return null;
+    }
+
+
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
-
-
 //        function TDM1.ChekSmena(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
 //        begin
 //
@@ -107,3 +138,7 @@ public class CommandChekSmena extends AbstractCommand {
 //
 //        end;
 //
+    }
+}
+
+

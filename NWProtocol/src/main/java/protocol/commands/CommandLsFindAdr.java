@@ -35,12 +35,17 @@ import java.util.ArrayList;
 public class CommandLsFindAdr extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandLsFindAdr.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
 
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandLsFindAdr tryParseCommand(String commandData) {
 ////*///////////////////////////////////////////////////////////////////////
 //        //прочитаем: код города, код улицы, номер дома, корпус, квартиру.
 //        else if SameText(trim(LCmd), 'lsfindadr') then
@@ -67,6 +72,12 @@ public class CommandLsFindAdr extends AbstractCommand {
 //        // AContext.Connection.Socket.Close;
 //        end
 
+        return null;
+    }
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 
 ////Получение списа единых л/с по адресу
 //        function TDM1.GetLSFindAdr(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
@@ -128,3 +139,8 @@ public class CommandLsFindAdr extends AbstractCommand {
 //        END ELSE Result:='500 Error connect FIB';
 //        end;
 //
+    }
+}
+
+
+

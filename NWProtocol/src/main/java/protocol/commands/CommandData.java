@@ -19,16 +19,32 @@ import java.util.Date;
 public class CommandData  extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandData.class);
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandData tryParseCommand(String commandData) {
+//        else if SameText(trim(LCmd), 'date') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('200 ' + FormatDateTime('dd.MM.yyyy hh:mm:ss',Now),TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        end
+
+
+        return null;
+    }
+
+
+
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
         result.add(dateFormat.format( new Date() ));
     }
 }
-
-//        else if SameText(trim(LCmd), 'date') then
-//        begin
-//        AContext.Connection.Socket.WriteLn('200 ' + FormatDateTime('dd.MM.yyyy hh:mm:ss',Now),TEncoding.UTF8);
-//        AContext.Connection.Socket.Close;
-//        end
 

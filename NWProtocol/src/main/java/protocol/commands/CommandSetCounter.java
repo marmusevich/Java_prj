@@ -36,10 +36,16 @@ import java.util.ArrayList;
 public class CommandSetCounter extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandSetCounter.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandSetCounter tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'setcounter') then
 //        begin
@@ -71,7 +77,13 @@ public class CommandSetCounter extends AbstractCommand {
 //        end;
 //        end
 
+        return null;
+    }
 
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Добавление данных счетчика в базу
 //        function TDM1.SetCounter(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
 //        var
@@ -133,3 +145,7 @@ public class CommandSetCounter extends AbstractCommand {
 //
 //        end;
 //
+    }
+}
+
+

@@ -27,10 +27,16 @@ import java.util.ArrayList;
 public class CommandGetCounter extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetCounter.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetCounter tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getcounter') then
 //        begin
@@ -58,6 +64,13 @@ public class CommandGetCounter extends AbstractCommand {
 //
 
 
+
+        return null;
+    }
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Получение данных счетчиков по PAY_ID
 //        function TDM1.GetCounter(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
 //        var
@@ -111,3 +124,5 @@ public class CommandGetCounter extends AbstractCommand {
 //        end;
 //
 //
+    }
+}

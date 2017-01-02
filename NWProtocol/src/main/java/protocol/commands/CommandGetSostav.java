@@ -40,12 +40,17 @@ import java.util.ArrayList;
 public class CommandGetSostav extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetSostav.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
 
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetSostav tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getsostav') then
 //        begin
@@ -69,7 +74,12 @@ public class CommandGetSostav extends AbstractCommand {
 //        AContext.Connection.Socket.Close;
 //        end
 
+        return null;
+    }
 
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 
 ////Возвращает список состава услуг
 //        function TDM1.GetSostav(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
@@ -117,3 +127,9 @@ public class CommandGetSostav extends AbstractCommand {
 //        end;
 //
 //
+    }
+}
+
+
+
+

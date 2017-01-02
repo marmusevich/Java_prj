@@ -26,11 +26,17 @@ import java.util.ArrayList;
 public class CommandSetErrorMsg extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandSetErrorMsg.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandSetErrorMsg tryParseCommand(String commandData) {
 /////////////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'seterrormsg') then
 //        begin
@@ -43,7 +49,12 @@ public class CommandSetErrorMsg extends AbstractCommand {
 //        end
 //
 
+        return null;
+    }
 
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Добавление записи в базу ошибок
 //        function TDM1.SetErrorMsg(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
 //        var
@@ -84,3 +95,8 @@ public class CommandSetErrorMsg extends AbstractCommand {
 //        end;
 //
 //
+    }
+}
+
+
+

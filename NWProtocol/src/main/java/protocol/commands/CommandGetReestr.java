@@ -28,10 +28,17 @@ import java.util.ArrayList;
 public class CommandGetReestr extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetReestr.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetReestr tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getreestr') then
 //        begin
@@ -58,6 +65,12 @@ public class CommandGetReestr extends AbstractCommand {
 //        // AContext.Connection.Socket.Close;
 //        end
 
+        return null;
+    }
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 
 ////Получение реестра платежей по выбранной смене
 //        function TDM1.GetReestr(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
@@ -127,3 +140,6 @@ public class CommandGetReestr extends AbstractCommand {
 //        Str.Free;
 //        end;
 //
+    }
+}
+

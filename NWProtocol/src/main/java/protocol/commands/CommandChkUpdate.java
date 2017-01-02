@@ -29,14 +29,19 @@ import java.util.ArrayList;
 /**
  * Created by lexa on 08.12.2016.
  */
-public class CommandChkUpdate  extends AbstractCommand {
+public class CommandChkUpdate extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandChkUpdate.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
 
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandChkUpdate tryParseCommand(String commandData) {
 //////////////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'chkupdate') then
 //        begin
@@ -60,6 +65,14 @@ public class CommandChkUpdate  extends AbstractCommand {
 //        end;
 //        end
 //
+
+        return null;
+    }
+
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 
 ////Проверка наличия обновлений
 //        function TDM1.ChkUpdate(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
@@ -125,3 +138,6 @@ public class CommandChkUpdate  extends AbstractCommand {
 //        end;
 //        end;
 //
+    }
+}
+

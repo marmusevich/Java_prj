@@ -52,10 +52,17 @@ import java.util.ArrayList;
 public class CommandSetData extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandSetData.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandSetData tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'setdata') then
 //        begin
@@ -78,6 +85,13 @@ public class CommandSetData extends AbstractCommand {
 //        end;
 //        end
 
+
+        return null;
+    }
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 
 ////Добавление платежа в оплату
 //        function TDM1.SetData(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
@@ -165,3 +179,5 @@ public class CommandSetData extends AbstractCommand {
 //
 //        end;
 //
+    }
+}

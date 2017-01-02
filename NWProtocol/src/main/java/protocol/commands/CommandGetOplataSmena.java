@@ -28,11 +28,17 @@ import java.util.ArrayList;
 public class CommandGetOplataSmena extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetOplataSmena.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetOplataSmena tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getoplatasmena') then
 //        begin
@@ -59,6 +65,12 @@ public class CommandGetOplataSmena extends AbstractCommand {
 //        end
 
 
+        return null;
+    }
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Получение данных оплаты по KOD_SMEN
 //        function TDM1.GetOplataSmena(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
 //        var
@@ -112,3 +124,7 @@ public class CommandGetOplataSmena extends AbstractCommand {
 //        end;
 //
 //
+   }
+}
+
+

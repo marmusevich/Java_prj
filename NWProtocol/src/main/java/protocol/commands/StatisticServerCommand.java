@@ -14,6 +14,23 @@ import java.util.ArrayList;
 public class StatisticServerCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(StatisticServerCommand.class);
 
+
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static StatisticServerCommand tryParseCommand(String commandData) {
+
+        return null;
+    }
+
+
+
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
         InetAddress remoteAddress = ((InetSocketAddress)ctx.pipeline().channel().remoteAddress()).getAddress();

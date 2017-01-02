@@ -30,11 +30,17 @@ import java.util.ArrayList;
 public class CommandSetCurrence extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandSetCurrence.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandSetCurrence tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'setcurrence') then
 //        begin
@@ -46,6 +52,12 @@ public class CommandSetCurrence extends AbstractCommand {
 //        end
 
 
+        return null;
+    }
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 
 ////Получение идентификатора почки банкнот из Кешкодера
 //        function TDM1.SetCurrence(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
@@ -98,3 +110,7 @@ public class CommandSetCurrence extends AbstractCommand {
 //        END ELSE Result:='500 Error connect FIB';
 //        end;
 //
+    }
+}
+
+

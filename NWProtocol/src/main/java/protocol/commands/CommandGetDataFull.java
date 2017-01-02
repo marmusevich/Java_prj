@@ -48,10 +48,16 @@ import java.util.ArrayList;
 public class CommandGetDataFull extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetDataFull.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetDataFull tryParseCommand(String commandData) {
 
 ////*//////////////////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getdatafull') then
@@ -74,3 +80,15 @@ public class CommandGetDataFull extends AbstractCommand {
 //        AContext.Connection.Socket.Close;
 //        //  AContext.Connection.Socket.Close;
 //        end
+
+        return null;
+    }
+
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
+
+        //todo а где DM1.GetDataFull
+    }
+}

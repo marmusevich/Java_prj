@@ -26,14 +26,20 @@ import java.util.ArrayList;
 /**
  * Created by lexa on 08.12.2016.
  */
-public class CommandGetAddres  extends AbstractCommand {
+public class CommandGetAddres extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetAddres.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
 
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
+
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandGetAddres tryParseCommand(String commandData) {
 //        else if SameText(trim(LCmd), 'getaddres') then
 //        begin
 //        AContext.Connection.Socket.WriteLn('GADDRES',TEncoding.UTF8);
@@ -57,6 +63,12 @@ public class CommandGetAddres  extends AbstractCommand {
 //        end
 
 
+        return null;
+    }
+
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 
 ////Возвращает список уникальных значений домов, корпусов или квартир
 //        function TDM1.GetAddres(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
@@ -117,3 +129,7 @@ public class CommandGetAddres  extends AbstractCommand {
 //        Str.Free;
 //        END ELSE Result:='500 Error connect FIB';
 //        end;
+    }
+}
+
+

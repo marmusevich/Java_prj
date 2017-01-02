@@ -49,11 +49,16 @@ import java.util.ArrayList;
 public class CommandFindLs extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandFindLs.class);
 
-    @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
-    }
-}
+    /**
+     * первый ответ
+     */
+    public static final String firstResponse = "";
 
+    /**
+     * попытатся распарсить данные команды
+     * @param commandData
+     */
+    public static CommandFindLs tryParseCommand(String commandData) {
 ////*//////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'findls') then
 //        begin
@@ -77,7 +82,12 @@ public class CommandFindLs extends AbstractCommand {
 //        end
 
 
+        return null;
+    }
 
+
+    @Override
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
 ////Поиск по единому лицевому счету
 //        function TDM1.GetFindLS(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
 //        var
@@ -137,3 +147,8 @@ public class CommandFindLs extends AbstractCommand {
 //        END ELSE Result:='500 error connect FIB';
 //        end;
 //
+    }
+}
+
+
+
