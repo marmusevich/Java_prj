@@ -79,29 +79,6 @@ public class CommandFindLs extends AbstractCommand {
             ret.ls = Integer.parseInt(_lsStr);
         }
         return ret;
-
-        ////*//////////////////////////////////////////////////////////////////////
-//        else if SameText(trim(LCmd), 'findls') then
-//        begin
-//        AContext.Connection.Socket.WriteLn('FINDLS',TEncoding.UTF8);
-//        AContext.Connection.Socket.ReadStrings(Str,3,TEncoding.UTF8);
-//        Results:=DM1.GetFindLS(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB,DB_WORK);
-//        if Results = '200 OK' then
-//        begin
-//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteBufferOpen;
-//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteBufferClose;
-//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
-//        GET_USLUGA.Free;
-//        end
-//        else
-//        begin
-//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
-//        AContext.Connection.Socket.Close;
-//        end;
-//        end
-
     }
 
     int ls;

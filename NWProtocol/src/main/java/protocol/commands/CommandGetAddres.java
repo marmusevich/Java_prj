@@ -9,25 +9,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-//Команда getaddres
-//        Выполняет запрос получения уникальных значений номеров домов, корпусов и квартир из базы абонентов в формат  TString (массив строк). Используется для синхронизации поисковых справочников на стороне клиента.
-//        1.	getaddres при успешном выполнении возвращает GADDRES и ожидает передачи данных в формате TString (массив строк)
-//        2.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        PARAMS = Параметр который может принимать 2 значения HOME и KV
-//
-//        Количество передаваемых параметров – три. В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//
-//        3.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
-//        4.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
-//
-//        Для каждого параметра формируется своя структура данных с различным перечнем и количеством значений. Наименования значений равнозначны наименованию полей в таблицах для удобства использования. В предлагаемом перечне значений важен порядок перечисления значений.
-
-
 /**
- * Created by lexa on 08.12.2016.
+ *Команда getaddres
+ *        Выполняет запрос получения уникальных значений номеров домов, корпусов и квартир из базы абонентов в формат
+ *        TString (массив строк). Используется для синхронизации поисковых справочников на стороне клиента.
+ *        1.	getaddres при успешном выполнении возвращает GADDRES и ожидает передачи данных в формате TString (массив строк)
+ *        2.	Передача параметров в формате TString (массив строк)
+ *        Наименования параметров:
+ *        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+*         LOGIN = Выданный логин, обязательный параметр;
+*         PARAMS = Параметр который может принимать 2 значения HOME и KV
+* 
+*         Количество передаваемых параметров – три. В случае неправильного написание наименования параметров,
+ *         параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из
+ *         обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
+* 
+*         3.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+*         4.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде
+ *         значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
+* 
+*         Для каждого параметра формируется своя структура данных с различным перечнем и количеством значений.
+ *         ъНаименования значений равнозначны наименованию полей в таблицах для удобства использования.
+ *         В предлагаемом перечне значений важен порядок перечисления значений.
+
  */
 public class CommandGetAddres extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetAddres.class);
@@ -36,63 +40,58 @@ public class CommandGetAddres extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "GADDRES";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandGetAddres tryParseCommand(String commandData) {
-        CommandData ret = null;
+        CommandGetAddres  ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _params = Parser.getParametrData(commandData, "PARAMS");
+
+        flOK = flOK && (_params != null);
+
         if (flOK) {
-            ret = new CommandData();
+            ret = new CommandGetAddres();
             ret.setUserNameAndPass(uad);
+            ret.params = _params;
         }
 
-        //        else if SameText(trim(LCmd), 'getaddres') then
-//        begin
-//        AContext.Connection.Socket.WriteLn('GADDRES',TEncoding.UTF8);
-//        AContext.Connection.Socket.ReadStrings(Str,3,TEncoding.UTF8); //Пока указываю жестко количество параметров
-//        Results:=DM1.GetAddres(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB,DB_WORK);
-//        if Results = '200 OK' then
-//        begin
-//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteBufferOpen;
-//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteBufferClose;
-//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
-//        GET_USLUGA.Free;
-//        end
-//        else
-//        begin
-//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
-//        AContext.Connection.Socket.Close;
-//        end;
-//        //AContext.Connection.Socket.Close;
-//        end
-
-
-        return null;
+        return ret;
     }
+
+    String params = "";
 
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  " +
-                        "  ";
-
-        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+        if(params == ""){
+            String SQLText = " SELECT DISTINCT HOME, KORP, CYTI FROM SHETA ";
+            PreparedStatement ps = connectionToWorkingDB.prepareStatement(SQLText);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result.add(
+                        rs.getString("HOME").trim() + "|" +
+                        rs.getString("KORP").trim() + "|" +
+                        rs.getString("CYTI").trim()
+                );
+            }
+        }
+        else if(params == ""){
+            String SQLText = " SELECT DISTINCT(KV) FROM SHETA ";
+            PreparedStatement ps = connectionToWorkingDB.prepareStatement(SQLText);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result.add(
+                        rs.getString("KV").trim() + "|"
+                );
+            }
         }
 
 ////Возвращает список уникальных значений домов, корпусов или квартир
@@ -110,6 +109,7 @@ public class CommandGetAddres extends AbstractCommand {
 //        //Проведем подключение к базе WORKING
 //        IF ConnectFIBWORK(USER,PASSWD,DB_WORK) THEN
 //        BEGIN
+
 //        if trim(DATA.VALUES['PARAMS'])='HOME' then
 //        BEGIN
 //        sqlFreeWork.Close;
@@ -129,6 +129,7 @@ public class CommandGetAddres extends AbstractCommand {
 //        end;
 //        Result:='200 OK';
 //        Exit;
+
 //        END ELSE if trim(DATA.VALUES['PARAMS'])='KV' then
 //        BEGIN
 //        sqlFreeWork.Close;
