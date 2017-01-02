@@ -114,7 +114,74 @@ public class CommandGetDataFull extends AbstractCommand {
         }
 
 
-
-        //todo а где DM1.GetDataFull
+////Получение всех возможных данных по л/с поставщика и единому л/с
+//        function TDM1.GetDataFull(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
+//        var
+//        LS:integer;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        //Проверка корректности подключения терминала подключение возможно только после открытия смены
+//        if (TerminalID(Data)>0)THEN
+//        BEGIN
+//        //Проведем подключение к базе WORKING
+//        if ConnectFIBWORK(USER,PASSWD,DB_WORK) then
+//        BEGIN
+//        //Создадим запрос поиска к базе, сначала получим единый счет по подключению
+//        sqlFreeWork1.Close;
+//        sqlFreeWork1.SelectSQL.Text:='select distinct ls from LS_SHET where NAME =:LS_DBF or LS =:LS_DBF';
+//        sqlFreeWork1.ParamByName('LS_DBF').asString:=trim(DATA.VALUES['LS']);
+//        try
+//        sqlFreeWork1.Open;
+//        except
+//        Result:='500 Error select LS';
+//        Exit;
+//        end;
+//        GET_USLUGA:=TStringList.Create;
+//        while not sqlFreeWork1.EOF do
+//        begin
+//        try
+//        LS:=sqlFreeWork1.FieldByName('LS').asInteger;
+//        ///Попробуем вытащить данные во внешнюю переменную GET_USLUGA:TstringList;
+//        sqlFreeWork.Close;
+//        sqlFreeWork.SelectSQL.Text:='SELECT * FROM GET_USLUGA(:LS)';
+//        sqlFreeWork.ParamByName('LS').asInteger:=LS;
+//        sqlFreeWork.open;
+//        except
+//        Result:='500 Error GET_USLUGA';
+//        exit;
+//        end;
+//        while not sqlFreeWork.EOF do
+//        begin
+//        GET_USLUGA.Add(FormatDateTime('dd.mm.yyyy hh:mm:ss',sqlFreeWork.fieldByName('DTM').AsDateTime)+'|'+
+//        sqlFreeWork.FieldByName('USLUGANAME').asString+'|'+
+//        sqlFreeWork.FieldByName('IDEN_SHET').asString+'|'+
+//        sqlFreeWork.FieldByName('USLUGA').asString+'|'+
+//        sqlFreeWork.FieldByName('POKAZ_PRED').asString+'|'+
+//        sqlFreeWork.FieldByName('POKAZ_TEK').asString+'|'+
+//        sqlFreeWork.FieldByName('FIO').asString+'|'+
+//        sqlFreeWork.FieldByName('TARIF').asString+'|'+
+//        sqlFreeWork.FieldByName('KOPLATE').asString+'|'+
+//        sqlFreeWork.FieldByName('ADDRESS').asString+'|'+
+//        sqlFreeWork.FieldByName('NS').asString+'|'+
+//        sqlFreeWork.FieldByName('LS_POLUCH').asString+'|'+
+//        sqlFreeWork.FieldByName('KOD_POLUCH').asString+'|'+
+//        sqlFreeWork.FieldByName('ORGANIZATION').asString+'|'+
+//        sqlFreeWork.FieldByName('MFO').asString+'|'+
+//        sqlFreeWork.FieldByName('OKPO').asString+'|'+
+//        sqlFreeWork.FieldByName('BANK').asString+'|'+
+//        sqlFreeWork.FieldByName('R_SHET').asString);
+//        sqlFreeWork.Next;
+//        end;
+//        sqlFreeWork1.Next;
+//        END; //FreeWork1
+//        Result:='200 OK';
+//        Exit;
+//        END ELSE BEGIN Result:='500 Error connect work database'; Exit; END;
+//        END ELSE BEGIN Result:='500 Not open smena'; Exit; END;
+//        END ELSE Result:='500 Error connect to FIB';
+//        end;
+//
     }
 }

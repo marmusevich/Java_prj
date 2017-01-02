@@ -174,12 +174,10 @@ public class Parser {
      * @return - true если удалось получить
      */
     public static boolean parseUserAndPassword(String commandData, UserAuthenticationData uad) {
-
         boolean flOK = false;
-
-        uad.name = getUserName(commandData);
-        uad.pass = getUserPass(commandData);
-        flOK = checkIsEmptyUserAndPassword(uad);
+        uad.name = getParametrData(commandData, AbstractCommand.UserParametrName);
+        uad.pass = getParametrData(commandData, AbstractCommand.PassParametrName);
+        flOK = uad.name != null && uad.pass != null;
         return flOK;
     }
 
@@ -353,20 +351,6 @@ public class Parser {
             }
         }
         return null;
-    }
-
-    //------------------------------------------------------------------------------------------------------------------
-
-    private static String getUserName(String commandData) {
-        return getParametrData(commandData, AbstractCommand.UserParametrName);
-    }
-
-    private static String getUserPass(String commandData) {
-        return getParametrData(commandData, AbstractCommand.PassParametrName);
-    }
-
-    private static boolean checkIsEmptyUserAndPassword(UserAuthenticationData uad) {
-        return uad.name != null && uad.pass != null;
     }
 }
 
@@ -578,36 +562,3 @@ public class Parser {
 //        end;
 //        end;
 /////////////////////////////////////////////////////////////
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-////Функция проверки на правильность даты строковой переменной
-//        function IsDate(str: string): Boolean;
-//        var
-//        dt: TDateTime;
-//        begin
-//        Result := True;
-//        try
-//        dt := StrToDateTime(str);
-//        except
-//        Result := False;
-//        end;
-//        end;
-//
-//        {//////////////////////////////Замена подстроки/////////////////////////////////////////}
-//        function ReplaceSub(str, sub1, sub2: string): string;
-//        var
-//        aPos: Integer;
-//        rslt: string;
-//        begin
-//        aPos := Pos(sub1, str);
-//        rslt := '';
-//        while (aPos <> 0) do
-//        begin
-//        rslt := rslt + Copy(str, 1, aPos - 1) + sub2;
-//        Delete(str, 1, aPos + Length(sub1) - 1);
-//        aPos := Pos(sub1, str);
-//        end;
-//        Result := rslt + str;
-//        end;
-//
-//        {//////////////////////////////////////////////////////////////////////////////////////}
