@@ -18,7 +18,6 @@ import java.util.List;
 class BateToCommandDecoder extends ByteToMessageDecoder {
     private static final Logger logger = LoggerFactory.getLogger(BateToCommandDecoder.class);
 
-    private final Parser parser = new Parser();
     private final Charset charset;
 
     public BateToCommandDecoder(Charset charset) {
@@ -49,11 +48,11 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
             while (msg != null) {
                 msgString = msgString + msg.toString(charset);
                 // получить имя команды
-                String cammandName = parser.getCammandName(msgString);
+                String cammandName = Parser.getCammandName(msgString);
                 //ctx.write(cammandName + "\n\r"); - НЕ РАБОТАЕТ - НЕТ ПРЕОБРОЗОВАНИЯ ИЗ КОМАНДЫ
                 //построить команду
                 if (cammandName != null) {
-                    cmd = parser.tryParseCommand(cammandName, msgString);
+                    cmd = Parser.tryParseCommand(cammandName, msgString);
                 }
                 if (cmd != null) { // значить все хорошо, надо скипнуть байты в исходном
                     buffer.readerIndex(tmp.readerIndex());

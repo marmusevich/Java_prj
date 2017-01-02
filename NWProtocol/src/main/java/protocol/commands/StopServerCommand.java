@@ -10,10 +10,12 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
- * Created by asus on 20.12.2016.
+ * останавливает сервер
+ * вызов только с локальной машины
  */
 public class StopServerCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(StopServerCommand.class);
+    //CMD=STOP_SERVER
 
 
     /**
@@ -26,13 +28,22 @@ public class StopServerCommand extends AbstractCommand {
      * @param commandData
      */
     public static StopServerCommand tryParseCommand(String commandData) {
+        StopServerCommand ret = null;
 
-        return null;
+        boolean flOK = false;
+
+        String userName = Parser.getUserName(commandData);
+        String userPass = Parser.getUserPass(commandData);
+        flOK = Parser.checkIsEmptyUserAndPassword(userName, userPass);
+
+        if (flOK) {
+            ret = new StopServerCommand();
+            ret.setUserNameAndPass(userName, userPass);
+        }
+        return ret;
     }
 
 
-
-    //CMD=STOP_SERVER
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {

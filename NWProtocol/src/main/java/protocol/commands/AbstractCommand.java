@@ -102,14 +102,13 @@ public abstract class AbstractCommand {
         try {
             connectionToTerminalDB = DBContext.getConnectionToTerminalDB();
             connectionToWorkingDB = DBContext.getConnectionToWorkingDB();
-            //TODO connection = dbContext.getConnection(); // получить соеденение из пула
 
             if (checkUserNameAndPass(connectionToTerminalDB)) {
                 result = new ArrayList<String>();
 
                 doWorck(result, connectionToTerminalDB, connectionToWorkingDB);
 
-                result.add("   userName = ("+userName+") userPass = ("+userPass+")" );
+                //result.add("   userName = ("+userName+") userPass = ("+userPass+")" );
             }
             else
                 sendError( ErrorFactory.Error.AccessDenied);

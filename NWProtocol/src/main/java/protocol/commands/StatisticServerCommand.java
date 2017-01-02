@@ -8,12 +8,14 @@ import java.net.InetSocketAddress;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+//todo какаята статистика по серверу, думать
+
 /**
- * Created by asus on 20.12.2016.
+ * статистика сервера,
+ * вызов только с локальной машины
  */
 public class StatisticServerCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(StatisticServerCommand.class);
-
 
     /**
      * первый ответ
@@ -25,11 +27,20 @@ public class StatisticServerCommand extends AbstractCommand {
      * @param commandData
      */
     public static StatisticServerCommand tryParseCommand(String commandData) {
+        StatisticServerCommand ret = null;
 
-        return null;
+        boolean flOK = false;
+
+        String userName = Parser.getUserName(commandData);
+        String userPass = Parser.getUserPass(commandData);
+        flOK = Parser.checkIsEmptyUserAndPassword(userName, userPass);
+
+        if (flOK) {
+            ret = new StatisticServerCommand();
+            ret.setUserNameAndPass(userName, userPass);
+        }
+        return ret;
     }
-
-
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {

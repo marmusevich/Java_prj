@@ -29,17 +29,19 @@ public class CommandData  extends AbstractCommand {
      * @param commandData
      */
     public static CommandData tryParseCommand(String commandData) {
-//        else if SameText(trim(LCmd), 'date') then
-//        begin
-//        AContext.Connection.Socket.WriteLn('200 ' + FormatDateTime('dd.MM.yyyy hh:mm:ss',Now),TEncoding.UTF8);
-//        AContext.Connection.Socket.Close;
-//        end
+        CommandData ret = null;
+        boolean flOK = false;
 
+        String userName = Parser.getUserName(commandData);
+        String userPass = Parser.getUserPass(commandData);
+        flOK = Parser.checkIsEmptyUserAndPassword(userName, userPass);
 
-        return null;
+        if (flOK) {
+            ret = new CommandData();
+            ret.setUserNameAndPass(userName, userPass);
+        }
+        return ret;
     }
-
-
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {

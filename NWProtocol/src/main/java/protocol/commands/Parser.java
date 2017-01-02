@@ -14,10 +14,45 @@ public class Parser {
      * @param commandData
      * @return
      */
-    public String getCammandName(String commandData) {
+    public static String getCammandName(String commandData) {
         String cd = commandData.toUpperCase();
         return getParametrData(cd,"CMD");
     }
+
+
+    public static boolean parseUserAndPassword(String commandData) {
+
+        boolean flOK = false;
+
+        String userName = getUserName(commandData);
+        String userPass = getUserPass(commandData);
+        flOK = checkIsEmptyUserAndPassword(userName, userPass);
+
+
+        return flOK;
+    }
+
+    /**
+     * получить данные одного параметра
+     *
+     * @param commandData
+     * @param parametrName
+     * @return
+     */
+    public static String getParametrData(String commandData, String parametrName) {
+        int index = commandData.indexOf(parametrName);
+        if (index > -1) {
+            int begin = commandData.indexOf("=", index);
+            if (begin > -1) {
+                int end = commandData.indexOf("\n", begin);
+                if (end > -1 && end > begin) {
+                    return commandData.substring(begin + 1, end).trim();
+                }
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Пытается распарсить команду
@@ -25,143 +60,141 @@ public class Parser {
      * @param commandData данные команды
      * @return распарсеную команду
      */
-    public AbstractCommand tryParseCommand(String commandName, String commandData) {
+    public static AbstractCommand tryParseCommand(String commandName, String commandData) {
         AbstractCommand ret = null;
-
         //logger.info("commandName ({}) commandData = '{}'", commandName, commandData);
-
 
         switch (commandName.toUpperCase()) {
             case "STOP_SERVER":
-                ret = parseStopServer(commandData);
+                ret = StopServerCommand.tryParseCommand(commandData);
                 break;
 
             case "STATISTIC_SERVER":
-                ret = parseStatisticServer(commandData);
+                ret = StatisticServerCommand.tryParseCommand(commandData);
                 break;
 
             case "DATE": // получить время
-                ret = parseData(commandData);
+                ret = CommandData.tryParseCommand(commandData);
                 break;
 
             case "CHEKSMENA": //
-                ret = parseChekSmena(commandData);
+                ret = CommandChekSmena.tryParseCommand(commandData);
                 break;
 
             case "CHKUPDATE": //
-                ret = parseChkUpdate(commandData);
+                ret = CommandChkUpdate.tryParseCommand(commandData);
                 break;
 
             case "CLOSEOPLATA": //
-                ret = parseCloseOplata(commandData);
+                ret = CommandCloseOplata.tryParseCommand(commandData);
                 break;
 
             case "FINDADR": //
-                ret = parseFindAdr(commandData);
+                ret = CommandFindAdr.tryParseCommand(commandData);
                 break;
 
             case "FINDLS": //
-                ret = parseFindLs(commandData);
+                ret = CommandFindLs.tryParseCommand(commandData);
                 break;
 
             case "GETADDRES": //
-                ret = parseGetAddres(commandData);
+                ret = CommandGetAddres.tryParseCommand(commandData);
                 break;
 
             case "GETADDRTERM": //
-                ret = parseGetAddrTerm(commandData);
+                ret = CommandGetAddrTerm.tryParseCommand(commandData);
                 break;
 
             case "GETCOMPONENT": //
-                ret = parseGetComponent(commandData);
+                ret = CommandGetComponent.tryParseCommand(commandData);
                 break;
 
             case "GETCOUNTER": //
-                ret = parseGetCounter(commandData);
+                ret = CommandGetCounter.tryParseCommand(commandData);
                 break;
 
             case "GETDATA": //
-                ret = parseGetData(commandData);
+                ret = CommandGetData.tryParseCommand(commandData);
                 break;
 
             case "GETDATAFULL": //
-                ret = parseGetDataFull(commandData);
+                ret = CommandGetDataFull.tryParseCommand(commandData);
                 break;
 
             case "GETKOMISIYA": //
-                ret = parseGetKomisiya(commandData);
+                ret = CommandGetKomisiya.tryParseCommand(commandData);
                 break;
 
             case "GETOPLATA": //
-                ret = parseGetOplata(commandData);
+                ret = CommandGetOplata.tryParseCommand(commandData);
                 break;
 
             case "GETOPLATALS": //
-                ret = parseGetOplatals(commandData);
+                ret = CommandGetOplatals.tryParseCommand(commandData);
                 break;
 
             case "GETOPLATASMENA": //
-                ret = parseGetOplataSmena(commandData);
+                ret = CommandGetOplataSmena.tryParseCommand(commandData);
                 break;
 
             case "GETREESTR": //
-                ret = parseGetReestr(commandData);
+                ret = CommandGetReestr.tryParseCommand(commandData);
                 break;
 
             case "GETREPORTLIST": //
-                ret = parseGetReportList(commandData);
+                ret = CommandGetReportList.tryParseCommand(commandData);
                 break;
 
             case "GETSMENA": //
-                ret = parseGetSmena(commandData);
+                ret = CommandGetSmena.tryParseCommand(commandData);
                 break;
 
             case "GETSOSTAV": //
-                ret = parseGetSostav(commandData);
+                ret = CommandGetSostav.tryParseCommand(commandData);
                 break;
 
             case "GETTABLE": //
-                ret = parseGetTable(commandData);
+                ret = CommandGetTable.tryParseCommand(commandData);
                 break;
 
             case "LSFINDADR": //
-                ret = parseLsFindAdr(commandData);
+                ret = CommandLsFindAdr.tryParseCommand(commandData);
                 break;
 
             case "SETCOUNTER": //
-                ret = parseSetCounter(commandData);
+                ret = CommandSetCounter.tryParseCommand(commandData);
                 break;
 
             case "SETCURRENCE": //
-                ret = parseSetCurrence(commandData);
+                ret = CommandSetCurrence.tryParseCommand(commandData);
                 break;
 
             case "SETDATA": //
-                ret = parseSetData(commandData);
+                ret = CommandSetData.tryParseCommand(commandData);
                 break;
 
             case "SETERRORMSG": //
-                ret = parseSetErrorMsg(commandData);
+                ret = CommandSetErrorMsg.tryParseCommand(commandData);
                 break;
 
             case "SETSTORNO": //
-                ret = parseSetStorno(commandData);
+                ret = CommandSetStorno.tryParseCommand(commandData);
                 break;
 
             case "STARTOPLATA": //
-                ret = parseStartOplata(commandData);
+                ret = CommandStartOplata.tryParseCommand(commandData);
                 break;
 
             case "STARTSMEN": //
-                ret = parseStartSmen(commandData);
+                ret = CommandStartSmen.tryParseCommand(commandData);
                 break;
 
             case "STOPSMEN": //
-                ret = parseStopSmen(commandData);
+                ret = CommandStopSmen.tryParseCommand(commandData);
                 break;
 
             case "UPDATEPRG": //
-            ret = parseUpdatePrg(commandData);
+                ret = CommandUpdatePrg.tryParseCommand(commandData);
             break;
 
 
@@ -171,91 +204,19 @@ public class Parser {
         return ret;
     }
 
-    /**
-     * получить данные одного параметра
-     * @param commandData
-     * @param parametrName
-     * @return
-     */
-    private String getParametrData(String commandData, String parametrName) {
-        int index = commandData.indexOf(parametrName);
-        if(index > -1)
-        {
-            int begin = commandData.indexOf("=", index);
-            if(begin > -1){
-                int end = commandData.indexOf("\n", begin);
-                if(end > -1 && end > begin) {
-                    return commandData.substring(begin+1, end).trim() ;
-                }
-            }
-        }
-        return null;
-    }
 
-    private String getUserName(String commandData){
+    public static String getUserName(String commandData){
         return getParametrData(commandData,"ID_TERM");
     }
-    private String getUserPass(String commandData ){
+
+    public static String getUserPass(String commandData ){
         return getParametrData(commandData,"PASSWORD");
     }
-    private boolean checkIsEmptyUserAndPassword(String userName, String userPass){
+
+    public static boolean checkIsEmptyUserAndPassword(String userName, String userPass){
         return userName != null &&  userPass != null;
     }
 
-
-    //TODO реализация парсинга комманд
-    //TODO парсить имя и пароль пользователя
-
-    // impliment
-    // todo реализация парсинга для каждой команды
-    private AbstractCommand parseStopServer(String commandData) {
-        AbstractCommand ret = null;
-
-        boolean flOK = false;
-
-        String userName = getUserName(commandData);
-        String userPass = getUserPass(commandData);;
-        flOK = checkIsEmptyUserAndPassword(userName, userPass);
-
-        if(flOK){
-            ret = new StopServerCommand();
-            ret.setUserNameAndPass(userName, userPass);
-        }
-        return ret;
-    }
-
-    private AbstractCommand parseStatisticServer(String commandData) {
-        AbstractCommand ret = null;
-
-        boolean flOK = false;
-
-        String userName = getUserName(commandData);
-        String userPass = getUserPass(commandData);;
-        flOK = checkIsEmptyUserAndPassword(userName, userPass);
-
-        if(flOK){
-            ret = new StatisticServerCommand();
-            ret.setUserNameAndPass(userName, userPass);
-        }
-
-        return ret;
-    }
-
-    private AbstractCommand parseData(String commandData) {
-        AbstractCommand ret = null;
-
-        boolean flOK = false;
-
-        String userName = getUserName(commandData);
-        String userPass = getUserPass(commandData);;
-        flOK = checkIsEmptyUserAndPassword(userName, userPass);
-
-        if(flOK){
-            ret = new CommandData();
-            ret.setUserNameAndPass(userName, userPass);
-        }
-        return ret;
-    }
 
 }
 

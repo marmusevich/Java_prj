@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="change DB pool">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" />
+    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="***">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NWProtocol.iml" afterPath="$PROJECT_DIR$/NWProtocol.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/net/BateToCommandDecoder.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/net/BateToCommandDecoder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/net/NetServerChannelInitializer.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/net/NetServerChannelInitializer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,7 +28,66 @@
     <favorites_list name="CodeIris Favorites" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="34" column="7" lean-forward="false" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+              <folding>
+                <element signature="method#tryParseCommand#0;class#Parser#0" expanded="false" />
+                <element signature="e#6219#6220#0" expanded="true" />
+                <element signature="e#6280#6281#0" expanded="true" />
+                <element signature="e#6340#6341#0" expanded="true" />
+                <element signature="e#6402#6403#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="431">
+              <caret line="110" column="18" lean-forward="false" selection-start-line="110" selection-start-column="18" selection-end-line="110" selection-end-column="18" />
+              <folding>
+                <element signature="method#checkUserNameAndPass#0;class#AbstractCommand#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="36" column="29" lean-forward="false" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatisticServerCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="500">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="35" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StopServerCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -42,9 +106,11 @@
       <find>Closeable</find>
       <find>stripDelimiter</find>
       <find>release</find>
+      <find>parse</find>
     </findStrings>
     <replaceStrings>
       <replace>command</replace>
+      <replace>Command</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -63,52 +129,52 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/net/CommandToStringEncoder.java" />
         <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/net/CommandHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/net/NetServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/ErrorFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChekSmena.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChkUpdate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandCloseOplata.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddres.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddrTerm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplata.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplataSmena.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplatals.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/CommandExecutor.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/CommandServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/Server.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/Parameters.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/bd/DBContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/net/NetServerChannelInitializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/net/BateToCommandDecoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplatals.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplata.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplataSmena.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChekSmena.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddrTerm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddres.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandCloseOplata.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChkUpdate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/net/BateToCommandDecoder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java" />
       </list>
     </option>
   </component>
@@ -180,10 +246,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="-4" />
-    <option name="width" value="1688" />
-    <option name="height" value="1014" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -304,7 +370,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -313,16 +378,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NWProtocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="NWProtocol" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -382,102 +437,13 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NWProtocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NWProtocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NWProtocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NWProtocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commands" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NWProtocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NWProtocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bd" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -872,40 +838,72 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1688" height="1014" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <editor active="true" />
     <layout>
+      <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294621" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5011521" sideWeight="0.49730563" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26927504" sideWeight="0.5041152" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19865526" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24934839" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47295743" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61660564" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5011521" sideWeight="0.49730563" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32603687" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64400923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64285713" sideWeight="0.49588478" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20721272" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4365256" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294621" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26927504" sideWeight="0.5041152" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19865526" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24934839" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47295743" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61660564" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5011521" sideWeight="0.49730563" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32681242" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26927504" sideWeight="0.5041152" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1990232" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64400923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6432681" sideWeight="0.49588478" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64285713" sideWeight="0.49588478" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15323566" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24934839" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20721272" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4365256" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47295743" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61660564" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294621" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4365256" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -929,11 +927,14 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
     <MESSAGE value="*" />
     <MESSAGE value="log" />
     <MESSAGE value="change DB pool" />
-    <option name="LAST_COMMIT_MESSAGE" value="change DB pool" />
+    <MESSAGE value="***" />
+    <option name="LAST_COMMIT_MESSAGE" value="***" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -946,361 +947,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="57" column="117" lean-forward="false" selection-start-line="57" selection-start-column="117" selection-end-line="57" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="52" column="117" lean-forward="false" selection-start-line="52" selection-start-column="117" selection-end-line="52" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddres.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="32" column="117" lean-forward="false" selection-start-line="32" selection-start-column="117" selection-end-line="32" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddrTerm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="29" column="117" lean-forward="false" selection-start-line="29" selection-start-column="117" selection-end-line="29" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="31" column="117" lean-forward="false" selection-start-line="31" selection-start-column="117" selection-end-line="31" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="117" lean-forward="false" selection-start-line="30" selection-start-column="117" selection-end-line="30" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="54" column="117" lean-forward="false" selection-start-line="54" selection-start-column="117" selection-end-line="54" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="51" column="117" lean-forward="false" selection-start-line="51" selection-start-column="117" selection-end-line="51" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="43" column="117" lean-forward="false" selection-start-line="43" selection-start-column="117" selection-end-line="43" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="31" column="117" lean-forward="false" selection-start-line="31" selection-start-column="117" selection-end-line="31" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="117" lean-forward="false" selection-start-line="30" selection-start-column="117" selection-end-line="30" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="31" column="117" lean-forward="false" selection-start-line="31" selection-start-column="117" selection-end-line="31" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplataSmena.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="31" column="117" lean-forward="false" selection-start-line="31" selection-start-column="117" selection-end-line="31" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplatals.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="66" column="117" lean-forward="false" selection-start-line="66" selection-start-column="117" selection-end-line="66" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="31" column="117" lean-forward="false" selection-start-line="31" selection-start-column="117" selection-end-line="31" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="39" column="117" lean-forward="false" selection-start-line="39" selection-start-column="117" selection-end-line="39" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="38" column="117" lean-forward="false" selection-start-line="38" selection-start-column="117" selection-end-line="38" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="97" column="117" lean-forward="false" selection-start-line="97" selection-start-column="117" selection-end-line="97" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="43" column="117" lean-forward="false" selection-start-line="43" selection-start-column="117" selection-end-line="43" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="117" lean-forward="false" selection-start-line="30" selection-start-column="117" selection-end-line="30" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="35" column="117" lean-forward="false" selection-start-line="35" selection-start-column="117" selection-end-line="35" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="29" column="117" lean-forward="false" selection-start-line="29" selection-start-column="117" selection-end-line="29" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="55" column="117" lean-forward="false" selection-start-line="55" selection-start-column="117" selection-end-line="55" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="33" column="117" lean-forward="false" selection-start-line="33" selection-start-column="117" selection-end-line="33" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="117" lean-forward="false" selection-start-line="30" selection-start-column="117" selection-end-line="30" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="46" column="117" lean-forward="false" selection-start-line="46" selection-start-column="117" selection-end-line="46" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="117" lean-forward="false" selection-start-line="30" selection-start-column="117" selection-end-line="30" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" column="117" lean-forward="false" selection-start-line="17" selection-start-column="117" selection-end-line="17" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/ErrorFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="20" column="117" lean-forward="false" selection-start-line="20" selection-start-column="117" selection-end-line="20" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/CommandExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-          <folding>
-            <element signature="e#555#556#0" expanded="true" />
-            <element signature="e#603#604#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/javax/sql/PooledConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="90" column="7" lean-forward="true" selection-start-line="90" selection-start-column="7" selection-end-line="90" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/nio/charset/Charset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="474" column="45" lean-forward="true" selection-start-line="474" selection-start-column="45" selection-end-line="474" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/nio/charset/spi/CharsetProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="107" column="28" lean-forward="false" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/sql/PreparedStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2416">
-          <caret line="236" column="0" lean-forward="true" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
-          <folding>
-            <element signature="docComment;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#executeQuery#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#executeUpdate#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setNull#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setBoolean#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setByte#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setShort#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setInt#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setLong#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setFloat#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setDouble#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setBigDecimal#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setString#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setBytes#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setDate#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setTime#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setTimestamp#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setAsciiStream#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setUnicodeStream#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setBinaryStream#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#clearParameters#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="e#17661#17733#0" expanded="false" />
-            <element signature="docComment;method#setObject#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setObject#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#execute#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#addBatch#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setCharacterStream#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setRef#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setBlob#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setClob#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setArray#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#getMetaData#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setDate#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setTime#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setTimestamp#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setNull#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setURL#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#getParameterMetaData#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setRowId#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setNString#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setNCharacterStream#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setNClob#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setClob#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setBlob#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setNClob#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setSQLXML#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setObject#2;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setAsciiStream#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setBinaryStream#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setCharacterStream#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setAsciiStream#2;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setBinaryStream#2;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setCharacterStream#2;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setNCharacterStream#1;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setClob#2;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setBlob#2;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setNClob#2;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setObject#3;class#PreparedStatement#0" expanded="false" />
-            <element signature="method#setObject#3;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#setObject#4;class#PreparedStatement#0" expanded="false" />
-            <element signature="method#setObject#4;class#PreparedStatement#0" expanded="false" />
-            <element signature="docComment;method#executeLargeUpdate#0;class#PreparedStatement#0" expanded="false" />
-            <element signature="method#executeLargeUpdate#0;class#PreparedStatement#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/nio/charset/Charset.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/nio/charset/spi/CharsetProvider.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/sql/PreparedStatement.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
@@ -1309,314 +958,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jolbox/bonecp/0.8.0.RELEASE/bonecp-0.8.0.RELEASE-sources.jar!/com/jolbox/bonecp/BoneCP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="16" column="26" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/jolbox/bonecp/0.8.0.RELEASE/bonecp-0.8.0.RELEASE-sources.jar!/com/jolbox/bonecp/BoneCP.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Parameters.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="715">
           <caret line="117" column="23" lean-forward="false" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/util/Properties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1190">
-          <caret line="121" column="6" lean-forward="false" selection-start-line="121" selection-start-column="6" selection-end-line="121" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jolbox/bonecp/0.8.0.RELEASE/bonecp-0.8.0.RELEASE-sources.jar!/com/jolbox/bonecp/BoneCPConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="1049" column="16" lean-forward="true" selection-start-line="1049" selection-start-column="16" selection-end-line="1049" selection-end-column="35" />
-          <folding>
-            <element signature="docComment;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#USER#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#PASSWORD#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#serialVersionUID#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#CONFIG_TOSTRING#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#CONFIG_DS_TOSTRING#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#logger#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#minConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#maxConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#acquireIncrement#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#partitionCount#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#jdbcUrl#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#username#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#password#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#idleConnectionTestPeriodInSeconds#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#idleMaxAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#connectionTestStatement#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#statementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#statementsCachedPerConnection#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#releaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#statementReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#connectionHook#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#initSQL#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#closeConnectionWatch#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#logStatementsEnabled#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#acquireRetryDelayInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#acquireRetryAttempts#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#lazyInit#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#transactionRecoveryEnabled#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#connectionHookClassName#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#classLoader#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#poolName#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#disableJMX#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#datasourceBean#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#queryExecuteTimeLimitInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#poolAvailabilityThreshold#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#disableConnectionTracking#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#driverProperties#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#connectionTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#closeConnectionWatchTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#maxConnectionAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#configFile#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#serviceOrder#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#statisticsEnabled#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#defaultAutoCommit#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#defaultReadOnly#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#defaultTransactionIsolation#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#defaultCatalog#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#defaultTransactionIsolationValue#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#externalAuth#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#deregisterDriverOnClose#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#nullOnConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#resetConnectionOnClose#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#detectUnresolvedTransactions#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#poolStrategy#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#closeOpenStatements#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#detectUnclosedStatements#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;field#clientInfo#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getPoolName#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setPoolName#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getMinConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setMinConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setMinConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getMaxConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setMaxConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setMaxConnectionsPerPartition#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getAcquireIncrement#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setAcquireIncrement#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getPartitionCount#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setPartitionCount#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getJdbcUrl#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setJdbcUrl#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getUsername#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setUsername#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setUser#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getUser#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getPassword#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setPassword#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getIdleConnectionTestPeriod#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getIdleConnectionTestPeriod#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setIdleConnectionTestPeriod#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setIdleConnectionTestPeriod#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getIdleConnectionTestPeriodInMinutes#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getIdleConnectionTestPeriod#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getIdleConnectionTestPeriod#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setIdleConnectionTestPeriodInMinutes#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setIdleConnectionTestPeriodInMinutes#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="e#14825#14906#0" expanded="false" />
-            <element signature="docComment;method#setIdleConnectionTestPeriodInSeconds#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setIdleConnectionTestPeriodInSeconds#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setIdleConnectionTestPeriod#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setIdleConnectionTestPeriod#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getIdleMaxAge#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getIdleMaxAge#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getIdleMaxAge#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getIdleMaxAgeInMinutes#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setIdleMaxAge#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setIdleMaxAge#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setIdleMaxAgeInMinutes#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setIdleMaxAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getConnectionTestStatement#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setConnectionTestStatement#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setConnectionTestStatement#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getPreparedStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getPreparedStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getPreparedStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getPreparedStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setPreparedStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setPreparedStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getStatementsCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getStatementCacheSize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getStatementsCachedPerConnection#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setStatementsCachedPerConnection#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setStatementsCachedPerConnection#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getConnectionHook#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setConnectionHook#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getInitSQL#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setInitSQL#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isCloseConnectionWatch#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setCloseConnectionWatch#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isLogStatementsEnabled#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setLogStatementsEnabled#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getAcquireRetryDelay#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getAcquireRetryDelay#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setAcquireRetryDelay#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setAcquireRetryDelay#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getAcquireRetryDelayInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getAcquireRetryDelay#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getAcquireRetryDelay#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setAcquireRetryDelayInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setAcquireRetryDelayInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setAcquireRetryDelay#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isLazyInit#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setLazyInit#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isTransactionRecoveryEnabled#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setTransactionRecoveryEnabled#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setTransactionRecoveryEnabled#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getAcquireRetryAttempts#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setAcquireRetryAttempts#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setConnectionHookClassName#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setConnectionHookClassName#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getConnectionHookClassName#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isDisableJMX#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDisableJMX#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getDatasourceBean#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDatasourceBean#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getQueryExecuteTimeLimit#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getQueryExecuteTimeLimit#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setQueryExecuteTimeLimit#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setQueryExecuteTimeLimit#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getQueryExecuteTimeLimitInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getQueryExecuteTimeLimit#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getQueryExecuteTimeLimit#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setQueryExecuteTimeLimitInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setQueryExecuteTimeLimitInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setQueryExecuteTimeLimit#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setQueryExecuteTimeLimit#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getPoolAvailabilityThreshold#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setPoolAvailabilityThreshold#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setPoolAvailabilityThreshold#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isDisableConnectionTracking#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDisableConnectionTracking#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setDisableConnectionTracking#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getConnectionTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getConnectionTimeout#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getConnectionTimeout#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setConnectionTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setConnectionTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setConnectionTimeout#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getDriverProperties#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="e#38120#38204#0" expanded="false" />
-            <element signature="docComment;method#getCloseConnectionWatchTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getCloseConnectionWatchTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setCloseConnectionWatchTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setCloseConnectionWatchTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getCloseConnectionWatchTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getCloseConnectionWatchTimeout#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getCloseConnectionWatchTimeout#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setCloseConnectionWatchTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setCloseConnectionWatchTimeoutInMs#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setCloseConnectionWatchTimeout#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setCloseConnectionWatchTimeout#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getStatementReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setStatementReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setStatementReleaseHelperThreads#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getMaxConnectionAge#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getMaxConnectionAge#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getMaxConnectionAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getMaxConnectionAge#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#getMaxConnectionAge#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setMaxConnectionAge#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setMaxConnectionAge#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setMaxConnectionAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setMaxConnectionAgeInSeconds#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setMaxConnectionAge#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setMaxConnectionAge#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getConfigFile#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setConfigFile#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getServiceOrder#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setServiceOrder#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isStatisticsEnabled#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setStatisticsEnabled#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getDefaultAutoCommit#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDefaultAutoCommit#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getDefaultReadOnly#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDefaultReadOnly#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getDefaultCatalog#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDefaultCatalog#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getDefaultTransactionIsolation#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDefaultTransactionIsolation#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setDefaultTransactionIsolation#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getDefaultTransactionIsolationValue#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDefaultTransactionIsolationValue#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setDefaultTransactionIsolationValue#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#BoneCPConfig#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#BoneCPConfig#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#BoneCPConfig#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#BoneCPConfig#1;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#BoneCPConfig#2;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#BoneCPConfig#2;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#BoneCPConfig#3;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#BoneCPConfig#3;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setXMLProperties#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setXMLProperties#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#lowerFirst#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#parseXML#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#parseXML#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isExternalAuth#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setExternalAuth#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#sanitize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#sanitize#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#loadProperties#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#loadProperties#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#toString#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#loadClass#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#loadClass#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getClassLoader#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setClassLoader#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#clone#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#hasSameConfiguration#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#hasSameConfiguration#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isDeregisterDriverOnClose#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDeregisterDriverOnClose#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setDeregisterDriverOnClose#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isNullOnConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setNullOnConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setNullOnConnectionTimeout#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isResetConnectionOnClose#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setResetConnectionOnClose#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setResetConnectionOnClose#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isDetectUnresolvedTransactions#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDetectUnresolvedTransactions#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setDetectUnresolvedTransactions#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getPoolStrategy#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setPoolStrategy#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isCloseOpenStatements#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setCloseOpenStatements#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#isDetectUnclosedStatements#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setDetectUnclosedStatements#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="method#setDetectUnclosedStatements#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#setClientInfo#0;class#BoneCPConfig#0" expanded="false" />
-            <element signature="docComment;method#getClientInfo#0;class#BoneCPConfig#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/util/Properties.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/com/jolbox/bonecp/0.8.0.RELEASE/bonecp-0.8.0.RELEASE-sources.jar!/com/jolbox/bonecp/BoneCPConfig.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/net/CommandHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1638,16 +989,8 @@
         <state relative-caret-position="370">
           <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="117" lean-forward="false" selection-start-line="22" selection-start-column="117" selection-end-line="22" selection-end-column="117" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1656,18 +999,6 @@
         <state relative-caret-position="154">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-          <folding>
-            <element signature="method#getParametrData#0;class#Parser#0" expanded="false" />
-            <element signature="method#checkIsEmptyUserAndPassword#0;class#Parser#0" expanded="false" />
-            <element signature="method#parseStatisticServer#0;class#Parser#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1689,17 +1020,305 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="2649" column="27" lean-forward="true" selection-start-line="2649" selection-start-column="27" selection-end-line="2649" selection-end-column="27" />
+        <state relative-caret-position="640">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="51" column="29" lean-forward="true" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2331">
+          <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="135" column="0" lean-forward="false" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="181" column="0" lean-forward="false" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="230" column="0" lean-forward="false" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="125" column="0" lean-forward="false" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplatals.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplata.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="711">
+          <caret line="91" column="36" lean-forward="false" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplataSmena.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandChekSmena.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="751">
+          <caret line="47" column="35" lean-forward="false" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddrTerm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddres.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="243" column="0" lean-forward="false" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandCloseOplata.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandChkUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="110" column="18" lean-forward="false" selection-start-line="110" selection-start-column="18" selection-end-line="110" selection-end-column="18" />
+          <folding>
+            <element signature="method#checkUserNameAndPass#0;class#AbstractCommand#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/net/BateToCommandDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="47" column="34" lean-forward="true" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="34" />
+        <state relative-caret-position="860">
+          <caret line="54" column="32" lean-forward="false" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="36" column="29" lean-forward="false" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="35" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="34" column="7" lean-forward="false" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+          <folding>
+            <element signature="method#tryParseCommand#0;class#Parser#0" expanded="false" />
+            <element signature="e#6219#6220#0" expanded="true" />
+            <element signature="e#6280#6281#0" expanded="true" />
+            <element signature="e#6340#6341#0" expanded="true" />
+            <element signature="e#6402#6403#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
