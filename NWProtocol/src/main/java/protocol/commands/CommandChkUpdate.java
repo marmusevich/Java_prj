@@ -135,21 +135,73 @@ public class CommandChkUpdate extends AbstractCommand {
 //        //END ELSE BEGIN Result:='500 Not open smena';  Exit; END;
 //        END ELSE Result:='500 Error connect FIB';
 //        end;
-//
-//        procedure AddText(Txt: String);
-//        const
-//        log = 'C:\service_test.log';
+
+
+//        function ChkVersion(old,New:string):boolean;
 //        var
-//        TF: TextFile;
+//        Major,Minor,Release,Build:string;
+//        MajorN,MinorN,ReleaseN,BuildN:string;
+//        S:string;
 //        begin
-//        AssignFile(TF, log);
-//        try
-//        if FileExists(log) then Append(TF)
-//        else ReWrite(TF);
-//        WriteLn(TF, Txt);
-//        finally
-//        Flush(TF);
-//        CloseFile(TF);
+//        Result:=false;
+//        if (old>'')and (Length(old)>6) then
+//        begin
+//        ///////
+//        S:=old;
+//        Delete(S,pos('.',S),255);
+//        Major:=S;
+//        //////
+//        S:=old;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,pos('.',S),255); //Второе значение
+//        Minor:=S;
+//        //////
+//        S:=old;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,1,pos('.',S));//Второй символ до точки
+//        Delete(S,pos('.',S),255); //Третье значение
+//        Release:=S;
+//        //////
+//        S:=old;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,1,pos('.',S));//Второй символ до точки
+//        Delete(S,1,pos('.',S));//Третий символ до точки
+//        Delete(S,pos('.',S),255); //Четвертое значение
+//        Build:=S;
 //        end;
+//        if (new>'') and (Length(new)>6) then
+//        begin
+//        S:=new;
+//        Delete(S,pos('.',S),255);
+//        MajorN:=S;
+//        //////
+//        S:=new;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,pos('.',S),255); //Второе значение
+//        MinorN:=S;
+//        //////
+//        S:=new;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,1,pos('.',S));//Второй символ до точки
+//        Delete(S,pos('.',S),255); //Третье значение
+//        ReleaseN:=S;
+//        //////
+//        S:=new;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,1,pos('.',S));//Второй символ до точки
+//        Delete(S,1,pos('.',S));//Третий символ до точки
+//        Delete(S,pos('.',S),255); //Четвертое значение
+//        BuildN:=S;
 //        end;
-//
+//        if StrToIntDef(MajorN,0)>StrToIntDef(Major,0) then Result:=true
+//        else
+//        if StrToIntDef(MinorN,0)>StrToIntDef(Minor,0) then Result:=true
+//        else
+//        if StrToIntDef(ReleaseN,0)>StrToIntDef(Release,0) then Result:=true
+//        else
+//        if StrToIntDef(BuildN,0)>StrToIntDef(Build,0) then Result:=true
+//        else
+//        Result:=false;
+//        end;
+
+

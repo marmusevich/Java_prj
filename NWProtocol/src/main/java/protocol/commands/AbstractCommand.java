@@ -53,12 +53,22 @@ public abstract class AbstractCommand {
      * @return
      */
     final public boolean checkUserNameAndPass(Connection connectionToTerminalDB) throws SQLException {
-        int dostup=0;
+        return GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB) != 0;
+    }
+
+    /**
+     * Получает ID терминала с проверкой на открытую смену
+     * @param connectionToTerminalDB
+     * @return
+     * @throws SQLException
+     */
+    final public int GetTerminalIDAndCheckSmenaIsOpen(Connection connectionToTerminalDB) throws SQLException {
+        int terminalID = 0;
 
         String SQLText =
                 "SELECT ADDRES, ID, BANK_ID FROM TERMINAL WHERE " +
                         "    TERMINAL_ID= ? AND BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN= ?) AND " +
-                "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
+                        "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setString(1, userAuthenticationData.name);
@@ -66,10 +76,43 @@ public abstract class AbstractCommand {
 
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
+            terminalID = rs.getInt("ID");
         }
         //return true;
-        return dostup != 0;
+        return terminalID;
+    }
+
+    /**
+     *Получим внутренний ID терминала
+     * @param connectionToTerminalDB
+     * @param terminalId Идентификатор терминала, обязательный параметр;
+     * @return
+     * @throws SQLException
+     */
+    //
+    final public int GetTerminalID(Connection connectionToTerminalDB, String terminalId) throws SQLException {
+        int terminalID = 0;
+
+        String SQLText = "SELECT ID FROM TERMINAL WHERE terminal_id= ? ";
+
+        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
+        ps.setString(1, terminalId);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            terminalID = rs.getInt("ID");
+        }
+        return terminalID;
+
+//        function TDM1.GetTermnalID(ID_TERMINAL: string):integer;
+//        begin
+//        Result:=0;
+//        sqlFreeReturn.Close;
+//        sqlFreeReturn.SelectSQL.Text:='SELECT ID FROM TERMINAL WHERE terminal_id=:ID_TERMINAL';
+//        sqlFreeReturn.ParamByName('ID_TERMINAL').asString:=ID_TERMINAL;
+//        sqlFreeReturn.Open;
+//        Result:=sqlFreeReturn.FieldByName('ID').asInteger;
+
     }
 
 

@@ -58,29 +58,13 @@ public class CommandGetAddrTerm extends AbstractCommand {
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "SELECT ADDRES, ID, BANK_ID FROM TERMINAL WHERE " +
-                        "    TERMINAL_ID= ? AND BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN= ?) AND " +
-                        "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
-
-        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
-        ps.setString(2, userAuthenticationData.pass);
-
-        ResultSet rs = ps.executeQuery();
-        int terminalID=0;
-        while (rs.next()) {
-            terminalID = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-        }
-        rs.close();
-        ps.close();
-
+        int terminalID = GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB);
         if(terminalID >0){
-            SQLText = " SELECT ADDRES FROM TERMINAL WHERE ID = ? ";
+            String SQLText = " SELECT ADDRES FROM TERMINAL WHERE ID = ? ";
 
-            ps = connectionToTerminalDB.prepareStatement(SQLText);
+            PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
             ps.setInt(1, terminalID);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 result.add("ADDRES=" + rs.getString("ADDRES"));
             }
