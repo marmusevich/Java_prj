@@ -3,98 +3,96 @@ package protocol.commands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-//Команда getcounter
-//        Выполняет процедуру получения данных счетчика по идентификатору платежа PAY_ID, в формате TString (массив строк)
-//        1.	getcounter при успешном выполнении возвращает GOPLATA и ожидает передачи данных в формате TString (массив строк)
-//        2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
-//        3.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        PAY_ID= Код платежа;
-//
-//        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//
-//        4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
-//        5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
-
 /**
- * Created by lexa on 08.12.2016.
- */
+* Команда getcounter
+*         Выполняет процедуру получения данных счетчика по идентификатору платежа PAY_ID, в формате TString (массив строк)
+*         1.	getcounter при успешном выполнении возвращает GOPLATA и ожидает передачи данных в формате TString (массив строк)
+*         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+*         3.	Передача параметров в формате TString (массив строк)
+*         Наименования параметров:
+*         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+*         LOGIN = Выданный логин, обязательный параметр;
+*         PAY_ID= Код платежа;
+* 
+*         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+*         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+*         Параметры могут быть перечислены в любой последовательности.
+* 
+*         4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+*         5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений
+*         разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
+*/
 public class CommandGetCounter extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetCounter.class);
 
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "GCOUNTER";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandGetCounter tryParseCommand(String commandData) {
-        CommandData ret = null;
+        CommandGetCounter ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _pay_id = Parser.getParametrData(commandData, "PAY_ID");
+        flOK = flOK && (_pay_id != null);
+
         if (flOK) {
-            ret = new CommandData();
+            ret = new CommandGetCounter();
             ret.setUserNameAndPass(uad);
+            ret.pay_id = _pay_id;
         }
-////*//////////////////////////////////////////////////////////////////
-//        else if SameText(trim(LCmd), 'getcounter') then
-//        begin
-//        AContext.Connection.Socket.WriteLn('GCOUNTER');
-//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn(TEncoding.UTF8),1);
-//        AContext.Connection.Socket.ReadStrings(Str,counts,TEncoding.UTF8);
-//        {Подключение функции проверки и занесения данных в базу}
-//        Results:=DM1.GetCounter(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
-//        if Results = '200 OK' then
-//        begin
-//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteBufferOpen;
-//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteBufferClose;
-//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
-//        GET_USLUGA.Free;
-//        end
-//        else
-//        begin
-//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
-//        AContext.Connection.Socket.Close;
-//        end;
-//        //AContext.Connection.Socket.Close;
-//        end
-//
-
-
-
-        return null;
+        return ret;
     }
+
+    String pay_id = "";
 
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  " +
-                        "  ";
+        String SQLText = " SELECT * FROM COUNTER WHERE COUNTER.PAY_ID= ? ";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
+        ps.setString(1, pay_id);
         ResultSet rs = ps.executeQuery();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
+        ResultSetMetaData rsm = rs.getMetaData();
         while (rs.next()) {
             //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+
+            String tmp = "";
+            for(int i = 0; i <= rsm.getColumnCount(); i++) {
+                if(tmp != ""){
+                    // todo DATE - это тип данных фаерберд
+                    if(rsm.getColumnTypeName(i) != "DATE")
+                        tmp += "|" + rs.getString(i).trim();
+                    else // DATE
+                        tmp += "|" + dateFormat.format(rs.getDate(i));
+                }
+                else { // first row
+                    if(rsm.getColumnTypeName(i) != "DATE")
+                        tmp += rs.getString(i).trim();
+                    else // DATE
+                        tmp += dateFormat.format(rs.getDate(i));
+                }
+            }
         }
+
+
+
+
+
 
         ////Получение данных счетчиков по PAY_ID
 //        function TDM1.GetCounter(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;

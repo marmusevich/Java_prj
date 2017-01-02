@@ -7,117 +7,126 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-
-//Команда getdata
-//        Выполняет процедуру получения данных по л/с поставщика услуги и коду организации
-//        1.	getdata при успешном выполнении возвращает GDATA и ожидает ввода следующего параметра
-//        2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
-//        3.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        LS = Лицевой счет поставщика услуги, обязательный параметр;
-//        KOD_ORG = Код организации согласно справочника, обязательный параметр;
-//
-//        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//
-//        4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
-//        5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в структуре:
-//        •	DTM  - Актуальная дата начислений
-//        •	USLUGANAME - Наименование услуги (Либо указание на счетчик и его номер)
-//        •	IDEN_SHET – Если это прибор учета то отображается его номер, если нет счетчика то 0
-//        •	USLUGA – Код услуги согласно справочника Видов услуг (VIDUSLUGI)*
-//        •	POKAZ_PRED – Если это прибор учета то отображаются предыдущие показания если нет прибора то 0
-//        •	POKAZ_TEK – Если это прибор учета  то отображаются текущие показания если нет прибора то 0
-//        •	FIO – Фамилия И.О.  абонента зарегистрированного за услугой поставщиком услуг
-//        •	TARIF – Тариф за оказанную услугу
-//        •	KOPLATE – Сумма к оплате
-//        •	ADDRESS – Адрес абонента зарегистрированного за услугой
-//        •	NS – Единый номер лицевого счета
-//        •	LS_POLUCH – лицевой счет поставщика услуг.
-//        •	KOD_POLUCH – код поставщика услуг согласно справочника организаций (ORGANIZATION)*
-//        •	ORGANIZATION – Наименование организации поставщика услуг
-//        •	MFO – МФО поставщика услуг
-//        •	OKPO – ОКПО поставщика услуг
-//        •	BANK – Наименование банка поставщика услуг.
-//        •	R_SHET – Расчетный счет поставщика услуг
-//        Значение данных выделяется в отдельную строку. Параметры разделяются вертикальной чертой “|”  и записываются в строгом порядке указанном выше.
-//
-//
-//        * - все значения дополнительных справочников  можно получить командой gettable;
-
-
-
+/**
+* Команда getdata
+*         Выполняет процедуру получения данных по л/с поставщика услуги и коду организации
+*         1.	getdata при успешном выполнении возвращает GDATA и ожидает ввода следующего параметра
+*         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+*         3.	Передача параметров в формате TString (массив строк)
+*         Наименования параметров:
+*         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+*         LOGIN = Выданный логин, обязательный параметр;
+*         LS = Лицевой счет поставщика услуги, обязательный параметр;
+*         KOD_ORG = Код организации согласно справочника, обязательный параметр;
+* 
+*         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть
+ *         перечислены в любой последовательности.
+* 
+*         4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+*         5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в структуре:
+*         •	DTM  - Актуальная дата начислений
+*         •	USLUGANAME - Наименование услуги (Либо указание на счетчик и его номер)
+*         •	IDEN_SHET – Если это прибор учета то отображается его номер, если нет счетчика то 0
+*         •	USLUGA – Код услуги согласно справочника Видов услуг (VIDUSLUGI)*
+*         •	POKAZ_PRED – Если это прибор учета то отображаются предыдущие показания если нет прибора то 0
+*         •	POKAZ_TEK – Если это прибор учета  то отображаются текущие показания если нет прибора то 0
+*         •	FIO – Фамилия И.О.  абонента зарегистрированного за услугой поставщиком услуг
+*         •	TARIF – Тариф за оказанную услугу
+*         •	KOPLATE – Сумма к оплате
+*         •	ADDRESS – Адрес абонента зарегистрированного за услугой
+*         •	NS – Единый номер лицевого счета
+*         •	LS_POLUCH – лицевой счет поставщика услуг.
+*         •	KOD_POLUCH – код поставщика услуг согласно справочника организаций (ORGANIZATION)*
+*         •	ORGANIZATION – Наименование организации поставщика услуг
+*         •	MFO – МФО поставщика услуг
+*         •	OKPO – ОКПО поставщика услуг
+*         •	BANK – Наименование банка поставщика услуг.
+*         •	R_SHET – Расчетный счет поставщика услуг
+*         Значение данных выделяется в отдельную строку. Параметры разделяются вертикальной чертой “|”  и
+ *         записываются в строгом порядке указанном выше.
+*
+*         * - все значения дополнительных справочников  можно получить командой gettable;
+*/
 public class CommandGetData extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetData.class);
-
 
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "GDATA";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandGetData tryParseCommand(String commandData) {
-        CommandData ret = null;
+        CommandGetData ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _lsStr = Parser.getParametrData(commandData, "LS");
+        String _kod_org = Parser.getParametrData(commandData, "KOD_ORG");
+        flOK = flOK && (_lsStr != null) && (_kod_org != null);
+
         if (flOK) {
-            ret = new CommandData();
+            ret = new CommandGetData();
             ret.setUserNameAndPass(uad);
+            ret.lsStr = _lsStr;
+            ret.kod_org = _kod_org;
         }
-
-        ////*//////////////////////////////////////////////////////////////////////////////////////
-//        else if SameText(trim(LCmd), 'getdata') then
-//        begin
-//        AContext.Connection.Socket.WriteLn('GDATA',TEncoding.UTF8);
-//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn(TEncoding.UTF8),0);
-//        AContext.Connection.Socket.ReadStrings(Str,counts,TEncoding.UTF8);
-//        // AContext.Connection.Disconnect;
-//        Results:=DM1.GetData(Str,'0',LOGIN,PASSWD,DB,DB_WORK);
-//        if Results = '200 OK' then
-//        begin
-//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteBufferOpen;
-//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteBufferClose;
-//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
-//        GET_USLUGA.Free;
-//        end
-//        else
-//        begin
-//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
-//        AContext.Connection.Socket.Close;
-//        end;
-//        // AContext.Connection.Socket.Close;
-//        end
-
-        return null;
+        return ret;
     }
 
+    String lsStr = "";
+    String kod_org = "";
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  " +
-                        "  ";
-
-        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
+        String SQLText =" SELECT LS, NAME, KOD_ORG FROM LS_SHET WHERE NAME =:? and KOD_ORG=:? ";
+        PreparedStatement ps = connectionToWorkingDB.prepareStatement(SQLText);
+        ps.setString(1, lsStr);
+        ps.setString(2, kod_org);
         ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
-        }
+        rs.next();
+        int ls = rs.getInt("LS");
+        rs.close();
+        ps.close();
 
+        SQLText = " SELECT * FROM GET_USLUGA(?) WHERE KOD_POLUCH=:? ";
+        ps = connectionToWorkingDB.prepareStatement(SQLText);
+        ps.setInt(1, ls);
+        ps.setString(2, kod_org);
+        rs = ps.executeQuery();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
+
+        while (rs.next()) {
+            result.add(
+                    dateFormat.format(rs.getDate("DTM")) + "|" +
+                    rs.getString("USLUGANAME") + "|" +
+                    rs.getString("IDEN_SHET") + "|" +
+                    rs.getString("USLUGA") + "|" +
+                    rs.getString("POKAZ_PRED") + "|" +
+                    rs.getString("POKAZ_TEK") + "|" +
+                    rs.getString("FIO") + "|" +
+                    rs.getString("TARIF") + "|" +
+                    rs.getString("KOPLATE") + "|" +
+                    rs.getString("ADDRESS") + "|" +
+                    rs.getString("NS") + "|" +
+                    rs.getString("LS_POLUCH") + "|" +
+                    rs.getString("KOD_POLUCH") + "|" +
+                    rs.getString("ORGANIZATION") + "|" +
+                    rs.getString("MFO") + "|" +
+                    rs.getString("OKPO") + "|" +
+                    rs.getString("BANK") + "|" +
+                    rs.getString("R_SHET"));
+        }
 
         ////Получение данных по л/с поставщика услуг
 //        function TDM1.GetData(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;

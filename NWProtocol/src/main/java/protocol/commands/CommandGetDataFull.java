@@ -70,7 +70,6 @@ public class CommandGetDataFull extends AbstractCommand {
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
         String _lsStr = Parser.getParametrData(commandData, "LS");
-
         flOK = flOK && (_lsStr != null);
 
         if (flOK) {
@@ -101,9 +100,7 @@ public class CommandGetDataFull extends AbstractCommand {
         ps.setInt(1, ls);
         rs = ps.executeQuery();
 
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
-
 
         while (rs.next()) {
             result.add(
