@@ -161,8 +161,8 @@ public class Parser {
                 break;
 
 
-//            default: // неопознаная командв
-//                ret = new UnknownCommand.firstResponse;
+            default: // неопознаная командв
+                ret = UnknownCommand.firstResponse;
         }
         return ret;
     }
@@ -329,7 +329,7 @@ public class Parser {
 
 
             default: // неопознаная командв
-                ret = new UnknownCommand();
+                ret = UnknownCommand.tryParseCommand(commandData);
         }
         return ret;
     }

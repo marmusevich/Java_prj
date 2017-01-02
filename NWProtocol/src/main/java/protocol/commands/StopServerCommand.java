@@ -17,11 +17,10 @@ public class StopServerCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(StopServerCommand.class);
     //CMD=STOP_SERVER
 
-
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "STOP_SERVER";
 
     /**
      * попытатся распарсить данные команды

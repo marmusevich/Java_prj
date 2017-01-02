@@ -16,7 +16,7 @@ public class UnknownCommand extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "UnknownCommand";
 
     /**
      * попытатся распарсить данные команды
