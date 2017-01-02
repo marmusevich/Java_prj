@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="CommandFindAdr">
+    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="CommandGetDataFull">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -57,23 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandFindAdr.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java">
+      <file leaf-file-name="CommandFindLs.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-129">
-              <caret line="139" column="51" lean-forward="true" selection-start-line="139" selection-start-column="51" selection-end-line="139" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommandGetDataFull.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="64" column="18" lean-forward="true" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="36" />
+            <state relative-caret-position="500">
+              <caret line="52" column="26" lean-forward="true" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -145,7 +133,6 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChkUpdate.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandCloseOplata.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddres.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddrTerm.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetComponent.java" />
@@ -174,8 +161,9 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" />
       </list>
     </option>
   </component>
@@ -909,7 +897,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483374367176</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="CommandGetDataFull">
+      <created>1483376148744</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1483376148744</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1018,8 +1013,8 @@
     <MESSAGE value="CommandCloseOplata" />
     <MESSAGE value="*" />
     <MESSAGE value="CommandFindAdr" />
-    <option name="LAST_COMMIT_MESSAGE" value="CommandFindAdr" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="CommandGetDataFull" />
+    <option name="LAST_COMMIT_MESSAGE" value="CommandGetDataFull" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1138,16 +1133,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="108" column="36" lean-forward="false" selection-start-line="108" selection-start-column="36" selection-end-line="108" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1457,8 +1442,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-129">
-          <caret line="139" column="51" lean-forward="true" selection-start-line="139" selection-start-column="51" selection-end-line="139" selection-end-column="51" />
+        <state relative-caret-position="-1429">
+          <caret line="123" column="35" lean-forward="false" selection-start-line="123" selection-start-column="35" selection-end-line="123" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1467,8 +1452,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="64" column="18" lean-forward="true" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="36" />
+        <state relative-caret-position="120">
+          <caret line="69" column="61" lean-forward="true" selection-start-line="69" selection-start-column="61" selection-end-line="69" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="52" column="26" lean-forward="true" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

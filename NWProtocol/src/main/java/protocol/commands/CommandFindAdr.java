@@ -72,25 +72,19 @@ public class CommandFindAdr extends AbstractCommand {
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
-        String __city = Parser.getParametrData(commandData, "CITY");
-        String __street = Parser.getParametrData(commandData, "STREET");
+        String _city = Parser.getParametrData(commandData, "CITY");
+        String _street = Parser.getParametrData(commandData, "STREET");
         String _home = Parser.getParametrData(commandData, "HOME");
         String _korp = Parser.getParametrData(commandData, "KORP");
         String _kv = Parser.getParametrData(commandData, "KV");
 
-        flOK = flOK && (__city != null) && (__street != null) && (_home != null) && (_korp != null) && (_kv != null);
-
-        if (!flOK)
-            return null;
-
-        int _city = Integer.parseInt(__city);
-        int _street = Integer.parseInt(__street);
+        flOK = flOK && (_city != null) && (_street != null) && (_home != null) && (_korp != null) && (_kv != null);
 
         if (flOK) {
             ret = new CommandFindAdr();
             ret.setUserNameAndPass(uad);
-            ret.city = _city;
-            ret.street = _street;
+            ret.city = Integer.parseInt(_city);
+            ret.street = Integer.parseInt(_street);
             ret.home = _home;
             ret.korp = _korp;
             ret.kv = _kv;
@@ -126,6 +120,10 @@ public class CommandFindAdr extends AbstractCommand {
         ps = connectionToWorkingDB.prepareStatement(SQLText);
         ps.setInt(1, ls);
         rs = ps.executeQuery();
+
+//  todo а почему здесь без формата
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
+//        dateFormat.format(rs.getDate("DTM")) + "|" +
 
         while (rs.next()) {
             result.add(
