@@ -34,11 +34,6 @@ import java.util.ArrayList;
  * 5.	Возвращение результата выполнения команды
  * В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
  */
-
-
-/**
- * Created by lexa on 08.12.2016.
- */
 public class CommandChekSmena extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandChekSmena.class);
 

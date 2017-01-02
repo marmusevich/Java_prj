@@ -55,8 +55,9 @@ public abstract class AbstractCommand {
     final public boolean checkUserNameAndPass(Connection connectionToTerminalDB) throws SQLException {
         int dostup=0;
 
-        String SQLText = "SELECT ADDRES, ID, BANK_ID FROM TERMINAL WHERE \n" +
-                "    TERMINAL_ID= ? AND BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN= ?) AND \n"+
+        String SQLText =
+                "SELECT ADDRES, ID, BANK_ID FROM TERMINAL WHERE " +
+                        "    TERMINAL_ID= ? AND BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN= ?) AND " +
                 "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
@@ -66,9 +67,7 @@ public abstract class AbstractCommand {
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-
-            //logger.info
-            System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
         }
         //return true;
         return dostup != 0;
@@ -93,12 +92,17 @@ public abstract class AbstractCommand {
                 //result.add("   userName = ("+userName+") userPass = ("+userPass+")" );
 
 //todo  передавать ошибки, при соеденении и т.п.
-//        Result:='200 OK';
-//        except
-//        Result:='500 Error open SQL';
-//        Exit;
-//        end;
-//        END ELSE result:='500 Error connect FIB';
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//                    except
+//                    Result:='500 Error open SQL';
+//                    result:='500 Error connect FIB';
+//        AContext.Connection.Socket.WriteLn(Results);
+//        AContext.Connection.Socket.Close;
+//        end
+
 
             }
             else

@@ -4,30 +4,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-
-//Команда chkupdate
-//        Выполняет запрос на проверку наличия обновлений программного обеспечения закрепленного за данным логином и паролем
-//        1.	chkupdate при успешном выполнении возвращает CHKUPDATE;
-//        2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
-//        3.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        VERSIONL = Номер версии установленного (локального) программного обеспечения, обязательный параметр;
-//        FILENAME = Имя файла программного обеспечения, обязательный параметр;
-//
-//        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//        4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
-//        5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений:
-//        - 1_НАЗВАНИЕ_ЗНАЧЕНИЯ=1_ЗНАЧЕНИЕ;
-//        - 2_НАЗВАНИЕ_ЗНАЧЕНИЯ=2_ЗНАЧЕНИЕ;
-//
-//        В предлагаемом перечне значений не важен порядок перечисления значений.
-
-
 /**
- * Created by lexa on 08.12.2016.
+ * Команда chkupdate
+ *  Выполняет запрос на проверку наличия обновлений программного обеспечения закрепленного за данным логином и паролем
+ *      1.	chkupdate при успешном выполнении возвращает CHKUPDATE;
+ *      2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ *      3.	Передача параметров в формате TString (массив строк)
+ *      Наименования параметров:
+ *      ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ *      LOGIN = Выданный логин, обязательный параметр;
+ *      VERSIONL = Номер версии установленного (локального) программного обеспечения, обязательный параметр;
+ *      FILENAME = Имя файла программного обеспечения, обязательный параметр;
+ *  В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
+ *      4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ *      5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений:
+ *      - 1_НАЗВАНИЕ_ЗНАЧЕНИЯ=1_ЗНАЧЕНИЕ;
+ *      - 2_НАЗВАНИЕ_ЗНАЧЕНИЯ=2_ЗНАЧЕНИЕ;
+ *  В предлагаемом перечне значений не важен порядок перечисления значений.
  */
 public class CommandChkUpdate extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandChkUpdate.class);
@@ -35,54 +32,62 @@ public class CommandChkUpdate extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "CHKUPDATE";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandChkUpdate tryParseCommand(String commandData) {
-        CommandData ret = null;
+        CommandChkUpdate ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
         if (flOK) {
-            ret = new CommandData();
+            ret = new CommandChkUpdate();
             ret.setUserNameAndPass(uad);
         }
-//////////////////////////////////////////////////////////////////////////////////
-//        else if SameText(trim(LCmd), 'chkupdate') then
-//        begin
-//        Socket.WriteLn('CHKUPDATE',TEncoding.UTF8);
-//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn,1);
-//        Socket.ReadStrings(Str,counts,TEncoding.UTF8);
-//        results:=DM1.ChkUpdate(Str, Socket.Binding.PeerIP,LOGIN,PASSWD,DB,DB_WORK);
-//        if Results = '200 OK' then
-//        begin
-//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteBufferOpen;
-//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
-//        AContext.Connection.Socket.WriteBufferClose;
-//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
-//        GET_USLUGA.Free;
-//        end
-//        else
-//        begin
-//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
-//        AContext.Connection.Socket.Close;
-//        end;
-//        end
-//
-
-        return null;
+        return ret;
     }
 
+    //todo спросить у сереги, а что тут происходит
 
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
+    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
+        String SQLText =
+                " SELECT PATCH, filename from prg_version where " +
+                        " id=(select prg_version from USERS where USERS.login=?) ";
+
+        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
+        ps.setString(1, userAuthenticationData.name);
+        ResultSet rs = ps.executeQuery();
+
+
+//        sqlFree.SelectSQL.SaveToFile('C:\ErrorCHKUPDATE.txt');
+//        Result:='500 Error CHKUPDATE';
+//        Versions:=TCEVersionInfo.Create(Owner);
+
+
+        while (rs.next()) {
+            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
+            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+
+//        Versions.GetInfo(sqlFree.FieldByName('PATCH').asString+trim(DATA.VALUES['FILENAME']));
+//        GET_USLUGA.Add('PATCH='+sqlFree.FieldByName('PATCH').asString+trim(DATA.VALUES['FILENAME']));
+//        GET_USLUGA.Add('VERSIONS='+Versions.FileVersion);
+//        GET_USLUGA.Add('VERSIONL='+trim(DATA.Values['VERSIONL']));
+//        GET_USLUGA.Add('FILENAME='+trim(DATA.VALUES['FILENAME']));
+//        if ChkVersion(trim(DATA.Values['VERSIONL']),Versions.FileVersion) then
+//        GET_USLUGA.Add('UPDATE=true') else GET_USLUGA.Add('UPDATE=false');
+//        sqlFree.Next;
+
+
+        }
+    }
+}
 
 ////Проверка наличия обновлений
 //        function TDM1.ChkUpdate(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
@@ -148,6 +153,3 @@ public class CommandChkUpdate extends AbstractCommand {
 //        end;
 //        end;
 //
-    }
-}
-
