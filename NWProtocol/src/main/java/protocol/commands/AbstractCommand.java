@@ -91,6 +91,15 @@ public abstract class AbstractCommand {
                 doWorck(result, connectionToTerminalDB, connectionToWorkingDB);
 
                 //result.add("   userName = ("+userName+") userPass = ("+userPass+")" );
+
+//todo  передавать ошибки, при соеденении и т.п.
+//        Result:='200 OK';
+//        except
+//        Result:='500 Error open SQL';
+//        Exit;
+//        end;
+//        END ELSE result:='500 Error connect FIB';
+
             }
             else
                 sendError( ErrorFactory.Error.AccessDenied);
@@ -122,7 +131,7 @@ public abstract class AbstractCommand {
      * @param connectionToTerminalDB - соеденение к базе данных
      * @param connectionToWorkingDB - соеденение к базе данных
      */
-    public abstract void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB);
+    public abstract void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException;
 
 
 
