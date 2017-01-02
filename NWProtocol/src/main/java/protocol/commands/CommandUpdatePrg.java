@@ -31,3 +31,27 @@ public class CommandUpdatePrg extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+
+////*/////////////////////////////////////////////////////////////////////////////////////
+////Пересылка файла по стриму
+//        else if SameText(trim(LCmd), 'updateprg') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('UPDATEPRG',TEncoding.UTF8);
+//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn(TEncoding.UTF8),1);
+//        AContext.Connection.Socket.ReadStrings(Str,counts,TEncoding.UTF8);
+//        scrStream:=TMemoryStream.Create;
+//        try
+//        if Str.Values['PATHPRG']='' then Str.Values['PATHPRG']:=PATHPRG;
+//        scrStream.LoadFromFile(trim(Str.Values['PATHPRG'])+'\'+trim(STR.Values['FILENAME']));
+//        AContext.Connection.Socket.WriteLn(IntToStr(scrstream.Size));
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(scrstream);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        except
+//        AContext.Connection.Socket.WriteLn('500 ERROR TRANSFER',TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        Str.SaveToFile('C:\ERROR TRANSFER.txt');
+//        end;
+//        scrstream.Free;
+//        end

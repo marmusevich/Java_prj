@@ -99,3 +99,121 @@ public class CommandGetTable extends AbstractCommand {
     }
 }
 
+////*//////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'gettable') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('GTABLE',TEncoding.UTF8);
+//        AContext.Connection.Socket.ReadStrings(Str,3,TEncoding.UTF8); //Пока указываю жестко количество параметров
+//        if (STR.VALUES['TABLE']='STREET') or
+//        (STR.VALUES['TABLE']='CITY') or
+//        (STR.VALUES['TABLE']='BANK') or
+//        (STR.VALUES['TABLE']='FILIAL') or
+//        (STR.VALUES['TABLE']='VIDUSLUGI') or
+//        (STR.VALUES['TABLE']='ORGANIZATION') or
+//        (STR.VALUES['TABLE']='TIP_ORGANIZATION') or
+//        (STR.VALUES['TABLE']='TIP_STREET') or
+//        (STR.VALUES['TABLE']='KOD_OPLAT') or
+//        (STR.VALUES['TABLE']='SOSTAVUSLUG') or
+//        (STR.VALUES['TABLE']='TERMINAL')
+//        then
+//        Results:=DM1.GetTable(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB,DB_WORK);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        begin
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        end;
+//        //AContext.Connection.Socket.Close;
+//        end
+
+
+
+/////Формирование вывода запроса улицы
+//        function TDM1.GetTable(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
+//        var
+//        S:string;
+//        i:integer;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN //Проверка подключения к базе
+//        //Проверка корректности подключения терминала подключение возможно только после открытия смены
+//        if (TerminalID(DATA)>0)THEN
+//        BEGIN
+//        //Таблицы BANK, FILIAL, TERMINAL запрашивается из базы терминала
+//        if  (trim(DATA.Values['TABLE'])='BANK')or
+//        (trim(DATA.Values['TABLE'])='FILIAL')or
+//        (trim(DATA.Values['TABLE'])='SOSTAVUSLUG')or
+//        (trim(DATA.Values['TABLE'])='TERMINAL')
+//        then
+//        begin //Подключение к тестовой базе
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        try
+//        sqlFree.Close;
+//        sqlFree.SelectSQL.Text:='SELECT * FROM '+trim(DATA.VALUES['TABLE']);
+//        sqlFree.open;
+//        GET_USLUGA:=TStringList.Create;
+//        while not sqlFree.EOF do
+//        begin
+//        S:='';
+//        for I := 0 to sqlFree.FieldCount - 1 do
+//        begin
+//        if S='' then S:=sqlFree.Fields[i].AsString else S:=S+'|'+sqlFree.Fields[i].AsString;
+//        end;
+//        GET_USLUGA.Add(S);
+//        sqlFree.Next;
+//        end;
+//        Result:='200 OK';
+//        Exit;
+//        except
+//        Result:='500 Error +'+trim(DATA.VALUES['TABLE']);
+//        exit;
+//        end;
+//        END ELSE Result:='500 Error connect database'; //Подключение к базе
+//        end //Конец подключения к тестовой базе
+//        else
+//        begin//Проведем подключение к базе WORKING
+//        if ConnectFIBWORK(USER,PASSWD,DB_WORK) then
+//        BEGIN
+//        try
+//        sqlFreeWork.Close;
+//        sqlFreeWork.SelectSQL.Text:='SELECT * FROM '+trim(DATA.VALUES['TABLE']);
+//        sqlFreeWork.open;
+//        GET_USLUGA:=TStringList.Create;
+//        while not sqlFreeWork.EOF do
+//        begin
+//        S:='';
+//        for I := 0 to sqlFreeWork.FieldCount - 1 do
+//        begin
+//        if S='' then S:=sqlFreeWork.Fields[i].AsString else S:=S+'|'+sqlFreeWork.Fields[i].AsString;
+//        end;
+//        GET_USLUGA.Add(S);
+//        sqlFreeWork.Next;
+//        end;
+//        Result:='200 OK';
+//        Exit;
+//        except
+//        Result:='500 Error +'+trim(DATA.VALUES['TABLE']);
+//        exit;
+//        end;
+//        END ELSE Result:='500 Error connect work database'; //Подключение к рабочей базе
+//        END; //Конец подключения к рабочей базе
+//        END ELSE BEGIN Result:='500 Not open smena'; Exit; END;
+//        END ELSE Result:='500 Error connect FIB' //Подключение к базе
+//        end;
+//
+//        procedure TDM1.OpenSSL1GetPassword(var Password: string);
+//        begin
+//        password:= 'qazwsx12';
+////password:= 'aaaa';
+//        end;
+//

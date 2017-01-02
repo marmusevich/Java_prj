@@ -31,3 +31,63 @@ public class CommandStartOplata extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+//////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'startoplata') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('STARTOPL',TEncoding.UTF8);
+//        AContext.Connection.Socket.ReadStrings(Str,2,TEncoding.UTF8);
+//        {Подключение функции проверки и занесения данных в базу}
+////    AContext.Connection.Socket.WriteLn(
+//        Results:=DM1.StartOplata(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        begin
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        end;
+//        // AContext.Connection.Socket.Close;
+//        end
+
+
+//////////////Начало оплаты генерирование номера ID_CURRENCE
+//        function TDM1.StartOplata(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        var
+//        Str:TStringList;
+//        i:integer;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        Str:=TStringList.Create;
+//        if (TerminalID(DATA)>0) THEN
+//        BEGIN
+//        //Определим значение генератора пачек денег кешкодера
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('select gen_id(GEN_SETCURRENCE, 1) from rdb$database');
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        GET_USLUGA:=TStringList.Create;
+//        GET_USLUGA.Add('ID_CURRENCE='+sqlNew.fieldByName('GEN_ID').asString);
+//        sqlNew.Transaction.CommitRetaining;
+//        Result:='200 OK';
+//        except
+//        Str.Add('Error exec select gen_id(GEN_SETCURRENCE, 1) from rdb$database');
+//        Result:='500 Error SET_GEN';
+//        Exit;
+//        end;
+//
+//        END ELSE BEGIN Result:='500 Error open smen'; END;
+//        Str.Free;
+//        END ELSE Result:='500 Error connect FIB';
+//        end;
+//

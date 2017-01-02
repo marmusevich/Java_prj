@@ -36,3 +36,89 @@ public class CommandSetStorno extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+////*//////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'setstorno') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('SETSTORNO',TEncoding.UTF8);
+//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn(TEncoding.UTF8),1);
+//        AContext.Connection.Socket.ReadStrings(Str,counts,TEncoding.UTF8);
+//        {Подключение функции проверки и занесения данных в базу}
+//        AContext.Connection.Socket.WriteLn(DM1.SetStorno(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB));
+//        //AContext.Connection.Socket.Close;
+//        end
+
+
+
+////Оформление сторно платежа
+//
+//        function TDM1.SetStorno(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        var
+//        Str:TStringList;
+//        ID_TERM, i:integer;
+//        STORNO:Int64;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        Str:=TStringList.Create;
+//        //Проверка корректности подключения терминала подключение возможно только после открытия смены
+//        //Если сессия открыта для данного терминала
+//        ID_TERM:=TerminalID(DATA);
+//        if (ID_TERM>0) THEN
+//        BEGIN
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('INSERT INTO STORNO (DATA, SUMMA, PAY_ID, TIP)');
+//        sqlNew.SQL.Add('VALUES');
+//        sqlNew.SQL.Add('(:DATA, :SUMMA, :PAY_ID, :TIP)');
+//        sqlNew.ParamByName('DATA').AsDateTime:=StrToDateTime(trim(DATA.VALUES['DATA']));
+//        sqlNew.ParamByName('SUMMA').asFloat:=StrToFloatDef(ReplaceSub(trim(DATA.VALUES['SUMMA']),'.',DecimalSeparator),0);
+//        sqlNew.ParamByName('PAY_ID').asInteger:=StrToInt64Def(trim(DATA.Values['PAY_ID']),0);
+//        sqlNew.ParamByName('TIP').asInteger:=StrToIntDef(trim(DATA.Values['TIP']),0);
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//        Result:='200 OK';
+//        except
+//        Result:='500 Error insert record';//+Data.Text;
+//        Str.Add('Error execute sql');
+//        for i:=0 to sqlNew.ParamCount-1 do
+//        begin
+//        Str.Add(sqlNew.ParamName(i)+'='+sqlNew.Params[i].AsString);
+//        end;
+//        end;
+//        //Узнаем текущее значение генератора сторно
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('select gen_id(GEN_STORNO_ID, 0) from rdb$database');
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//        STORNO:=sqlNew.FieldByName('GEN_ID').AsInt64;
+//        except
+//        Result:='500 Error get generator storno';//+Data.Text;
+//        Exit;
+//        end;
+//        //Теперь обновим запись платежа
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('UPDATE OPLATA SET STORNO_ID=:STORNO WHERE ID=:PAY_ID');
+//        sqlNew.ParamByName('STORNO').AsInt64:=STORNO;
+//        sqlNew.ParamByName('PAY_ID').AsInt64:=StrToInt64Def(trim(DATA.Values['PAY_ID']),0);
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//        except
+//        Result:='500 Error update oplata';//+Data.Text;
+//        Exit;
+//        end;
+//
+//
+//        END ELSE BEGIN Result:='500 Error open smen'; END;
+//        Str.Free;
+//        END ELSE Result:='500 Error connect FIB';
+//        end;
+//

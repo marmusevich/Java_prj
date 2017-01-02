@@ -25,3 +25,10 @@ public class CommandData  extends AbstractCommand {
         result.add(dateFormat.format( new Date() ));
     }
 }
+
+//        else if SameText(trim(LCmd), 'date') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('200 ' + FormatDateTime('dd.MM.yyyy hh:mm:ss',Now),TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        end
+

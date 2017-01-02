@@ -53,3 +53,87 @@ public class CommandFindLs extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+
+////*//////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'findls') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('FINDLS',TEncoding.UTF8);
+//        AContext.Connection.Socket.ReadStrings(Str,3,TEncoding.UTF8);
+//        Results:=DM1.GetFindLS(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB,DB_WORK);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        begin
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        end;
+//        end
+
+
+
+////Поиск по единому лицевому счету
+//        function TDM1.GetFindLS(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
+//        var
+//        LS:integer;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        //Проверка корректности подключения терминала подключение возможно только после открытия смены
+//        if (TerminalID(DATA)>0)THEN
+//        BEGIN
+//        //Проведем подключение к базе WORKING
+//        IF ConnectFIBWORK(USER,PASSWD,DB_WORK) THEN
+//        BEGIN
+//        LS:=StrToIntDef(trim(DATA.VALUES['LS']),0);
+//        if LS>0 then
+//        BEGIN
+//        ///Попробуем вытащить данные во внешнюю переменную GET_USLUGA:TstringList;
+//        sqlFreeWork.Close;
+//        sqlFreeWork.SelectSQL.Text:='SELECT * FROM GET_USLUGA(:LS)';
+//        sqlFreeWork.ParamByName('LS').asInteger:=LS;
+//        try
+//        sqlFreeWork.open;
+//        Result:='200 OK';
+//        except
+//        Result:='500 Error FINDLS (GET_USLUGA)';
+//        exit;
+//        end;
+//        GET_USLUGA:=TStringList.Create;
+//        while not sqlFreeWork.EOF do
+//        begin
+//        GET_USLUGA.Add(FormatDateTime('dd.mm.yyyy hh:mm:ss',sqlFreeWork.fieldByName('DTM').AsDateTime)+'|'+
+//        sqlFreeWork.FieldByName('USLUGANAME').asString+'|'+
+//        sqlFreeWork.FieldByName('IDEN_SHET').asString+'|'+
+//        sqlFreeWork.FieldByName('USLUGA').asString+'|'+
+//        sqlFreeWork.FieldByName('POKAZ_PRED').asString+'|'+
+//        sqlFreeWork.FieldByName('POKAZ_TEK').asString+'|'+
+//        sqlFreeWork.FieldByName('FIO').asString+'|'+
+//        sqlFreeWork.FieldByName('TARIF').asString+'|'+
+//        sqlFreeWork.FieldByName('KOPLATE').asString+'|'+
+//        sqlFreeWork.FieldByName('ADDRESS').asString+'|'+
+//        sqlFreeWork.FieldByName('NS').asString+'|'+
+//        sqlFreeWork.FieldByName('LS_POLUCH').asString+'|'+
+//        sqlFreeWork.FieldByName('KOD_POLUCH').asString+'|'+
+//        sqlFreeWork.FieldByName('ORGANIZATION').asString+'|'+
+//        sqlFreeWork.FieldByName('MFO').asString+'|'+
+//        sqlFreeWork.FieldByName('OKPO').asString+'|'+
+//        sqlFreeWork.FieldByName('BANK').asString+'|'+
+//        sqlFreeWork.FieldByName('R_SHET').asString);
+//        sqlFreeWork.Next;
+//        end;
+//        Result:='200 OK';
+//        Exit;
+//        end;
+//        END ELSE BEGIN Result:='500 Error connect FIBWORK'; END;
+//        END ELSE BEGIN Result:='500 Not open smena'; Exit; END;
+//        END ELSE Result:='500 error connect FIB';
+//        end;
+//

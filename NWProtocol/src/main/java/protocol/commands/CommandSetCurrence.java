@@ -34,3 +34,67 @@ public class CommandSetCurrence extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+
+////*//////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'setcurrence') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('SETCUR',TEncoding.UTF8);
+//        AContext.Connection.Socket.ReadStrings(Str,4,TEncoding.UTF8);
+//        {Подключение функции проверки и занесения данных в базу}
+//        AContext.Connection.Socket.WriteLn(DM1.SetCurrence(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB));
+//        //AContext.Connection.Socket.Close;
+//        end
+
+
+
+////Получение идентификатора почки банкнот из Кешкодера
+//        function TDM1.SetCurrence(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        var
+//        Str:TStringList;
+//        i:integer;
+//        ID_TERM,SMENA:integer;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        Str:=TStringList.Create;
+//        //Проверка корректности подключения терминала подключение возможно только после открытия смены
+//        //Если сессия открыта для данного терминала
+//        ID_TERM:=TerminalID(DATA);
+//        if (ID_TERM>0) THEN
+//        BEGIN
+//
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('select id from smena where  id_terminal=:ID_TERM');
+//        sqlNew.SQL.Add('and data_n=(select max(data_n) from smena where id_terminal=:ID_TERM)');
+//        sqlNew.ParamByName('ID_TERM').asInteger:=ID_TERM;
+//        sqlNew.ExecQuery;
+//        SMENA:=sqlNew.FieldByName('ID').AsInteger;
+//
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('INSERT INTO CURRENCY (NOMINAL, ID_CURRENCE, SMENA)');
+//        sqlNew.SQL.Add('VALUES');
+//        sqlNew.SQL.Add('(:NOMINAL, :ID_CURRENCE, :SMENA)');
+//        sqlNew.ParamByName('NOMINAL').asInteger:=StrToIntDef(trim(DATA.VALUES['NOM']),0);
+//        sqlNew.ParamByName('ID_CURRENCE').asInteger:=StrToIntDef(trim(DATA.VALUES['ID_CURRENCE']),0);
+//        sqlNew.ParamByName('SMENA').asInteger:=SMENA;
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//        Result:='200 OK';
+//        except
+//        Result:='500 Error insert record';//+Data.Text;
+//        Str.Add('Error execute sql');
+//        for i:=0 to sqlNew.ParamCount-1 do
+//        begin
+//        Str.Add(sqlNew.ParamName(i)+'='+sqlNew.Params[i].AsString);
+//        end;
+//        end;
+//        END ELSE BEGIN Result:='500 Error open smen'; END;
+//        Str.Free;
+//        END ELSE Result:='500 Error connect FIB';
+//        end;
+//

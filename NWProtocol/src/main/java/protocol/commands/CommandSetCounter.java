@@ -40,3 +40,96 @@ public class CommandSetCounter extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+////*//////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'setcounter') then
+//        begin
+//        try
+//        Socket.WriteLn('WCOUNTER');
+//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn(TEncoding.UTF8),1);
+//        AContext.Connection.Socket.ReadStrings(Str,counts,TEncoding.UTF8);
+//        {Подключение функции проверки и занесения данных в базу}
+//        Results:=DM1.SetCounter(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        end
+//        else
+//        begin
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        end;
+//        except
+//        on e: EIdException do
+//        begin
+//        Str.Add('Error '+Lcmd+' '+e.Message);
+//        Str.SaveToFile('C:\WMProtocol_EIdException_setCounter.txt');
+//        end; // on EIdException
+//        on e: Exception do
+//        begin
+//        Str.Add('Error: '+Lcmd+' '+e.Message);
+//        Str.SaveToFile('C:\WMProtocol_Exception_setCounter.txt');
+//        end; // on Exception
+//        end;
+//        end
+
+
+////Добавление данных счетчика в базу
+//        function TDM1.SetCounter(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        var
+//        Str:TStringList;
+//        i:integer;
+//        id_curr:integer;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN //Проверка подключения к базе
+//        Str:=TStringList.Create;
+//        if (TerminalID(DATA)>0)THEN
+//        BEGIN //Проверка открытой смены по терминалу
+//        try
+//        //Определим значение генератора пачек денег кешкодера
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('INSERT INTO COUNTER (LS ,DT, USLUGA, IDEN_SHET, POKAZ_PRED, POKAZ_TEK, TARIF, PAY_ID, KOD_ORG)');
+//        sqlNew.SQL.Add('VALUES');
+//        sqlNew.SQL.Add('(:LS ,:DT, :USLUGA, :IDEN_SHET, :POKAZ_PRED, :POKAZ_TEK, :TARIF, :PAY_ID, :KOD_ORG)');
+//        sqlNew.ParamByName('LS').AsInteger:=StrToIntDef(trim(DATA.VALUES['LS']),0);
+//        sqlNew.ParamByName('DT').AsDateTime:=StrToDateTimeDef(trim(DATA.VALUES['DT']),StrToDateTime('01.01.2001 00:00:01'));
+//        sqlNew.ParamByName('USLUGA').asInteger:=StrToIntDef(trim(DATA.VALUES['USLUGA']),0);
+//        sqlNew.ParamByName('IDEN_SHET').asString:=trim(DATA.VALUES['IDEN_SHET']);
+//        sqlNew.ParamByName('POKAZ_TEK').asFloat:=StrToFloatDef(ReplaceSub(trim(DATA.VALUES['POKAZ_TEK']),'.',DecimalSeparator),0);
+//        sqlNew.ParamByName('POKAZ_PRED').asFloat:=StrToFloatDef(ReplaceSub(trim(DATA.VALUES['POKAZ_PRED']),'.',DecimalSeparator),0);
+//        sqlNew.ParamByName('TARIF').asFloat:=StrToFloatDef(ReplaceSub(trim(DATA.VALUES['TARIF']),'.',DecimalSeparator),0);
+//        sqlNew.ParamByName('PAY_ID').AsInteger:=StrToIntDef(trim(DATA.VALUES['PAY_ID']),0);
+//        sqlNew.ParamByName('KOD_ORG').AsInteger:=StrToIntDef(trim(DATA.VALUES['KOD_ORG']),0);
+//        except
+//        Str.Add('except errors params');
+//        for i:=0 to sqlNew.ParamCount-1 do
+//        begin
+//        Str.Add(sqlNew.ParamName(i)+'='+sqlNew.Params[i].AsString);
+//        end;
+//        Str.SaveToFile('C:\CountersExcept.txt');
+//        end;
+//        //***********************************
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//        Result:='200 OK';
+//        except
+//        Result:='500 Error insert record';//+Data.Text;
+//        Str.Add('Error execute sql');
+//        Str.Add(sqlNew.SQL.Text);
+//        for i:=0 to sqlNew.ParamCount-1 do
+//        begin
+//        Str.Add(sqlNew.ParamName(i)+'='+sqlNew.Params[i].AsString);
+//        end;
+//        Str.SaveToFile('C:\ErrorInsertCounter.txt');
+//        exit;
+//        end;
+//        //***************************************************************
+//        END ELSE Result:='500 Error open smen';  //Открытая смена по терминалу
+//        Str.Free;
+//        END ELSE Result:='500 Error connet to FIB'; //Проверка подключения к базе
+//
+//        end;
+//

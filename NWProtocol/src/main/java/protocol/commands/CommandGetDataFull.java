@@ -53,3 +53,24 @@ public class CommandGetDataFull extends AbstractCommand {
     }
 }
 
+////*//////////////////////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'getdatafull') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('GDATAFULL',TEncoding.UTF8);
+//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn(TEncoding.UTF8),0);
+//        AContext.Connection.Socket.ReadStrings(Str,counts,TEncoding.UTF8);
+//        Results:=DM1.GetDataFull(Str,'0',LOGIN,PASSWD,DB,DB_WORK);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        //  AContext.Connection.Socket.Close;
+//        end

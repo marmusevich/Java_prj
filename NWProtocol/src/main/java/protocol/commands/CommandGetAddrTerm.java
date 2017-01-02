@@ -30,3 +30,67 @@ public class CommandGetAddrTerm extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+
+
+//////////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'getaddrterm') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('GADDRTRM');
+//        AContext.Connection.Socket.ReadStrings(Str,2,TEncoding.UTF8); //Пока указываю жестко количество параметров
+//        {Подключение функции проверки и занесения данных в базу}
+//        Results:=DM1.GetAddrTerm(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(GET_USLUGA.Strings[0],TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        begin
+//        AContext.Connection.Socket.WriteLn(Results);
+//        AContext.Connection.Socket.Close;
+//        end;
+//        // AContext.Connection.Socket.Close;
+//        end
+//        //////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'cheksmena') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('CHKSMENA');
+//        AContext.Connection.Socket.ReadStrings(Str,2,TEncoding.UTF8); //Пока указываю жестко количество параметров
+//        {Подключение функции проверки и занесения данных в базу}
+//        Results:=DM1.ChekSmena(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB,DB_WORK);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        AContext.Connection.Socket.WriteLn(Results);
+//        AContext.Connection.Socket.Close;
+//        end
+
+
+////Возвращает адрес терминала
+//        function TDM1.GetAddrTerm(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        //Проверка корректности подключения терминала подключение возможно только после открытия смены
+//        if (TerminalID(DATA)>0) THEN
+//        BEGIN
+//        GET_USLUGA:=TStringList.Create;
+//        {sqlNew.Close;
+//        sqlNew.SQL.Text:='SELECT ADDRES FROM TERMINAL WHERE ID='+intToStr(TerminalID(DATA));
+//        sqlNew.ExecQuery;}
+//        GET_USLUGA.Add('ADDRES='+sqlFreeReturn.fieldByName('ADDRES').asString);
+//        Result:='200 OK';
+//        Exit;
+//        END ELSE BEGIN Result:='500 Not open smena'; Exit; END;
+//        END ELSE result:='500 Error connect FIB';
+//        end;
+//

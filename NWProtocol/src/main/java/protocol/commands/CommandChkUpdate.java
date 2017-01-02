@@ -36,3 +36,92 @@ public class CommandChkUpdate  extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+
+//////////////////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'chkupdate') then
+//        begin
+//        Socket.WriteLn('CHKUPDATE',TEncoding.UTF8);
+//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn,1);
+//        Socket.ReadStrings(Str,counts,TEncoding.UTF8);
+//        results:=DM1.ChkUpdate(Str, Socket.Binding.PeerIP,LOGIN,PASSWD,DB,DB_WORK);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        begin
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        end;
+//        end
+//
+
+////Проверка наличия обновлений
+//        function TDM1.ChkUpdate(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;
+//        var
+//        LS:integer;
+//        Versions:TCEVersionInfo;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        //Проверка корректности подключения терминала подключение возможно только после открытия смены
+//        //if (TerminalID(DATA)>0)THEN
+//        //BEGIN
+//        //Создадим запрос поиска имени файла по логину и паролю пользователя
+//        sqlFree.Close;
+//        sqlFree.SelectSQL.Clear;
+//        sqlFree.SelectSQL.Add('SELECT PATCH, filename from prg_version where');
+//        sqlFree.SelectSQL.Add('id=(select prg_version from USERS where USERS.login=:LOGIN)');
+//        sqlFree.ParamByName('LOGIN').asString:=DATA.Values['LOGIN'];
+//        try
+//        sqlFree.Open;
+//        GET_USLUGA:=TStringList.Create;
+//        except
+//        sqlFree.SelectSQL.SaveToFile('C:\ErrorCHKUPDATE.txt');
+//        Result:='500 Error CHKUPDATE';
+//        Exit;
+//        end;
+//        Versions:=TCEVersionInfo.Create(Owner);
+//        while not sqlFree.EOF do
+//        begin
+//        //Versions.GetInfo(sqlFree.FieldByName('PATCH').asString+sqlFree.FieldByName('filename').asString);
+//        Versions.GetInfo(sqlFree.FieldByName('PATCH').asString+trim(DATA.VALUES['FILENAME']));
+//
+//        GET_USLUGA.Add('PATCH='+sqlFree.FieldByName('PATCH').asString+trim(DATA.VALUES['FILENAME']));
+//        GET_USLUGA.Add('VERSIONS='+Versions.FileVersion);
+//        GET_USLUGA.Add('VERSIONL='+trim(DATA.Values['VERSIONL']));
+//        GET_USLUGA.Add('FILENAME='+trim(DATA.VALUES['FILENAME']));
+//        if ChkVersion(trim(DATA.Values['VERSIONL']),Versions.FileVersion) then
+//        GET_USLUGA.Add('UPDATE=true') else GET_USLUGA.Add('UPDATE=false');
+//        sqlFree.Next;
+//        end;
+//        Versions.Free;
+//        Result:='200 OK';
+//        Exit;
+//        //END ELSE BEGIN Result:='500 Not open smena';  Exit; END;
+//        END ELSE Result:='500 Error connect FIB';
+//        end;
+//
+//        procedure AddText(Txt: String);
+//        const
+//        log = 'C:\service_test.log';
+//        var
+//        TF: TextFile;
+//        begin
+//        AssignFile(TF, log);
+//        try
+//        if FileExists(log) then Append(TF)
+//        else ReWrite(TF);
+//        WriteLn(TF, Txt);
+//        finally
+//        Flush(TF);
+//        CloseFile(TF);
+//        end;
+//        end;
+//

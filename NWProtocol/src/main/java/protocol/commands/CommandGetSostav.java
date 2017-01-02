@@ -44,3 +44,76 @@ public class CommandGetSostav extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+
+
+////*//////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'getsostav') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('GSOSTAV',TEncoding.UTF8);
+//        AContext.Connection.Socket.ReadStrings(Str,4,TEncoding.UTF8);
+//        {Подключение функции проверки и занесения данных в базу}
+//        Results:=DM1.GetSostav(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,true,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        begin
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        end;
+//        AContext.Connection.Socket.Close;
+//        end
+
+
+
+////Возвращает список состава услуг
+//        function TDM1.GetSostav(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        var
+//        Str:TstringList;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        Str:=TStringList.Create;
+//        //Проверка корректности подключения терминала подключение возможно только после открытия смены
+//        if (TerminalID(DATA)>0) THEN
+//        BEGIN
+//        GET_USLUGA:=TStringList.Create;
+//        sqlNew.Close;
+//        sqlNew.SQL.Text:='SELECT ID, USLUGA, NAME, TIP_RASHETA, ZNACH, KOD_ORG, DOP_USLUGA, DOP_ORGANIZATION, R_SHET, NAZNACHENIE, OKPO FROM SOSTAVUSLUG WHERE USLUGA='+trim(DATA.Values['USLUGA'])+' and KOD_ORG='+trim(DATA.Values['KOD_ORG']);
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        while not sqlNew.EOF do
+//        begin
+//        GET_USLUGA.Append(sqlNew.fieldByName('USLUGA').asString+'|'+
+//        sqlNew.fieldByName('NAME').asString+'|'+
+//        sqlNew.FieldByName('TIP_RASHETA').asString+'|'+
+//        sqlNew.FieldByName('ZNACH').asString+'|'+
+//        sqlNew.FieldByName('KOD_ORG').asString+'|'+
+//        sqlNew.FieldByName('DOP_USLUGA').asString+'|'+
+//        sqlNew.FieldByName('DOP_ORGANIZATION').asString+'|'+
+//        sqlNew.FieldByName('R_SHET').asString+'|'+
+//        sqlNew.FieldByName('NAZNACHENIE').asString+'|'+
+//        sqlNew.FieldByName('OKPO').asString
+//        );
+//        sqlNew.Next;
+//        end;
+//        sqlNew.Transaction.CommitRetaining;
+//        Result:='200 OK';
+//        Exit;
+//        except
+//        Result:='500 Error SOSTAVUSLUG';
+//        exit;
+//        end;
+//        END ELSE BEGIN Result:='500 Not open smena'; Exit; END;
+//        Str.Free;
+//        END ELSE Result:='500 Error connect FIB';
+//        end;
+//
+//

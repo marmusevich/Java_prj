@@ -56,3 +56,112 @@ public class CommandSetData extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+////*//////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'setdata') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('WD');
+//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn(TEncoding.UTF8),1);
+//        AContext.Connection.Socket.ReadStrings(Str,counts,TEncoding.UTF8);
+//        {Подключение функции проверки и занесения данных в базу}
+//        Results:=DM1.SetData(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
+//        //Вренем PAY_ID для чека
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(GET_USLUGA.Strings[0],TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        begin
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        end;
+//        end
+
+
+////Добавление платежа в оплату
+//        function TDM1.SetData(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        var
+//        Str:TStringList;
+//        i:integer;
+//        id_curr:integer;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN //Проверка подключения к базе
+//        Str:=TStringList.Create;
+//        if (TerminalID(DATA)>0)THEN
+//        BEGIN //Проверка открытой смены по терминалу
+//        try
+//        //Определим значение генератора пачек денег кешкодера
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('INSERT INTO OPLATA (ID_CURRENCE ,ADDRES, FIO, SUMMA, INN, POSTANOVA, DATA_POSTANOV, KOD_ORG, ID_TERMINAL, USLUGA, DATA, IP, KTO_V, PER_START, PER_END, LS, LS_POLUCH, KOD_ORG_DOP, KOMISIYA, KOMISIYA_BANK, ORGANIZATION, MFO, OKPO, BANK, R_SHET)');
+//        sqlNew.SQL.Add('VALUES');
+//        sqlNew.SQL.Add('(:ID_CURRENCE, :ADDRES, :FIO, :SUMMA, :INN, :POSTANOVA, :DATA_POSTANOV, :KOD_ORG, :ID_TERMINAL, :USLUGA, :DATA, :IP, :KTO_V, :PER_START, :PER_END, :LS, :LS_POLUCH, :KOD_ORG_DOP, :KOMISIYA, :KOMISIYA_BANK, :ORGANIZATION, :MFO, :OKPO, :BANK, :R_SHET)');
+//        sqlNew.ParamByName('ID_CURRENCE').AsInt64:=StrToInt64Def(trim(DATA.VALUES['ID_CURRENCE']),0);
+//        sqlNew.ParamByName('ADDRES').asString:=trim(DATA.VALUES['ADDRES']);
+//        sqlNew.ParamByName('FIO').asString:=trim(DATA.VALUES['FIO']);
+//        sqlNew.ParamByName('SUMMA').asFloat:=StrToFloatDef(ReplaceSub(trim(DATA.VALUES['SUMMA']),'.',DecimalSeparator),0);
+//        sqlNew.ParamByName('INN').asString:=trim(DATA.VALUES['INN']);
+//        sqlNew.ParamByName('POSTANOVA').asString:=trim(DATA.VALUES['POSTANOVA']);
+//        sqlNew.ParamByName('DATA_POSTANOV').AsDateTime:=StrToDateTimeDef(trim(DATA.VALUES['DATA_POSTANOV']),StrToDateTime('01.01.2001 00:00:01'));//StrToIntDef(DATA.VALUES['DATA_POSTANOV'],0);
+//        sqlNew.ParamByName('KOD_ORG').asInteger:=StrToIntDef(trim(DATA.VALUES['KOD_ORG']),0);
+//        sqlNew.ParamByName('ID_TERMINAL').asInteger:=sqlFreeReturn.FieldByName('ID').asInteger;
+//        sqlNew.ParamByName('USLUGA').asInteger:=StrToIntDef(trim(DATA.VALUES['USLUGA']),0);
+//        sqlNew.ParamByName('IP').asString:=trim(IPer);
+//        sqlNew.ParamByName('DATA').AsDateTime:=Now();//StrToDateTimeDef(trim(DATA.VALUES['DATA']),StrToDateTime('01.01.2001 00:00:01'));
+//        sqlNew.ParamByName('KTO_V').asString:=trim(DATA.VALUES['LOGIN']);
+//        sqlNew.ParamByName('PER_START').asString:=trim(DATA.VALUES['PER_START']);
+//        sqlNew.ParamByName('PER_END').asString:=trim(DATA.VALUES['PER_END']);
+//        sqlNew.ParamByName('LS').asInteger:=StrToIntDef(trim(DATA.VALUES['LS']),0);
+//        sqlNew.ParamByName('LS_POLUCH').asString:=trim(DATA.VALUES['LS_POLUCH']);
+//        sqlNew.ParamByName('KOD_ORG_DOP').asInteger:=StrToIntDef(trim(DATA.VALUES['KOD_ORG_DOP']),0);
+//        sqlNew.ParamByName('KOMISIYA').asFloat:=StrToFloatDef(ReplaceSub(trim(DATA.VALUES['KOMISIYA']),'.',DecimalSeparator),0);
+//        sqlNew.ParamByName('KOMISIYA_BANK').asFloat:=StrToFloatDef(ReplaceSub(trim(DATA.VALUES['KOMISIYA_BANK']),'.',DecimalSeparator),0);
+//        sqlNew.ParamByName('ORGANIZATION').asString:=trim(DATA.VALUES['ORGANIZATION']);
+//        sqlNew.ParamByName('MFO').asString:=trim(DATA.VALUES['MFO']);
+//        sqlNew.ParamByName('OKPO').asString:=trim(DATA.VALUES['OKPO']);
+//        sqlNew.ParamByName('BANK').asString:=trim(DATA.VALUES['BANK']);
+//        sqlNew.ParamByName('R_SHET').asString:=trim(DATA.VALUES['R_SHET']);
+//        except
+//        Str.Add('except errors params');
+//        for i:=0 to sqlNew.ParamCount-1 do
+//        begin
+//        Str.Add(sqlNew.ParamName(i)+'='+sqlNew.Params[i].AsString);
+//        end;
+//        end;
+//        //***********************************
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//        //Для возврата текущего присвоенного PAY_ID
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('select gen_id(GEN_OPLATA_ID, 0) from rdb$database');
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//        GET_USLUGA:=TStringList.Create;
+//        GET_USLUGA.ADD('PAY_ID='+sqlNew.FieldBYName('GEN_ID').asString);
+//        Result:='200 OK';
+//        except
+//        sqlNew.Transaction.RollbackRetaining;
+//        Result:='500 Error insert record';//+Data.Text;
+//        Str.Add('Error execute sql');
+//        Str.Add(sqlNew.SQL.Text);
+//        for i:=0 to sqlNew.ParamCount-1 do
+//        begin
+//        Str.Add(sqlNew.ParamName(i)+'='+sqlNew.Params[i].AsString);
+//        end;
+//        Str.SaveToFile('C:\ErrorInsertOplata.txt');
+//        exit;
+//        end;
+//        //***************************************************************
+//        END ELSE Result:='500 Error open smen';  //Открытая смена по терминалу
+//        Str.Free;
+//        END ELSE Result:='500 Error connet to FIB'; //Проверка подключения к базе
+//
+//        end;
+//

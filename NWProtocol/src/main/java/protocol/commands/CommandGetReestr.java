@@ -32,3 +32,98 @@ public class CommandGetReestr extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+////*//////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'getreestr') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('GREESTR');
+//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn(TEncoding.UTF8),1);
+//        AContext.Connection.Socket.ReadStrings(Str,counts,TEncoding.UTF8);
+//
+//        {Подключение функции проверки и занесения данных в базу}
+//        Results:=DM1.GetReestr(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        begin
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        end;
+//        // AContext.Connection.Socket.Close;
+//        end
+
+
+////Получение реестра платежей по выбранной смене
+//        function TDM1.GetReestr(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        var
+//        S:string;
+//        Str:TStringList;
+//        i:integer;
+//        begin
+//        Str:=TStringList.Create;
+//        Result:='500 ERROR';
+//        GET_USLUGA:=TStringList.Create;
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN //Проверка подключения к базе
+//        //Проверка корректности подключения терминала подключение возможно только после открытия смены
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        try
+//        sqlFree.Close;
+//        sqlFree.SelectSQL.Clear;
+//        sqlFree.SelectSQL.Add('SELECT oplata.id, oplata.data, oplata.kod_smen, oplata.fio, oplata.organization, oplata.summa, oplata.storno_id, oplata.komisiya, oplata.ls, oplata.ls_poluch FROM oplata');
+//        sqlFree.SelectSQL.Add(' WHERE');
+//        sqlFree.SelectSQL.Add('OPLATA.KOD_SMEN=:KOD_SMEN');
+//        sqlFree.ParamByName('KOD_SMEN').AsString:=trim(DATA.VALUES['KOD_SMEN']);
+//        sqlFree.open;
+//        ////////////////////////////////////////////////////////////////////////////////////////
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('UPDATE SMENA SET VERSIONS=:VERSIONS WHERE ID=:KOD_SMEN');
+//        sqlNew.ParamByName('VERSIONS').asString:=trim(DATA.Values['VERSIONS']);
+//        sqlNew.ParamByName('KOD_SMEN').AsString:=trim(DATA.VALUES['KOD_SMEN']);
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//        except
+//        Str.Add(sqlNew.SQL.Text);
+//        Str.Add('VERSIONS:='+sqlNew.ParamByName('VERSIONS').asString);
+//        Str.Add('KOD_SMEN:='+sqlNew.ParamByName('KOD_SMEN').asString);
+//        Str.SaveToFile('C:\ErrorVersions.txt');
+//        end;
+//        /////////////////////////////////////////////////////////
+//        while not sqlFree.EOF do
+//        begin
+//        S:='';
+//        for I := 0 to sqlFree.FieldCount - 1 do
+//        begin
+//        if (DM1.sqlFree.Fields[i].ClassName='TFIBDateTimeField')then
+//        begin
+//        if S='' then S:=FormatDateTime('dd.mm.yyyy hh:mm:ss',sqlFree.Fields[i].AsDateTime) else S:=S+'|'+FormatDateTime('dd.mm.yyyy hh:mm:ss',sqlFree.Fields[i].AsDateTime);
+//        end
+//        else
+//        begin
+//        if S='' then S:=Trim(sqlFree.Fields[i].AsString) else S:=S+'|'+Trim(sqlFree.Fields[i].AsString);
+//        end;
+//        end;
+//        GET_USLUGA.Add(trim(S));
+//        sqlFree.Next;
+//        end;
+//        Result:='200 OK';
+//        Exit;
+//        except
+//        Result:='500 Error +'+trim(DATA.VALUES['TABLE']);
+//        exit;
+//        end;
+//        END ELSE Result:='500 Error connect database'; //Подключение к базе
+//        END ELSE Result:='500 Error connect FIB'; //Подключение к базе
+//        Str.Free;
+//        end;
+//

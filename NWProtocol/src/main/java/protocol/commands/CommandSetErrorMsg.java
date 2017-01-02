@@ -30,3 +30,57 @@ public class CommandSetErrorMsg extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'seterrormsg') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('SETERRORMSG');
+//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn(TEncoding.UTF8),1);
+//        AContext.Connection.Socket.ReadStrings(Str,counts,TEncoding.UTF8);
+//        {Подключение функции проверки и занесения данных в базу}
+//        Results:=DM1.SetErrorMsg(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        end
+//
+
+
+////Добавление записи в базу ошибок
+//        function TDM1.SetErrorMsg(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        var
+//        Str:TStringList;
+//        ID_TERMINAL, i:integer;
+//        begin
+//        Result:='500 ERROR';
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN //Проверка подключения к базе
+//        Str:=TStringList.Create;
+//        try
+//        ID_TERMINAL:=GetTermnalID(DATA.Values['ID_TERMINAL']);
+//        //Определим значение генератора пачек денег кешкодера
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('INSERT INTO TERMINAL_ERRORS (ID_TERMINAL ,ERROR_MSG)');
+//        sqlNew.SQL.Add('VALUES');
+//        sqlNew.SQL.Add('(:ID_TERMINAL, :ERROR_MSG)');
+//        sqlNew.ParamByName('ID_TERMINAL').AsInteger:=ID_TERMINAL;
+//        sqlNew.ParamByName('ERROR_MSG').asString:=trim(DATA.VALUES['ERROR_MSG']);
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        Result:='200 OK';
+//        sqlNew.Transaction.CommitRetaining;
+//        except
+//        sqlNew.Transaction.RollbackRetaining;
+//        Str.Add('except errors params');
+//        for i:=0 to sqlNew.ParamCount-1 do
+//        begin
+//        Str.Add(sqlNew.ParamName(i)+'='+sqlNew.Params[i].AsString);
+//        end;
+//        end;
+//        //***************************************************************
+//        Str.Free;
+//        END ELSE Result:='500 Error connet to FIB'; //Проверка подключения к базе
+//
+//        end;
+//
+//

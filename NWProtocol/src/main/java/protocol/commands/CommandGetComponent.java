@@ -32,3 +32,143 @@ public class CommandGetComponent extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'getcomponent') then
+//        begin
+//        Socket.WriteLn('GCOMPONENT',TEncoding.UTF8);
+//        counts:=StrToIntDef(AContext.Connection.Socket.ReadLn,1);
+//        Socket.ReadStrings(Str,counts,TEncoding.UTF8);
+//        Results:=DM1.GetComponent(Str,Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
+//        if Results = '200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,false,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else
+//        begin
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        end;
+//        end
+
+
+
+////Возвращает перечень разрешенных компонентов программы
+//        function TDM1.GetComponent(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        var
+//        ID_TERMINAL:integer;
+//        Str:TstringList;
+//        begin
+//        Result:='500 ERROR';
+//        GET_USLUGA:=TStringList.Create;
+//        if ConnectFIB(USER,PASSWD,DB) then
+//        BEGIN
+//        Str:=TStringList.Create;
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        //Проверка корректности подключения терминала подключение возможно только после открытия смены
+//        if (TerminalID(DATA)>0) THEN
+//        BEGIN
+//        //Получим внутренний ID терминала
+//        ID_TERMINAL:=GetTermnalID(DATA.Values['ID_TERMINAL']);
+//
+//        sqlNew.SQL.Add('SELECT * from COMPONENT where ID_TERMINAL=:ID_TERMINAL');
+//        sqlNew.ParamByName('ID_TERMINAL').asInteger:=ID_TERMINAL;
+//
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//        while not sqlNew.EOF do
+//        begin
+//        GET_USLUGA.Add(Trim(sqlNew.FieldByName('ID_COMPONENT').asString));
+//        sqlNew.Next;
+//        end;
+//        Result:='200 OK';
+//        Exit;
+//        except
+//        sqlNew.SQL.SaveToFile('C:\ErrorComponent.txt');
+//        Result:='500 Error COMPONENT';
+//        exit;
+//        end;
+//
+//        END ELSE BEGIN Result:='500 Not open smena'; Exit; END;
+//        Str.Free;
+//        END ELSE Result:='500 Error connect FIB';
+//        end;
+//
+//
+//        function ChkVersion(old,New:string):boolean;
+//        var
+//        Major,Minor,Release,Build:string;
+//        MajorN,MinorN,ReleaseN,BuildN:string;
+//        S:string;
+//        begin
+//        Result:=false;
+//        if (old>'')and (Length(old)>6) then
+//        begin
+//        ///////
+//        S:=old;
+//        Delete(S,pos('.',S),255);
+//        Major:=S;
+//        //////
+//        S:=old;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,pos('.',S),255); //Второе значение
+//        Minor:=S;
+//        //////
+//        S:=old;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,1,pos('.',S));//Второй символ до точки
+//        Delete(S,pos('.',S),255); //Третье значение
+//        Release:=S;
+//        //////
+//        S:=old;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,1,pos('.',S));//Второй символ до точки
+//        Delete(S,1,pos('.',S));//Третий символ до точки
+//        Delete(S,pos('.',S),255); //Четвертое значение
+//        Build:=S;
+//        end;
+//        if (new>'') and (Length(new)>6) then
+//        begin
+//        S:=new;
+//        Delete(S,pos('.',S),255);
+//        MajorN:=S;
+//        //////
+//        S:=new;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,pos('.',S),255); //Второе значение
+//        MinorN:=S;
+//        //////
+//        S:=new;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,1,pos('.',S));//Второй символ до точки
+//        Delete(S,pos('.',S),255); //Третье значение
+//        ReleaseN:=S;
+//        //////
+//        S:=new;
+//        Delete(S,1,pos('.',S));//Первый символ до точки
+//        Delete(S,1,pos('.',S));//Второй символ до точки
+//        Delete(S,1,pos('.',S));//Третий символ до точки
+//        Delete(S,pos('.',S),255); //Четвертое значение
+//        BuildN:=S;
+//        end;
+//        if StrToIntDef(MajorN,0)>StrToIntDef(Major,0) then Result:=true
+//        else
+//        if StrToIntDef(MinorN,0)>StrToIntDef(Minor,0) then Result:=true
+//        else
+//        if StrToIntDef(ReleaseN,0)>StrToIntDef(Release,0) then Result:=true
+//        else
+//        if StrToIntDef(BuildN,0)>StrToIntDef(Build,0) then Result:=true
+//        else
+//        Result:=false;
+//        end;
+//

@@ -47,3 +47,96 @@ public class CommandStopSmen extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) {
     }
 }
+/////////////////////////////////////////////////////////////////////////
+//        else if SameText(trim(LCmd), 'stopsmen') then
+//        begin
+//        AContext.Connection.Socket.WriteLn('WSTOP',TEncoding.UTF8);
+//        AContext.Connection.Socket.ReadStrings(Str,2,TEncoding.UTF8);
+//        Results:=DM1.CloseSmen(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB);
+//        if Results='200 OK' then
+//        begin
+//        AContext.Connection.Socket.WriteLn(IntToStr(GET_USLUGA.Count),TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferOpen;
+//        AContext.Connection.Socket.Write(GET_USLUGA,true,TEncoding.UTF8);
+//        AContext.Connection.Socket.WriteBufferClose;
+//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
+//        GET_USLUGA.Free;
+//        end
+//        else  begin
+//        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
+//        AContext.Connection.Socket.Close;
+//        end;
+////    AContext.Connection.Disconnect;
+//        end
+
+
+////Закрытие смены
+//        function TDM1.CloseSmen(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
+//        var
+//        SMENA,ID_TERMINAL,INKASATOR:INTEGER;
+//        SUMMA:extended;
+//        DATA_K,DATA_N:TDateTime;
+//        begin
+//        Result:='500 ERROR';
+//        IF ConnectFIB(USER,PASSWD,DB) THEN
+//        BEGIN
+//
+//        ID_TERMINAL:=GetTermnalID(
+//        DATA.Values['ID_TERMINAL']);
+//
+//        //Получим ID инкасатора
+//        sqlFreeReturn.Close;
+//        sqlFreeReturn.SelectSQL.Text:='SELECT ID FROM INKASATOR WHERE KEY_ID=:KEY_ID';
+//        sqlFreeReturn.ParamByName('KEY_ID').asString:=trim(DATA.Values['LOGIN']);
+//        sqlFreeReturn.Open;
+//        INKASATOR:=sqlFreeReturn.FieldByName('ID').asInteger;
+//
+//        //Необходимо узнать номер текущей смены для данного терминала
+//        sqlFreeReturn.Close;
+//        sqlFreeReturn.SelectSQL.Text:='SELECT ID, DATA_K, DATA_N FROM SMENA WHERE ID_TERMINAL=:ID_TERMINAL and DATA_K is null';
+//        sqlFreeReturn.ParamByName('ID_TERMINAL').asInteger:=ID_TERMINAL;
+//        sqlFreeReturn.Open;
+//        SMENA:=sqlFreeReturn.FieldByNAme('ID').asInteger;
+//        DATA_K:=sqlFreeReturn.FieldByNAme('DATA_K').AsDateTime;
+//        DATA_N:=sqlFreeReturn.FieldByNAme('DATA_N').AsDateTime;
+//
+//        sqlFreeReturn.Close;
+//        sqlFreeReturn.SelectSQL.Text:='SELECT SUM(SUMMA) FROM OPLATA WHERE KOD_SMEN=:KOD_SMEN';
+//        sqlFreeReturn.ParamByName('KOD_SMEN').asInteger:=SMENA;
+//        sqlFreeReturn.Open;
+//        SUMMA:=sqlFreeReturn.FieldByNAme('SUM').asFloat;
+//
+//        sqlNew.Close;
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('UPDATE SMENA set DATA_K = :DATA_K, INKASATOR=:INKASATOR WHERE ID_Terminal=:ID_TERMINAL and DATA_K is null');
+//        sqlNew.ParamByName('DATA_K').AsDateTime:=Now();
+//        sqlNew.ParamByName('ID_TERMINAL').asInteger:=ID_TERMINAL;
+//        sqlNew.ParamByName('INKASATOR').asInteger:=INKASATOR;
+//        try
+//        GET_USLUGA:=TStringList.Create;
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//
+//        GET_USLUGA.Add('SUMMA='+FloatToStr(SUMMA));
+//        GET_USLUGA.Add('SMENA='+IntToStr(SMENA));
+//        GET_USLUGA.Add('DATA_K='+FormatDateTime('dd.mm.yyyy hh.mm.ss',DATA_K));
+//        GET_USLUGA.Add('DATA_N='+FormatDateTime('dd.mm.yyyy hh.mm.ss',DATA_N));
+//
+//        sqlFreeReturn.Close;
+//        sqlFreeReturn.SelectSQL.Text:='select nominal, count(nominal) kolvo from currency  where  currency.smena=:smena group by nominal';
+//        sqlFreeReturn.ParamByName('SMENA').asInteger:=SMENA;
+//        sqlFreeReturn.Open;
+//        while not sqlFreeReturn.EOF do
+//        begin
+//        GET_USLUGA.Add(sqlFreeReturn.FieldByName('nominal').asString+'='+sqlFreeReturn.FieldByName('kolvo').asString);
+//        sqlFreeReturn.Next;
+//        end;
+//        Result:='200 OK';
+//        except
+//        Result:='500 Error Insert record';
+//        Exit;
+//        end;
+//        END ELSE Result:='Error connect FIB';
+//        end;
+//
