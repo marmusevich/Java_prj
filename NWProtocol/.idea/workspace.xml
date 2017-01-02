@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="CommandGetComponent">
+    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="CommandGetCounter +  CommandGetData">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -52,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="311">
-              <caret line="63" column="26" lean-forward="false" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+              <caret line="63" column="25" lean-forward="false" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -940,7 +937,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483383566806</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="CommandGetCounter +  CommandGetData">
+      <created>1483386136416</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1483386136416</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1054,7 +1058,8 @@
     <MESSAGE value="CommandGetAddres" />
     <MESSAGE value="CommandGetAddrTerm" />
     <MESSAGE value="CommandGetComponent" />
-    <option name="LAST_COMMIT_MESSAGE" value="CommandGetComponent" />
+    <MESSAGE value="CommandGetCounter +  CommandGetData" />
+    <option name="LAST_COMMIT_MESSAGE" value="CommandGetCounter +  CommandGetData" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1491,7 +1496,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
-          <caret line="63" column="26" lean-forward="false" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+          <caret line="63" column="25" lean-forward="false" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
           <folding />
         </state>
       </provider>
