@@ -42,6 +42,16 @@ public class CommandChkUpdate extends AbstractCommand {
      * @param commandData
      */
     public static CommandChkUpdate tryParseCommand(String commandData) {
+        CommandData ret = null;
+        boolean flOK = false;
+
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
+
+        if (flOK) {
+            ret = new CommandData();
+            ret.setUserNameAndPass(uad);
+        }
 //////////////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'chkupdate') then
 //        begin

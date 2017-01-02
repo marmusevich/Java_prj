@@ -28,16 +28,14 @@ public class StatisticServerCommand extends AbstractCommand {
      */
     public static StatisticServerCommand tryParseCommand(String commandData) {
         StatisticServerCommand ret = null;
-
         boolean flOK = false;
 
-        String userName = Parser.getUserName(commandData);
-        String userPass = Parser.getUserPass(commandData);
-        flOK = Parser.checkIsEmptyUserAndPassword(userName, userPass);
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
 
         if (flOK) {
             ret = new StatisticServerCommand();
-            ret.setUserNameAndPass(userName, userPass);
+            ret.setUserNameAndPass(uad);
         }
         return ret;
     }
@@ -48,7 +46,7 @@ public class StatisticServerCommand extends AbstractCommand {
         InetAddress localAddress = ((InetSocketAddress)ctx.pipeline().channel().localAddress()).getAddress();
 
         if(remoteAddress.equals(localAddress)){
-            logger.info("Command = 'Statistic Server' in adress ({}) user = '{}'", remoteAddress.getHostAddress(), userName);
+            logger.info("Command = 'Statistic Server' in adress ({}) user = '{}'", remoteAddress.getHostAddress(), userAuthenticationData.name);
             //todo StatisticServerCommand
         }
     }

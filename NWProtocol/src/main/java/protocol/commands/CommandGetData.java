@@ -61,7 +61,18 @@ public class CommandGetData extends AbstractCommand {
      * @param commandData
      */
     public static CommandGetData tryParseCommand(String commandData) {
-////*//////////////////////////////////////////////////////////////////////////////////////
+        CommandData ret = null;
+        boolean flOK = false;
+
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
+
+        if (flOK) {
+            ret = new CommandData();
+            ret.setUserNameAndPass(uad);
+        }
+
+        ////*//////////////////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getdata') then
 //        begin
 //        AContext.Connection.Socket.WriteLn('GDATA',TEncoding.UTF8);

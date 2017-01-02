@@ -40,7 +40,18 @@ public class CommandGetAddres extends AbstractCommand {
      * @param commandData
      */
     public static CommandGetAddres tryParseCommand(String commandData) {
-//        else if SameText(trim(LCmd), 'getaddres') then
+        CommandData ret = null;
+        boolean flOK = false;
+
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
+
+        if (flOK) {
+            ret = new CommandData();
+            ret.setUserNameAndPass(uad);
+        }
+
+        //        else if SameText(trim(LCmd), 'getaddres') then
 //        begin
 //        AContext.Connection.Socket.WriteLn('GADDRES',TEncoding.UTF8);
 //        AContext.Connection.Socket.ReadStrings(Str,3,TEncoding.UTF8); //Пока указываю жестко количество параметров

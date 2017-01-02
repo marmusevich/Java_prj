@@ -29,16 +29,14 @@ public class StopServerCommand extends AbstractCommand {
      */
     public static StopServerCommand tryParseCommand(String commandData) {
         StopServerCommand ret = null;
-
         boolean flOK = false;
 
-        String userName = Parser.getUserName(commandData);
-        String userPass = Parser.getUserPass(commandData);
-        flOK = Parser.checkIsEmptyUserAndPassword(userName, userPass);
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
 
         if (flOK) {
             ret = new StopServerCommand();
-            ret.setUserNameAndPass(userName, userPass);
+            ret.setUserNameAndPass(uad);
         }
         return ret;
     }
@@ -51,7 +49,7 @@ public class StopServerCommand extends AbstractCommand {
         InetAddress localAddress = ((InetSocketAddress)ctx.pipeline().channel().localAddress()).getAddress();
 
         if(remoteAddress.equals(localAddress)){
-            logger.info("Command = 'Stop Server' in adress ({}) user = '{}'", remoteAddress.getHostAddress(), userName);
+            logger.info("Command = 'Stop Server' in adress ({}) user = '{}'", remoteAddress.getHostAddress(), userAuthenticationData.name);
             Server.stop();
         }
     }

@@ -39,7 +39,19 @@ public class CommandGetReestr extends AbstractCommand {
      * @param commandData
      */
     public static CommandGetReestr tryParseCommand(String commandData) {
-////*//////////////////////////////////////////////////////////////////
+        CommandData ret = null;
+        boolean flOK = false;
+
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
+
+        if (flOK) {
+            ret = new CommandData();
+            ret.setUserNameAndPass(uad);
+        }
+
+
+        ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getreestr') then
 //        begin
 //        AContext.Connection.Socket.WriteLn('GREESTR');

@@ -51,6 +51,16 @@ public class CommandGetKomisiya extends AbstractCommand {
      * @param commandData
      */
     public static CommandGetKomisiya tryParseCommand(String commandData) {
+        CommandData ret = null;
+        boolean flOK = false;
+
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
+
+        if (flOK) {
+            ret = new CommandData();
+            ret.setUserNameAndPass(uad);
+        }
 
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getkomisiya') then

@@ -19,6 +19,12 @@ public abstract class AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(AbstractCommand.class);
 
     /**
+     * название параметров имени и пароля пользователя
+     */
+    public static final String UserParametrName = "ID_TERM";
+    public static final String PassParametrName = "PASSWORD";
+
+    /**
      * контекст сетевого подключения
      */
     protected ChannelHandlerContext ctx;
@@ -32,18 +38,13 @@ public abstract class AbstractCommand {
     }
 
 
-    protected String userName;
-    protected String userPass;
+    protected UserAuthenticationData userAuthenticationData;
     /**
      *  установить имя пользователя и пароль
-     * @param userName - пользователь
-     * @param userPass - пароль
+     * @param uad -
      */
-    final public void setUserNameAndPass(String userName, String userPass){
-        this.userName = userName;
-        this.userPass = userPass;
-
-        //logger.info("setUserNameAndPass: userName = ({}) userPass = ({})", userName, userPass);
+    final public void setUserNameAndPass(UserAuthenticationData uad) {
+        this.userAuthenticationData = uad;
     }
 
     /**
@@ -59,37 +60,18 @@ public abstract class AbstractCommand {
                 "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userName);
-        ps.setString(2, userPass);
+        ps.setString(1, userAuthenticationData.name);
+        ps.setString(2, userAuthenticationData.pass);
 
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
 
+            //logger.info
             System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
         }
-
-
-
-        return true;
-        //return dostup != 0;
-
-
-
-//    public int checkDostup( int ID, String passwd) throws SQLException {
-//        int dostup=0;
-//        String TERMINAL_ID = GetTerminalString(ID);
-//        String SQLText = "SELECT ADDRES, ID, BANK_ID FROM TERMINAL WHERE\n" +
-//                "    TERMINAL_ID=\'"+TERMINAL_ID+"\' AND\n"+
-//                "    BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN=\'"+passwd+"\') AND\n" +
-//                "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
-//        ResultSet rs = DB_TERMINAL.resultQuery(SQLText);
-//        while (rs.next()) {
-//            dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-//        }
-//        return dostup;
-//    }
-
+        //return true;
+        return dostup != 0;
     }
 
 

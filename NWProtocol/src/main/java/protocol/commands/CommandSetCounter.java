@@ -46,6 +46,16 @@ public class CommandSetCounter extends AbstractCommand {
      * @param commandData
      */
     public static CommandSetCounter tryParseCommand(String commandData) {
+        StopServerCommand ret = null;
+        boolean flOK = false;
+
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
+
+        if (flOK) {
+            ret = new StopServerCommand();
+            ret.setUserNameAndPass(uad);
+        }
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'setcounter') then
 //        begin

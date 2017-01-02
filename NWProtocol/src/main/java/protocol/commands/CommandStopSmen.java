@@ -54,6 +54,16 @@ public class CommandStopSmen extends AbstractCommand {
      * @param commandData
      */
     public static CommandStopSmen tryParseCommand(String commandData) {
+        StopServerCommand ret = null;
+        boolean flOK = false;
+
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
+
+        if (flOK) {
+            ret = new StopServerCommand();
+            ret.setUserNameAndPass(uad);
+        }
 /////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'stopsmen') then
 //        begin

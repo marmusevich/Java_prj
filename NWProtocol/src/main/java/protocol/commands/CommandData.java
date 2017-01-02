@@ -32,13 +32,12 @@ public class CommandData  extends AbstractCommand {
         CommandData ret = null;
         boolean flOK = false;
 
-        String userName = Parser.getUserName(commandData);
-        String userPass = Parser.getUserPass(commandData);
-        flOK = Parser.checkIsEmptyUserAndPassword(userName, userPass);
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
 
         if (flOK) {
             ret = new CommandData();
-            ret.setUserNameAndPass(userName, userPass);
+            ret.setUserNameAndPass(uad);
         }
         return ret;
     }

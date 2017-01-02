@@ -59,7 +59,18 @@ public class CommandFindLs extends AbstractCommand {
      * @param commandData
      */
     public static CommandFindLs tryParseCommand(String commandData) {
-////*//////////////////////////////////////////////////////////////////////
+        CommandData ret = null;
+        boolean flOK = false;
+
+        UserAuthenticationData uad = new UserAuthenticationData();
+        flOK = Parser.parseUserAndPassword(commandData, uad);
+
+        if (flOK) {
+            ret = new CommandData();
+            ret.setUserNameAndPass(uad);
+        }
+
+        ////*//////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'findls') then
 //        begin
 //        AContext.Connection.Socket.WriteLn('FINDLS',TEncoding.UTF8);

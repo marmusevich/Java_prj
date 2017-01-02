@@ -19,38 +19,168 @@ public class Parser {
         return getParametrData(cd,"CMD");
     }
 
+    /**
+     * вернуть первый ответ
+     * @param commandName имя команды
+     * @return
+     */
+    public static String getFirstResponse(String commandName) {
+        String ret = "";
 
-    public static boolean parseUserAndPassword(String commandData) {
+        switch (commandName.toUpperCase()) {
+            case "STOP_SERVER":
+                ret = StopServerCommand.firstResponse;
+                break;
 
-        boolean flOK = false;
+            case "STATISTIC_SERVER":
+                ret = StatisticServerCommand.firstResponse;
+                break;
 
-        String userName = getUserName(commandData);
-        String userPass = getUserPass(commandData);
-        flOK = checkIsEmptyUserAndPassword(userName, userPass);
+            case "DATE": // получить время
+                ret = CommandData.firstResponse;
+                break;
+
+            case "CHEKSMENA": //
+                ret = CommandChekSmena.firstResponse;
+                break;
+
+            case "CHKUPDATE": //
+                ret = CommandChkUpdate.firstResponse;
+                break;
+
+            case "CLOSEOPLATA": //
+                ret = CommandCloseOplata.firstResponse;
+                break;
+
+            case "FINDADR": //
+                ret = CommandFindAdr.firstResponse;
+                break;
+
+            case "FINDLS": //
+                ret = CommandFindLs.firstResponse;
+                break;
+
+            case "GETADDRES": //
+                ret = CommandGetAddres.firstResponse;
+                break;
+
+            case "GETADDRTERM": //
+                ret = CommandGetAddrTerm.firstResponse;
+                break;
+
+            case "GETCOMPONENT": //
+                ret = CommandGetComponent.firstResponse;
+                break;
+
+            case "GETCOUNTER": //
+                ret = CommandGetCounter.firstResponse;
+                break;
+
+            case "GETDATA": //
+                ret = CommandGetData.firstResponse;
+                break;
+
+            case "GETDATAFULL": //
+                ret = CommandGetDataFull.firstResponse;
+                break;
+
+            case "GETKOMISIYA": //
+                ret = CommandGetKomisiya.firstResponse;
+                break;
+
+            case "GETOPLATA": //
+                ret = CommandGetOplata.firstResponse;
+                break;
+
+            case "GETOPLATALS": //
+                ret = CommandGetOplatals.firstResponse;
+                break;
+
+            case "GETOPLATASMENA": //
+                ret = CommandGetOplataSmena.firstResponse;
+                break;
+
+            case "GETREESTR": //
+                ret = CommandGetReestr.firstResponse;
+                break;
+
+            case "GETREPORTLIST": //
+                ret = CommandGetReportList.firstResponse;
+                break;
+
+            case "GETSMENA": //
+                ret = CommandGetSmena.firstResponse;
+                break;
+
+            case "GETSOSTAV": //
+                ret = CommandGetSostav.firstResponse;
+                break;
+
+            case "GETTABLE": //
+                ret = CommandGetTable.firstResponse;
+                break;
+
+            case "LSFINDADR": //
+                ret = CommandLsFindAdr.firstResponse;
+                break;
+
+            case "SETCOUNTER": //
+                ret = CommandSetCounter.firstResponse;
+                break;
+
+            case "SETCURRENCE": //
+                ret = CommandSetCurrence.firstResponse;
+                break;
+
+            case "SETDATA": //
+                ret = CommandSetData.firstResponse;
+                break;
+
+            case "SETERRORMSG": //
+                ret = CommandSetErrorMsg.firstResponse;
+                break;
+
+            case "SETSTORNO": //
+                ret = CommandSetStorno.firstResponse;
+                break;
+
+            case "STARTOPLATA": //
+                ret = CommandStartOplata.firstResponse;
+                break;
+
+            case "STARTSMEN": //
+                ret = CommandStartSmen.firstResponse;
+                break;
+
+            case "STOPSMEN": //
+                ret = CommandStopSmen.firstResponse;
+                break;
+
+            case "UPDATEPRG": //
+                ret = CommandUpdatePrg.firstResponse;
+                break;
 
 
-        return flOK;
+//            default: // неопознаная командв
+//                ret = new UnknownCommand.firstResponse;
+        }
+        return ret;
     }
 
     /**
-     * получить данные одного параметра
+     * распарсить и проверить имя пользователя и пароль
      *
      * @param commandData
-     * @param parametrName
-     * @return
+     * @return - true если удалось получить
      */
-    public static String getParametrData(String commandData, String parametrName) {
-        int index = commandData.indexOf(parametrName);
-        if (index > -1) {
-            int begin = commandData.indexOf("=", index);
-            if (begin > -1) {
-                int end = commandData.indexOf("\n", begin);
-                if (end > -1 && end > begin) {
-                    return commandData.substring(begin + 1, end).trim();
-                }
-            }
-        }
-        return null;
+    public static boolean parseUserAndPassword(String commandData, UserAuthenticationData uad) {
+
+        boolean flOK = false;
+
+        uad.name = getUserName(commandData);
+        uad.pass = getUserPass(commandData);
+        flOK = checkIsEmptyUserAndPassword(uad);
+        return flOK;
     }
 
 
@@ -205,23 +335,40 @@ public class Parser {
     }
 
 
-    public static String getUserName(String commandData){
-        return getParametrData(commandData,"ID_TERM");
+    /**
+     * получить данные одного параметра
+     * @param commandData
+     * @param parametrName
+     * @return
+     */
+    public static String getParametrData(String commandData, String parametrName) {
+        int index = commandData.indexOf(parametrName);
+        if (index > -1) {
+            int begin = commandData.indexOf("=", index);
+            if (begin > -1) {
+                int end = commandData.indexOf("\n", begin);
+                if (end > -1 && end > begin) {
+                    return commandData.substring(begin + 1, end).trim();
+                }
+            }
+        }
+        return null;
     }
 
-    public static String getUserPass(String commandData ){
-        return getParametrData(commandData,"PASSWORD");
+    //------------------------------------------------------------------------------------------------------------------
+
+    private static String getUserName(String commandData) {
+        return getParametrData(commandData, AbstractCommand.UserParametrName);
     }
 
-    public static boolean checkIsEmptyUserAndPassword(String userName, String userPass){
-        return userName != null &&  userPass != null;
+    private static String getUserPass(String commandData) {
+        return getParametrData(commandData, AbstractCommand.PassParametrName);
     }
 
-
+    private static boolean checkIsEmptyUserAndPassword(UserAuthenticationData uad) {
+        return uad.name != null && uad.pass != null;
+    }
 }
-
-
-
 
 
 //
