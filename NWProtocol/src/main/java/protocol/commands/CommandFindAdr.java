@@ -130,23 +130,23 @@ public class CommandFindAdr extends AbstractCommand {
         while (rs.next()) {
             result.add(
                     rs.getString("DTM") + "|" +
-                            rs.getString("USLUGANAME") + "|" +
-                            rs.getString("IDEN_SHET") + "|" +
-                            rs.getString("USLUGA") + "|" +
-                            rs.getString("POKAZ_PRED") + "|" +
-                            rs.getString("POKAZ_TEK") + "|" +
-                            rs.getString("FIO") + "|" +
-                            rs.getString("TARIF") + "|" +
-                            rs.getString("KOPLATE") + "|" +
-                            rs.getString("ADDRESS") + "|" +
-                            rs.getString("NS") + "|" +
-                            rs.getString("LS_POLUCH") + "|" +
-                            rs.getString("KOD_POLUCH") + "|" +
-                            rs.getString("ORGANIZATION") + "|" +
-                            rs.getString("MFO") + "|" +
-                            rs.getString("OKPO") + "|" +
-                            rs.getString("BANK") + "|" +
-                            rs.getString("R_SHET"));
+                    rs.getString("USLUGANAME") + "|" +
+                    rs.getString("IDEN_SHET") + "|" +
+                    rs.getString("USLUGA") + "|" +
+                    rs.getString("POKAZ_PRED") + "|" +
+                    rs.getString("POKAZ_TEK") + "|" +
+                    rs.getString("FIO") + "|" +
+                    rs.getString("TARIF") + "|" +
+                    rs.getString("KOPLATE") + "|" +
+                    rs.getString("ADDRESS") + "|" +
+                    rs.getString("NS") + "|" +
+                    rs.getString("LS_POLUCH") + "|" +
+                    rs.getString("KOD_POLUCH") + "|" +
+                    rs.getString("ORGANIZATION") + "|" +
+                    rs.getString("MFO") + "|" +
+                    rs.getString("OKPO") + "|" +
+                    rs.getString("BANK") + "|" +
+                    rs.getString("R_SHET"));
         }
 
 
