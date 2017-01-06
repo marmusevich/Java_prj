@@ -82,8 +82,10 @@ public class CommandSetStorno extends AbstractCommand {
 
         }
         else { //error
-            //Result:='500 Error insert record'
+            result.add("500 Error insert record");
         }
+
+        //todo как возращать результат для сетерных команд
 
 
         ////Оформление сторно платежа

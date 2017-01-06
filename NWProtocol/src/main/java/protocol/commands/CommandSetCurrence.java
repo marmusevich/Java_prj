@@ -84,8 +84,8 @@ public class CommandSetCurrence extends AbstractCommand {
 
         int id_term = GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB);
 
-        String SQLText = "select id from smena where  id_terminal=? " +
-                "and data_n=(select max(data_n) from smena where id_terminal=:ID_TERM)";
+        String SQLText = "select id from smena where  id_terminal = ? " +
+                "and data_n=(select max(data_n) from smena where id_terminal = ?) ";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setInt(1, id_term);
@@ -97,7 +97,7 @@ public class CommandSetCurrence extends AbstractCommand {
         rs.close();
         ps.close();
 
-        SQLText = "INSERT INTO CURRENCY (NOMINAL, ID_CURRENCE, SMENA)" +
+        SQLText = "INSERT INTO CURRENCY (NOMINAL, ID_CURRENCE, SMENA) " +
                 " VALUES (?, ?, ?) ";
 
         ps = connectionToTerminalDB.prepareStatement(SQLText);

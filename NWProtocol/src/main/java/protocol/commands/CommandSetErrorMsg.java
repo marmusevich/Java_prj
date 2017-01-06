@@ -77,8 +77,10 @@ public class CommandSetErrorMsg extends AbstractCommand {
 
         }
         else { //error
-            //Result:='500 Error insert record'
+            result.add("500 Error insert record");
         }
+
+        //todo как возращать результат для сетерных команд
 
 
         ////Добавление записи в базу ошибок

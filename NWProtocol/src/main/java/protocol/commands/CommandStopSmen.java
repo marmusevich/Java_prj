@@ -104,8 +104,10 @@ public class CommandStopSmen extends AbstractCommand {
 
         }
         else { //error
-            //Result:='500 Error insert record'
+            result.add("500 Error insert record");
         }
+
+        //todo как возращать результат для сетерных команд
 
 ////Закрытие смены
 //        function TDM1.CloseSmen(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
