@@ -57,10 +57,7 @@ public class CommandGetOplataSmena extends AbstractCommand {
             ret.kod_smen = Long.parseLong(_kod_smen);
 
         }
-
-
         return ret;
-
 
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getoplatasmena') then

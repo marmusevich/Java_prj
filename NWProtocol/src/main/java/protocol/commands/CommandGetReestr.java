@@ -3,30 +3,28 @@ package protocol.commands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-//Команда getreestr
-//        Выполняет процедуру получения данных о реестре платежей данного платежного терминала по указанной смене, в формате TString (массив строк)
-//        1.	getreestr при успешном выполнении возвращает GREESTR и ожидает передачи данных в формате TString (массив строк)
-//        2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
-//        3.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        KOD_SMEN= Код смены;
-//
-//        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//
-//        4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
-//        5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
-
-
 /**
- * Created by lexa on 08.12.2016.
+ * Команда getreestr
+ *        Выполняет процедуру получения данных о реестре платежей данного платежного терминала по указанной смене, в формате TString (массив строк)
+ *        1.	getreestr при успешном выполнении возвращает GREESTR и ожидает передачи данных в формате TString (массив строк)
+ *        2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ *        3.	Передача параметров в формате TString (массив строк)
+ *        Наименования параметров:
+ *        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ *        LOGIN = Выданный логин, обязательный параметр;
+ *        KOD_SMEN= Код смены;
+ *
+ *        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ *        В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ *        Параметры могут быть перечислены в любой последовательности.
+ *
+ *        4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ *        5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде
+ *        значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
  */
 public class CommandGetReestr extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetReestr.class);
@@ -35,23 +33,30 @@ public class CommandGetReestr extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "GREESTR";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandGetReestr tryParseCommand(String commandData) {
-        CommandData ret = null;
+        CommandGetReestr ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _kod_smen = Parser.getParametrData(commandData, "KOD_SMEN");
+
+        flOK = flOK && (_kod_smen != null);
+
         if (flOK) {
-            ret = new CommandData();
+            ret = new CommandGetReestr();
             ret.setUserNameAndPass(uad);
+            ret.kod_smen = _kod_smen;
+
         }
+        return ret;
 
 
         ////*//////////////////////////////////////////////////////////////////
@@ -80,23 +85,59 @@ public class CommandGetReestr extends AbstractCommand {
 //        // AContext.Connection.Socket.Close;
 //        end
 
-        return null;
     }
 
+    String kod_smen = "";
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText =
-                "  " +
-                        "  ";
+                " SELECT oplata.id, oplata.data, oplata.kod_smen, oplata.fio, oplata.organization, oplata.summa, oplata.storno_id, oplata.komisiya, oplata.ls, oplata.ls_poluch FROM oplata WHERE " +
+                        " OPLATA.KOD_SMEN = ? ";
+
+
+        // todo что за хрень параметр VERSIONS не определен
+        // todo параметр KOD_SMEN в CommandGetOplataSmena был Long, теперь String
+//        sqlNew.SQL.Clear;
+//        sqlNew.SQL.Add('UPDATE SMENA SET VERSIONS=:VERSIONS WHERE ID=:KOD_SMEN');
+//        sqlNew.ParamByName('VERSIONS').asString:=trim(DATA.Values['VERSIONS']);
+//        sqlNew.ParamByName('KOD_SMEN').AsString:=trim(DATA.VALUES['KOD_SMEN']);
+//        try
+//        sqlNew.Transaction.StartTransaction;
+//        sqlNew.ExecQuery;
+//        sqlNew.Transaction.CommitRetaining;
+//        except
+//        Str.Add(sqlNew.SQL.Text);
+//        Str.Add('VERSIONS:='+sqlNew.ParamByName('VERSIONS').asString);
+//        Str.Add('KOD_SMEN:='+sqlNew.ParamByName('KOD_SMEN').asString);
+//        Str.SaveToFile('C:\ErrorVersions.txt');
+//        end;
+
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
+        ps.setString(1, kod_smen);
         ResultSet rs = ps.executeQuery();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        ResultSetMetaData rsm = rs.getMetaData();
         while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+            String tmp = "";
+            for(int i = 0; i <= rsm.getColumnCount(); i++) {
+                if(tmp != ""){
+                    // todo DATE - это тип данных фаерберд
+                    if(rsm.getColumnTypeName(i) != "DATE")
+                        tmp += "|" + rs.getString(i).trim();
+                    else // DATE
+                        tmp += "|" + dateFormat.format(rs.getDate(i));
+                }
+                else { // first row
+                    if(rsm.getColumnTypeName(i) != "DATE")
+                        tmp += rs.getString(i).trim();
+                    else // DATE
+                        tmp += dateFormat.format(rs.getDate(i));
+                }
+            }
         }
+
 
 
 ////Получение реестра платежей по выбранной смене
