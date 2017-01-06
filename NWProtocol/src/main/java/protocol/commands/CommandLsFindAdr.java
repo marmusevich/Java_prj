@@ -9,56 +9,76 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-//Команда lsfindadr
-//        Выполняет функции поиска данных по адресу абонента и возвращает список единых лицевых счетов, соответствующих заданному поиску по адресу
-//        1.	lsfindadr при успешном выполнении возвращает LSFINDADR и ожидает передачи данных в формате TString (массив строк)
-//        2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
-//        3.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        CITY = Код города из справочника городов [CITY], обязательный параметр;
-//        STREET = Код улицы из справочника улиц [STREET] , обязательный параметр;
-//        HOME = Номер дома, обязательный параметр;
-//        KORP = Корпус дома, обязательный параметр (в случае отсутствия указывать пустое значение);
-//        KV = Номер квартиры, обязательный параметр (в случае отсутствия указывать пустое значение);
-//
-//        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//
-//        4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
-//        5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в структуре:
-//        •	LS  - Номер единого лицевого счета
-//        •	FIO – Фамилия И.О.  абонента зарегистрированного за услугой поставщиком услуг
-//        Значение данных выделяется в отдельную строку. Параметры разделяются вертикальной чертой “|”  и записываются в строгом порядке указанном выше.
-
-
 /**
- * Created by lexa on 08.12.2016.
+ * Команда lsfindadr
+ *         Выполняет функции поиска данных по адресу абонента и возвращает список единых лицевых счетов, соответствующих
+ *         заданному поиску по адресу
+ *         1.	lsfindadr при успешном выполнении возвращает LSFINDADR и ожидает передачи данных в формате TString (массив строк)
+ *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ *         3.	Передача параметров в формате TString (массив строк)
+ *         Наименования параметров:
+ *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ *         LOGIN = Выданный логин, обязательный параметр;
+ *         CITY = Код города из справочника городов [CITY], обязательный параметр;
+ *         STREET = Код улицы из справочника улиц [STREET] , обязательный параметр;
+ *         HOME = Номер дома, обязательный параметр;
+ *         KORP = Корпус дома, обязательный параметр (в случае отсутствия указывать пустое значение);
+ *         KV = Номер квартиры, обязательный параметр (в случае отсутствия указывать пустое значение);
+ *
+ *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ *         Параметры могут быть перечислены в любой последовательности.
+ *
+ *         4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ *         5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в структуре:
+ *         •	LS  - Номер единого лицевого счета
+ *         •	FIO – Фамилия И.О.  абонента зарегистрированного за услугой поставщиком услуг
+ *         Значение данных выделяется в отдельную строку. Параметры разделяются вертикальной чертой “|”  и записываются в
+ *         строгом порядке указанном выше.
  */
 public class CommandLsFindAdr extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandLsFindAdr.class);
 
-
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "LSFINDADR";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandLsFindAdr tryParseCommand(String commandData) {
-        StopServerCommand ret = null;
+        CommandLsFindAdr ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _city = Parser.getParametrData(commandData, "CITY");
+        String _street = Parser.getParametrData(commandData, "STREET");
+        String _home = Parser.getParametrData(commandData, "HOME");
+        String _korp = Parser.getParametrData(commandData, "KORP");
+        String _kv = Parser.getParametrData(commandData, "KV");
+
+        flOK = flOK && (_city != null);
+
         if (flOK) {
-            ret = new StopServerCommand();
+            ret = new CommandLsFindAdr();
             ret.setUserNameAndPass(uad);
+
+            ret.city = Integer.parseInt(_city);
+            if(_street != null)
+                ret.street = _street;
+            if(_home != null)
+                ret.home = _home;
+            if(_korp != null)
+                ret.korp = _korp;
+            if(_kv != null)
+                ret.kv = _kv;
         }
+        return ret;
+
 ////*///////////////////////////////////////////////////////////////////////
 //        //прочитаем: код города, код улицы, номер дома, корпус, квартиру.
 //        else if SameText(trim(LCmd), 'lsfindadr') then
@@ -84,23 +104,35 @@ public class CommandLsFindAdr extends AbstractCommand {
 //        end;
 //        // AContext.Connection.Socket.Close;
 //        end
-
-        return null;
     }
 
+    int city = -1;
+    String street = "";
+    String home = "";
+    String korp = "";
+    String kv = "";
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  " +
-                        "  ";
+        String SQLText = " SELECT LS, FIO FROM SHETA WHERE CYTI= ? ";
+        SQLText += " and ( ? = '' or street_nom = ? ) ";
+        SQLText += " and ( ? = '' or HOME = ? ) ";
+        SQLText += " and ( ? = '' or KORP = ? ) ";
+        SQLText += " and ( ? = '' or KV = ? ) ";
 
-        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
+        PreparedStatement ps = connectionToWorkingDB.prepareStatement(SQLText);
+        ps.setInt(1, city);
+        ps.setString(2, street);
+        ps.setString(3, street);
+        ps.setString(4, home);
+        ps.setString(5, home);
+        ps.setString(6, korp);
+        ps.setString(7, korp);
+        ps.setString(8, kv);
+        ps.setString(9, kv);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+            result.add(rs.getString("LS") + "|" + rs.getString("FIO"));
         }
 
 

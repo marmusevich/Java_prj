@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="CommandGetSostav">
+    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="CommandGetTable">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,18 +39,18 @@
       <file leaf-file-name="AbstractCommand.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
+            <state relative-caret-position="240">
               <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandGetTable.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java">
+      <file leaf-file-name="CommandLsFindAdr.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="103" column="33" lean-forward="true" selection-start-line="103" selection-start-column="18" selection-end-line="103" selection-end-column="33" />
+            <state relative-caret-position="260">
+              <caret line="38" column="13" lean-forward="true" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,14 +58,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandGetReestr.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java">
+      <file leaf-file-name="CommandFindAdr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="140" column="0" lean-forward="true" selection-start-line="119" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="420">
+              <caret line="80" column="8" lean-forward="false" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -138,7 +136,6 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" />
@@ -169,6 +166,7 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
       </list>
     </option>
   </component>
@@ -1007,7 +1005,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483721823655</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="CommandGetTable">
+      <created>1483722769700</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1483722769700</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1130,7 +1135,8 @@
     <MESSAGE value="CommandGetReportList" />
     <MESSAGE value="CommandGetSmena" />
     <MESSAGE value="CommandGetSostav" />
-    <option name="LAST_COMMIT_MESSAGE" value="CommandGetSostav" />
+    <MESSAGE value="CommandGetTable" />
+    <option name="LAST_COMMIT_MESSAGE" value="CommandGetTable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1229,16 +1235,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="671">
           <caret line="106" column="22" lean-forward="false" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="100" column="19" lean-forward="false" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
@@ -1388,14 +1384,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="124" column="62" lean-forward="false" selection-start-line="124" selection-start-column="62" selection-end-line="124" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
@@ -1470,14 +1458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1548,6 +1528,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="103" column="34" lean-forward="false" selection-start-line="103" selection-start-column="34" selection-end-line="103" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="517">
@@ -1558,10 +1548,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="103" column="33" lean-forward="true" selection-start-line="103" selection-start-column="18" selection-end-line="103" selection-end-column="33" />
+        <state relative-caret-position="240">
+          <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="80" column="8" lean-forward="false" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="38" column="13" lean-forward="true" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
