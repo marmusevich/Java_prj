@@ -146,8 +146,8 @@ public class CommandGetOplatals extends AbstractCommand {
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setString(1, ls_poluch);
-        ps.setDate(1, (Date) data);
-        ps.setLong(1, kod_org);
+        ps.setDate(2, (Date) data);
+        ps.setLong(3, kod_org);
         ResultSet rs = ps.executeQuery();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         ResultSetMetaData rsm = rs.getMetaData();
