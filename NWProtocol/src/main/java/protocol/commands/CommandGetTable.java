@@ -3,121 +3,135 @@ package protocol.commands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-//Команда gettable
-//        Выполняет процедуру получения значений справочников в формате TString (массив строк)
-//        1.	gettable при успешном выполнении возвращает GTABLE и ожидает передачи данных в формате TString (массив строк)
-//        2.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        TABLE = Наименование таблицы в верхнем регистре, обязательный параметр;
-//
-//        Количество передаваемых параметров – три. В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//
-//        3.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
-//        4.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
-//
-//        Для каждого справочника формируется своя структура данных с различным перечнем и количеством значений. Наименования значений равнозначны наименованию полей в таблицах для удобства использования. В предлагаемом перечне значений важен порядок перечисления значений.
-//        Справочник улиц [STREET]
-//        NP – порядковый номер в справочнике
-//        TIP – код типа улицы
-//        NAME - наименование
-//        NAME_U – наименование украинское
-//        ACTIV – признак активности улицы
-//        CITY – код города (на данный момент данное поле не используется)
-//        NAME_PRINT – наименование улицы для печати
-//        Справочник городов [CITY]
-//        NP – порядковый номер в справочнике
-//        NAME – Наименование города
-//        KOD – код города
-//        KTO_V –Кто вносил (служебное поле, для контроля)
-//        ACTIV – Признак активности города
-//        NAME_U – Наименование города украинское
-//        Справочник банков [BANK]
-//        ID – порядковый номер в справочнике
-//        NAME – Наименование банка
-//        MFO – МФО Банка
-//        Справочник филиалов банка [FILIAL]
-//        ID – порядковый номер в справочнике
-//        NAME – Наименование филиала банка
-//        KOD – Код филиала банка
-//        BANK_ID – Идентификатор банка
-//
-//        Справочник видов услуг [VIDUSLUGI]
-//        NP – порядковый номер в справочнике
-//        JEK – код жека (на данный момент не используется)
-//        NAME – наименование услуги
-//        KOD_ORG – код организации из справочника организации,
-//        GROUPS – код группы услуг
-//        NAME_PL – наименование используемое для печати
-//        NAZNACHENIE – назначение платежа
-//        Справочник организаций [ORGANIZATION]
-//        ID – Порядковый номер
-//        NAME – наименование организации
-//        MFO – МФО организации
-//        NS – расчетный счет организации
-//        BANK – Наименование банка организации
-//        KOD_OKPO – ОКПО организации
-//        FIO_DIR – Фамилия директора организации
-//        FIO_GLB – Фамилия главного бухгалтера организации
-//        ADDRESS – Адрес организации
-//        MAIL_OUT – email организации
-//        FONE – телефон организации
-//        ACTIVE – признак активности организации
-//        KATEGOR – код связи со справочником TIP_ORGANIZATION
-//        CITY – код связи со справочником CITY
-//        KDD – дополнительный код организации
-//        EXTRACTOR_NAME – аббревиатура для формирования выгрузок
-//        Справочник типов организаций [TIP_ORGANIZATION]
-//        ID – Порядковый номер
-//        NAME – наименование типа организации
-//        Справочник типов улиц [TIP_STREET]
-//        NP – Порядковый номер в справочнике
-//        NAME - Наименование
-//        NAME_UKR - Наименование украинское
-//
-//        Справочник терминалов [TERMINAL]
-//        ID – Идентификатор терминала
-//        NAME – Наименование терминала
-//        BANK_ID – Идентификатор банка
-//        FILIAL_ID – Идентификатор терминала
-//        TERMINAL_ID – Код терминала (присваивается при регистрации)
-//        ADDRES – Адрес расположения терминала
-
-
 /**
- * Created by lexa on 08.12.2016.
+ * Команда gettable
+ *         Выполняет процедуру получения значений справочников в формате TString (массив строк)
+ *         1.	gettable при успешном выполнении возвращает GTABLE и ожидает передачи данных в формате TString (массив строк)
+ *         2.	Передача параметров в формате TString (массив строк)
+ *         Наименования параметров:
+ *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ *         LOGIN = Выданный логин, обязательный параметр;
+ *         TABLE = Наименование таблицы в верхнем регистре, обязательный параметр;
+ * 
+ *         Количество передаваемых параметров – три. В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
+ * 
+ *         3.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ *         4.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
+ * 
+ *         Для каждого справочника формируется своя структура данных с различным перечнем и количеством значений. Наименования значений равнозначны наименованию полей в таблицах для удобства использования. В предлагаемом перечне значений важен порядок перечисления значений.
+ *         Справочник улиц [STREET]
+ *         NP – порядковый номер в справочнике
+ *         TIP – код типа улицы
+ *         NAME - наименование
+ *         NAME_U – наименование украинское
+ *         ACTIV – признак активности улицы
+ *         CITY – код города (на данный момент данное поле не используется)
+ *         NAME_PRINT – наименование улицы для печати
+ *         Справочник городов [CITY]
+ *         NP – порядковый номер в справочнике
+ *         NAME – Наименование города
+ *         KOD – код города
+ *         KTO_V –Кто вносил (служебное поле, для контроля)
+ *         ACTIV – Признак активности города
+ *         NAME_U – Наименование города украинское
+ *         Справочник банков [BANK]
+ *         ID – порядковый номер в справочнике
+ *         NAME – Наименование банка
+ *         MFO – МФО Банка
+ *         Справочник филиалов банка [FILIAL]
+ *         ID – порядковый номер в справочнике
+ *         NAME – Наименование филиала банка
+ *         KOD – Код филиала банка
+ *         BANK_ID – Идентификатор банка
+ * 
+ *         Справочник видов услуг [VIDUSLUGI]
+ *         NP – порядковый номер в справочнике
+ *         JEK – код жека (на данный момент не используется)
+ *         NAME – наименование услуги
+ *         KOD_ORG – код организации из справочника организации,
+ *         GROUPS – код группы услуг
+ *         NAME_PL – наименование используемое для печати
+ *         NAZNACHENIE – назначение платежа
+ *         Справочник организаций [ORGANIZATION]
+ *         ID – Порядковый номер
+ *         NAME – наименование организации
+ *         MFO – МФО организации
+ *         NS – расчетный счет организации
+ *         BANK – Наименование банка организации
+ *         KOD_OKPO – ОКПО организации
+ *         FIO_DIR – Фамилия директора организации
+ *         FIO_GLB – Фамилия главного бухгалтера организации
+ *         ADDRESS – Адрес организации
+ *         MAIL_OUT – email организации
+ *         FONE – телефон организации
+ *         ACTIVE – признак активности организации
+ *         KATEGOR – код связи со справочником TIP_ORGANIZATION
+ *         CITY – код связи со справочником CITY
+ *         KDD – дополнительный код организации
+ *         EXTRACTOR_NAME – аббревиатура для формирования выгрузок
+ *         Справочник типов организаций [TIP_ORGANIZATION]
+ *         ID – Порядковый номер
+ *         NAME – наименование типа организации
+ *         Справочник типов улиц [TIP_STREET]
+ *         NP – Порядковый номер в справочнике
+ *         NAME - Наименование
+ *         NAME_UKR - Наименование украинское
+ * 
+ *         Справочник терминалов [TERMINAL]
+ *         ID – Идентификатор терминала
+ *         NAME – Наименование терминала
+ *         BANK_ID – Идентификатор банка
+ *         FILIAL_ID – Идентификатор терминала
+ *         TERMINAL_ID – Код терминала (присваивается при регистрации)
+ *         ADDRES – Адрес расположения терминала
  */
 public class CommandGetTable extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetTable.class);
 
-
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "GTABLE";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandGetTable tryParseCommand(String commandData) {
-        StopServerCommand ret = null;
+        CommandGetTable ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _table = Parser.getParametrData(commandData, "TABLE");
+
+        flOK = flOK && (_table != null);
+
+        flOK = flOK && (_table == "STREET" ||
+                _table == "CITY" ||
+                _table == "BANK" ||
+                _table == "FILIAL" ||
+                _table == "VIDUSLUGI" ||
+                _table == "ORGANIZATION" ||
+                _table == "TIP_ORGANIZATION" ||
+                _table == "TIP_STREET" ||
+                _table == "KOD_OPLAT" ||
+                _table == "SOSTAVUSLUG" ||
+                _table == "TERMINAL" );
+
         if (flOK) {
-            ret = new StopServerCommand();
+            ret = new CommandGetTable();
             ret.setUserNameAndPass(uad);
+            ret.table = _table;
         }
+
+        return ret;
+
 ////*//////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'gettable') then
 //        begin
@@ -152,24 +166,42 @@ public class CommandGetTable extends AbstractCommand {
 //        end;
 //        //AContext.Connection.Socket.Close;
 //        end
-
-
-        return null;
     }
 
 
+    String table = "";
+
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  " +
-                        "  ";
+        String SQLText = "SELECT * FROM " + table;
 
-        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
+        PreparedStatement ps;
+        if(table == "BANK" || table == "FILIAL" || table == "SOSTAVUSLUG" || table == "TERMINAL" )
+            ps = connectionToTerminalDB.prepareStatement(SQLText);
+        else
+            ps = connectionToWorkingDB.prepareStatement(SQLText);
+
         ResultSet rs = ps.executeQuery();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        ResultSetMetaData rsm = rs.getMetaData();
         while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+            String tmp = "";
+            for(int i = 0; i <= rsm.getColumnCount(); i++) {
+                if(tmp != ""){
+                    // todo DATE - это тип данных фаерберд
+                    if(rsm.getColumnTypeName(i) != "DATE")
+                        tmp += "|" + rs.getString(i).trim();
+                    else // DATE
+                        tmp += "|" + dateFormat.format(rs.getDate(i));
+                }
+                else { // first row
+                    if(rsm.getColumnTypeName(i) != "DATE")
+                        tmp += rs.getString(i).trim();
+                    else // DATE
+                        tmp += dateFormat.format(rs.getDate(i));
+                }
+            }
+            result.add( tmp );
         }
 
 

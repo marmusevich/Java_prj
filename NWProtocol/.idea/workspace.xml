@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="CommandGetSmena">
+    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="CommandGetSostav">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplata.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplata.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplataSmena.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplataSmena.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplatals.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplatals.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -52,11 +46,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandGetSostav.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java">
+      <file leaf-file-name="CommandGetTable.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+            <state relative-caret-position="254">
+              <caret line="103" column="33" lean-forward="true" selection-start-line="103" selection-start-column="18" selection-end-line="103" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandGetReestr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="517">
+              <caret line="140" column="0" lean-forward="true" selection-start-line="119" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,8 +94,8 @@
       <find>'</find>
       <find>GetDataFull</find>
       <find>.asString</find>
-      <find>//</find>
       <find>SimpleDateFormat</find>
+      <find>//</find>
     </findStrings>
     <replaceStrings>
       <replace>command</replace>
@@ -97,6 +103,7 @@
       <replace>\n&quot; +</replace>
       <replace>&quot;</replace>
       <replace />
+      <replace>*</replace>
       <replace>*</replace>
     </replaceStrings>
   </component>
@@ -132,7 +139,6 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" />
@@ -162,6 +168,7 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
       </list>
     </option>
   </component>
@@ -993,7 +1000,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483720917547</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="CommandGetSostav">
+      <created>1483721823655</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1483721823655</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1115,7 +1129,8 @@
     <MESSAGE value="CommandGetReestr" />
     <MESSAGE value="CommandGetReportList" />
     <MESSAGE value="CommandGetSmena" />
-    <option name="LAST_COMMIT_MESSAGE" value="CommandGetSmena" />
+    <MESSAGE value="CommandGetSostav" />
+    <option name="LAST_COMMIT_MESSAGE" value="CommandGetSostav" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1224,16 +1239,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
           <caret line="100" column="19" lean-forward="false" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="167" column="17" lean-forward="false" selection-start-line="167" selection-start-column="17" selection-end-line="167" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
@@ -1473,16 +1478,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="139" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1545,8 +1540,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        <state relative-caret-position="-460">
+          <caret line="68" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="140" column="0" lean-forward="true" selection-start-line="119" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="103" column="33" lean-forward="true" selection-start-line="103" selection-start-column="18" selection-end-line="103" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
