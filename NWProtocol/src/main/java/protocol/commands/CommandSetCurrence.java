@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -34,7 +35,6 @@ import java.util.ArrayList;
 public class CommandSetCurrence extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandSetCurrence.class);
 
-
     /**
      * первый ответ
      */
@@ -51,9 +51,16 @@ public class CommandSetCurrence extends AbstractCommand {
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _nominal = Parser.getParametrData(commandData, "NOM");
+        String _id_currence = Parser.getParametrData(commandData, "ID_CURRENCE");
+
+        flOK = flOK && (_nominal != null) && (_id_currence != null);
+
         if (flOK) {
             ret = new CommandSetCurrence();
             ret.setUserNameAndPass(uad);
+            ret.nominal = Integer.parseInt(_nominal);
+            ret.id_currence = Integer.parseInt(_id_currence);
         }
 
         return ret;
@@ -68,21 +75,44 @@ public class CommandSetCurrence extends AbstractCommand {
 //        end
     }
 
+    int nominal = 0;
+    int id_currence = 0;
+
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  ";
+
+        int id_term = GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB);
+
+        String SQLText = "select id from smena where  id_terminal=? " +
+                "and data_n=(select max(data_n) from smena where id_terminal=:ID_TERM)";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
+        ps.setInt(1, id_term);
+        ps.setInt(2, id_term);
+
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        int smena  = rs.getInt("ID");
+        rs.close();
+        ps.close();
+
+        SQLText = "INSERT INTO CURRENCY (NOMINAL, ID_CURRENCE, SMENA)" +
+                " VALUES (?, ?, ?) ";
+
+        ps = connectionToTerminalDB.prepareStatement(SQLText);
+        ps.setInt(1, nominal);
+        ps.setInt(2, id_currence);
+        ps.setInt(3, smena);
         int countChangeString = ps.executeUpdate();
         if(countChangeString != -1) { // ok
 
         }
         else { //error
-            //Result:='500 Error insert record'
+            result.add("500 Error insert record");
         }
+
+        //todo как возращать результат для сетерных команд
 
 
 ////Получение идентификатора почки банкнот из Кешкодера
