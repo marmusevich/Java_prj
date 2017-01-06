@@ -5,32 +5,31 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-//Команда setstorno
-//        Выполняет процедуру сторнирования платежа:
-//        1.	setstorno при успешном выполнении возвращает STORNO и ожидает передачи данных в формате TString (массив строк)
-//        2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
-//        3.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        PAY_ID = ID платежа по которому необходимо совершить сторно;
-//        DATA = Указывается дата и время сторнирования, обычно это текущая дата и время
-//        SUMMA = Указывается сумма сторнирования, обязательный параметр
-//        TIP = Указывается тип сторно, если TIP = 0 то это обычное сторно, если TIP = 1 то это признак сдачи, параметр не обязательный, по умолчанию равен 0;
-//
-//        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//
-//        4.	Возвращение результата выполнения команды
-//        В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR, либо 500 и описание ошибки. По завершению работы команды происходит отключение от сервера.
-
-
-
 /**
- * Created by lexa on 08.12.2016.
+ * Команда setstorno
+ *         Выполняет процедуру сторнирования платежа:
+ *         1.	setstorno при успешном выполнении возвращает STORNO и ожидает передачи данных в формате TString (массив строк)
+ *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ *         3.	Передача параметров в формате TString (массив строк)
+ *         Наименования параметров:
+ *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ *         LOGIN = Выданный логин, обязательный параметр;
+ *         PAY_ID = ID платежа по которому необходимо совершить сторно;
+ *         DATA = Указывается дата и время сторнирования, обычно это текущая дата и время
+ *         SUMMA = Указывается сумма сторнирования, обязательный параметр
+ *         TIP = Указывается тип сторно, если TIP = 0 то это обычное сторно, если TIP = 1 то это признак сдачи, параметр не обязательный,
+ *         по умолчанию равен 0;
+ *
+ *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ *         Параметры могут быть перечислены в любой последовательности.
+ *
+ *         4.	Возвращение результата выполнения команды
+ *         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR,
+ *         либо 500 и описание ошибки. По завершению работы команды происходит отключение от сервера.
  */
 public class CommandSetStorno extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandSetStorno.class);
@@ -38,23 +37,25 @@ public class CommandSetStorno extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "SETSTORNO";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandSetStorno tryParseCommand(String commandData) {
-        StopServerCommand ret = null;
+        CommandSetStorno ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
         if (flOK) {
-            ret = new StopServerCommand();
+            ret = new CommandSetStorno();
             ret.setUserNameAndPass(uad);
         }
+
+        return ret;
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'setstorno') then
 //        begin
@@ -65,8 +66,6 @@ public class CommandSetStorno extends AbstractCommand {
 //        AContext.Connection.Socket.WriteLn(DM1.SetStorno(Str,AContext.Connection.Socket.Binding.PeerIP,LOGIN,PASSWD,DB));
 //        //AContext.Connection.Socket.Close;
 //        end
-
-        return null;
     }
 
 
@@ -74,15 +73,16 @@ public class CommandSetStorno extends AbstractCommand {
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText =
-                "  " +
-                        "  ";
+                "  ";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setString(1, userAuthenticationData.name);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+        int countChangeString = ps.executeUpdate();
+        if(countChangeString != -1) { // ok
+
+        }
+        else { //error
+            //Result:='500 Error insert record'
         }
 
 

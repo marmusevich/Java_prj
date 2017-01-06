@@ -5,43 +5,42 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-//Команда stopsmen
-//        Выполняет идентификацию закрытия смены, запускается при выключении терминала либо подготовке терминала или кассы к инкассации, команда выполняется в несколько этапов:
-//        1.	stopsmen при успешном выполнении возвращает WSTOP
-//        2.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//
-//        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//
-//        3.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
-//        4.	Передает переменную в формате TString (массив строк) со следующими записями:
-//        - DATA_N = Дата открытия смены;
-//        - DATA_K = Дата закрытия смены;
-//        - SMENA = Идентификатор закрываемой смены
-//        - SUMMA = Указывается общая сумма принятых платежей;
-//        - 1 = Количество купюр;
-//        -5 = Количество купюр;
-//        - 10= Количество купюр;
-//        - 20 = Количество купюр;
-//        - 50 = Количество купюр;
-//        - 100 = Количество купюр;
-//        - 200 = Количество купюр;
-//        -500 = Количество купюр;
-//        (в списке могут отсутствовать те или иные номенклатуры купюр, в зависимости их наличия в терминале);
-//        5.	Возвращение результата выполнения команды
-//        В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
-//
-
-
 /**
- * Created by lexa on 08.12.2016.
+ * Команда stopsmen
+ *         Выполняет идентификацию закрытия смены, запускается при выключении терминала либо подготовке терминала или кассы к
+ *         инкассации, команда выполняется в несколько этапов:
+ *         1.	stopsmen при успешном выполнении возвращает WSTOP
+ *         2.	Передача параметров в формате TString (массив строк)
+ *         Наименования параметров:
+ *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ *         LOGIN = Выданный логин, обязательный параметр;
+ *
+ *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ *         Параметры могут быть перечислены в любой последовательности.
+ *
+ *         3.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ *         4.	Передает переменную в формате TString (массив строк) со следующими записями:
+ *         - DATA_N = Дата открытия смены;
+ *         - DATA_K = Дата закрытия смены;
+ *         - SMENA = Идентификатор закрываемой смены
+ *         - SUMMA = Указывается общая сумма принятых платежей;
+ *         - 1 = Количество купюр;
+ *         -5 = Количество купюр;
+ *         - 10= Количество купюр;
+ *         - 20 = Количество купюр;
+ *         - 50 = Количество купюр;
+ *         - 100 = Количество купюр;
+ *         - 200 = Количество купюр;
+ *         -500 = Количество купюр;
+ *         (в списке могут отсутствовать те или иные номенклатуры купюр, в зависимости их наличия в терминале);
+ *         5.	Возвращение результата выполнения команды
+ *         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится
+ *         сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
  */
 public class CommandStopSmen extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandStopSmen.class);
@@ -50,23 +49,25 @@ public class CommandStopSmen extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "WSTOP";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandStopSmen tryParseCommand(String commandData) {
-        StopServerCommand ret = null;
+        CommandStopSmen ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
         if (flOK) {
-            ret = new StopServerCommand();
+            ret = new CommandStopSmen();
             ret.setUserNameAndPass(uad);
         }
+
+        return ret;
 /////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'stopsmen') then
 //        begin
@@ -88,23 +89,22 @@ public class CommandStopSmen extends AbstractCommand {
 //        end;
 ////    AContext.Connection.Disconnect;
 //        end
-
-        return null;
     }
 
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText =
-                "  " +
-                        "  ";
+                "  ";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setString(1, userAuthenticationData.name);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+        int countChangeString = ps.executeUpdate();
+        if(countChangeString != -1) { // ok
+
+        }
+        else { //error
+            //Result:='500 Error insert record'
         }
 
 ////Закрытие смены

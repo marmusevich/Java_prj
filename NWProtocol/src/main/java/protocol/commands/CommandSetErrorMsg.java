@@ -5,26 +5,25 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-//Команда seterrormsg
-//        Добавляет записи в таблицу TERMINAL_ERROR ошибок, команда выполняется в несколько этапов:
-//        1.	seterrormsg при успешном выполнении возвращает SETERRORMSG ожидает передачи данных в формате TString (массив строк)
-//        2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
-//        3.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        ERROR_MSG = Описание ошибки;
-//
-//        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//        В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
-
-
 /**
- * Created by lexa on 08.12.2016.
+ * Команда seterrormsg
+ *         Добавляет записи в таблицу TERMINAL_ERROR ошибок, команда выполняется в несколько этапов:
+ *         1.	seterrormsg при успешном выполнении возвращает SETERRORMSG ожидает передачи данных в формате TString (массив строк)
+ *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ *         3.	Передача параметров в формате TString (массив строк)
+ *         Наименования параметров:
+ *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ *         LOGIN = Выданный логин, обязательный параметр;
+ *         ERROR_MSG = Описание ошибки;
+
+ *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ *         Параметры могут быть перечислены в любой последовательности.
+ *         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR.
+ *         По завершению работы команды происходит отключение от сервера.
  */
 public class CommandSetErrorMsg extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandSetErrorMsg.class);
@@ -33,23 +32,25 @@ public class CommandSetErrorMsg extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "SETERRORMSG";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandSetErrorMsg tryParseCommand(String commandData) {
-        StopServerCommand ret = null;
+        CommandSetErrorMsg ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
         if (flOK) {
-            ret = new StopServerCommand();
+            ret = new CommandSetErrorMsg();
             ret.setUserNameAndPass(uad);
         }
+
+        return ret;
 /////////////////////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'seterrormsg') then
 //        begin
@@ -61,23 +62,22 @@ public class CommandSetErrorMsg extends AbstractCommand {
 //        AContext.Connection.Socket.WriteLn(Results,TEncoding.UTF8);
 //        end
 //
-
-        return null;
     }
 
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText =
-                "  " +
-                        "  ";
+                "  ";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setString(1, userAuthenticationData.name);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+        int countChangeString = ps.executeUpdate();
+        if(countChangeString != -1) { // ok
+
+        }
+        else { //error
+            //Result:='500 Error insert record'
         }
 
 

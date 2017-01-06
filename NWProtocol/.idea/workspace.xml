@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="CommandGetTable">
+    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="CommandLsFindAdr">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -26,7 +34,7 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5200">
+            <state relative-caret-position="0">
               <caret line="544" column="55" lean-forward="false" selection-start-line="544" selection-start-column="4" selection-end-line="544" selection-end-column="55" />
               <folding>
                 <element signature="method#getFirstResponse#0;class#Parser#0" expanded="false" />
@@ -46,24 +54,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandLsFindAdr.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java">
+      <file leaf-file-name="CommandSetCounter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="38" column="13" lean-forward="true" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="491">
+              <caret line="62" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandFindAdr.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java">
+      <file leaf-file-name="CommandSetCurrence.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="80" column="8" lean-forward="false" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="38" />
-              <folding />
+            <state relative-caret-position="254">
+              <caret line="45" column="7" lean-forward="true" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -133,15 +141,6 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/UserAuthenticationData.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandCloseOplata.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java" />
@@ -167,6 +166,15 @@
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" />
       </list>
     </option>
   </component>
@@ -1012,7 +1020,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483722769700</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="CommandLsFindAdr">
+      <created>1483724651381</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1483724651381</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1136,7 +1151,8 @@
     <MESSAGE value="CommandGetSmena" />
     <MESSAGE value="CommandGetSostav" />
     <MESSAGE value="CommandGetTable" />
-    <option name="LAST_COMMIT_MESSAGE" value="CommandGetTable" />
+    <MESSAGE value="CommandLsFindAdr" />
+    <option name="LAST_COMMIT_MESSAGE" value="CommandLsFindAdr" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1149,7 +1165,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/util/Properties.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/com/jolbox/bonecp/0.8.0.RELEASE/bonecp-0.8.0.RELEASE-sources.jar!/com/jolbox/bonecp/BoneCPConfig.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/net/CommandHandler.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1211,76 +1226,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="112" column="15" lean-forward="false" selection-start-line="112" selection-start-column="15" selection-end-line="112" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="78" column="14" lean-forward="false" selection-start-line="78" selection-start-column="14" selection-end-line="78" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="671">
-          <caret line="106" column="22" lean-forward="false" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="73" column="14" lean-forward="false" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="89" column="68" lean-forward="false" selection-start-line="89" selection-start-column="68" selection-end-line="89" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="82" column="18" lean-forward="false" selection-start-line="82" selection-start-column="18" selection-end-line="82" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
@@ -1305,29 +1250,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="96" column="138" lean-forward="true" selection-start-line="96" selection-start-column="119" selection-end-line="96" selection-end-column="138" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="75" column="14" lean-forward="false" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5200">
+        <state relative-caret-position="0">
           <caret line="544" column="55" lean-forward="false" selection-start-line="544" selection-start-column="4" selection-end-line="544" selection-end-column="55" />
           <folding>
             <element signature="method#getFirstResponse#0;class#Parser#0" expanded="false" />
@@ -1548,11 +1473,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="260">
+          <caret line="38" column="13" lean-forward="true" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1564,10 +1491,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="38" column="13" lean-forward="true" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="29" />
+        <state relative-caret-position="240">
+          <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="51" column="53" lean-forward="false" selection-start-line="51" selection-start-column="53" selection-end-line="51" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="30" column="57" lean-forward="false" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/ErrorFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="27" column="11" lean-forward="false" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1649">
+          <caret line="31" column="11" lean-forward="false" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="11" lean-forward="false" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1980">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="45" column="7" lean-forward="true" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
