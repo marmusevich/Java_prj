@@ -90,7 +90,7 @@ public class CommandGetOplatals extends AbstractCommand {
             ret.setUserNameAndPass(uad);
             ret.ls_poluch = _ls_poluch;
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-            ret.data = dateFormat.parse(_data, new ParsePosition(0));
+            ret.data = dateFormat.parse(_data, new ParsePosition(0)); //todo поотенциально проблема распарсивания
             ret.kod_org = Long.parseLong(_kod_org);
         }
         return ret;
