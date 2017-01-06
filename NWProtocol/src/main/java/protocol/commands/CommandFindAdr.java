@@ -122,7 +122,7 @@ public class CommandFindAdr extends AbstractCommand {
         rs = ps.executeQuery();
 
 //  todo а почему здесь без формата
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 //        dateFormat.format(rs.getDate("DTM")) + "|" +
 
         while (rs.next()) {

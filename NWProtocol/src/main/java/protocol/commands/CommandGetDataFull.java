@@ -100,7 +100,7 @@ public class CommandGetDataFull extends AbstractCommand {
         ps.setInt(1, ls);
         rs = ps.executeQuery();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
         while (rs.next()) {
             result.add(

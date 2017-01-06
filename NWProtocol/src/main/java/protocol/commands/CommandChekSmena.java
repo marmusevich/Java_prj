@@ -92,7 +92,7 @@ public class CommandChekSmena extends AbstractCommand {
 
 
         ResultSet rs = ps.executeQuery();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         while (rs.next()) {
             result.add("ADDRES=" + rs.getString("ADDRES"));
             result.add("KASSA_ID=" + rs.getString("KASSA_ID"));

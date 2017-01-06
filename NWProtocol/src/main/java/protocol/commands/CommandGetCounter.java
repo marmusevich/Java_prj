@@ -66,11 +66,9 @@ public class CommandGetCounter extends AbstractCommand {
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setString(1, pay_id);
         ResultSet rs = ps.executeQuery();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         ResultSetMetaData rsm = rs.getMetaData();
         while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-
             String tmp = "";
             for(int i = 0; i <= rsm.getColumnCount(); i++) {
                 if(tmp != ""){

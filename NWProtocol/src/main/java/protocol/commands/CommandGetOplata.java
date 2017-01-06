@@ -3,30 +3,28 @@ package protocol.commands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-//Команда getoplata
-//        Выполняет процедуру получения данных оплат по идентификатору платежа PAY_ID, в формате TString (массив строк)
-//        1.	getoplata при успешном выполнении возвращает GOPLATA и ожидает передачи данных в формате TString (массив строк)
-//        2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
-//        3.	Передача параметров в формате TString (массив строк)
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        PAY_ID= Код платежа;
-//
-//        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//
-//        4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
-//        5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
-
-
 /**
- * Created by lexa on 08.12.2016.
+ * Команда getoplata
+ *         Выполняет процедуру получения данных оплат по идентификатору платежа PAY_ID, в формате TString (массив строк)
+ *         1.	getoplata при успешном выполнении возвращает GOPLATA и ожидает передачи данных в формате TString (массив строк)
+ *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ *         3.	Передача параметров в формате TString (массив строк)
+ *         Наименования параметров:
+ *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ *         LOGIN = Выданный логин, обязательный параметр;
+ *         PAY_ID= Код платежа;
+ *
+ * В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ * В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ * Параметры могут быть перечислены в любой последовательности.
+ *
+ *          4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ *          5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в
+ *          виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
  */
 public class CommandGetOplata extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetOplata.class);
@@ -34,23 +32,29 @@ public class CommandGetOplata extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "GOPLATA";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandGetOplata tryParseCommand(String commandData) {
-        CommandData ret = null;
+        CommandGetOplata ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _pay_id = Parser.getParametrData(commandData, "PAY_ID");
+        flOK = flOK && (_pay_id != null);
+
         if (flOK) {
-            ret = new CommandData();
+            ret = new CommandGetOplata();
             ret.setUserNameAndPass(uad);
+            ret.pay_id = Long.parseLong(_pay_id);
         }
+
+        return ret;
 
         ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getoplata') then
@@ -76,25 +80,37 @@ public class CommandGetOplata extends AbstractCommand {
 //        end;
 //        // AContext.Connection.Socket.Close;
 //        end
-
-
-        return null;
     }
 
-
+    long pay_id = -1;
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText =
-                "  " +
-                        "  ";
-
+                " SELECT * FROM oplata " +
+                        " WHERE OPLATA.ID=? ";
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
+        ps.setLong(1, pay_id);
         ResultSet rs = ps.executeQuery();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        ResultSetMetaData rsm = rs.getMetaData();
         while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+            String tmp = "";
+            for(int i = 0; i <= rsm.getColumnCount(); i++) {
+                if(tmp != ""){
+                    // todo DATE - это тип данных фаерберд
+                    if(rsm.getColumnTypeName(i) != "DATE")
+                        tmp += "|" + rs.getString(i).trim();
+                    else // DATE
+                        tmp += "|" + dateFormat.format(rs.getDate(i));
+                }
+                else { // first row
+                    if(rsm.getColumnTypeName(i) != "DATE")
+                        tmp += rs.getString(i).trim();
+                    else // DATE
+                        tmp += dateFormat.format(rs.getDate(i));
+                }
+            }
         }
 
 

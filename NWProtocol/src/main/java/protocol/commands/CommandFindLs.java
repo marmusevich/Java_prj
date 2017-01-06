@@ -90,7 +90,7 @@ public class CommandFindLs extends AbstractCommand {
         ps.setInt(1, ls);
         ResultSet rs = ps.executeQuery();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("'200' dd.MM.yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         while (rs.next()) {
             result.add(
                     dateFormat.format(rs.getDate("DTM")) + "|" +
