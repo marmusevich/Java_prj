@@ -168,6 +168,7 @@ public class CommandGetOplatals extends AbstractCommand {
                         tmp += dateFormat.format(rs.getDate(i));
                 }
             }
+            result.add( tmp );
         }
 
 

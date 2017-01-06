@@ -118,6 +118,7 @@ public class CommandGetOplataSmena extends AbstractCommand {
                         tmp += dateFormat.format(rs.getDate(i));
                 }
             }
+            result.add( tmp );
         }
 
 

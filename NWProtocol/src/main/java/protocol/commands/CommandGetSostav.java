@@ -9,61 +9,72 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-//Команда getsostav
-//        Возвращает список состава услуг согласно заданному параметру вида услуг (USLUGA)
-//        1.	getsostav при успешном выполнении возвращает GSOSTAV
-//        2.	Возвращение результата выполнения команды
-//        В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
-//        Наименования параметров:
-//        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-//        LOGIN = Выданный логин, обязательный параметр;
-//        USLUGA= Код услуги по которой нужно получить состав услуг, обязательный параметр;
-//        KOD_ORG= Код организации по которой нужно получить состав услуг, обязательный параметр;
-//
-//
-//        В случае неправильного написания наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.  Параметры могут быть перечислены в любой последовательности.
-//        3.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
-//        4.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в структуре:
-//        •	USLUGA – Код услуги в которой включен данный состав
-//        •	NAME  - Наименование состава услуг
-//        •	TIP_RASHETA – Код типа расчета по составу услуг
-//        •	ZNACH – Значение коэффициента расчета состава услуг
-//        •	KOD_ORG – Код организации для которой выполняется расчет состава услуг, код берется из справочника ORGANIZATION;
-//        •	DOP_USLUGA – Код дополнительной услуги;
-//        •	DOP_ORGANIZATION  – Код дополнительной организации для которой выполняется расчет состава услуг, код берется из справочника ORGANIZATION;
-//        •
-//        Значение данных выделяется в отдельную строку. Параметры разделяются вертикальной чертой “|”  и записываются в строгом порядке указанном выше.
-//        5.	Возвращение результата выполнения команды
-//        В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
-
-
 /**
- * Created by lexa on 08.12.2016.
+ * Команда getsostav
+ *         Возвращает список состава услуг согласно заданному параметру вида услуг (USLUGA)
+ *         1.	getsostav при успешном выполнении возвращает GSOSTAV
+ *         2.	Возвращение результата выполнения команды
+ *         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR.
+ *         По завершению работы команды происходит отключение от сервера.
+ *         Наименования параметров:
+ *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ *         LOGIN = Выданный логин, обязательный параметр;
+ *         USLUGA= Код услуги по которой нужно получить состав услуг, обязательный параметр;
+ *         KOD_ORG= Код организации по которой нужно получить состав услуг, обязательный параметр;
+ *
+ *
+ *         В случае неправильного написания наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ *         Параметры могут быть перечислены в любой последовательности.
+ *         3.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ *         4.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в структуре:
+ *         •	USLUGA – Код услуги в которой включен данный состав
+ *         •	NAME  - Наименование состава услуг
+ *         •	TIP_RASHETA – Код типа расчета по составу услуг
+ *         •	ZNACH – Значение коэффициента расчета состава услуг
+ *         •	KOD_ORG – Код организации для которой выполняется расчет состава услуг, код берется из справочника ORGANIZATION;
+ *         •	DOP_USLUGA – Код дополнительной услуги;
+ *         •	DOP_ORGANIZATION  – Код дополнительной организации для которой выполняется расчет состава услуг,
+ *         код берется из справочника ORGANIZATION;
+ *
+ *         Значение данных выделяется в отдельную строку. Параметры разделяются вертикальной чертой “|”
+ *         и записываются в строгом порядке указанном выше.
+ *         5.	Возвращение результата выполнения команды
+ *         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR.
+ *         По завершению работы команды происходит отключение от сервера.
  */
 public class CommandGetSostav extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandGetSostav.class);
 
-
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "GSOSTAV";
 
     /**
      * попытатся распарсить данные команды
      * @param commandData
      */
     public static CommandGetSostav tryParseCommand(String commandData) {
-        StopServerCommand ret = null;
+        CommandGetSostav ret = null;
         boolean flOK = false;
 
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _usluga = Parser.getParametrData(commandData, "USLUGA");
+        String _kod_org = Parser.getParametrData(commandData, "KOD_ORG");
+
+        flOK = flOK && (_usluga != null) && (_kod_org != null);
+
         if (flOK) {
-            ret = new StopServerCommand();
+            ret = new CommandGetSostav();
             ret.setUserNameAndPass(uad);
+            ret.usluga = _usluga;
+            ret.kod_org = _kod_org;
         }
+
+        return ret;
 ////*//////////////////////////////////////////////////////////////////
 //        else if SameText(trim(LCmd), 'getsostav') then
 //        begin
@@ -86,23 +97,35 @@ public class CommandGetSostav extends AbstractCommand {
 //        end;
 //        AContext.Connection.Socket.Close;
 //        end
-
-        return null;
     }
+
+    String usluga = "";
+    String kod_org = "";
 
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText =
-                "  " +
-                        "  ";
+                " SELECT ID, USLUGA, NAME, TIP_RASHETA, ZNACH, KOD_ORG, DOP_USLUGA, DOP_ORGANIZATION, R_SHET, NAZNACHENIE, OKPO FROM SOSTAVUSLUG  " +
+                        " WHERE USLUGA=? and KOD_ORG=? ";
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
+        ps.setString(1, usluga);
+        ps.setString(2, kod_org);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            //dostup = rs.getInt("ID");//Integer.getInteger(rs.getString("ID"));
-            //System.out.println("dostup=" + dostup +     " -> ADDRES = " + rs.getString("ADDRES") + ", ID = " + rs.getString("ID") + "BANK_ID = " + rs.getString("BANK_ID"));
+            result.add(
+                    rs.getString("USLUGA") + "|" +
+                            rs.getString("NAME") + "|" +
+                            rs.getString("TIP_RASHETA") + "|" +
+                            rs.getString("ZNACH") + "|" +
+                            rs.getString("KOD_ORG") + "|" +
+                            rs.getString("DOP_USLUGA") + "|" +
+                            rs.getString("DOP_ORGANIZATION") + "|" +
+                            rs.getString("R_SHET") + "|" +
+                            rs.getString("NAZNACHENIE") + "|" +
+                            rs.getString("OKPO")
+            );
         }
 
 

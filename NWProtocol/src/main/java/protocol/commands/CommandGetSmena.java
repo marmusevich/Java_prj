@@ -124,6 +124,7 @@ public class CommandGetSmena extends AbstractCommand {
                         tmp += dateFormat.format(rs.getDate(i));
                 }
             }
+            result.add( tmp );
         }
 
 

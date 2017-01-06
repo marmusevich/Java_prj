@@ -108,6 +108,7 @@ public class CommandGetReportList extends AbstractCommand {
                         tmp += dateFormat.format(rs.getDate(i));
                 }
             }
+            result.add( tmp );
         }
 
 

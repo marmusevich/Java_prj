@@ -136,6 +136,7 @@ public class CommandGetReestr extends AbstractCommand {
                         tmp += dateFormat.format(rs.getDate(i));
                 }
             }
+            result.add( tmp );
         }
 
 
