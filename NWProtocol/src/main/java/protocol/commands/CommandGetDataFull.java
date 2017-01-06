@@ -84,7 +84,7 @@ public class CommandGetDataFull extends AbstractCommand {
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText = " select distinct ls from LS_SHET where NAME =:? or LS =:? ";
+        String SQLText = " select distinct ls from LS_SHET where NAME =? or LS =? ";
 
         PreparedStatement ps = connectionToWorkingDB.prepareStatement(SQLText);
         ps.setString(1, lsStr);

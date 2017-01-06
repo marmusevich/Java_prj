@@ -88,7 +88,7 @@ public class CommandGetData extends AbstractCommand {
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =" SELECT LS, NAME, KOD_ORG FROM LS_SHET WHERE NAME =:? and KOD_ORG=:? ";
+        String SQLText =" SELECT LS, NAME, KOD_ORG FROM LS_SHET WHERE NAME =? and KOD_ORG=? ";
         PreparedStatement ps = connectionToWorkingDB.prepareStatement(SQLText);
         ps.setString(1, lsStr);
         ps.setString(2, kod_org);
@@ -98,7 +98,7 @@ public class CommandGetData extends AbstractCommand {
         rs.close();
         ps.close();
 
-        SQLText = " SELECT * FROM GET_USLUGA(?) WHERE KOD_POLUCH=:? ";
+        SQLText = " SELECT * FROM GET_USLUGA(?) WHERE KOD_POLUCH=? ";
         ps = connectionToWorkingDB.prepareStatement(SQLText);
         ps.setInt(1, ls);
         ps.setString(2, kod_org);
