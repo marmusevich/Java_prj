@@ -3,9 +3,9 @@ package protocol.commands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -50,9 +50,21 @@ public class CommandSetStorno extends AbstractCommand {
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _data = Parser.getParametrData(commandData, "DATA");
+        String _summa = Parser.getParametrData(commandData, "SUMMA");
+        String _pay_id = Parser.getParametrData(commandData, "PAY_ID");
+        String _tip = Parser.getParametrData(commandData, "TIP");
+
+        flOK = flOK && (_data != null) && (_summa != null) && (_pay_id != null) && (_tip != null);
+
         if (flOK) {
             ret = new CommandSetStorno();
             ret.setUserNameAndPass(uad);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+            ret.data = dateFormat.parse(_data, new ParsePosition(0)); //todo поотенциально проблема распарсивания;
+            ret.summa = Float.parseFloat(_summa);
+            ret.pay_id = Long.parseLong(_pay_id);
+            ret.tip = Integer.parseInt(_tip);
         }
 
         return ret;
@@ -68,16 +80,42 @@ public class CommandSetStorno extends AbstractCommand {
 //        end
     }
 
-
+    java.util.Date data = null;
+    float summa = 0;
+    long pay_id = 0;
+    int tip = 0;
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  ";
-
+        String SQLText = " INSERT INTO STORNO (DATA, SUMMA, PAY_ID, TIP) " +
+                " VALUES (?, ?, ?, ?) ";
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
+        ps.setDate(1, (Date) data);
+        ps.setFloat(1, summa);
+        ps.setLong(1, pay_id);
+        ps.setInt(1, tip);
         int countChangeString = ps.executeUpdate();
+        ps.close();
+
+        long storno = -1;
+
+        if(countChangeString != -1) { // ok
+            SQLText = "select gen_id(GEN_STORNO_ID, 0) from rdb$database ";
+            ps = connectionToTerminalDB.prepareStatement(SQLText);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            storno = + rs.getLong("GEN_ID");
+        }
+        else { //error
+            result.add("500 Error insert record");
+        }
+        ps.close();
+
+        SQLText = " UPDATE OPLATA SET STORNO_ID=? WHERE ID=? ";
+        ps = connectionToTerminalDB.prepareStatement(SQLText);
+        ps.setLong(1, storno);
+        ps.setLong(2, pay_id);
+        countChangeString = ps.executeUpdate();
         if(countChangeString != -1) { // ok
 
         }
