@@ -45,9 +45,14 @@ public class CommandSetErrorMsg extends AbstractCommand {
         UserAuthenticationData uad = new UserAuthenticationData();
         flOK = Parser.parseUserAndPassword(commandData, uad);
 
+        String _error_msg = Parser.getParametrData(commandData, "ERROR_MSG");
+
+        flOK = flOK && (_error_msg != null);
+
         if (flOK) {
             ret = new CommandSetErrorMsg();
             ret.setUserNameAndPass(uad);
+            ret.error_msg = _error_msg;
         }
 
         return ret;
@@ -64,14 +69,17 @@ public class CommandSetErrorMsg extends AbstractCommand {
 //
     }
 
+    String error_msg = "";
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  ";
+        String SQLText = " INSERT INTO TERMINAL_ERRORS (ID_TERMINAL ,ERROR_MSG)" +
+                        " VALUES (?, ?) ";
 
+        int id_term = GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB);
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
+        ps.setInt(1, id_term);
+        ps.setString(1, error_msg);
         int countChangeString = ps.executeUpdate();
         if(countChangeString != -1) { // ok
 

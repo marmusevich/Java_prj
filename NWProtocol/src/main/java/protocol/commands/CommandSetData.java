@@ -61,7 +61,6 @@ import java.util.ArrayList;
 public class CommandSetData extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandSetData.class);
 
-
     /**
      * первый ответ
      */
