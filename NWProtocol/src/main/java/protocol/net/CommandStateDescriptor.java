@@ -25,7 +25,7 @@ public class CommandStateDescriptor {
     /**
      * имя команды
      */
-    public String CommandName = "";
+    public String commandName = "";
 
     /**
      * состояние команды
@@ -46,5 +46,5 @@ public class CommandStateDescriptor {
     /**
      * данные команды, прочитанные строки
      */
-    public String CommandData = "";
+    public String commandData = "";
 }

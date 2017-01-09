@@ -18,6 +18,8 @@ public class ErrorFactory {
         AccessDenied            // нет доступа
     }
 
+    //todo убрать, отправлять строку
+
 
     //500 ERROR
 

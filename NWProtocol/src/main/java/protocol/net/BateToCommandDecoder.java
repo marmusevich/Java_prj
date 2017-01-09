@@ -47,7 +47,6 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         try {
             String msgString = lineBasedDecoder_decode(ctx, buffer).toString(charset);
 
-
             //todo наверное в цикле запрашивать строки из потока
 
             //проверить есть ли в decodetCommands  конкретный ctx
@@ -78,7 +77,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                     case CommandlDataCountReaded:
                         //- читаем строки, если прочитали все обновить decodetCommands
 
-                        csd.CommandData += msgString;
+                        csd.commandData += msgString;
                         csd.currentRowCount ++;
                         if(csd.currentRowCount >= csd.rowCount){
                             csd.state = CommandStateDescriptor.CommandState.CommandlDataReaded;
@@ -92,7 +91,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                         }
                     case CommandlDataReaded:
                         //перейти к выполнению команды
-                        cmd = Parser.tryParseCommand(csd.CommandName, csd.CommandData);
+                        cmd = Parser.tryParseCommand(csd.commandName, csd.commandData);
                         if(cmd != null){
                             csd.state = CommandStateDescriptor.CommandState.CommandExec;
                             decodetCommands.replace(ctx, csd);
@@ -124,7 +123,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
             if(firstResponse != "" ){
                 CommandStateDescriptor csd = new CommandStateDescriptor();
                 csd.state = CommandStateDescriptor.CommandState.FirstResponseResive;
-                csd.CommandName = cammandName;
+                csd.commandName = cammandName;
                 decodetCommands.putIfAbsent(ctx, csd);
                 ctx.write(firstResponse );
             }
