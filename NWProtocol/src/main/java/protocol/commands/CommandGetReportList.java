@@ -9,33 +9,32 @@ import java.util.ArrayList;
 
 /**
  * Команда getreportlist
- *         Выполняет процедуру получения списка наименований отчетов, в формате TString (массив строк)
- *         1.	getreportlist при успешном выполнении возвращает GREPORTLIST и ожидает передачи данных в формате TString (массив строк)
- *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
- *         3.	Передача параметров в формате TString (массив строк)
- *         Наименования параметров:
- *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
- *         LOGIN = Выданный логин, обязательный параметр;
- *
- *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
- *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
- *         Параметры могут быть перечислены в любой последовательности.
- *
- *         4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
- *         5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в
- *         виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2|Значение3 и т.д.)
+ * Выполняет процедуру получения списка наименований отчетов, в формате TString (массив строк)
+ * 1.	getreportlist при успешном выполнении возвращает GREPORTLIST и ожидает передачи данных в формате TString (массив строк)
+ * 2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ * 3.	Передача параметров в формате TString (массив строк)
+ * Наименования параметров:
+ * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ * LOGIN = Выданный логин, обязательный параметр;
+ * <p>
+ * В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ * В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ * Параметры могут быть перечислены в любой последовательности.
+ * <p>
+ * 4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ * 5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в
+ * виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2|Значение3 и т.д.)
  */
 public class CommandGetReportList extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandGetReportList.class);
-
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "GREPORTLIST";
+    private static final Logger logger = LoggerFactory.getLogger(CommandGetReportList.class);
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandGetReportList tryParseCommand(String commandData) {
@@ -93,22 +92,21 @@ public class CommandGetReportList extends AbstractCommand {
         ResultSetMetaData rsm = rs.getMetaData();
         while (rs.next()) {
             String tmp = "";
-            for(int i = 0; i <= rsm.getColumnCount(); i++) {
-                if(tmp != ""){
+            for (int i = 0; i <= rsm.getColumnCount(); i++) {
+                if (tmp != "") {
                     // todo DATE - это тип данных фаерберд
-                    if(rsm.getColumnTypeName(i) != "DATE")
+                    if (rsm.getColumnTypeName(i) != "DATE")
                         tmp += "|" + rs.getString(i).trim();
                     else // DATE
                         tmp += "|" + dateFormat.format(rs.getDate(i));
-                }
-                else { // first row
-                    if(rsm.getColumnTypeName(i) != "DATE")
+                } else { // first row
+                    if (rsm.getColumnTypeName(i) != "DATE")
                         tmp += rs.getString(i).trim();
                     else // DATE
                         tmp += dateFormat.format(rs.getDate(i));
                 }
             }
-            result.add( tmp );
+            result.add(tmp);
         }
 
 

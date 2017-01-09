@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by asus on 09.01.2017.
  */
-public class CommandToBateEncoder extends MessageToByteEncoder<Object > {
+public class CommandToBateEncoder extends MessageToByteEncoder<Object> {
 
     private static final Logger logger = LoggerFactory.getLogger(BateToCommandDecoder.class);
 
@@ -30,35 +30,30 @@ public class CommandToBateEncoder extends MessageToByteEncoder<Object > {
     }
 
 
-
-
     @Override
     protected void encode(ChannelHandlerContext ctx, Object msg, ByteBuf out) throws Exception {
         // действия от типа команды, или строки распарсим, или апдей отправим
 
-        if(msg instanceof String ){
+        if (msg instanceof String) {
             String message = (String) msg;
-            out.writeBytes(  ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(msg + "\n\r"), charset));
-        }
-        else if(msg instanceof AbstractCommand){
+            out.writeBytes(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(msg + "\n\r"), charset));
+        } else if (msg instanceof AbstractCommand) {
             AbstractCommand сommand = (AbstractCommand) msg;
 
-            if(сommand instanceof CommandUpdatePrg){
+            if (сommand instanceof CommandUpdatePrg) {
                 //todo отправить обновления
-            }
-            else{ // остальные команды
+            } else { // остальные команды
 
                 ArrayList<String> res = сommand.getResult();
                 if (res != null && !res.isEmpty()) {
                     //todo переработать ответ согласно описанию
-                    out.writeBytes(  ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(res.size() + "\n\r"), charset));
+                    out.writeBytes(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(res.size() + "\n\r"), charset));
                     for (String str : res) {
-                        out.writeBytes(  ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(str + "\n\r"), charset));
+                        out.writeBytes(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(str + "\n\r"), charset));
                     }
                 }
             }
-        }
-        else{
+        } else {
             // что тут делать то
             logger.info("Неопознаный тип отправляемого сообщения");
         }

@@ -8,45 +8,52 @@ import java.util.ArrayList;
 
 /**
  * Команда getkomisiya
- *         Возвращает значения для расчета комиссии.
- *         1.	getkomisiya при успешном выполнении возвращает GKOMISIA
- *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
- *         3.	Передача параметров в формате TString (массив строк)
- *
- *  Перечень параметров;
- *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
- *         LOGIN = Выданный логин, обязательный параметр;
- *         USLUGA= Код услуги по которой нужно получить состав услуг, обязательный параметр (по умолчанию = 0);
- *         KOD_ORG = Код организации, обязательный параметр (по умолчанию = 0);
- *         BANK_ID = Код банка параметр (по умолчанию = 0);
- *         FILIAL_ID = Код филиала банка параметр (по умолчанию = 0);
- *         KOMISSIA_TYPE_ID = Код типа комиссии параметр (по умолчанию = 0);
- *         SUMMA = Сумма платежа, относительно которого должна рассчитываться комиссия, обязательный параметр (по умолчанию = 0);
- *
+ * Возвращает значения для расчета комиссии.
+ * 1.	getkomisiya при успешном выполнении возвращает GKOMISIA
+ * 2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ * 3.	Передача параметров в формате TString (массив строк)
+ * <p>
+ * Перечень параметров;
+ * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ * LOGIN = Выданный логин, обязательный параметр;
+ * USLUGA= Код услуги по которой нужно получить состав услуг, обязательный параметр (по умолчанию = 0);
+ * KOD_ORG = Код организации, обязательный параметр (по умолчанию = 0);
+ * BANK_ID = Код банка параметр (по умолчанию = 0);
+ * FILIAL_ID = Код филиала банка параметр (по умолчанию = 0);
+ * KOMISSIA_TYPE_ID = Код типа комиссии параметр (по умолчанию = 0);
+ * SUMMA = Сумма платежа, относительно которого должна рассчитываться комиссия, обязательный параметр (по умолчанию = 0);
+ * <p>
  * В случае неправильного написания наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
  * В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
  * Параметры могут быть перечислены в любой последовательности.
- *         4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
- *         5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в структуре:
- *         •	OUR_SUM_INNER=(Значение)
- *         •	OUT_SUM_INNER=(Значение)
- *         •	OUR_SUM_OUTER=(Значение)
- *         •	OUT_SUM_OUTER=(Значение)
- *
- *         6.	Возвращение результата выполнения команды
- *         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR.
- *         По завершению работы команды происходит отключение от сервера.
+ * 4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ * 5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в структуре:
+ * •	OUR_SUM_INNER=(Значение)
+ * •	OUT_SUM_INNER=(Значение)
+ * •	OUR_SUM_OUTER=(Значение)
+ * •	OUT_SUM_OUTER=(Значение)
+ * <p>
+ * 6.	Возвращение результата выполнения команды
+ * В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR.
+ * По завершению работы команды происходит отключение от сервера.
  */
 public class CommandGetKomisiya extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandGetKomisiya.class);
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "GKOMISIA";
+    private static final Logger logger = LoggerFactory.getLogger(CommandGetKomisiya.class);
+    String terminal_id = "";
+    String bank_id = null;
+    String filial_id = null;
+    String komissia_type_id = null;
+    int usluga_id = -1;
+    int organization_id = -1;
+    float summa_pay = 0;
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandGetKomisiya tryParseCommand(String commandData) {
@@ -105,15 +112,6 @@ public class CommandGetKomisiya extends AbstractCommand {
 //        end
     }
 
-    String terminal_id = "";
-    String bank_id = null;
-    String filial_id = null;
-    String komissia_type_id = null;
-
-    int usluga_id =-1;
-    int organization_id =-1;
-    float summa_pay=0;
-
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText = " SELECT * FROM TERMINAL WHERE TERMINAL_ID = ? ";
@@ -134,18 +132,18 @@ public class CommandGetKomisiya extends AbstractCommand {
         ps = connectionToWorkingDB.prepareStatement(SQLText);
         ps.setInt(1, usluga_id);
         ps.setInt(2, organization_id);
-        if(bank_id == null)
+        if (bank_id == null)
             ps.setNull(3, Types.INTEGER);
         else
             ps.setInt(3, Integer.parseInt(bank_id));
 
-        if(filial_id == null)
+        if (filial_id == null)
             ps.setNull(4, Types.INTEGER);
         else
             ps.setInt(4, Integer.parseInt(filial_id));
 
         ps.setInt(5, id);
-        if(komissia_type_id == null)
+        if (komissia_type_id == null)
             ps.setNull(6, Types.INTEGER);
         else
             ps.setInt(6, Integer.parseInt(komissia_type_id));
@@ -154,12 +152,11 @@ public class CommandGetKomisiya extends AbstractCommand {
         rs = ps.executeQuery();
 
         while (rs.next()) {
-            result.add( "OUR_SUM_INNER=" + rs.getString("OUR_SUM_INNER"));
-            result.add( "OUT_SUM_INNER=" + rs.getString("OUT_SUM_INNER"));
-            result.add( "OUR_SUM_OUTER=" + rs.getString("OUR_SUM_OUTER"));
-            result.add( "OUT_SUM_OUTER=" + rs.getString("OUT_SUM_OUTER"));
+            result.add("OUR_SUM_INNER=" + rs.getString("OUR_SUM_INNER"));
+            result.add("OUT_SUM_INNER=" + rs.getString("OUT_SUM_INNER"));
+            result.add("OUR_SUM_OUTER=" + rs.getString("OUR_SUM_OUTER"));
+            result.add("OUT_SUM_OUTER=" + rs.getString("OUT_SUM_OUTER"));
         }
-
 
 
 ////Возвращает список расчета комиссии

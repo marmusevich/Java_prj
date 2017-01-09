@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Наименования параметров:
  * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
  * LOGIN = Выданный логин, обязательный параметр;
- *
+ * <p>
  * Количество передаваемых параметров – два. В случае неправильного написания наименования параметров, параметр будет проигнорирован,
  * и заполнен значением по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
  * Параметры могут быть перечислены в любой последовательности.
@@ -27,15 +27,15 @@ import java.util.ArrayList;
  * В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
  */
 public class CommandCloseOplata extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandCloseOplata.class);
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "CLOSEOPL";
+    private static final Logger logger = LoggerFactory.getLogger(CommandCloseOplata.class);
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandCloseOplata tryParseCommand(String commandData) {

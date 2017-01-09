@@ -10,11 +10,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * поток исполнения команд
  */
-public final class CommandExecutor implements Runnable{
+public final class CommandExecutor implements Runnable {
+    private static final Logger logger = LoggerFactory.getLogger(CommandExecutor.class);
     private DBContext dbContext;
     private LinkedBlockingQueue<AbstractCommand> commandQueue;
-
-    private static final Logger logger = LoggerFactory.getLogger(CommandExecutor.class);
 
     public CommandExecutor(LinkedBlockingQueue<AbstractCommand> commandQueue) {
         this.commandQueue = commandQueue;

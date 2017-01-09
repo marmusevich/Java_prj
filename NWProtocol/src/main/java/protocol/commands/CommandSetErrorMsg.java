@@ -10,32 +10,32 @@ import java.util.ArrayList;
 
 /**
  * Команда seterrormsg
- *         Добавляет записи в таблицу TERMINAL_ERROR ошибок, команда выполняется в несколько этапов:
- *         1.	seterrormsg при успешном выполнении возвращает SETERRORMSG ожидает передачи данных в формате TString (массив строк)
- *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
- *         3.	Передача параметров в формате TString (массив строк)
- *         Наименования параметров:
- *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
- *         LOGIN = Выданный логин, обязательный параметр;
- *         ERROR_MSG = Описание ошибки;
-
- *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
- *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
- *         Параметры могут быть перечислены в любой последовательности.
- *         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR.
- *         По завершению работы команды происходит отключение от сервера.
+ * Добавляет записи в таблицу TERMINAL_ERROR ошибок, команда выполняется в несколько этапов:
+ * 1.	seterrormsg при успешном выполнении возвращает SETERRORMSG ожидает передачи данных в формате TString (массив строк)
+ * 2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ * 3.	Передача параметров в формате TString (массив строк)
+ * Наименования параметров:
+ * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ * LOGIN = Выданный логин, обязательный параметр;
+ * ERROR_MSG = Описание ошибки;
+ * <p>
+ * В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ * В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ * Параметры могут быть перечислены в любой последовательности.
+ * В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR.
+ * По завершению работы команды происходит отключение от сервера.
  */
 public class CommandSetErrorMsg extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandSetErrorMsg.class);
-
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "SETERRORMSG";
+    private static final Logger logger = LoggerFactory.getLogger(CommandSetErrorMsg.class);
+    String error_msg = "";
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandSetErrorMsg tryParseCommand(String commandData) {
@@ -69,22 +69,19 @@ public class CommandSetErrorMsg extends AbstractCommand {
 //
     }
 
-    String error_msg = "";
-
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText = " INSERT INTO TERMINAL_ERRORS (ID_TERMINAL ,ERROR_MSG)" +
-                        " VALUES (?, ?) ";
+                " VALUES (?, ?) ";
 
         int id_term = GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB);
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setInt(1, id_term);
         ps.setString(1, error_msg);
         int countChangeString = ps.executeUpdate();
-        if(countChangeString != -1) { // ok
+        if (countChangeString != -1) { // ok
 
-        }
-        else { //error
+        } else { //error
             result.add("500 Error insert record");
         }
 

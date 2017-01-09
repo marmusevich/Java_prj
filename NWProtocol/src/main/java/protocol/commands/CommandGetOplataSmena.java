@@ -9,35 +9,35 @@ import java.util.ArrayList;
 
 /**
  * Команда getoplatasmena
- *         Выполняет процедуру получения данных оплат по идентификатору платежа PAY_ID в разрезе одной смены оператора, в формате TString
- *         (массив строк)
- *         1.	getoplatasmena при успешном выполнении возвращает GOPLATASMENA и ожидает передачи данных в формате TString (массив строк)
- *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
- *         3.	Передача параметров в формате TString (массив строк)
- *         Наименования параметров:
- *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
- *         LOGIN = Выданный логин, обязательный параметр;
- *         KOD_SMEN= Код смены;
- *
- *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
- *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
- *         Параметры могут быть перечислены в любой последовательности.
- *
- *         4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
- *         5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений
- *         разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
+ * Выполняет процедуру получения данных оплат по идентификатору платежа PAY_ID в разрезе одной смены оператора, в формате TString
+ * (массив строк)
+ * 1.	getoplatasmena при успешном выполнении возвращает GOPLATASMENA и ожидает передачи данных в формате TString (массив строк)
+ * 2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ * 3.	Передача параметров в формате TString (массив строк)
+ * Наименования параметров:
+ * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ * LOGIN = Выданный логин, обязательный параметр;
+ * KOD_SMEN= Код смены;
+ * <p>
+ * В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ * В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ * Параметры могут быть перечислены в любой последовательности.
+ * <p>
+ * 4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ * 5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений
+ * разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
  */
 public class CommandGetOplataSmena extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandGetOplataSmena.class);
-
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "GOPLATASMENA";
+    private static final Logger logger = LoggerFactory.getLogger(CommandGetOplataSmena.class);
+    long kod_smen = -1;
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandGetOplataSmena tryParseCommand(String commandData) {
@@ -83,12 +83,7 @@ public class CommandGetOplataSmena extends AbstractCommand {
 //        end;
 //        // AContext.Connection.Socket.Close;
 //        end
-        }
-
-
-
-    long kod_smen = -1;
-
+    }
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
@@ -103,22 +98,21 @@ public class CommandGetOplataSmena extends AbstractCommand {
         ResultSetMetaData rsm = rs.getMetaData();
         while (rs.next()) {
             String tmp = "";
-            for(int i = 0; i <= rsm.getColumnCount(); i++) {
-                if(tmp != ""){
+            for (int i = 0; i <= rsm.getColumnCount(); i++) {
+                if (tmp != "") {
                     // todo DATE - это тип данных фаерберд
-                    if(rsm.getColumnTypeName(i) != "DATE")
+                    if (rsm.getColumnTypeName(i) != "DATE")
                         tmp += "|" + rs.getString(i).trim();
                     else // DATE
                         tmp += "|" + dateFormat.format(rs.getDate(i));
-                }
-                else { // first row
-                    if(rsm.getColumnTypeName(i) != "DATE")
+                } else { // first row
+                    if (rsm.getColumnTypeName(i) != "DATE")
                         tmp += rs.getString(i).trim();
                     else // DATE
                         tmp += dateFormat.format(rs.getDate(i));
                 }
             }
-            result.add( tmp );
+            result.add(tmp);
         }
 
 
@@ -173,7 +167,7 @@ public class CommandGetOplataSmena extends AbstractCommand {
 //        //END ELSE BEGIN Result:='500 Not open smena'; Exit; END;
 //        END ELSE Result:='500 Error connect FIB' //Подключение к базе
 //        end;
-   }
+    }
 }
 
 

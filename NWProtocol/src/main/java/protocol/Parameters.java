@@ -1,7 +1,5 @@
 package protocol;
 
-import org.firebirdsql.pool.FBConnectionPoolDataSource;
-
 import java.nio.charset.Charset;
 
 /**
@@ -74,7 +72,7 @@ public class Parameters {
     /**
      * кодировка для сообщений в базе
      */
-    public String  terminalDBCharset = "WIN1251";
+    public String terminalDBCharset = "WIN1251";
     /**
      * диалект SQL
      */
@@ -107,7 +105,7 @@ public class Parameters {
     /**
      * количество закешированых запросов в одном подключении
      */
-    public int workingDBMaxStatements  = 4;
+    public int workingDBMaxStatements = 4;
     /**
      * тайм аут простоя подключенийя в секундах
      */
@@ -144,7 +142,7 @@ public class Parameters {
     /**
      * здесь при необходимости, загрузить откудото или переопределить
      */
-    public Parameters(){
-    //TODO настройки загрузить откудото или переопределить
+    public Parameters() {
+        //TODO настройки загрузить откудото или переопределить
     }
 }

@@ -13,42 +13,51 @@ import java.util.ArrayList;
 
 /**
  * Команда setcounter
- *        Выполняет процедуру добавления записей счетчиков по PAY_ID платежа:
- *        1.	setcounter при успешном выполнении возвращает WCOUNTER и ожидает передачи данных в формате TString (массив строк)
- *        2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
- *        3.	Передача параметров в формате TString (массив строк)
- *        Наименования параметров:
- *        ID_TERMINAL = Идентификатор терминала, обязательный параметр;
- *        LOGIN = Выданный логин, обязательный параметр;
- *        LS = Единый лицевой счет.
- *        DT = Текущая дата
- *        IDEN_SHET = Идентификатор счетчика
- *        POKAZ_PRED = Предыдущие показания счетчика.
- *        POKAZ_TEK= Текущие показания счетчика
- *        TARIF = Текущий тариф
- *        PAY_ID = Идентификатор платежа, получается командой setdata;
- *        KOD_ORG – Код организации, по умолчанию равен 0;
- *        USLUGA = Услуга по которой проводится платеж, обязательный параметр, назначается согласно внутреннего справочника на сервере,
+ * Выполняет процедуру добавления записей счетчиков по PAY_ID платежа:
+ * 1.	setcounter при успешном выполнении возвращает WCOUNTER и ожидает передачи данных в формате TString (массив строк)
+ * 2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ * 3.	Передача параметров в формате TString (массив строк)
+ * Наименования параметров:
+ * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ * LOGIN = Выданный логин, обязательный параметр;
+ * LS = Единый лицевой счет.
+ * DT = Текущая дата
+ * IDEN_SHET = Идентификатор счетчика
+ * POKAZ_PRED = Предыдущие показания счетчика.
+ * POKAZ_TEK= Текущие показания счетчика
+ * TARIF = Текущий тариф
+ * PAY_ID = Идентификатор платежа, получается командой setdata;
+ * KOD_ORG – Код организации, по умолчанию равен 0;
+ * USLUGA = Услуга по которой проводится платеж, обязательный параметр, назначается согласно внутреннего справочника на сервере,
  * и выдается индивидуально при регистрации терминала в системе.
- *
- *        В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ * <p>
+ * В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
  * В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
  * Параметры могут быть перечислены в любой последовательности.
- *
- *        4.	Возвращение результата выполнения команды
- *        В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR,
+ * <p>
+ * 4.	Возвращение результата выполнения команды
+ * В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR,
  * либо 500 и описание ошибки. По завершению работы команды происходит отключение от сервера.
  */
 public class CommandSetCounter extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandSetCounter.class);
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "WCOUNTER";
+    private static final Logger logger = LoggerFactory.getLogger(CommandSetCounter.class);
+    int ls = 0;
+    java.util.Date dt = null;
+    int usluga = 0;
+    String iden_shet = null;
+    float pokaz_tek = 0;
+    float pokaz_pred = 0;
+    float tarif = 0;
+    int pay_id = 0;
+    int kod_org = 0;
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandSetCounter tryParseCommand(String commandData) {
@@ -61,7 +70,7 @@ public class CommandSetCounter extends AbstractCommand {
         String _ls = Parser.getParametrData(commandData, "LS");
         String _dt = Parser.getParametrData(commandData, "DT");
         String _usluga = Parser.getParametrData(commandData, "USLUGA");
-        String _iden_shet= Parser.getParametrData(commandData, "IDEN_SHET");
+        String _iden_shet = Parser.getParametrData(commandData, "IDEN_SHET");
         String _pokaz_tek = Parser.getParametrData(commandData, "POKAZ_TEK");
         String _pokaz_pred = Parser.getParametrData(commandData, "POKAZ_PRED");
         String _tarif = Parser.getParametrData(commandData, "TARIF");
@@ -69,7 +78,7 @@ public class CommandSetCounter extends AbstractCommand {
         String _kod_org = Parser.getParametrData(commandData, "KOD_ORG");
 
         flOK = flOK && (_ls != null) && (_dt != null) && (_usluga != null) && (_iden_shet != null)
-                && (_pokaz_tek != null) && (_pokaz_pred != null) && (_tarif != null) && (_pay_id != null)  && (_kod_org != null);
+                && (_pokaz_tek != null) && (_pokaz_pred != null) && (_tarif != null) && (_pay_id != null) && (_kod_org != null);
 
         if (flOK) {
             ret = new CommandSetCounter();
@@ -121,16 +130,6 @@ public class CommandSetCounter extends AbstractCommand {
 
     }
 
-    int ls = 0;
-    java.util.Date dt = null;
-    int usluga = 0;
-    String iden_shet= null;
-    float pokaz_tek = 0;
-    float pokaz_pred = 0;
-    float tarif = 0;
-    int pay_id = 0;
-    int kod_org = 0;
-
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText = " INSERT INTO COUNTER (LS ,DT, USLUGA, IDEN_SHET, POKAZ_PRED, POKAZ_TEK, TARIF, PAY_ID, KOD_ORG) " +
@@ -148,10 +147,9 @@ public class CommandSetCounter extends AbstractCommand {
         ps.setInt(9, kod_org);
 
         int countChangeString = ps.executeUpdate();
-        if(countChangeString != -1) { // ok
+        if (countChangeString != -1) { // ok
 
-        }
-        else { //error
+        } else { //error
             result.add("500 Error insert record");
         }
 

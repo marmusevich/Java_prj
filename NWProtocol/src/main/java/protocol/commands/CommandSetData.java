@@ -13,61 +13,86 @@ import java.util.ArrayList;
 
 /**
  * Команда setdata
- *         Выполняет процедуру регистрации платежа,, команда выполняется в несколько этапов:
- *         1.	setdata при успешном выполнении возвращает WD и ожидает передачи данных в формате TString (массив строк)
- *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
- *         3.	Передача параметров в формате TString (массив строк)
- *         Наименования параметров:
- *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
- *         LOGIN = Выданный логин, обязательный параметр;
- *         ID_CURRENCE – Идентификатор из справочника купюро приемника, значение можно получить командой startoplata,по умолчанию равен 0;
- *         ADDRES = Адрес плательщика.
- *         INN = Индивидуальный налоговый номер плательщика
- *         ID_CURRENCE = Признак начала формирования пачки банкнот, если равен 1 тогда наращивается генератор, если значение равно 0
- *         тогда значение счетчика купюроприемника остается неизменным, по умолчанию значение равно 1;
- *         FIO = Фамилия И.О. плательщика.
- *         SUMMA = Перечисляемая сумма платежа, обязательный параметр.
- *         POSTANOVA = Номер постановления
- *         DATA_POSTANOV  = Дата постановления
- *         KOD_ORG  = Код организации  получателя платежа, обязательный параметр , назначается согласно внутреннего справочника на сервере,
- *         и выдается индивидуально при регистрации терминала в системе.
- *         KOD_ORG_DOP – Дополнительный код организации, по умолчанию равен 0;
- *         USLUGA = Услуга по которой проводится платеж, обязательный параметр, назначается согласно внутреннего справочника на сервере,
- *         и выдается индивидуально при регистрации терминала в системе.
- *         DATA = Дата и время совершения платежа, обязательный параметр
- *         PER_START = Начальный период за который проведен платеж (указывается в случае оплаты клиентом коммунальных платежей)
- *         в формате ММ-ГГГГ, где ММ это месяц, а ГГГГ – год.
- *         PER_END = Конечный период за который проведен платеж (указывается в случае оплаты клиентом коммунальных платежей)
- *         в формате ММ-ГГГГ где ММ это месяц, а ГГГГ – год.
- *         LS = Единый лицевой счет;
- *         LS_POLUCH = Лицевой счет поставщика услуг
- *         KOMISIYA = Комиссия внутренняя
- *         KOMISIYA_BANK = Комиссия банка
- *         ORGANIZATION = Наименование организации получателя платежа
- *         MFO = МФО организации получателя платежа
- *         OKPO = ОКПО организации получателя платежа
- *         BANK = Наименование банка организации получателя платежа
- *         R_SHET = Расчетный счет организации получателя платежа
- * 
- *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
- *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
- *         Параметры могут быть перечислены в любой последовательности.
- * 
- *         4.	Следующей строкой выдается значение PAY_ID текущего платежа;
- *         5.	Возвращение результата выполнения команды
- *         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR,
- *         либо 500 и описание ошибки. По завершению работы команды происходит отключение от сервера.
+ * Выполняет процедуру регистрации платежа,, команда выполняется в несколько этапов:
+ * 1.	setdata при успешном выполнении возвращает WD и ожидает передачи данных в формате TString (массив строк)
+ * 2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ * 3.	Передача параметров в формате TString (массив строк)
+ * Наименования параметров:
+ * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ * LOGIN = Выданный логин, обязательный параметр;
+ * ID_CURRENCE – Идентификатор из справочника купюро приемника, значение можно получить командой startoplata,по умолчанию равен 0;
+ * ADDRES = Адрес плательщика.
+ * INN = Индивидуальный налоговый номер плательщика
+ * ID_CURRENCE = Признак начала формирования пачки банкнот, если равен 1 тогда наращивается генератор, если значение равно 0
+ * тогда значение счетчика купюроприемника остается неизменным, по умолчанию значение равно 1;
+ * FIO = Фамилия И.О. плательщика.
+ * SUMMA = Перечисляемая сумма платежа, обязательный параметр.
+ * POSTANOVA = Номер постановления
+ * DATA_POSTANOV  = Дата постановления
+ * KOD_ORG  = Код организации  получателя платежа, обязательный параметр , назначается согласно внутреннего справочника на сервере,
+ * и выдается индивидуально при регистрации терминала в системе.
+ * KOD_ORG_DOP – Дополнительный код организации, по умолчанию равен 0;
+ * USLUGA = Услуга по которой проводится платеж, обязательный параметр, назначается согласно внутреннего справочника на сервере,
+ * и выдается индивидуально при регистрации терминала в системе.
+ * DATA = Дата и время совершения платежа, обязательный параметр
+ * PER_START = Начальный период за который проведен платеж (указывается в случае оплаты клиентом коммунальных платежей)
+ * в формате ММ-ГГГГ, где ММ это месяц, а ГГГГ – год.
+ * PER_END = Конечный период за который проведен платеж (указывается в случае оплаты клиентом коммунальных платежей)
+ * в формате ММ-ГГГГ где ММ это месяц, а ГГГГ – год.
+ * LS = Единый лицевой счет;
+ * LS_POLUCH = Лицевой счет поставщика услуг
+ * KOMISIYA = Комиссия внутренняя
+ * KOMISIYA_BANK = Комиссия банка
+ * ORGANIZATION = Наименование организации получателя платежа
+ * MFO = МФО организации получателя платежа
+ * OKPO = ОКПО организации получателя платежа
+ * BANK = Наименование банка организации получателя платежа
+ * R_SHET = Расчетный счет организации получателя платежа
+ * <p>
+ * В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ * В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ * Параметры могут быть перечислены в любой последовательности.
+ * <p>
+ * 4.	Следующей строкой выдается значение PAY_ID текущего платежа;
+ * 5.	Возвращение результата выполнения команды
+ * В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR,
+ * либо 500 и описание ошибки. По завершению работы команды происходит отключение от сервера.
  */
 public class CommandSetData extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandSetData.class);
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "WD";
+    private static final Logger logger = LoggerFactory.getLogger(CommandSetData.class);
+    long id_currence = 0;
+    String addres = "";
+    String fio = "";
+    float summa = 0;
+    String inn = "";
+    String postanova = "";
+    java.util.Date data_postanov = null;
+    int kod_org = 0;
+    int id_terminal = 0;
+    int usluga = 0;
+    String ip = "";
+    java.util.Date data = null;
+    String kto_v = "";
+    String per_start = "";
+    String per_end = "";
+    int ls = 0;
+    String ls_poluch = "";
+    int kod_org_dop = 0;
+    float komisiya = 0;
+    float komisiya_bank = 0;
+    String organization = "";
+    String mfo = "";
+    String okpo = "";
+    String bank = "";
+    String r_shet = "";
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandSetData tryParseCommand(String commandData) {
@@ -104,11 +129,11 @@ public class CommandSetData extends AbstractCommand {
         String _r_shet = Parser.getParametrData(commandData, "R_SHET");
 
         flOK = flOK && (_id_currence != null) && (_addres != null) && (_fio != null) &&
-            (_summa != null) && (_inn != null) && (_postanova != null) && (_data_postanov != null) &&
-            (_kod_org != null) && (_id_terminal != null) && (_usluga != null) && (_data  != null) &&
-            (_kto_v != null) && (_per_start != null) && (_per_end != null) && (_ls != null) &&
-            (_ls_poluch != null) && (_kod_org_dop != null) && (_komisiya != null) && (_komisiya_bank != null) &&
-            (_organization != null) && (_mfo != null) && (_okpo != null) && (_bank != null) && (_r_shet != null);
+                (_summa != null) && (_inn != null) && (_postanova != null) && (_data_postanov != null) &&
+                (_kod_org != null) && (_id_terminal != null) && (_usluga != null) && (_data != null) &&
+                (_kto_v != null) && (_per_start != null) && (_per_end != null) && (_ls != null) &&
+                (_ls_poluch != null) && (_kod_org_dop != null) && (_komisiya != null) && (_komisiya_bank != null) &&
+                (_organization != null) && (_mfo != null) && (_okpo != null) && (_bank != null) && (_r_shet != null);
 
         if (flOK) {
             ret = new CommandSetData();
@@ -167,32 +192,6 @@ public class CommandSetData extends AbstractCommand {
 //        end
     }
 
-    long id_currence =0;
-    String addres = "";
-    String fio = "";
-    float summa = 0;
-    String inn = "";
-    String postanova = "";
-    java.util.Date data_postanov = null;
-    int kod_org = 0;
-    int id_terminal = 0;
-    int usluga = 0;
-    String ip = "";
-    java.util.Date data = null;
-    String kto_v = "";
-    String per_start = "";
-    String per_end = "";
-    int ls = 0;
-    String ls_poluch = "";
-    int kod_org_dop = 0;
-    float komisiya = 0;
-    float komisiya_bank = 0;
-    String organization = "";
-    String mfo = "";
-    String okpo = "";
-    String bank = "";
-    String r_shet = "";
-
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText = " INSERT INTO OPLATA (ID_CURRENCE ,ADDRES, FIO, SUMMA, INN, POSTANOVA, DATA_POSTANOV, " +
@@ -201,49 +200,48 @@ public class CommandSetData extends AbstractCommand {
                 " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) ";
 //        sqlNew.SQL.Add('(:ID_CURRENCE, :ADDRES, :FIO, :SUMMA, :INN, :POSTANOVA, :DATA_POSTANOV, :KOD_ORG, :ID_TERMINAL, :USLUGA, :DATA, :IP, :KTO_V, :PER_START, :PER_END, :LS, :LS_POLUCH, :KOD_ORG_DOP, :KOMISIYA, :KOMISIYA_BANK, :ORGANIZATION, :MFO, :OKPO, :BANK, :R_SHET)');
 
-        InetAddress remoteAddress = ((InetSocketAddress)ctx.pipeline().channel().remoteAddress()).getAddress();
+        InetAddress remoteAddress = ((InetSocketAddress) ctx.pipeline().channel().remoteAddress()).getAddress();
         ip = remoteAddress.getHostAddress();
 
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
 
-        ps.setLong(1, id_currence );
-        ps.setString(2, addres );
-        ps.setString(3, fio );
-        ps.setFloat(4, summa );
-        ps.setString(5, inn );
-        ps.setString(6, postanova );
-        ps.setDate(7, (Date) data_postanov );
-        ps.setInt(8, kod_org );
-        ps.setInt(9, id_terminal );
-        ps.setInt(10, usluga );
-        ps.setString(11, ip );
-        ps.setDate(12, (Date) data );
-        ps.setString(13, kto_v );
-        ps.setString(14, per_start );
-        ps.setString(15, per_end );
-        ps.setInt(16, ls );
-        ps.setString(17, ls_poluch );
-        ps.setInt(18, kod_org_dop );
-        ps.setFloat(19, komisiya );
-        ps.setFloat(20, komisiya_bank );
-        ps.setString(21, organization );
-        ps.setString(22, mfo );
-        ps.setString(23, okpo );
-        ps.setString(24, bank );
-        ps.setString(25, r_shet );
+        ps.setLong(1, id_currence);
+        ps.setString(2, addres);
+        ps.setString(3, fio);
+        ps.setFloat(4, summa);
+        ps.setString(5, inn);
+        ps.setString(6, postanova);
+        ps.setDate(7, (Date) data_postanov);
+        ps.setInt(8, kod_org);
+        ps.setInt(9, id_terminal);
+        ps.setInt(10, usluga);
+        ps.setString(11, ip);
+        ps.setDate(12, (Date) data);
+        ps.setString(13, kto_v);
+        ps.setString(14, per_start);
+        ps.setString(15, per_end);
+        ps.setInt(16, ls);
+        ps.setString(17, ls_poluch);
+        ps.setInt(18, kod_org_dop);
+        ps.setFloat(19, komisiya);
+        ps.setFloat(20, komisiya_bank);
+        ps.setString(21, organization);
+        ps.setString(22, mfo);
+        ps.setString(23, okpo);
+        ps.setString(24, bank);
+        ps.setString(25, r_shet);
 
         int countChangeString = ps.executeUpdate();
         ps.close();
 
-        if(countChangeString != -1) { // ok
+        if (countChangeString != -1) { // ok
             SQLText = "select gen_id(GEN_OPLATA_ID, 0) from rdb$database ";
             ps = connectionToTerminalDB.prepareStatement(SQLText);
             ResultSet rs = ps.executeQuery();
             rs.next();
             result.add("PAY_ID=" + rs.getString("GEN_ID"));
-        }
-        else { //error
+        } else { //error
             result.add("500 Error insert record");
         }
 

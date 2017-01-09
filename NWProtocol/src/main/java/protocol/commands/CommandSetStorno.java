@@ -10,37 +10,41 @@ import java.util.ArrayList;
 
 /**
  * Команда setstorno
- *         Выполняет процедуру сторнирования платежа:
- *         1.	setstorno при успешном выполнении возвращает STORNO и ожидает передачи данных в формате TString (массив строк)
- *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
- *         3.	Передача параметров в формате TString (массив строк)
- *         Наименования параметров:
- *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
- *         LOGIN = Выданный логин, обязательный параметр;
- *         PAY_ID = ID платежа по которому необходимо совершить сторно;
- *         DATA = Указывается дата и время сторнирования, обычно это текущая дата и время
- *         SUMMA = Указывается сумма сторнирования, обязательный параметр
- *         TIP = Указывается тип сторно, если TIP = 0 то это обычное сторно, если TIP = 1 то это признак сдачи, параметр не обязательный,
- *         по умолчанию равен 0;
- *
- *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
- *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
- *         Параметры могут быть перечислены в любой последовательности.
- *
- *         4.	Возвращение результата выполнения команды
- *         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR,
- *         либо 500 и описание ошибки. По завершению работы команды происходит отключение от сервера.
+ * Выполняет процедуру сторнирования платежа:
+ * 1.	setstorno при успешном выполнении возвращает STORNO и ожидает передачи данных в формате TString (массив строк)
+ * 2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ * 3.	Передача параметров в формате TString (массив строк)
+ * Наименования параметров:
+ * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ * LOGIN = Выданный логин, обязательный параметр;
+ * PAY_ID = ID платежа по которому необходимо совершить сторно;
+ * DATA = Указывается дата и время сторнирования, обычно это текущая дата и время
+ * SUMMA = Указывается сумма сторнирования, обязательный параметр
+ * TIP = Указывается тип сторно, если TIP = 0 то это обычное сторно, если TIP = 1 то это признак сдачи, параметр не обязательный,
+ * по умолчанию равен 0;
+ * <p>
+ * В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ * В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ * Параметры могут быть перечислены в любой последовательности.
+ * <p>
+ * 4.	Возвращение результата выполнения команды
+ * В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR,
+ * либо 500 и описание ошибки. По завершению работы команды происходит отключение от сервера.
  */
 public class CommandSetStorno extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandSetStorno.class);
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "SETSTORNO";
+    private static final Logger logger = LoggerFactory.getLogger(CommandSetStorno.class);
+    java.util.Date data = null;
+    float summa = 0;
+    long pay_id = 0;
+    int tip = 0;
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandSetStorno tryParseCommand(String commandData) {
@@ -80,11 +84,6 @@ public class CommandSetStorno extends AbstractCommand {
 //        end
     }
 
-    java.util.Date data = null;
-    float summa = 0;
-    long pay_id = 0;
-    int tip = 0;
-
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText = " INSERT INTO STORNO (DATA, SUMMA, PAY_ID, TIP) " +
@@ -99,14 +98,13 @@ public class CommandSetStorno extends AbstractCommand {
 
         long storno = -1;
 
-        if(countChangeString != -1) { // ok
+        if (countChangeString != -1) { // ok
             SQLText = "select gen_id(GEN_STORNO_ID, 0) from rdb$database ";
             ps = connectionToTerminalDB.prepareStatement(SQLText);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            storno = + rs.getLong("GEN_ID");
-        }
-        else { //error
+            storno = +rs.getLong("GEN_ID");
+        } else { //error
             result.add("500 Error insert record");
         }
         ps.close();
@@ -116,10 +114,9 @@ public class CommandSetStorno extends AbstractCommand {
         ps.setLong(1, storno);
         ps.setLong(2, pay_id);
         countChangeString = ps.executeUpdate();
-        if(countChangeString != -1) { // ok
+        if (countChangeString != -1) { // ok
 
-        }
-        else { //error
+        } else { //error
             result.add("500 Error insert record");
         }
 

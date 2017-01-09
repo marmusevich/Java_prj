@@ -17,12 +17,11 @@ import java.util.concurrent.ConcurrentHashMap;
 class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     private static final Logger logger = LoggerFactory.getLogger(NetServerChannelInitializer.class);
-
-
-    ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands;
     private final SslContext sslCtx;
-    private  Charset netCharset;
-    public NetServerChannelInitializer(SslContext sslCtx, Charset netCharset, ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands ) {
+    ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands;
+    private Charset netCharset;
+
+    public NetServerChannelInitializer(SslContext sslCtx, Charset netCharset, ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands) {
         this.netCharset = netCharset;
         this.sslCtx = sslCtx;
         this.decodetCommands = decodetCommands;

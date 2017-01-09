@@ -1,19 +1,13 @@
 package protocol.bd;
 
 
-import protocol.Parameters;
-
-import javax.sql.PooledConnection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
-
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
+import protocol.Parameters;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Properties;
 
 
 /**
@@ -26,10 +20,11 @@ public class DBContext {
 
     /**
      * инициация подключений к базе данных
+     *
      * @param parameters
      * @throws Exception
      */
-    public static void init(Parameters parameters) throws Exception{
+    public static void init(Parameters parameters) throws Exception {
 
 
         try {
@@ -76,37 +71,38 @@ public class DBContext {
     }
 
 
-    public static void close(){
-        if(pooledConToTerminalDB != null)
-                pooledConToTerminalDB.shutdown();
+    public static void close() {
+        if (pooledConToTerminalDB != null)
+            pooledConToTerminalDB.shutdown();
 
-        if(pooledConToWorkingDB != null)
-                pooledConToWorkingDB.shutdown();
+        if (pooledConToWorkingDB != null)
+            pooledConToWorkingDB.shutdown();
     }
 
 
     /**
      * получить подключение к Terminal
+     *
      * @return
      * @throws SQLException
      */
     static public Connection getConnectionToTerminalDB() throws SQLException {
-        if(pooledConToTerminalDB != null)
-                return pooledConToTerminalDB.getConnection();
+        if (pooledConToTerminalDB != null)
+            return pooledConToTerminalDB.getConnection();
         return null;
     }
 
     /**
      * получить подключение к Working
+     *
      * @return
      * @throws SQLException
      */
     static public Connection getConnectionToWorkingDB() throws SQLException {
-        if(pooledConToWorkingDB != null)
+        if (pooledConToWorkingDB != null)
             return pooledConToWorkingDB.getConnection();
         return null;
     }
-
 
 
 }

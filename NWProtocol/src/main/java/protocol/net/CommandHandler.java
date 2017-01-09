@@ -12,33 +12,32 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by asus on 04.12.2016.
  */
-class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand>{
+class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
     private static final Logger logger = LoggerFactory.getLogger(CommandHandler.class);
 
 
     private ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands;
 
-    public CommandHandler(ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands){
+    public CommandHandler(ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands) {
         this.decodetCommands = decodetCommands;
     }
 
     @Override
     public void channelRead0(ChannelHandlerContext ctx, AbstractCommand сommand) throws Exception {
-        сommand.setChannelHandlerContext( ctx );
+        сommand.setChannelHandlerContext(ctx);
         Server.getCommandServer().addCommandToProcess(сommand);
         // команду отправили на выполнение, удалить из очереди
         decodetCommands.remove(ctx);
     }
 
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception
-    {
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         logger.info("channelInactive {}", ctx.pipeline().channel().remoteAddress().toString());
+        decodetCommands.remove(ctx);
     }
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception
-    {
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
         logger.info("channelActive {}", ctx.pipeline().channel().remoteAddress().toString());
     }
 

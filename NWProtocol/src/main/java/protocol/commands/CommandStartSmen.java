@@ -8,33 +8,32 @@ import java.util.ArrayList;
 
 /**
  * Команда startsmen
- *         Выполняет идентификацию открытия смены и присвоению текущей смене уникального индекса, запускается при включении
- *         терминала или открытия кассы, команда выполняется в несколько этапов:
- *         1.	startsmen при успешном выполнении возвращает WSTART и ожидает передачи данных в формате TString (массив строк)
- *         2.	Передача параметров в формате TString (массив строк)
- *         Наименования параметров:
- *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
- *         LOGIN = Выданный логин, обязательный параметр;
- *
- *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
- *         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
- *         Параметры могут быть перечислены в любой последовательности.
- *
- *         3.	Возвращение результата выполнения команды
- *         В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR.
- *         По завершению работы команды происходит отключение от сервера.
+ * Выполняет идентификацию открытия смены и присвоению текущей смене уникального индекса, запускается при включении
+ * терминала или открытия кассы, команда выполняется в несколько этапов:
+ * 1.	startsmen при успешном выполнении возвращает WSTART и ожидает передачи данных в формате TString (массив строк)
+ * 2.	Передача параметров в формате TString (массив строк)
+ * Наименования параметров:
+ * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ * LOGIN = Выданный логин, обязательный параметр;
+ * <p>
+ * В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ * В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ * Параметры могут быть перечислены в любой последовательности.
+ * <p>
+ * 3.	Возвращение результата выполнения команды
+ * В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR.
+ * По завершению работы команды происходит отключение от сервера.
  */
 public class CommandStartSmen extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandStartSmen.class);
-
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "WSTART";
+    private static final Logger logger = LoggerFactory.getLogger(CommandStartSmen.class);
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandStartSmen tryParseCommand(String commandData) {
@@ -74,7 +73,7 @@ public class CommandStartSmen extends AbstractCommand {
         ps.close();
 
 
-        if (counts == 0){
+        if (counts == 0) {
             SQLText = "SELECT * FROM TERMINAL WHERE terminal_ID=? and BANK_ID=(SELECT BANK FROM USERS WHERE LOGIN=?)";
             ps = connectionToTerminalDB.prepareStatement(SQLText);
             ps.setString(1, userAuthenticationData.name);
@@ -88,23 +87,21 @@ public class CommandStartSmen extends AbstractCommand {
             rs.close();
             ps.close();
 
-            if(recCount > 0){
-                SQLText =" INSERT INTO SMENA (DATA_N, ID_TERMINAL) VALUES (?, ?) ";
+            if (recCount > 0) {
+                SQLText = " INSERT INTO SMENA (DATA_N, ID_TERMINAL) VALUES (?, ?) ";
                 ps = connectionToTerminalDB.prepareStatement(SQLText);
                 ps.setDate(1, (Date) new java.util.Date());
                 ps.setInt(2, smena);
                 int countChangeString = ps.executeUpdate();
-                if(countChangeString != -1) { // ok
+                if (countChangeString != -1) { // ok
 
-                }
-                else { //error
+                } else { //error
                     result.add("500 Error insert record");
                 }
 
                 //todo как возращать результат для сетерных команд
             }
         }
-
 
 
         ////Открытие смены

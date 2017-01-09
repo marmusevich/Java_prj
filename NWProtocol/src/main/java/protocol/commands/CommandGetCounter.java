@@ -8,34 +8,35 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
-* Команда getcounter
-*         Выполняет процедуру получения данных счетчика по идентификатору платежа PAY_ID, в формате TString (массив строк)
-*         1.	getcounter при успешном выполнении возвращает GOPLATA и ожидает передачи данных в формате TString (массив строк)
-*         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
-*         3.	Передача параметров в формате TString (массив строк)
-*         Наименования параметров:
-*         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
-*         LOGIN = Выданный логин, обязательный параметр;
-*         PAY_ID= Код платежа;
-* 
-*         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
-*         В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
-*         Параметры могут быть перечислены в любой последовательности.
-* 
-*         4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
-*         5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений
-*         разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
-*/
+ * Команда getcounter
+ * Выполняет процедуру получения данных счетчика по идентификатору платежа PAY_ID, в формате TString (массив строк)
+ * 1.	getcounter при успешном выполнении возвращает GOPLATA и ожидает передачи данных в формате TString (массив строк)
+ * 2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ * 3.	Передача параметров в формате TString (массив строк)
+ * Наименования параметров:
+ * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ * LOGIN = Выданный логин, обязательный параметр;
+ * PAY_ID= Код платежа;
+ * <p>
+ * В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением по умолчанию.
+ * В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ * Параметры могут быть перечислены в любой последовательности.
+ * <p>
+ * 4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ * 5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в виде значений
+ * разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
+ */
 public class CommandGetCounter extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandGetCounter.class);
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "GCOUNTER";
+    private static final Logger logger = LoggerFactory.getLogger(CommandGetCounter.class);
+    String pay_id = "";
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandGetCounter tryParseCommand(String commandData) {
@@ -56,9 +57,6 @@ public class CommandGetCounter extends AbstractCommand {
         return ret;
     }
 
-    String pay_id = "";
-
-
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText = " SELECT * FROM COUNTER WHERE COUNTER.PAY_ID= ? ";
@@ -70,26 +68,21 @@ public class CommandGetCounter extends AbstractCommand {
         ResultSetMetaData rsm = rs.getMetaData();
         while (rs.next()) {
             String tmp = "";
-            for(int i = 0; i <= rsm.getColumnCount(); i++) {
-                if(tmp != ""){
+            for (int i = 0; i <= rsm.getColumnCount(); i++) {
+                if (tmp != "") {
                     // todo DATE - это тип данных фаерберд
-                    if(rsm.getColumnTypeName(i) != "DATE")
+                    if (rsm.getColumnTypeName(i) != "DATE")
                         tmp += "|" + rs.getString(i).trim();
                     else // DATE
                         tmp += "|" + dateFormat.format(rs.getDate(i));
-                }
-                else { // first row
-                    if(rsm.getColumnTypeName(i) != "DATE")
+                } else { // first row
+                    if (rsm.getColumnTypeName(i) != "DATE")
                         tmp += rs.getString(i).trim();
                     else // DATE
                         tmp += dateFormat.format(rs.getDate(i));
                 }
             }
         }
-
-
-
-
 
 
         ////Получение данных счетчиков по PAY_ID

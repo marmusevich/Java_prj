@@ -12,11 +12,10 @@ import protocol.net.NetServer;
  *
  */
 public final class Server {
+    private static final Logger logger = LoggerFactory.getLogger(Server.class);
     private static CommandServer commandServer;
     private static NetServer netServer;
     private static Parameters parameters;
-
-    private static final Logger logger = LoggerFactory.getLogger(Server.class);
 
     /**
      * @param args
@@ -62,9 +61,11 @@ public final class Server {
     public static CommandServer getCommandServer() {
         return commandServer;
     }
+
     public static NetServer getNetServer() {
         return netServer;
     }
+
     public static Parameters getParameters() {
         return parameters;
     }

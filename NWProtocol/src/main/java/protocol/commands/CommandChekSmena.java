@@ -35,15 +35,15 @@ import java.util.ArrayList;
  * В случае успешного выполнения команды возвращается 200 ОК, в случае возникновения какой либо ошибки выводится сообщение 500 ERROR. По завершению работы команды происходит отключение от сервера.
  */
 public class CommandChekSmena extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandChekSmena.class);
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "CHKSMENA";
+    private static final Logger logger = LoggerFactory.getLogger(CommandChekSmena.class);
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandChekSmena tryParseCommand(String commandData) {

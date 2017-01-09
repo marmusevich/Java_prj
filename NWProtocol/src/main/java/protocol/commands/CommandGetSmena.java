@@ -10,34 +10,35 @@ import java.util.ArrayList;
 
 /**
  * Команда getsmena
- *         Выполняет процедуру получения данных о сменах начиная от указанной даты, в формате TString (массив строк)
- *         1.	getsmena при успешном выполнении возвращает GSMENA и ожидает передачи данных в формате TString (массив строк)
- *         2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
- *         3.	Передача параметров в формате TString (массив строк)
- *         Наименования параметров:
- *         ID_TERMINAL = Идентификатор терминала, обязательный параметр;
- *         LOGIN = Выданный логин, обязательный параметр;
- *         DATA_N = Дата начала выбора смен;
- *
- *         В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением
- *         по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
- *         Параметры могут быть перечислены в любой последовательности.
- *
- *         4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
- *         5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в
- *         виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
+ * Выполняет процедуру получения данных о сменах начиная от указанной даты, в формате TString (массив строк)
+ * 1.	getsmena при успешном выполнении возвращает GSMENA и ожидает передачи данных в формате TString (массив строк)
+ * 2.	Передача переменной количества параметров в списке TString (массив строк) передается числовым значением.
+ * 3.	Передача параметров в формате TString (массив строк)
+ * Наименования параметров:
+ * ID_TERMINAL = Идентификатор терминала, обязательный параметр;
+ * LOGIN = Выданный логин, обязательный параметр;
+ * DATA_N = Дата начала выбора смен;
+ * <p>
+ * В случае неправильного написание наименования параметров, параметр будет проигнорирован, и заполнен значением
+ * по умолчанию. В случае не заполнения одного из обязательных параметров сервер вернет ошибку выполнения команды.
+ * Параметры могут быть перечислены в любой последовательности.
+ * <p>
+ * 4.	Далее сервер возвращает число количества строк в возвращаемом параметре TString (массив строк)
+ * 5.	После возвращает значение TString (массив строк) с заполненными данными, которые представляются в
+ * виде значений разделенными вертикальной чертой “|”, (Значение|Значение1|Значение2 и т.д.)
  */
 public class CommandGetSmena extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(CommandGetSmena.class);
-
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "GSMENA";
+    private static final Logger logger = LoggerFactory.getLogger(CommandGetSmena.class);
+    String id_terminal = "";
+    java.util.Date data_n = null;
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static CommandGetSmena tryParseCommand(String commandData) {
@@ -87,9 +88,6 @@ public class CommandGetSmena extends AbstractCommand {
 //        end
     }
 
-    String id_terminal = "";
-    java.util.Date data_n = null;
-
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
         String SQLText =
@@ -109,22 +107,21 @@ public class CommandGetSmena extends AbstractCommand {
         ResultSetMetaData rsm = rs.getMetaData();
         while (rs.next()) {
             String tmp = "";
-            for(int i = 0; i <= rsm.getColumnCount(); i++) {
-                if(tmp != ""){
+            for (int i = 0; i <= rsm.getColumnCount(); i++) {
+                if (tmp != "") {
                     // todo DATE - это тип данных фаерберд
-                    if(rsm.getColumnTypeName(i) != "DATE")
+                    if (rsm.getColumnTypeName(i) != "DATE")
                         tmp += "|" + rs.getString(i).trim();
                     else // DATE
                         tmp += "|" + dateFormat.format(rs.getDate(i));
-                }
-                else { // first row
-                    if(rsm.getColumnTypeName(i) != "DATE")
+                } else { // first row
+                    if (rsm.getColumnTypeName(i) != "DATE")
                         tmp += rs.getString(i).trim();
                     else // DATE
                         tmp += dateFormat.format(rs.getDate(i));
                 }
             }
-            result.add( tmp );
+            result.add(tmp);
         }
 
 

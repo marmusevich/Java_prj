@@ -11,16 +11,18 @@ public class Parser {
 
     /**
      * распарсить имя команды
+     *
      * @param commandData
      * @return
      */
     public static String getCammandName(String commandData) {
         String cd = commandData.toUpperCase();
-        return getParametrData(cd,"CMD");
+        return getParametrData(cd, "CMD");
     }
 
     /**
      * вернуть первый ответ
+     *
      * @param commandName имя команды
      * @return
      */
@@ -182,6 +184,7 @@ public class Parser {
 
     /**
      * Пытается распарсить команду
+     *
      * @param commandName имя команды
      * @param commandData данные команды
      * @return распарсеную команду
@@ -321,7 +324,7 @@ public class Parser {
 
             case "UPDATEPRG": //
                 ret = CommandUpdatePrg.tryParseCommand(commandData);
-            break;
+                break;
 
 
             default: // неопознаная командв
@@ -333,6 +336,7 @@ public class Parser {
 
     /**
      * получить данные одного параметра
+     *
      * @param commandData
      * @param parametrName
      * @return
@@ -415,16 +419,6 @@ public class Parser {
 //        Disconnect;
 //        end;
 //        Str.Free;
-
-
-
-
-
-
-
-
-
-
 
 
 //////////////////Общие фцнкции

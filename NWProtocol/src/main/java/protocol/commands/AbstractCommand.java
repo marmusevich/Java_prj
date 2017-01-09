@@ -16,31 +16,32 @@ import java.util.ArrayList;
  * все остальные команды наследовать от нее
  */
 public abstract class AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(AbstractCommand.class);
-
     /**
      * название параметров имени и пароля пользователя
      */
     public static final String UserParametrName = "ID_TERM";
     public static final String PassParametrName = "PASSWORD";
-
+    private static final Logger logger = LoggerFactory.getLogger(AbstractCommand.class);
     /**
      * контекст сетевого подключения
      */
     protected ChannelHandlerContext ctx;
+    protected UserAuthenticationData userAuthenticationData;
+    // результат
+    private ArrayList<String> result;
 
     /**
      * устоновить сонтекст подключения
+     *
      * @param ctx
      */
     public void setChannelHandlerContext(ChannelHandlerContext ctx) {
         this.ctx = ctx;
     }
 
-
-    protected UserAuthenticationData userAuthenticationData;
     /**
-     *  установить имя пользователя и пароль
+     * установить имя пользователя и пароль
+     *
      * @param uad -
      */
     final public void setUserNameAndPass(UserAuthenticationData uad) {
@@ -49,6 +50,7 @@ public abstract class AbstractCommand {
 
     /**
      * проверить уровень доступа
+     *
      * @param connectionToTerminalDB - подключение к БД
      * @return
      */
@@ -58,6 +60,7 @@ public abstract class AbstractCommand {
 
     /**
      * Получает ID терминала с проверкой на открытую смену
+     *
      * @param connectionToTerminalDB
      * @return
      * @throws SQLException
@@ -83,9 +86,10 @@ public abstract class AbstractCommand {
     }
 
     /**
-     *Получим внутренний ID терминала
+     * Получим внутренний ID терминала
+     *
      * @param connectionToTerminalDB
-     * @param terminalId Идентификатор терминала, обязательный параметр;
+     * @param terminalId             Идентификатор терминала, обязательный параметр;
      * @return
      * @throws SQLException
      */
@@ -114,7 +118,6 @@ public abstract class AbstractCommand {
 //        Result:=sqlFreeReturn.FieldByName('ID').asInteger;
 
     }
-
 
     /**
      * Выполнить команду
@@ -146,9 +149,8 @@ public abstract class AbstractCommand {
 //        end
 
 
-            }
-            else
-                sendError( ErrorFactory.Error.AccessDenied);
+            } else
+                sendError(ErrorFactory.Error.AccessDenied);
 
         } catch (SQLException e) {
             //TODO SQLException
@@ -173,26 +175,21 @@ public abstract class AbstractCommand {
 
     /**
      * переопределить в наследниках
-     * @param result результат - массив строк
+     *
+     * @param result                 результат - массив строк
      * @param connectionToTerminalDB - соеденение к базе данных
-     * @param connectionToWorkingDB - соеденение к базе данных
+     * @param connectionToWorkingDB  - соеденение к базе данных
      */
     public abstract void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException;
 
-
-
-
-
-    // результат
-    private ArrayList<String> result;
     /**
      * Вернуть результат
+     *
      * @return набор строк результата
      */
-    final public ArrayList<String> getResult(){
+    final public ArrayList<String> getResult() {
         return result;
     }
-
 
 
     /**

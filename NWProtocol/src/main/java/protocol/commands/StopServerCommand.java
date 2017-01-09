@@ -15,16 +15,16 @@ import java.util.ArrayList;
  * вызов только с локальной машины
  */
 public class StopServerCommand extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(StopServerCommand.class);
-    //CMD=STOP_SERVER
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "STOP_SERVER";
+    //CMD=STOP_SERVER
+    private static final Logger logger = LoggerFactory.getLogger(StopServerCommand.class);
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static StopServerCommand tryParseCommand(String commandData) {
@@ -42,13 +42,12 @@ public class StopServerCommand extends AbstractCommand {
     }
 
 
-
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        InetAddress remoteAddress = ((InetSocketAddress)ctx.pipeline().channel().remoteAddress()).getAddress();
-        InetAddress localAddress = ((InetSocketAddress)ctx.pipeline().channel().localAddress()).getAddress();
+        InetAddress remoteAddress = ((InetSocketAddress) ctx.pipeline().channel().remoteAddress()).getAddress();
+        InetAddress localAddress = ((InetSocketAddress) ctx.pipeline().channel().localAddress()).getAddress();
 
-        if(remoteAddress.equals(localAddress)){
+        if (remoteAddress.equals(localAddress)) {
             logger.info("Command = 'Stop Server' in adress ({}) user = '{}'", remoteAddress.getHostAddress(), userAuthenticationData.name);
             Server.stop();
         }

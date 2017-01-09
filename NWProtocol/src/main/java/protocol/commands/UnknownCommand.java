@@ -11,23 +11,21 @@ import java.util.ArrayList;
  *
  */
 public class UnknownCommand extends AbstractCommand {
-    private static final Logger logger = LoggerFactory.getLogger(UnknownCommand.class);
-
-
     /**
      * первый ответ
      */
     public static final String firstResponse = "UnknownCommand";
+    private static final Logger logger = LoggerFactory.getLogger(UnknownCommand.class);
 
     /**
      * попытатся распарсить данные команды
+     *
      * @param commandData
      */
     public static UnknownCommand tryParseCommand(String commandData) {
 
         return null;
     }
-
 
 
     @Override
