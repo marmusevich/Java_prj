@@ -1,55 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="*&#10;">
+    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="reformat project">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/BateToCommandDecoder.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/BateToCommandDecoder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/CommandHandler.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/CommandHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/NetServer.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/NetServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/NetServerChannelInitializer.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/NetServerChannelInitializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/CommandExecutor.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/CommandExecutor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/CommandServer.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/CommandServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/Parameters.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/Parameters.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/Server.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/bd/DBContext.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/bd/DBContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChekSmena.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChekSmena.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChkUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandChkUpdate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandCloseOplata.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandCloseOplata.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindAdr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandFindLs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddrTerm.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddrTerm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddres.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetAddres.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetComponent.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetDataFull.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetKomisiya.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplata.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplata.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplataSmena.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplataSmena.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplatals.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetOplatals.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReestr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetReportList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSmena.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetSostav.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandLsFindAdr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCounter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetCurrence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetErrorMsg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandSetStorno.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartOplata.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStartSmen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandStopSmen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/CommandUpdatePrg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/Parser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/StatisticServerCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/StopServerCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/UnknownCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/net/CommandStateDescriptor.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/net/CommandStateDescriptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/net/CommandToBateEncoder.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/net/CommandToBateEncoder.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -490,6 +447,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NWProtocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NWProtocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commands" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1160,7 +1147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483981229030</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="reformat project">
+      <created>1483982393411</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1483982393412</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1260,7 +1254,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
-    <MESSAGE value="CommandGetKomisiya" />
     <MESSAGE value="CommandGetOplata" />
     <MESSAGE value="CommandGetOplatals" />
     <MESSAGE value="CommandGetOplataSmena" />
@@ -1285,7 +1278,8 @@
     <MESSAGE value="новый NET" />
     <MESSAGE value="&#10;" />
     <MESSAGE value="*&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="*&#10;" />
+    <MESSAGE value="reformat project" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformat project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1298,13 +1292,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetCounter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="68" column="58" lean-forward="false" selection-start-line="68" selection-start-column="42" selection-end-line="68" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-100">
@@ -1530,6 +1517,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="276" column="15" lean-forward="false" selection-start-line="276" selection-start-column="15" selection-end-line="276" selection-end-column="15" />
+          <folding>
+            <element signature="e#10189#10190#0" expanded="true" />
+            <element signature="e#10216#10217#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1598,6 +1589,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/commands/CommandGetData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-380">
+          <caret line="53" column="13" lean-forward="false" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

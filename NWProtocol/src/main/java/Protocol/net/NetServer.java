@@ -22,39 +22,35 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class NetServer {
 
+    private static final Logger logger = LoggerFactory.getLogger(NetServer.class);
+    ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
     private SslContext sslCtx;
-
-    ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands;
-
-
-    private static final Logger logger = LoggerFactory.getLogger(NetServer.class);
 
 
     /**
      * иницилизировать, количество потоков на усмотрение системы
      */
     public NetServer() {
-        this(0,0);
+        this(0, 0);
     }
 
     /**
      * иницилизировать, количество потоков задать
      */
     public NetServer(int bossThreads, int workerThreads) {
-        if(bossThreads == 0)
+        if (bossThreads == 0)
             bossGroup = new NioEventLoopGroup();
         else
             bossGroup = new NioEventLoopGroup(bossThreads);
 
-        if(workerThreads == 0) {
+        if (workerThreads == 0) {
             workerGroup = new NioEventLoopGroup();
-            decodetCommands = new ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor>(128,32);
-        }
-        else {
+            decodetCommands = new ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor>(128, 32);
+        } else {
             workerGroup = new NioEventLoopGroup(workerThreads);
-            decodetCommands = new ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor>(128,32, workerThreads);
+            decodetCommands = new ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor>(128, 32, workerThreads);
 
         }
 
@@ -80,14 +76,14 @@ public final class NetServer {
                     //.option(ChannelOption.SO_BACKLOG,128) // количество одновременных подключени
 //                    .childOption(ChannelOption.SO_TIMEOUT,128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true) // проверить а соеденение активно ли?
-                    .childHandler(new NetServerChannelInitializer(sslCtx, netCharset, decodetCommands ));
+                    .childHandler(new NetServerChannelInitializer(sslCtx, netCharset, decodetCommands));
 
-                //поиск утечьки буфера
-                //ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.PARANOID);
-                //ERROR io.netty.util.ResourceLeakDetector - LEAK:
-                //ByteBuf.release() was not called before it's garbage-collected. Enable advanced leak reporting to find out where the leak occurred.
-                //To enable advanced leak reporting, specify the JVM option '-Dio.netty.leakDetection.level=advanced' or call ResourceLeakDetector.setLevel()
-                //See http://netty.io/wiki/reference-counted-objects.html for more information.
+            //поиск утечьки буфера
+            //ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.PARANOID);
+            //ERROR io.netty.util.ResourceLeakDetector - LEAK:
+            //ByteBuf.release() was not called before it's garbage-collected. Enable advanced leak reporting to find out where the leak occurred.
+            //To enable advanced leak reporting, specify the JVM option '-Dio.netty.leakDetection.level=advanced' or call ResourceLeakDetector.setLevel()
+            //See http://netty.io/wiki/reference-counted-objects.html for more information.
 
 
             b.bind(PORT).sync().channel().closeFuture().sync();

@@ -20,7 +20,22 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     private static final Logger logger = LoggerFactory.getLogger(BateToCommandDecoder.class);
 
     private final Charset charset;
+    //максимальная длина одного сообщения
+    private final int maxLength = 32384;
+    // прерывание сразу давать или когда все скипнули, false - потом
+    private final boolean failFast = false;
+    // не добовлять разделитель в выходную строку
+    private final boolean stripDelimiter = false;
     private ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands;
+    // пропускаем байты
+    private boolean discarding = false;
+    // количество пропускаемых
+    private int discardedBytes = 0;
+
+
+    //-------------------------------------------------------------------
+    // from class LineBasedFrameDecoder
+    //-------------------------------------------------------------------
 
     public BateToCommandDecoder(Charset charset, ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands) {
         if (charset == null) {
@@ -29,6 +44,22 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         this.charset = charset;
         this.decodetCommands = decodetCommands;
     }
+
+    /**
+     * Returns the index in the buffer of the end of line found.
+     * Returns -1 if no end of line was found in the buffer.
+     */
+    private static int findEndOfLine(final ByteBuf buffer) {
+        int i = buffer.forEachByte(ByteProcessor.FIND_LF);
+        if (i > 0 && buffer.getByte(i - 1) == '\r') {
+            i--;
+        }
+        //logger.info("do buffer.refCnt() = {}", buffer.refCnt());
+//        buffer.release();
+//        logger.info("release buffer.refCnt() = {}", buffer.refCnt());
+        return i;
+    }
+
     //todo течет буфер на большой нагрузке
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
@@ -50,11 +81,10 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
             //todo наверное в цикле запрашивать строки из потока
 
             //проверить есть ли в decodetCommands  конкретный ctx
-            if(!decodetCommands.containsKey(ctx)){
+            if (!decodetCommands.containsKey(ctx)) {
                 // добавить новую
                 getNewCommand(ctx, msgString);
-            }
-            else{
+            } else {
                 CommandStateDescriptor csd = decodetCommands.get(ctx);
                 switch (csd.state) {
                     case Empty:
@@ -63,14 +93,12 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                         break;
                     case FirstResponseResive:
                         //- первый ответ отправлен, пеоейти к четнию количество строк, обновить decodetCommands
-                        try{
+                        try {
                             int rowCount = Integer.parseInt(msgString);
                             csd.rowCount = rowCount;
                             csd.state = CommandStateDescriptor.CommandState.CommandlDataCountReaded;
                             decodetCommands.replace(ctx, csd);
-                        }
-                        catch (Exception e)
-                        {
+                        } catch (Exception e) {
                             //todo что то делать, ошибка распарсевания
                         }
                         break;
@@ -78,13 +106,12 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                         //- читаем строки, если прочитали все обновить decodetCommands
 
                         csd.commandData += msgString;
-                        csd.currentRowCount ++;
-                        if(csd.currentRowCount >= csd.rowCount){
+                        csd.currentRowCount++;
+                        if (csd.currentRowCount >= csd.rowCount) {
                             csd.state = CommandStateDescriptor.CommandState.CommandlDataReaded;
                             decodetCommands.replace(ctx, csd);
                             // и перейти к следущему пункту
-                        }
-                        else{
+                        } else {
                             // не все прочитали
                             decodetCommands.replace(ctx, csd);
                             break;
@@ -92,7 +119,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                     case CommandlDataReaded:
                         //перейти к выполнению команды
                         cmd = Parser.tryParseCommand(csd.commandName, csd.commandData);
-                        if(cmd != null){
+                        if (cmd != null) {
                             csd.state = CommandStateDescriptor.CommandState.CommandExec;
                             decodetCommands.replace(ctx, csd);
                         }
@@ -120,12 +147,12 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         if (cammandName != null) {
             //значит добавить, отправить первый ответ
             String firstResponse = Parser.getFirstResponse(cammandName);
-            if(firstResponse != "" ){
+            if (firstResponse != "") {
                 CommandStateDescriptor csd = new CommandStateDescriptor();
                 csd.state = CommandStateDescriptor.CommandState.FirstResponseResive;
                 csd.commandName = cammandName;
                 decodetCommands.putIfAbsent(ctx, csd);
-                ctx.write(firstResponse );
+                ctx.write(firstResponse);
             }
         }
     }
@@ -161,24 +188,9 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         return cmd;
     }
 
-
-    //-------------------------------------------------------------------
-    // from class LineBasedFrameDecoder
-    //-------------------------------------------------------------------
-
-    //максимальная длина одного сообщения
-    private final int maxLength = 32384;
-    // прерывание сразу давать или когда все скипнули, false - потом
-    private final boolean failFast = false;
-    // не добовлять разделитель в выходную строку
-    private final boolean stripDelimiter = false;
-    // пропускаем байты
-    private boolean discarding = false;
-    // количество пропускаемых
-    private int discardedBytes = 0;
-
     /**
      * читает одну строку
+     *
      * @param ctx
      * @param buffer
      * @return
@@ -246,21 +258,6 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         ctx.fireExceptionCaught(
                 new TooLongFrameException(
                         "frame length (" + length + ") exceeds the allowed maximum (" + maxLength + ")"));
-    }
-
-    /**
-     * Returns the index in the buffer of the end of line found.
-     * Returns -1 if no end of line was found in the buffer.
-     */
-    private static int findEndOfLine(final ByteBuf buffer) {
-        int i = buffer.forEachByte(ByteProcessor.FIND_LF);
-        if (i > 0 && buffer.getByte(i - 1) == '\r') {
-            i--;
-        }
-        //logger.info("do buffer.refCnt() = {}", buffer.refCnt());
-//        buffer.release();
-//        logger.info("release buffer.refCnt() = {}", buffer.refCnt());
-        return i;
     }
 
 }
