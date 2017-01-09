@@ -43,8 +43,8 @@ public class CommandToBateEncoder extends MessageToByteEncoder<Object > {
         else if(msg instanceof AbstractCommand){
             AbstractCommand сommand = (AbstractCommand) msg;
 
-            if(сommand instanceof CommandUpdatePrg){ // отправить обновления
-
+            if(сommand instanceof CommandUpdatePrg){
+                //todo отправить обновления
             }
             else{ // остальные команды
 
@@ -56,11 +56,11 @@ public class CommandToBateEncoder extends MessageToByteEncoder<Object > {
                         out.writeBytes(  ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(str + "\n\r"), charset));
                     }
                 }
-
             }
         }
         else{
-
+            // что тут делать то
+            logger.info("Неопознаный тип отправляемого сообщения");
         }
     }
 }

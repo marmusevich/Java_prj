@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="новый NET">
+    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="*&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/BateToCommandDecoder.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/BateToCommandDecoder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/CommandHandler.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/CommandHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/NetServer.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/NetServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/NetServerChannelInitializer.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/NetServerChannelInitializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/ErrorFactory.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/ErrorFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/net/CommandStateDescriptor.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/net/CommandStateDescriptor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/net/CommandToBateEncoder.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/net/CommandToBateEncoder.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -105,8 +103,8 @@
       <file leaf-file-name="CommandToBateEncoder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/net/CommandToBateEncoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="52" column="63" lean-forward="false" selection-start-line="52" selection-start-column="63" selection-end-line="52" selection-end-column="63" />
+            <state relative-caret-position="271">
+              <caret line="45" column="52" lean-forward="true" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1200,7 +1198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483980460039</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="*&#10;">
+      <created>1483981229030</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1483981229030</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1300,7 +1305,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
-    <MESSAGE value="CommandGetCounter +  CommandGetData" />
     <MESSAGE value="CommandGetKomisiya" />
     <MESSAGE value="CommandGetOplata" />
     <MESSAGE value="CommandGetOplatals" />
@@ -1314,7 +1318,6 @@
     <MESSAGE value="Command   Set  ***" />
     <MESSAGE value="CommandSetCounter" />
     <MESSAGE value="CommandSetCurrence" />
-    <MESSAGE value="&#10;" />
     <MESSAGE value="CommandSetData" />
     <MESSAGE value="CommandSetErrorMsg" />
     <MESSAGE value="CommandSetStorno" />
@@ -1325,7 +1328,9 @@
     <MESSAGE value="перед изменением сетевой части1" />
     <MESSAGE value="новый NET первый" />
     <MESSAGE value="новый NET" />
-    <option name="LAST_COMMIT_MESSAGE" value="новый NET" />
+    <MESSAGE value="&#10;" />
+    <MESSAGE value="*&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="*&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1728,8 +1733,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/net/CommandToBateEncoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="52" column="63" lean-forward="false" selection-start-line="52" selection-start-column="63" selection-end-line="52" selection-end-column="63" />
+        <state relative-caret-position="271">
+          <caret line="45" column="52" lean-forward="true" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -12,6 +12,7 @@ import protocol.commands.Parser;
 
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 //@ChannelHandler.Sharable
@@ -19,12 +20,14 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     private static final Logger logger = LoggerFactory.getLogger(BateToCommandDecoder.class);
 
     private final Charset charset;
+    private ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands;
 
-    public BateToCommandDecoder(Charset charset) {
+    public BateToCommandDecoder(Charset charset, ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands) {
         if (charset == null) {
             throw new NullPointerException("charset");
         }
         this.charset = charset;
+        this.decodetCommands = decodetCommands;
     }
     //todo течет буфер на большой нагрузке
     @Override
@@ -33,13 +36,101 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         if (decoded != null) {
             out.add(decoded);
             // сбросить прочитанное
-            in.discardReadBytes();
+            //in.discardReadBytes();
             //logger.info("do in.refCnt() = {}", in.refCnt());
             //in.release(in.refCnt());
         }
     }
 
     private Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
+        AbstractCommand cmd = null;
+        try {
+            String msgString = lineBasedDecoder_decode(ctx, buffer).toString(charset);
+
+            //todo наверное в цикле запрашивать строки из потока
+
+            //проверить есть ли в decodetCommands  конкретный ctx
+            if(!decodetCommands.containsKey(ctx)){
+                // добавить новую
+                getNewCommand(ctx, msgString);
+            }
+            else{
+                CommandStateDescriptor csd = decodetCommands.get(ctx);
+                switch (csd.state) {
+                    case Empty:
+                        // удалить из decodetCommands
+                        decodetCommands.remove(ctx);
+                        break;
+                    case FirstResponseResive:
+                        //- первый ответ отправлен, пеоейти к четнию количество строк, обновить decodetCommands
+                        try{
+                            int rowCount = Integer.parseInt(msgString);
+                            csd.rowCount = rowCount;
+                            csd.state = CommandStateDescriptor.CommandState.CommandlDataCountReaded;
+                            decodetCommands.replace(ctx, csd);
+                        }
+                        catch (Exception e)
+                        {
+                            //todo что то делать, ошибка распарсевания
+                        }
+                        break;
+                    case CommandlDataCountReaded:
+                        //- читаем строки, если прочитали все обновить decodetCommands
+
+                        csd.commandData += msgString;
+                        csd.currentRowCount ++;
+                        if(csd.currentRowCount >= csd.rowCount){
+                            csd.state = CommandStateDescriptor.CommandState.CommandlDataReaded;
+                            decodetCommands.replace(ctx, csd);
+                            // и перейти к следущему пункту
+                        }
+                        else{
+                            // не все прочитали
+                            decodetCommands.replace(ctx, csd);
+                            break;
+                        }
+                    case CommandlDataReaded:
+                        //перейти к выполнению команды
+                        cmd = Parser.tryParseCommand(csd.commandName, csd.commandData);
+                        if(cmd != null){
+                            csd.state = CommandStateDescriptor.CommandState.CommandExec;
+                            decodetCommands.replace(ctx, csd);
+                        }
+                        break;
+                    case CommandExec:
+                        // здесь этого не должно быть, скорей всего это новая команда
+                        // удалить из decodetCommands
+                        decodetCommands.remove(ctx);
+                        // добавить новую
+                        getNewCommand(ctx, msgString);
+                        break;
+                }
+            }
+        } finally {
+            //logger.info("do msg.refCnt() = {}", msg.refCnt());
+            //msg.release();
+            //logger.info("release msg.refCnt() = {}", msg.refCnt());
+        }
+        return cmd;
+    }
+
+    private void getNewCommand(ChannelHandlerContext ctx, String msgString) {
+        //ели нет,( получить имя команды
+        String cammandName = Parser.getCammandName(msgString);
+        if (cammandName != null) {
+            //значит добавить, отправить первый ответ
+            String firstResponse = Parser.getFirstResponse(cammandName);
+            if(firstResponse != "" ){
+                CommandStateDescriptor csd = new CommandStateDescriptor();
+                csd.state = CommandStateDescriptor.CommandState.FirstResponseResive;
+                csd.commandName = cammandName;
+                decodetCommands.putIfAbsent(ctx, csd);
+                ctx.write(firstResponse );
+            }
+        }
+    }
+
+    private Object decode_old(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
         AbstractCommand cmd = null;
         ByteBuf tmp = buffer.slice();
         ByteBuf msg = lineBasedDecoder_decode(ctx, tmp);
@@ -86,6 +177,13 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     // количество пропускаемых
     private int discardedBytes = 0;
 
+    /**
+     * читает одну строку
+     * @param ctx
+     * @param buffer
+     * @return
+     * @throws Exception
+     */
     protected ByteBuf lineBasedDecoder_decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
         final int eol = findEndOfLine(buffer);
         if (!discarding) {
