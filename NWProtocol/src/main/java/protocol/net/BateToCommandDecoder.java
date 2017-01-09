@@ -36,14 +36,75 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         if (decoded != null) {
             out.add(decoded);
             // сбросить прочитанное
-            in.discardReadBytes();
+            //in.discardReadBytes();
             //logger.info("do in.refCnt() = {}", in.refCnt());
             //in.release(in.refCnt());
-
         }
     }
 
     private Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
+        AbstractCommand cmd = null;
+        try {
+            String msgString = lineBasedDecoder_decode(ctx, buffer).toString(charset);
+
+            //проверить есть ли в decodetCommands  конкретный ctx
+            if(!decodetCommands.containsKey(ctx)){
+                // добавить новую
+                getNewCommand(ctx, msgString);
+            }
+            else{
+                CommandStateDescriptor csd = decodetCommands.get(ctx);
+                switch (csd.state) {
+                    case Empty:
+                        // удалить из decodetCommands
+                        break;
+                    case FirstResponseResive:
+                        //- первый ответ отправлен, пеоейти к четнию количество строк, обновить decodetCommands
+
+                        break;
+                    case CommandlDataCountReaded:
+                        //- читаем строки, если прочитали все обновить decodetCommands
+
+                        break;
+                    case CommandlDataReaded:
+                        //перейти к выполнению команды
+                        cmd = Parser.tryParseCommand(csd.CommandName, csd.CommandData);
+                        break;
+                    case CommandExec:
+                        // здесь этого не должно быть, скорей всего это новая команда
+                        // удалить из decodetCommands
+                        // добавить новую
+                        //getNewCommand(ctx, msgString);
+
+                        break;
+                }
+
+            }
+        } finally {
+            //logger.info("do msg.refCnt() = {}", msg.refCnt());
+            //msg.release();
+            //logger.info("release msg.refCnt() = {}", msg.refCnt());
+        }
+        return cmd;
+    }
+
+    private void getNewCommand(ChannelHandlerContext ctx, String msgString) {
+        //ели нет,( получить имя команды
+        String cammandName = Parser.getCammandName(msgString);
+        if (cammandName != null) {
+            //значит добавить, отправить первый ответ
+            String firstResponse = Parser.getFirstResponse(cammandName);
+            if(firstResponse != "" ){
+                CommandStateDescriptor csd = new CommandStateDescriptor();
+                csd.state = CommandStateDescriptor.CommandState.FirstResponseResive;
+                csd.CommandName = cammandName;
+                decodetCommands.putIfAbsent(ctx, csd);
+                ctx.write(firstResponse );
+            }
+        }
+    }
+
+    private Object decode_old(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
         AbstractCommand cmd = null;
         ByteBuf tmp = buffer.slice();
         ByteBuf msg = lineBasedDecoder_decode(ctx, tmp);
@@ -90,6 +151,13 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     // количество пропускаемых
     private int discardedBytes = 0;
 
+    /**
+     * читает одну строку
+     * @param ctx
+     * @param buffer
+     * @return
+     * @throws Exception
+     */
     protected ByteBuf lineBasedDecoder_decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
         final int eol = findEndOfLine(buffer);
         if (!discarding) {

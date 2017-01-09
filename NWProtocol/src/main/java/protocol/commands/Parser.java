@@ -159,8 +159,6 @@ public class Parser {
             case "UPDATEPRG": //
                 ret = CommandUpdatePrg.firstResponse;
                 break;
-
-
             default: // неопознаная командв
                 ret = UnknownCommand.firstResponse;
         }
