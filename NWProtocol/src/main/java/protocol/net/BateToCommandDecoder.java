@@ -47,6 +47,9 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         try {
             String msgString = lineBasedDecoder_decode(ctx, buffer).toString(charset);
 
+
+            //todo наверное в цикле запрашивать строки из потока
+
             //проверить есть ли в decodetCommands  конкретный ctx
             if(!decodetCommands.containsKey(ctx)){
                 // добавить новую
@@ -57,28 +60,52 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                 switch (csd.state) {
                     case Empty:
                         // удалить из decodetCommands
+                        decodetCommands.remove(ctx);
                         break;
                     case FirstResponseResive:
                         //- первый ответ отправлен, пеоейти к четнию количество строк, обновить decodetCommands
-
+                        try{
+                            int rowCount = Integer.parseInt(msgString);
+                            csd.rowCount = rowCount;
+                            csd.state = CommandStateDescriptor.CommandState.CommandlDataCountReaded;
+                            decodetCommands.replace(ctx, csd);
+                        }
+                        catch (Exception e)
+                        {
+                            //todo что то делать, ошибка распарсевания
+                        }
                         break;
                     case CommandlDataCountReaded:
                         //- читаем строки, если прочитали все обновить decodetCommands
 
-                        break;
+                        csd.CommandData += msgString;
+                        csd.currentRowCount ++;
+                        if(csd.currentRowCount >= csd.rowCount){
+                            csd.state = CommandStateDescriptor.CommandState.CommandlDataReaded;
+                            decodetCommands.replace(ctx, csd);
+                            // и перейти к следущему пункту
+                        }
+                        else{
+                            // не все прочитали
+                            decodetCommands.replace(ctx, csd);
+                            break;
+                        }
                     case CommandlDataReaded:
                         //перейти к выполнению команды
                         cmd = Parser.tryParseCommand(csd.CommandName, csd.CommandData);
+                        if(cmd != null){
+                            csd.state = CommandStateDescriptor.CommandState.CommandExec;
+                            decodetCommands.replace(ctx, csd);
+                        }
                         break;
                     case CommandExec:
                         // здесь этого не должно быть, скорей всего это новая команда
                         // удалить из decodetCommands
+                        decodetCommands.remove(ctx);
                         // добавить новую
-                        //getNewCommand(ctx, msgString);
-
+                        getNewCommand(ctx, msgString);
                         break;
                 }
-
             }
         } finally {
             //logger.info("do msg.refCnt() = {}", msg.refCnt());
