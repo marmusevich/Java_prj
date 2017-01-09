@@ -12,6 +12,7 @@ import protocol.commands.Parser;
 
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 //@ChannelHandler.Sharable
@@ -19,12 +20,14 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     private static final Logger logger = LoggerFactory.getLogger(BateToCommandDecoder.class);
 
     private final Charset charset;
+    private ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands;
 
-    public BateToCommandDecoder(Charset charset) {
+    public BateToCommandDecoder(Charset charset, ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands) {
         if (charset == null) {
             throw new NullPointerException("charset");
         }
         this.charset = charset;
+        this.decodetCommands = decodetCommands;
     }
     //todo течет буфер на большой нагрузке
     @Override
