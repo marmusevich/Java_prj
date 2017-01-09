@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -94,20 +96,50 @@ public class CommandStopSmen extends AbstractCommand {
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  ";
-
+        String SQLText = "SELECT ID FROM INKASATOR WHERE KEY_ID= ? ";
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setString(1, userAuthenticationData.name);
-        int countChangeString = ps.executeUpdate();
-        if(countChangeString != -1) { // ok
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        int inkasator  = rs.getInt("ID");
+        rs.close();
+        ps.close();
 
-        }
-        else { //error
-            result.add("500 Error insert record");
-        }
+        SQLText = "SELECT ID, DATA_K, DATA_N FROM SMENA WHERE ID_TERMINAL= ? and DATA_K is null";
+        ps = connectionToTerminalDB.prepareStatement(SQLText);
+        int id_term = GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB);
+        ps.setInt(1, id_term);
+        rs = ps.executeQuery();
+        rs.next();
+        int smena = rs.getInt("ID");
+        java.util.Date data_k = rs.getDate("DATA_K");
+        java.util.Date data_n = rs.getDate("DATA_N");
+        rs.close();
+        ps.close();
 
-        //todo как возращать результат для сетерных команд
+        SQLText = "SELECT SUM(SUMMA) FROM OPLATA WHERE KOD_SMEN=?";
+        ps = connectionToTerminalDB.prepareStatement(SQLText);
+        ps.setInt(1, smena);
+        rs = ps.executeQuery();
+        rs.next();
+        float summa = rs.getFloat("SUM");
+        rs.close();
+        ps.close();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        result.add("SUMMA=" + summa);
+        result.add("SMENA=" + smena);
+        result.add("DATA_K=" + dateFormat.format( data_k ) );
+        result.add("DATA_N=" + dateFormat.format( data_n ) );
+
+        SQLText = "select nominal, count(nominal) kolvo from currency  where  currency.smena=? group by nominal ";
+        ps = connectionToTerminalDB.prepareStatement(SQLText);
+        ps.setInt(1, smena);
+
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            result.add(rs.getString("nominal") + "=" + rs.getString("kolvo"));
+        }
 
 ////Закрытие смены
 //        function TDM1.CloseSmen(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
