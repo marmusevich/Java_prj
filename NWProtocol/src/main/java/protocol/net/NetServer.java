@@ -78,7 +78,6 @@ public final class NetServer {
                 //See http://netty.io/wiki/reference-counted-objects.html for more information.
 
 
-
             b.bind(PORT).sync().channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();

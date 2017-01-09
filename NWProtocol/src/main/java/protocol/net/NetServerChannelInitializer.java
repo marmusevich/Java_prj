@@ -4,8 +4,6 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.string.StringEncoder;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +38,7 @@ class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new CommandToStringEncoder());
         pipeline.addLast(new CommandHandler());
     }
+
 
     @Override
     public void finalize() {

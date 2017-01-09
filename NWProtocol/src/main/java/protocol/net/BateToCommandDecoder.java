@@ -36,6 +36,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
             in.discardReadBytes();
             //logger.info("do in.refCnt() = {}", in.refCnt());
             //in.release(in.refCnt());
+
         }
     }
 

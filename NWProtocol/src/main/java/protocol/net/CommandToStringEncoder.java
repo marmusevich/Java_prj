@@ -18,6 +18,7 @@ public class CommandToStringEncoder extends MessageToMessageEncoder<AbstractComm
             for (String str : res) {
                 ctx.write(str + "\n\r");
             }
+
         }
     }
 }
