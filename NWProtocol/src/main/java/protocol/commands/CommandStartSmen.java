@@ -3,9 +3,7 @@ package protocol.commands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -65,20 +63,48 @@ public class CommandStartSmen extends AbstractCommand {
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  ";
-
+        String SQLText = "select count(id) COUNTS from smena where id_terminal=? and data_k is null ";
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
-        int countChangeString = ps.executeUpdate();
-        if(countChangeString != -1) { // ok
+        int id_term = GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB);
+        ps.setInt(1, id_term);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        int counts = rs.getInt("COUNTS");
+        rs.close();
+        ps.close();
 
-        }
-        else { //error
-            result.add("500 Error insert record");
+
+        if (counts == 0){
+            SQLText = "SELECT * FROM TERMINAL WHERE terminal_ID=? and BANK_ID=(SELECT BANK FROM USERS WHERE LOGIN=?)";
+            ps = connectionToTerminalDB.prepareStatement(SQLText);
+            ps.setString(1, userAuthenticationData.name);
+            ps.setString(2, userAuthenticationData.pass);
+            rs = ps.executeQuery();
+            rs.last();
+            int recCount = rs.getRow();
+            rs.beforeFirst();
+            rs.next();
+            int smena = rs.getInt("ID");
+            rs.close();
+            ps.close();
+
+            if(recCount > 0){
+                SQLText =" INSERT INTO SMENA (DATA_N, ID_TERMINAL) VALUES (?, ?) ";
+                ps = connectionToTerminalDB.prepareStatement(SQLText);
+                ps.setDate(1, (Date) new java.util.Date());
+                ps.setInt(2, smena);
+                int countChangeString = ps.executeUpdate();
+                if(countChangeString != -1) { // ok
+
+                }
+                else { //error
+                    result.add("500 Error insert record");
+                }
+
+                //todo как возращать результат для сетерных команд
+            }
         }
 
-        //todo как возращать результат для сетерных команд
 
 
         ////Открытие смены
