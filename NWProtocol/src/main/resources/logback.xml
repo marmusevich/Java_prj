@@ -23,7 +23,8 @@
     <!-- Логгеры -->
     <!-- Корневой логгер -->
     <!--<root level="info">-->
-    <root level="trace">
+    <!--<root level="trace">-->
+    <root level="DEBUG">
         <appender-ref ref="sout" />
     </root>
     <root level="error">

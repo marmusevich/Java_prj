@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by asus on 04.12.2016.
+ * настройка обработчиков данных
  */
 class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
 
@@ -36,7 +36,7 @@ class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
         if (sslCtx != null) {
             pipeline.addLast(sslCtx.newHandler(ch.alloc()));
         }
-        pipeline.addLast(new LoggingHandler(LogLevel.INFO));
+        pipeline.addLast(new LoggingHandler(LogLevel.DEBUG));
 
         pipeline.addLast(new BateToCommandDecoder(netCharset, decodetCommands));
         pipeline.addLast(new CommandToBateEncoder(netCharset));
