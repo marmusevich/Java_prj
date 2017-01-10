@@ -123,8 +123,6 @@ public abstract class AbstractCommand {
     }
 
 
-
-
 //todo  передавать ошибки, при соеденении и т.п.
 //        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
 //        GET_USLUGA.Free;
@@ -136,6 +134,7 @@ public abstract class AbstractCommand {
 //        AContext.Connection.Socket.WriteLn(Results);
 //        AContext.Connection.Socket.Close;
 //        end
+
     /**
      * Выполнить команду
      */

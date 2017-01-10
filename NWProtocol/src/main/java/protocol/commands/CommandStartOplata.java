@@ -91,7 +91,6 @@ public class CommandStartOplata extends AbstractCommand {
         ps.close();
 
 
-
         //////////////Начало оплаты генерирование номера ID_CURRENCE
 //        function TDM1.StartOplata(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;
 //        var

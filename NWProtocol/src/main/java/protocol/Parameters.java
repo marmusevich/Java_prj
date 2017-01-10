@@ -3,7 +3,7 @@ package protocol;
 import java.nio.charset.Charset;
 
 /**
- * Created by asus on 04.12.2016.
+ * параметры
  */
 public class Parameters {
 

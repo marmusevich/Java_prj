@@ -78,11 +78,11 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     private Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
         AbstractCommand cmd = null;
         try {
-            logger.info("buffer = ("+buffer.toString(charset)+")" );
+            logger.info("buffer = (" + buffer.toString(charset) + ")");
 
             String msgString = lineBasedDecoder_decode(ctx, buffer).toString(charset);
 
-            logger.info("msgString = ("+msgString+")" );
+            logger.info("msgString = (" + msgString + ")");
 
 
             //todo наверное в цикле запрашивать строки из потока
@@ -101,8 +101,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                     case FirstResponseResive:
                         //- первый ответ отправлен, пеоейти к четнию количество строк, обновить decodetCommands
                         try {
-                            int rowCount = Integer.parseInt(msgString.replace("\n", "").replace("\r", ""));
-                            csd.rowCount = rowCount;
+                            csd.rowCount = Integer.parseInt(msgString.replace("\n", "").replace("\r", ""));
                             csd.state = CommandStateDescriptor.CommandState.CommandlDataCountReaded;
                             decodetCommands.replace(ctx, csd);
                         } catch (Exception e) {

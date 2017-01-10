@@ -157,7 +157,7 @@ public class CommandSetData extends AbstractCommand {
             ret.per_start = _per_start;
             ret.per_end = _per_end;
             ret.ls = Integer.parseInt(_ls);
-            String ls_poluch = _ls_poluch;
+            ret.ls_poluch = _ls_poluch;
             ret.kod_org_dop = Integer.parseInt(_kod_org_dop);
             ret.komisiya = Float.parseFloat(_komisiya);
             ret.komisiya_bank = Float.parseFloat(_komisiya_bank);

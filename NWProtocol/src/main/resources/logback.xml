@@ -25,15 +25,15 @@
     <!--<root level="info">-->
     <!--<root level="trace">-->
     <root level="DEBUG">
-        <appender-ref ref="sout" />
+        <appender-ref ref="sout"/>
     </root>
     <root level="error">
-        <appender-ref ref="file" />
+        <appender-ref ref="file"/>
     </root>
 
 
     <!-- Логгер нашего класса  -->
     <!--<logger name="protocol.Server" level="trace" >-->
-        <!--<appender-ref ref="sout" />-->
+    <!--<appender-ref ref="sout" />-->
     <!--</logger>-->
 </configuration>

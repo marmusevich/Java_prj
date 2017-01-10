@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 /**
- * Created by asus on 09.01.2017.
+ * преобразует результат команд в байты для отправки
  */
 public class CommandToBateEncoder extends MessageToByteEncoder<Object> {
 

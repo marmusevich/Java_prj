@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 
 /**
- * Created by asus on 20.12.2016.
+ * стандартные ошибки
  */
 public class ErrorFactory {
     private static final Logger logger = LoggerFactory.getLogger(ErrorFactory.class);

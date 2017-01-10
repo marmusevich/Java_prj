@@ -86,7 +86,6 @@
         </dependency>
 
 
-
         <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
         <dependency>
             <groupId>io.netty</groupId>
@@ -113,14 +112,14 @@
     </dependencies>
 
     <!--<repositories>-->
-        <!--<repository>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-            <!--<id>bonecp-repo</id>-->
-            <!--<name>BoneCP Repository</name>-->
-            <!--<url>http://jolbox.com/bonecp/downloads/maven</url>-->
-        <!--</repository>-->
+    <!--<repository>-->
+    <!--<releases>-->
+    <!--<enabled>true</enabled>-->
+    <!--</releases>-->
+    <!--<id>bonecp-repo</id>-->
+    <!--<name>BoneCP Repository</name>-->
+    <!--<url>http://jolbox.com/bonecp/downloads/maven</url>-->
+    <!--</repository>-->
     <!--</repositories>-->
 
 </project>

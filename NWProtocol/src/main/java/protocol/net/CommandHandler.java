@@ -10,7 +10,7 @@ import protocol.commands.AbstractCommand;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by asus on 04.12.2016.
+ * получатьль команд, ставит на выполнение
  */
 class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
     private static final Logger logger = LoggerFactory.getLogger(CommandHandler.class);
@@ -23,10 +23,8 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
     }
 
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, AbstractCommand msg) throws Exception {
-        //AbstractCommand сommand = (AbstractCommand) msg;
-        AbstractCommand сommand = msg;
-        if(сommand != null) {
+    public void channelRead0(ChannelHandlerContext ctx, AbstractCommand сommand) throws Exception {
+        if (сommand != null) {
             сommand.setChannelHandlerContext(ctx);
             Server.getCommandServer().addCommandToProcess(сommand);
 

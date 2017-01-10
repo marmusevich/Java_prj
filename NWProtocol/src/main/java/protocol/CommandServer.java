@@ -10,7 +10,7 @@ import java.util.concurrent.*;
 
 
 /**
- * Created by lexa on 05.12.2016.
+ * сервер исполнения команд
  */
 public class CommandServer {
 

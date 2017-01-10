@@ -47,14 +47,13 @@ public final class NetServer {
 
         if (workerThreads == 0) {
             workerGroup = new NioEventLoopGroup();
+            //todo настройки для initialCapacity, loadFactor
             decodetCommands = new ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor>(128, 32);
         } else {
             workerGroup = new NioEventLoopGroup(workerThreads);
+            //todo настройки для initialCapacity, loadFactor
             decodetCommands = new ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor>(128, 32, workerThreads);
-
         }
-
-
     }
 
     public void ConfigureSSL(boolean SSL) throws Exception {
@@ -72,9 +71,9 @@ public final class NetServer {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .handler(new LoggingHandler(LogLevel.DEBUG))
                     //.option(ChannelOption.SO_BACKLOG,128) // количество одновременных подключени
-//                    .childOption(ChannelOption.SO_TIMEOUT,128)
+                    //.childOption(ChannelOption.SO_TIMEOUT,128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true) // проверить а соеденение активно ли?
                     .childHandler(new NetServerChannelInitializer(sslCtx, netCharset, decodetCommands));
 
