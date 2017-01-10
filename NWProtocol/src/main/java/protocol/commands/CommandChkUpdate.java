@@ -85,6 +85,7 @@ public class CommandChkUpdate extends AbstractCommand {
 //        GET_USLUGA.Add('UPDATE=true') else GET_USLUGA.Add('UPDATE=false');
 //        sqlFree.Next;
 
+            ps.close();
 
         }
     }

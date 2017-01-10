@@ -167,6 +167,7 @@ public class CommandGetOplatals extends AbstractCommand {
             }
             result.add(tmp);
         }
+        ps.close();
 
 
 ////Получение данных оплаты по LS_POLUCH лицевому счету получателя

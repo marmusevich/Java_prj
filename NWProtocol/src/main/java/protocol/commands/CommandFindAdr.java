@@ -145,6 +145,7 @@ public class CommandFindAdr extends AbstractCommand {
                             rs.getString("R_SHET"));
         }
 
+        ps.close();
 
         ////Поиск по адрему
 //        function TDM1.GetFindAdr(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;

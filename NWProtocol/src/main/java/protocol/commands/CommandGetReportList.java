@@ -108,6 +108,7 @@ public class CommandGetReportList extends AbstractCommand {
             }
             result.add(tmp);
         }
+        ps.close();
 
 
         ////Получение списка отчетов закрепленных на кассе

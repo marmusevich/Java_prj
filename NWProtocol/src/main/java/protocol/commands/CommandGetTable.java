@@ -200,6 +200,7 @@ public class CommandGetTable extends AbstractCommand {
             }
             result.add(tmp);
         }
+        ps.close();
 
 
         /////Формирование вывода запроса улицы

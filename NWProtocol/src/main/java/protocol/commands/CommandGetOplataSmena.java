@@ -114,6 +114,7 @@ public class CommandGetOplataSmena extends AbstractCommand {
             }
             result.add(tmp);
         }
+        ps.close();
 
 
         ////Получение данных оплаты по KOD_SMEN

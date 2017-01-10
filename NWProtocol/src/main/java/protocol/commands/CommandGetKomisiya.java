@@ -157,6 +157,7 @@ public class CommandGetKomisiya extends AbstractCommand {
             result.add("OUR_SUM_OUTER=" + rs.getString("OUR_SUM_OUTER"));
             result.add("OUT_SUM_OUTER=" + rs.getString("OUT_SUM_OUTER"));
         }
+        ps.close();
 
 
 ////Возвращает список расчета комиссии

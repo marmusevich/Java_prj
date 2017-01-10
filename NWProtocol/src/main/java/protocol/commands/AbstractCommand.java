@@ -81,17 +81,8 @@ public abstract class AbstractCommand {
         while (rs.next()) {
             terminalID = rs.getInt("ID");
         }
+        ps.close();
 
-        //rs.close();
-        //ps.close();
-
-
-        //connectionToTerminalDB.setReadOnly();
-
-
-        connectionToTerminalDB.close();
-
-        //return true;
         return terminalID;
     }
 
@@ -116,6 +107,7 @@ public abstract class AbstractCommand {
         while (rs.next()) {
             terminalID = rs.getInt("ID");
         }
+        ps.close();
 
         return terminalID;
 
@@ -167,7 +159,6 @@ public abstract class AbstractCommand {
             if (connectionToTerminalDB != null)
                 try {
                     connectionToTerminalDB.close(); // вернуть соеденение в пул
-
                 } catch (SQLException e) {
                     //TODO SQLException
                     logger.error("connection.close()", e);

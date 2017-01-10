@@ -83,6 +83,7 @@ public class CommandGetCounter extends AbstractCommand {
                 }
             }
         }
+        ps.close();
 
 
         ////Получение данных счетчиков по PAY_ID

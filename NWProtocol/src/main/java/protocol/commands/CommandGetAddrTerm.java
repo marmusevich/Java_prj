@@ -67,6 +67,7 @@ public class CommandGetAddrTerm extends AbstractCommand {
             while (rs.next()) {
                 result.add("ADDRES=" + rs.getString("ADDRES"));
             }
+            ps.close();
         }
 
 

@@ -77,6 +77,7 @@ public class CommandGetAddres extends AbstractCommand {
                                 rs.getString("KORP").trim() + "|" +
                                 rs.getString("CYTI").trim()
                 );
+                ps.close();
             }
         } else if (params == "") {
             String SQLText = " SELECT DISTINCT(KV) FROM SHETA ";
@@ -87,6 +88,7 @@ public class CommandGetAddres extends AbstractCommand {
                         rs.getString("KV").trim() + "|"
                 );
             }
+            ps.close();
         }
 
 ////Возвращает список уникальных значений домов, корпусов или квартир

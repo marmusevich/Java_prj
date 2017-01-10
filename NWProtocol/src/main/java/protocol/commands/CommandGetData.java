@@ -126,6 +126,7 @@ public class CommandGetData extends AbstractCommand {
                             rs.getString("BANK") + "|" +
                             rs.getString("R_SHET"));
         }
+        ps.close();
 
         ////Получение данных по л/с поставщика услуг
 //        function TDM1.GetData(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string;DB_WORK:string):string;

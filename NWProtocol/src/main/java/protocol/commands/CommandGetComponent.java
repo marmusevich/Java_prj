@@ -70,6 +70,7 @@ public class CommandGetComponent extends AbstractCommand {
             result.add(rs.getString("ID_COMPONENT"));
 
         }
+        ps.close();
 
 
         ////Возвращает перечень разрешенных компонентов программы

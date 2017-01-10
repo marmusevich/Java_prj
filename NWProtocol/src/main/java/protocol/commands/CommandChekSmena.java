@@ -109,7 +109,7 @@ public class CommandChekSmena extends AbstractCommand {
             result.add("RS_DEBET=" + rs.getString("RS_DEBET"));
             result.add("RS_CREDIT=" + rs.getString("RS_CREDIT"));
         }
-
+        ps.close();
     }
 }
 

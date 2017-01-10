@@ -139,6 +139,7 @@ public class CommandStopSmen extends AbstractCommand {
         while (rs.next()) {
             result.add(rs.getString("nominal") + "=" + rs.getString("kolvo"));
         }
+        ps.close();
 
 ////Закрытие смены
 //        function TDM1.CloseSmen(DATA: TStringList;IPer:string;USER:string;PASSWD:string;DB:string):string;

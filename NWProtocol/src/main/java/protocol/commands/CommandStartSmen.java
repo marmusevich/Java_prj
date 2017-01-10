@@ -102,6 +102,7 @@ public class CommandStartSmen extends AbstractCommand {
                 //todo как возращать результат для сетерных команд
             }
         }
+        ps.close();
 
 
         ////Открытие смены

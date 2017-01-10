@@ -125,6 +125,7 @@ public class CommandGetSostav extends AbstractCommand {
                             rs.getString("OKPO")
             );
         }
+        ps.close();
 
 
 ////Возвращает список состава услуг

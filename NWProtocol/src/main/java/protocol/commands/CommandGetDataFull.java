@@ -122,6 +122,7 @@ public class CommandGetDataFull extends AbstractCommand {
                             rs.getString("BANK") + "|" +
                             rs.getString("R_SHET"));
         }
+        ps.close();
 
 
 ////Получение всех возможных данных по л/с поставщика и единому л/с

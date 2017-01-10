@@ -123,6 +123,7 @@ public class CommandGetSmena extends AbstractCommand {
             }
             result.add(tmp);
         }
+        ps.close();
 
 
         ////Получение номеров смены по начиная с указанной даты

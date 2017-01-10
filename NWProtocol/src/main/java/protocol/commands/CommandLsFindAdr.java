@@ -133,6 +133,7 @@ public class CommandLsFindAdr extends AbstractCommand {
         while (rs.next()) {
             result.add(rs.getString("LS") + "|" + rs.getString("FIO"));
         }
+        ps.close();
 
 
 ////Получение списа единых л/с по адресу

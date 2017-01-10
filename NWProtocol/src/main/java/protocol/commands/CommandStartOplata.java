@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -81,19 +82,14 @@ public class CommandStartOplata extends AbstractCommand {
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText =
-                "  ";
-
+        String SQLText = "select gen_id(GEN_SETCURRENCE, 1) from rdb$database";
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
-        int countChangeString = ps.executeUpdate();
-        if (countChangeString != -1) { // ok
-
-        } else { //error
-            result.add("500 Error insert record");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            result.add("ID_CURRENCE=" + rs.getString("GEN_ID"));
         }
+        ps.close();
 
-        //todo как возращать результат для сетерных команд
 
 
         //////////////Начало оплаты генерирование номера ID_CURRENCE

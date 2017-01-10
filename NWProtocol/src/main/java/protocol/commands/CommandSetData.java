@@ -244,6 +244,7 @@ public class CommandSetData extends AbstractCommand {
         } else { //error
             result.add("500 Error insert record");
         }
+        ps.close();
 
         //todo как возращать результат для сетерных команд
 

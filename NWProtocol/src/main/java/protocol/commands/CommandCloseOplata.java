@@ -57,9 +57,9 @@ public class CommandCloseOplata extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
 
         String SQLText = "select gen_id(GEN_SETCURRENCE, 1) from rdb$database";
+        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         try {
             connectionToTerminalDB.setAutoCommit(false);
-            PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
             ResultSet rs = ps.executeQuery();
             connectionToTerminalDB.commit();
 
@@ -69,6 +69,7 @@ public class CommandCloseOplata extends AbstractCommand {
             throw e;
         } finally {
             connectionToTerminalDB.setAutoCommit(true);
+            ps.close();
         }
     }
 }

@@ -111,6 +111,7 @@ public class CommandFindLs extends AbstractCommand {
                             rs.getString("BANK") + "|" +
                             rs.getString("R_SHET"));
         }
+        ps.close();
 
 
 ////Поиск по единому лицевому счету

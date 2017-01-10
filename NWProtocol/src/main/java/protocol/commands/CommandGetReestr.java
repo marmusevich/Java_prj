@@ -96,21 +96,6 @@ public class CommandGetReestr extends AbstractCommand {
 
         // todo что за хрень параметр VERSIONS не определен
         // todo параметр KOD_SMEN в CommandGetOplataSmena был Long, теперь String
-//        sqlNew.SQL.Clear;
-//        sqlNew.SQL.Add('UPDATE SMENA SET VERSIONS=:VERSIONS WHERE ID=:KOD_SMEN');
-//        sqlNew.ParamByName('VERSIONS').asString:=trim(DATA.Values['VERSIONS']);
-//        sqlNew.ParamByName('KOD_SMEN').AsString:=trim(DATA.VALUES['KOD_SMEN']);
-//        try
-//        sqlNew.Transaction.StartTransaction;
-//        sqlNew.ExecQuery;
-//        sqlNew.Transaction.CommitRetaining;
-//        except
-//        Str.Add(sqlNew.SQL.Text);
-//        Str.Add('VERSIONS:='+sqlNew.ParamByName('VERSIONS').asString);
-//        Str.Add('KOD_SMEN:='+sqlNew.ParamByName('KOD_SMEN').asString);
-//        Str.SaveToFile('C:\ErrorVersions.txt');
-//        end;
-
 
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setString(1, kod_smen);
@@ -135,6 +120,7 @@ public class CommandGetReestr extends AbstractCommand {
             }
             result.add(tmp);
         }
+        ps.close();
 
 
 ////Получение реестра платежей по выбранной смене

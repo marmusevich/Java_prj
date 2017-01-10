@@ -111,6 +111,7 @@ public class CommandGetOplata extends AbstractCommand {
             }
             result.add(tmp);
         }
+        ps.close();
 
 
 ////Получение данных оплаты по PAY_ID
