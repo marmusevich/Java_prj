@@ -39,6 +39,7 @@ public class CommandChekSmena extends AbstractCommand {
      * первый ответ
      */
     public static final String firstResponse = "CHKSMENA";
+
     private static final Logger logger = LoggerFactory.getLogger(CommandChekSmena.class);
 
     /**

@@ -3,7 +3,14 @@ package protocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import protocol.bd.DBContext;
+import protocol.commands.ErrorFactory;
 import protocol.net.NetServer;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 //TODO правильно перехватывать исключения из потоков
@@ -42,6 +49,9 @@ public final class Server {
         } catch (Exception e) {
             stop();
             logger.error(" server stoped on start. ERROR= ", e);
+
+            e.printStackTrace();
+
         }
     }
 

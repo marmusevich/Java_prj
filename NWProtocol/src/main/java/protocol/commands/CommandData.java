@@ -20,7 +20,7 @@ public class CommandData extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "date";
     private static final Logger logger = LoggerFactory.getLogger(CommandData.class);
 
     /**

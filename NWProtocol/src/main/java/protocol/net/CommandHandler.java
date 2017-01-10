@@ -23,9 +23,14 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
     }
 
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, AbstractCommand сommand) throws Exception {
-        сommand.setChannelHandlerContext(ctx);
-        Server.getCommandServer().addCommandToProcess(сommand);
+    public void channelRead0(ChannelHandlerContext ctx, AbstractCommand msg) throws Exception {
+        //AbstractCommand сommand = (AbstractCommand) msg;
+        AbstractCommand сommand = msg;
+        if(сommand != null) {
+            сommand.setChannelHandlerContext(ctx);
+            Server.getCommandServer().addCommandToProcess(сommand);
+
+        }
         // команду отправили на выполнение, удалить из очереди
         decodetCommands.remove(ctx);
     }

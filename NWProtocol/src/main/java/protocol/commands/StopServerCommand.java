@@ -19,7 +19,6 @@ public class StopServerCommand extends AbstractCommand {
      * первый ответ
      */
     public static final String firstResponse = "STOP_SERVER";
-    //CMD=STOP_SERVER
     private static final Logger logger = LoggerFactory.getLogger(StopServerCommand.class);
 
     /**

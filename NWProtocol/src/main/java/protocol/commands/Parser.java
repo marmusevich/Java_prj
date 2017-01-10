@@ -27,7 +27,7 @@ public class Parser {
      * @return
      */
     public static String getFirstResponse(String commandName) {
-        String ret = "";
+        String ret = null;
 
         switch (commandName.toUpperCase()) {
             case "STOP_SERVER":

@@ -81,6 +81,16 @@ public abstract class AbstractCommand {
         while (rs.next()) {
             terminalID = rs.getInt("ID");
         }
+
+        //rs.close();
+        //ps.close();
+
+
+        //connectionToTerminalDB.setReadOnly();
+
+
+        connectionToTerminalDB.close();
+
         //return true;
         return terminalID;
     }
@@ -106,6 +116,7 @@ public abstract class AbstractCommand {
         while (rs.next()) {
             terminalID = rs.getInt("ID");
         }
+
         return terminalID;
 
 //        function TDM1.GetTermnalID(ID_TERMINAL: string):integer;
@@ -119,22 +130,8 @@ public abstract class AbstractCommand {
 
     }
 
-    /**
-     * Выполнить команду
-     */
-    final public void execute() {
-        Connection connectionToTerminalDB = null;
-        Connection connectionToWorkingDB = null;
-        try {
-            connectionToTerminalDB = DBContext.getConnectionToTerminalDB();
-            connectionToWorkingDB = DBContext.getConnectionToWorkingDB();
 
-            if (checkUserNameAndPass(connectionToTerminalDB)) {
-                result = new ArrayList<String>();
 
-                doWorck(result, connectionToTerminalDB, connectionToWorkingDB);
-
-                //result.add("   userName = ("+userName+") userPass = ("+userPass+")" );
 
 //todo  передавать ошибки, при соеденении и т.п.
 //        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
@@ -147,8 +144,19 @@ public abstract class AbstractCommand {
 //        AContext.Connection.Socket.WriteLn(Results);
 //        AContext.Connection.Socket.Close;
 //        end
+    /**
+     * Выполнить команду
+     */
+    final public void execute() {
+        Connection connectionToTerminalDB = null;
+        Connection connectionToWorkingDB = null;
+        try {
+            connectionToTerminalDB = DBContext.getConnectionToTerminalDB();
+            connectionToWorkingDB = DBContext.getConnectionToWorkingDB();
 
-
+            if (checkUserNameAndPass(connectionToTerminalDB)) {
+                result = new ArrayList<String>();
+                doWorck(result, connectionToTerminalDB, connectionToWorkingDB);
             } else
                 sendError(ErrorFactory.Error.AccessDenied);
 
@@ -159,6 +167,7 @@ public abstract class AbstractCommand {
             if (connectionToTerminalDB != null)
                 try {
                     connectionToTerminalDB.close(); // вернуть соеденение в пул
+
                 } catch (SQLException e) {
                     //TODO SQLException
                     logger.error("connection.close()", e);
@@ -198,7 +207,7 @@ public abstract class AbstractCommand {
     final public void sendResult() {
         //TODO проверить а активно ли соеденение
         //TODO  убивать не активные каналы
-        logger.trace("sendResult {}", ctx.pipeline().channel().remoteAddress().toString());
+        logger.info("sendResult {}", ctx.pipeline().channel().remoteAddress().toString());
 
         if (ctx != null)
             ctx.writeAndFlush(this);

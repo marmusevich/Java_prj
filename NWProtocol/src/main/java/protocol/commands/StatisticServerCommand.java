@@ -19,7 +19,7 @@ public class StatisticServerCommand extends AbstractCommand {
     /**
      * первый ответ
      */
-    public static final String firstResponse = "";
+    public static final String firstResponse = "StatisticServer";
     private static final Logger logger = LoggerFactory.getLogger(StatisticServerCommand.class);
 
     /**

@@ -1,6 +1,7 @@
 package protocol.net;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.TooLongFrameException;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import protocol.commands.AbstractCommand;
 import protocol.commands.Parser;
 
+import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -76,7 +78,12 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     private Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
         AbstractCommand cmd = null;
         try {
+            logger.info("buffer = ("+buffer.toString(charset)+")" );
+
             String msgString = lineBasedDecoder_decode(ctx, buffer).toString(charset);
+
+            logger.info("msgString = ("+msgString+")" );
+
 
             //todo наверное в цикле запрашивать строки из потока
 
@@ -94,7 +101,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                     case FirstResponseResive:
                         //- первый ответ отправлен, пеоейти к четнию количество строк, обновить decodetCommands
                         try {
-                            int rowCount = Integer.parseInt(msgString);
+                            int rowCount = Integer.parseInt(msgString.replace("\n", "").replace("\r", ""));
                             csd.rowCount = rowCount;
                             csd.state = CommandStateDescriptor.CommandState.CommandlDataCountReaded;
                             decodetCommands.replace(ctx, csd);
@@ -147,12 +154,14 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         if (cammandName != null) {
             //значит добавить, отправить первый ответ
             String firstResponse = Parser.getFirstResponse(cammandName);
-            if (firstResponse != "") {
+            if (firstResponse != null) {
                 CommandStateDescriptor csd = new CommandStateDescriptor();
                 csd.state = CommandStateDescriptor.CommandState.FirstResponseResive;
                 csd.commandName = cammandName;
                 decodetCommands.putIfAbsent(ctx, csd);
-                ctx.write(firstResponse);
+                if (firstResponse != "") {
+                    ctx.writeAndFlush(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(firstResponse + "\n\r"), charset));
+                }
             }
         }
     }

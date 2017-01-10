@@ -25,15 +25,7 @@ public class DBContext {
      * @throws Exception
      */
     public static void init(Parameters parameters) throws Exception {
-
-
-        try {
-            // load the database driver (make sure this is in your classpath!)
-            Class.forName("org.firebirdsql.jdbc.FBDriver");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
+        Class.forName("org.firebirdsql.jdbc.FBDriver");
 
         // Terminal DB
         BoneCPConfig configToTerminalDB = new BoneCPConfig();
