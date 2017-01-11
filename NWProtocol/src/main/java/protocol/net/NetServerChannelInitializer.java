@@ -38,9 +38,9 @@ class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
         }
         pipeline.addLast(new LoggingHandler(LogLevel.DEBUG));
 
-        pipeline.addLast(new BateToCommandDecoder(netCharset, decodetCommands));
-        pipeline.addLast(new CommandToBateEncoder(netCharset));
-        pipeline.addLast(new CommandHandler(decodetCommands));
+        pipeline.addLast("1", new BateToCommandDecoder(netCharset, decodetCommands));
+        pipeline.addLast("2", new CommandToBateEncoder(netCharset));
+        pipeline.addLast("3", new CommandHandler(decodetCommands));
     }
 
 

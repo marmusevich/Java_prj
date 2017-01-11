@@ -54,14 +54,6 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
     }
 
-
-    public void close(ChannelHandlerContext ctx, ChannelPromise promise) {
-        //ctx.close(promise);
-        logger.info("channelclose {}", ctx.pipeline().channel().remoteAddress().toString());
-
-    }
-
-
     //для теста
     @Override
     public void finalize() {

@@ -195,11 +195,10 @@ public abstract class AbstractCommand {
      * отправить результат если он есть
      */
     final public void sendResult() {
-        //TODO проверить а активно ли соеденение
-        //TODO  убивать не активные каналы
         logger.info("sendResult {}", ctx.pipeline().channel().remoteAddress().toString());
 
-        if (ctx != null)
+        //проверить а активно ли соеденение
+        if (ctx != null && ctx.channel().isActive())
             ctx.writeAndFlush(this);
         //result = null;
     }
