@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="*">
+    <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="net проверить а активно ли соеденение">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/BateToCommandDecoder.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/BateToCommandDecoder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Protocol/net/CommandHandler.java" afterPath="$PROJECT_DIR$/src/main/java/Protocol/net/CommandHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/commands/AbstractCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/protocol/net/NetServerChannelInitializer.java" afterPath="$PROJECT_DIR$/src/main/java/protocol/net/NetServerChannelInitializer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -862,13 +860,6 @@
       <option name="presentableId" value="Default" />
       <updated>1480848029834</updated>
     </task>
-    <task id="LOCAL-00004" summary="*">
-      <created>1481730226037</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1481730226037</updated>
-    </task>
     <task id="LOCAL-00005" summary="log">
       <created>1481811350376</created>
       <option name="number" value="00005" />
@@ -1205,7 +1196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484157169358</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="net проверить а активно ли соеденение">
+      <created>1484159159533</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1484159159533</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1307,7 +1305,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
-    <MESSAGE value="CommandGetOplataSmena" />
     <MESSAGE value="CommandGetReestr" />
     <MESSAGE value="CommandGetReportList" />
     <MESSAGE value="CommandGetSmena" />
@@ -1332,7 +1329,8 @@
     <MESSAGE value="debug" />
     <MESSAGE value=" string == &quot;&quot;  --&gt; string.isEmpty()" />
     <MESSAGE value="*" />
-    <option name="LAST_COMMIT_MESSAGE" value="*" />
+    <MESSAGE value="net проверить а активно ли соеденение" />
+    <option name="LAST_COMMIT_MESSAGE" value="net проверить а активно ли соеденение" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

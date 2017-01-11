@@ -3,6 +3,8 @@ package protocol.net;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelOutboundHandlerAdapter;
+import io.netty.channel.ChannelPromise;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.TooLongFrameException;
 import io.netty.util.ByteProcessor;
@@ -78,14 +80,13 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     private Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
         AbstractCommand cmd = null;
         try {
-            logger.info("buffer = (" + buffer.toString(charset) + ")");
+            //todo наверное в цикле запрашивать строки из потока, хотя работает и так
 
             String msgString = lineBasedDecoder_decode(ctx, buffer).toString(charset);
 
-            logger.info("msgString = (" + msgString + ")");
+            if( msgString.trim().isEmpty() )
+                return null;
 
-
-            //todo наверное в цикле запрашивать строки из потока
 
             //проверить есть ли в decodetCommands  конкретный ctx
             if (!decodetCommands.containsKey(ctx)) {
@@ -96,16 +97,18 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                 switch (csd.state) {
                     case Empty:
                         // удалить из decodetCommands
-                        decodetCommands.remove(ctx);
+                        decodetCommands.remove(ctx, csd);
                         break;
                     case FirstResponseResive:
                         //- первый ответ отправлен, пеоейти к четнию количество строк, обновить decodetCommands
                         try {
-                            csd.rowCount = Integer.parseInt(msgString.replace("\n", "").replace("\r", ""));
+                            csd.rowCount = Integer.parseInt(msgString.trim());
                             csd.state = CommandStateDescriptor.CommandState.CommandlDataCountReaded;
                             decodetCommands.replace(ctx, csd);
                         } catch (Exception e) {
-                            //todo что то делать, ошибка распарсевания
+                            logger.error("parse to Int Data Count Read  (command name = <" + csd.commandName + "> state = <"+ csd.state + ">)  msgg = " + msgString.trim() );
+                            //todo что то делать, ошибка распарсевания наверное удалить эту команду, она неправильного формата
+                            decodetCommands.remove(ctx, csd);
                         }
                         break;
                     case CommandlDataCountReaded:
@@ -123,26 +126,36 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                             break;
                         }
                     case CommandlDataReaded:
-                        //перейти к выполнению команды
                         cmd = Parser.tryParseCommand(csd.commandName, csd.commandData);
-                        if (cmd != null) {
-                            csd.state = CommandStateDescriptor.CommandState.CommandExec;
-                            decodetCommands.replace(ctx, csd);
-                        }
+                        // команда получена
+                        //перейти к выполнению команды, удаляем
+
+                        //команда не получена, всеровно удаляем, данные все получены но неправильно парсятся
+                        if(cmd == null)
+                            logger.error("Command gets data but don't parse (command name = <" + csd.commandName + "> state = <"+ csd.state + ">)");
+
+                        decodetCommands.remove(ctx, csd);
                         break;
+
                     case CommandExec:
+
+                        logger.error("commandName = <" + csd.commandName + "> csd.state="+ csd.state + "  msgString = " + msgString );
                         // здесь этого не должно быть, скорей всего это новая команда
                         // удалить из decodetCommands
-                        decodetCommands.remove(ctx);
+                        decodetCommands.remove(ctx, csd);
                         // добавить новую
                         getNewCommand(ctx, msgString);
                         break;
                 }
             }
-        } finally {
-            //logger.info("do msg.refCnt() = {}", msg.refCnt());
-            //msg.release();
-            //logger.info("release msg.refCnt() = {}", msg.refCnt());
+        }
+        catch (Exception e) {
+
+            logger.warn("not convert Bate to Command"  );
+        }
+
+        finally {
+
         }
         return cmd;
     }
@@ -158,8 +171,8 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                 csd.state = CommandStateDescriptor.CommandState.FirstResponseResive;
                 csd.commandName = cammandName;
                 decodetCommands.putIfAbsent(ctx, csd);
-                if (firstResponse != "") {
-                    ctx.writeAndFlush(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(firstResponse + "\n\r"), charset));
+                if (!firstResponse.isEmpty()) {
+                    ctx.writeAndFlush(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(firstResponse + "\n"), charset)); // + "\n\r"
                 }
             }
         }
@@ -267,5 +280,4 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                 new TooLongFrameException(
                         "frame length (" + length + ") exceeds the allowed maximum (" + maxLength + ")"));
     }
-
 }
