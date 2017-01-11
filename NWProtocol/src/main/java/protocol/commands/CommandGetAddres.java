@@ -67,7 +67,7 @@ public class CommandGetAddres extends AbstractCommand {
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        if (params == "") {
+        if (params == "HOME") {
             String SQLText = " SELECT DISTINCT HOME, KORP, CYTI FROM SHETA ";
             PreparedStatement ps = connectionToWorkingDB.prepareStatement(SQLText);
             ResultSet rs = ps.executeQuery();
@@ -79,7 +79,7 @@ public class CommandGetAddres extends AbstractCommand {
                 );
                 ps.close();
             }
-        } else if (params == "") {
+        } else if (params == "KV") {
             String SQLText = " SELECT DISTINCT(KV) FROM SHETA ";
             PreparedStatement ps = connectionToWorkingDB.prepareStatement(SQLText);
             ResultSet rs = ps.executeQuery();

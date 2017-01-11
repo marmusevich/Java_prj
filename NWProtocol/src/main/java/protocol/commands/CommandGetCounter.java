@@ -69,7 +69,7 @@ public class CommandGetCounter extends AbstractCommand {
         while (rs.next()) {
             String tmp = "";
             for (int i = 0; i <= rsm.getColumnCount(); i++) {
-                if (tmp != "") {
+                if (!tmp.isEmpty()) {
                     // todo DATE - это тип данных фаерберд
                     if (rsm.getColumnTypeName(i) != "DATE")
                         tmp += "|" + rs.getString(i).trim();

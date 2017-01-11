@@ -78,12 +78,10 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
     private Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception {
         AbstractCommand cmd = null;
         try {
-            logger.info("buffer = (" + buffer.toString(charset) + ")");
-
             String msgString = lineBasedDecoder_decode(ctx, buffer).toString(charset);
 
-            logger.info("msgString = (" + msgString + ")");
-
+            if( msgString.trim().isEmpty() )
+                return null;
 
             //todo наверное в цикле запрашивать строки из потока
 
@@ -91,8 +89,11 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
             if (!decodetCommands.containsKey(ctx)) {
                 // добавить новую
                 getNewCommand(ctx, msgString);
+                logger.info("getNewCommand msgString = " + msgString );
+
             } else {
                 CommandStateDescriptor csd = decodetCommands.get(ctx);
+                logger.info("commandName = <" + csd.commandName + "> csd.state="+ csd.state + "  msgString = " + msgString );
                 switch (csd.state) {
                     case Empty:
                         // удалить из decodetCommands
@@ -101,7 +102,8 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                     case FirstResponseResive:
                         //- первый ответ отправлен, пеоейти к четнию количество строк, обновить decodetCommands
                         try {
-                            csd.rowCount = Integer.parseInt(msgString.replace("\n", "").replace("\r", ""));
+
+                            csd.rowCount = Integer.parseInt(msgString.trim());
                             csd.state = CommandStateDescriptor.CommandState.CommandlDataCountReaded;
                             decodetCommands.replace(ctx, csd);
                         } catch (Exception e) {
@@ -158,7 +160,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
                 csd.state = CommandStateDescriptor.CommandState.FirstResponseResive;
                 csd.commandName = cammandName;
                 decodetCommands.putIfAbsent(ctx, csd);
-                if (firstResponse != "") {
+                if (!firstResponse.isEmpty()) {
                     ctx.writeAndFlush(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(firstResponse + "\n\r"), charset));
                 }
             }
