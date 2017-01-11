@@ -48,10 +48,7 @@ public class CommandServer {
                 } else {
 
                 }
-
-                //logger.info(" commandQueue.size() = {}}", commandQueue.size());
-
-                //TODO разбудить поток или создать
+                // разбудить поток или создать
                 CommandExecutor ce = new CommandExecutor(commandQueue);
                 threadPool.submit(ce);
 

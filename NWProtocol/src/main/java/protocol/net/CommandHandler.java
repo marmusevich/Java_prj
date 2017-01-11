@@ -1,6 +1,7 @@
 package protocol.net;
 
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelPromise;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,13 +30,12 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
             Server.getCommandServer().addCommandToProcess(сommand);
 
         }
-        // команду отправили на выполнение, удалить из очереди
-        decodetCommands.remove(ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         logger.info("channelInactive {}", ctx.pipeline().channel().remoteAddress().toString());
+        // канал отключен, удалить все связаные команды
         decodetCommands.remove(ctx);
     }
 
@@ -53,6 +53,14 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
     }
+
+
+    public void close(ChannelHandlerContext ctx, ChannelPromise promise) {
+        //ctx.close(promise);
+        logger.info("channelclose {}", ctx.pipeline().channel().remoteAddress().toString());
+
+    }
+
 
     //для теста
     @Override

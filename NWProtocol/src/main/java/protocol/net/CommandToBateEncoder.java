@@ -47,9 +47,9 @@ public class CommandToBateEncoder extends MessageToByteEncoder<Object> {
                 ArrayList<String> res = сommand.getResult();
                 if (res != null && !res.isEmpty()) {
                     //todo переработать ответ согласно описанию
-                    out.writeBytes(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(res.size() + "\n\r"), charset));
+                    out.writeBytes(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap( res.size() + "\n"), charset)); //+ "\n\r"
                     for (String str : res) {
-                        out.writeBytes(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(str + "\n\r"), charset));
+                        out.writeBytes(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap( str + "\n"), charset)); //+ "\n\r"
                     }
                 }
             }

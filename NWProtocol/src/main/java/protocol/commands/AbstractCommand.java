@@ -148,6 +148,7 @@ public abstract class AbstractCommand {
             if (checkUserNameAndPass(connectionToTerminalDB)) {
                 result = new ArrayList<String>();
                 doWorck(result, connectionToTerminalDB, connectionToWorkingDB);
+                sendResult();
             } else
                 sendError(ErrorFactory.Error.AccessDenied);
 
@@ -183,7 +184,6 @@ public abstract class AbstractCommand {
 
     /**
      * Вернуть результат
-     *
      * @return набор строк результата
      */
     final public ArrayList<String> getResult() {
@@ -201,6 +201,7 @@ public abstract class AbstractCommand {
 
         if (ctx != null)
             ctx.writeAndFlush(this);
+        //result = null;
     }
 
     final public void sendError(ErrorFactory.Error error) {
@@ -213,6 +214,6 @@ public abstract class AbstractCommand {
     // для теста
     @Override
     public void finalize() {
-        //logger.info("finalize");
+        logger.info("finalize");
     }
 }

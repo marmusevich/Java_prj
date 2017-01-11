@@ -34,12 +34,8 @@ public final class CommandExecutor implements Runnable {
         AbstractCommand command = null;
         try {
             command = commandQueue.take();
-            //Thread.wait(5);
-            //todo Thread.sleep(10);
-            //Thread.sleep(10);
-            //logger.info(" size() = {}}", commandQueue.size());
+            //Thread.sleep(100);
             command.execute();
-            command.sendResult();
         } catch (InterruptedException e) {
             //todo вывести клиенту ошибку
 //            if(command != null)
