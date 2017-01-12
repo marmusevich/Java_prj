@@ -3,6 +3,7 @@ package protocol.commands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -92,6 +93,8 @@ public class CommandGetData extends AbstractCommand {
         ps.setString(1, lsStr);
         ps.setString(2, kod_org);
         ResultSet rs = ps.executeQuery();
+
+        //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
         rs.next();
         int ls = rs.getInt("LS");
         rs.close();
@@ -125,6 +128,16 @@ public class CommandGetData extends AbstractCommand {
                             rs.getString("OKPO") + "|" +
                             rs.getString("BANK") + "|" +
                             rs.getString("R_SHET"));
+
+//            String column = null;
+//            try {
+//                column = new String(rs.getBytes("USLUGANAME"), "windows-1251");
+//            } catch (UnsupportedEncodingException e) {
+//                e.printStackTrace();
+//            }
+//
+//            System.out.println(column);
+
         }
         ps.close();
 

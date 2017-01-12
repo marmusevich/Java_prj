@@ -39,7 +39,10 @@ public class DBContext {
         configToTerminalDB.setConnectionTimeoutInMs(parameters.terminalDBConnectionTimeout);
         configToTerminalDB.setIdleMaxAgeInSeconds(parameters.terminalDBMaxIdleTime);
         Properties propertiesToTerminalDB = new Properties();
-        propertiesToTerminalDB.setProperty("encoding", parameters.terminalDBCharset);
+        //propertiesToTerminalDB.setProperty("encoding", parameters.terminalDBCharset);
+        propertiesToTerminalDB.setProperty("encoding", "WIN1251");
+        propertiesToTerminalDB.setProperty("charSet", "WIN1251");
+        //propertiesToTerminalDB.setProperty("charSet", "windows-1251");
         propertiesToTerminalDB.setProperty("sql_dialect", parameters.terminalDBSqlDialect);
         configToTerminalDB.setDriverProperties(propertiesToTerminalDB);
         pooledConToTerminalDB = new BoneCP(configToTerminalDB); // setup the connection pool
@@ -57,6 +60,8 @@ public class DBContext {
         configToWorkingDB.setIdleMaxAgeInSeconds(parameters.workingDBMaxIdleTime);
         Properties propertiesToWorkingDB = new Properties();
         propertiesToWorkingDB.setProperty("encoding", parameters.workingDBCharset);
+        propertiesToTerminalDB.setProperty("charSet", "WIN1251");
+        //propertiesToTerminalDB.setProperty("charSet", "windows-1251");
         propertiesToWorkingDB.setProperty("sql_dialect", parameters.workingDBSqlDialect);
         configToTerminalDB.setDriverProperties(propertiesToWorkingDB);
         pooledConToWorkingDB = new BoneCP(configToWorkingDB); // setup the connection pool
