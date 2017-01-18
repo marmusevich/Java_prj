@@ -5,7 +5,7 @@ PASSWORD=P077
 
 
 
- CMD=getdata
+CMD=getdata
 4
 ID_TERM=PIVDEN48
 PASSWORD=P077

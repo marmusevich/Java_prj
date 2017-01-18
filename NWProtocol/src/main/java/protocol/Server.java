@@ -5,6 +5,11 @@ import org.slf4j.LoggerFactory;
 import protocol.bd.DBContext;
 import protocol.net.NetServer;
 
+import java.io.UnsupportedEncodingException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Properties;
+
 
 //TODO правильно перехватывать исключения из потоков
 
@@ -23,7 +28,9 @@ public final class Server {
     public static void main(String[] args) {
         logger.info(" Before start server...");
         start();
+
     }
+
 
     /**
      * запустить

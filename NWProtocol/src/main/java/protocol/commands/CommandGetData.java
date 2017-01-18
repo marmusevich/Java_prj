@@ -129,15 +129,14 @@ public class CommandGetData extends AbstractCommand {
                             rs.getString("BANK") + "|" +
                             rs.getString("R_SHET"));
 
-//            String column = null;
-//            try {
-//                column = new String(rs.getBytes("USLUGANAME"), "windows-1251");
-//            } catch (UnsupportedEncodingException e) {
-//                e.printStackTrace();
-//            }
-//
-//            System.out.println(column);
 
+            String column = null;
+            try {
+                column = new String(rs.getBytes("USLUGANAME"), "windows-1251");
+                System.out.println("c=" + rs.getString("USLUGANAME") + "         column=" + column);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         }
         ps.close();
 

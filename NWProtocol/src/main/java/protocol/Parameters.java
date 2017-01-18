@@ -1,5 +1,7 @@
 package protocol;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
+
 import java.nio.charset.Charset;
 
 /**
@@ -70,9 +72,13 @@ public class Parameters {
      */
     public long terminalDBConnectionTimeout = 500;
     /**
-     * кодировка для сообщений в базе
+     * кодировка для сообщений в базе - намиенование БД
      */
-    public String terminalDBCharset = "WIN1251";
+    public String terminalDBEncoding = "WIN1251";
+    /**
+     * кодировка для сообщений в базе - намиенование JAVA для преобразования
+     */
+    public String terminalDBCharset = "windows-1251";
     /**
      * диалект SQL
      */
@@ -116,9 +122,13 @@ public class Parameters {
     public long workingDBConnectionTimeout = 500;
 
     /**
-     * кодировка для сообщений в базе
+     * кодировка для сообщений в базе - намиенование БД
      */
-    public String workingDBCharset = "WIN1251";
+    public String workingDBEncoding = "WIN1251";
+    /**
+     * кодировка для сообщений в базе - намиенование JAVA для преобразования
+     */
+    public String workingDBCharset = "windows-1251";
     /**
      * диалект SQL
      */

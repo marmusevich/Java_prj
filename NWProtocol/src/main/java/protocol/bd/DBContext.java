@@ -7,12 +7,8 @@ import protocol.Parameters;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Properties;
 
 
-/**
- * контекст базы данных, т.е. здесь подключение и еще что то
- */
 public class DBContext {
     // ссылки на пулы
     static private BoneCP pooledConToTerminalDB = null;
@@ -29,7 +25,8 @@ public class DBContext {
 
         // Terminal DB
         BoneCPConfig configToTerminalDB = new BoneCPConfig();
-        configToTerminalDB.setJdbcUrl(parameters.terminalDBDatabase); // jdbc url specific to your database, eg jdbc:mysql://127.0.0.1/yourdb
+        String propTerminalDB = "?encoding="+parameters.terminalDBEncoding+"&charSet="+parameters.terminalDBCharset+"&sql_dialect="+parameters.terminalDBSqlDialect;
+        configToTerminalDB.setJdbcUrl(parameters.terminalDBDatabase + propTerminalDB);
         configToTerminalDB.setUsername(parameters.terminalDBUserName);
         configToTerminalDB.setPassword(parameters.terminalDBPassword);
         configToTerminalDB.setPoolName("Terminal DB");
@@ -38,18 +35,12 @@ public class DBContext {
         configToTerminalDB.setPartitionCount(parameters.terminalDBMaxStatements);
         configToTerminalDB.setConnectionTimeoutInMs(parameters.terminalDBConnectionTimeout);
         configToTerminalDB.setIdleMaxAgeInSeconds(parameters.terminalDBMaxIdleTime);
-        Properties propertiesToTerminalDB = new Properties();
-        //propertiesToTerminalDB.setProperty("encoding", parameters.terminalDBCharset);
-        propertiesToTerminalDB.setProperty("encoding", "WIN1251");
-        propertiesToTerminalDB.setProperty("charSet", "WIN1251");
-        //propertiesToTerminalDB.setProperty("charSet", "windows-1251");
-        propertiesToTerminalDB.setProperty("sql_dialect", parameters.terminalDBSqlDialect);
-        configToTerminalDB.setDriverProperties(propertiesToTerminalDB);
         pooledConToTerminalDB = new BoneCP(configToTerminalDB); // setup the connection pool
 
         //Working DB
         BoneCPConfig configToWorkingDB = new BoneCPConfig();
-        configToWorkingDB.setJdbcUrl(parameters.workingDBDatabase); // jdbc url specific to your database, eg jdbc:mysql://127.0.0.1/yourdb
+        String propWorkingDB = "?encoding="+parameters.workingDBEncoding+"&charSet="+parameters.workingDBCharset+"&sql_dialect="+parameters.workingDBSqlDialect;
+        configToWorkingDB.setJdbcUrl(parameters.workingDBDatabase + propWorkingDB);
         configToWorkingDB.setUsername(parameters.workingDBUserName);
         configToWorkingDB.setPassword(parameters.workingDBPassword);
         configToWorkingDB.setPoolName("Working DB");
@@ -58,12 +49,6 @@ public class DBContext {
         configToWorkingDB.setPartitionCount(parameters.workingDBMaxStatements);
         configToWorkingDB.setConnectionTimeoutInMs(parameters.workingDBConnectionTimeout);
         configToWorkingDB.setIdleMaxAgeInSeconds(parameters.workingDBMaxIdleTime);
-        Properties propertiesToWorkingDB = new Properties();
-        propertiesToWorkingDB.setProperty("encoding", parameters.workingDBCharset);
-        propertiesToTerminalDB.setProperty("charSet", "WIN1251");
-        //propertiesToTerminalDB.setProperty("charSet", "windows-1251");
-        propertiesToWorkingDB.setProperty("sql_dialect", parameters.workingDBSqlDialect);
-        configToTerminalDB.setDriverProperties(propertiesToWorkingDB);
         pooledConToWorkingDB = new BoneCP(configToWorkingDB); // setup the connection pool
     }
 
