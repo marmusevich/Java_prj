@@ -102,6 +102,7 @@ public class CommandSetStorno extends AbstractCommand {
             SQLText = "select gen_id(GEN_STORNO_ID, 0) from rdb$database ";
             ps = connectionToTerminalDB.prepareStatement(SQLText);
             ResultSet rs = ps.executeQuery();
+            //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
             rs.next();
             storno = +rs.getLong("GEN_ID");
         } else { //error

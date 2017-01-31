@@ -90,6 +90,7 @@ public class CommandSetCurrence extends AbstractCommand {
         ps.setInt(2, id_term);
 
         ResultSet rs = ps.executeQuery();
+        //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
         rs.next();
         int smena = rs.getInt("ID");
         rs.close();

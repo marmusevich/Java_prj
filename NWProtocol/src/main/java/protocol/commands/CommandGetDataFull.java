@@ -89,6 +89,7 @@ public class CommandGetDataFull extends AbstractCommand {
         ps.setString(1, lsStr);
         ps.setString(1, lsStr);
         ResultSet rs = ps.executeQuery();
+        //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
         rs.next();
         int ls = rs.getInt("LS");
         rs.close();

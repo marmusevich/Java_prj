@@ -239,6 +239,7 @@ public class CommandSetData extends AbstractCommand {
             SQLText = "select gen_id(GEN_OPLATA_ID, 0) from rdb$database ";
             ps = connectionToTerminalDB.prepareStatement(SQLText);
             ResultSet rs = ps.executeQuery();
+            //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
             rs.next();
             result.add("PAY_ID=" + rs.getString("GEN_ID"));
         } else { //error

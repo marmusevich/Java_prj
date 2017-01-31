@@ -99,6 +99,7 @@ public class CommandStopSmen extends AbstractCommand {
         PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setString(1, userAuthenticationData.name);
         ResultSet rs = ps.executeQuery();
+        //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
         rs.next();
         int inkasator = rs.getInt("ID");
         rs.close();
@@ -109,6 +110,7 @@ public class CommandStopSmen extends AbstractCommand {
         int id_term = GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB);
         ps.setInt(1, id_term);
         rs = ps.executeQuery();
+        //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
         rs.next();
         int smena = rs.getInt("ID");
         java.util.Date data_k = rs.getDate("DATA_K");
@@ -120,6 +122,7 @@ public class CommandStopSmen extends AbstractCommand {
         ps = connectionToTerminalDB.prepareStatement(SQLText);
         ps.setInt(1, smena);
         rs = ps.executeQuery();
+        //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
         rs.next();
         float summa = rs.getFloat("SUM");
         rs.close();

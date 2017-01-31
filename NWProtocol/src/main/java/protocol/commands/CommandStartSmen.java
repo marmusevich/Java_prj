@@ -67,6 +67,7 @@ public class CommandStartSmen extends AbstractCommand {
         int id_term = GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB);
         ps.setInt(1, id_term);
         ResultSet rs = ps.executeQuery();
+        //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
         rs.next();
         int counts = rs.getInt("COUNTS");
         rs.close();
@@ -82,6 +83,7 @@ public class CommandStartSmen extends AbstractCommand {
             rs.last();
             int recCount = rs.getRow();
             rs.beforeFirst();
+            //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
             rs.next();
             int smena = rs.getInt("ID");
             rs.close();

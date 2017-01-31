@@ -121,6 +121,7 @@ public class CommandGetKomisiya extends AbstractCommand {
         ResultSet rs = ps.executeQuery();
 
         int id = -1;
+        //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результата
         rs.next();
         id = rs.getInt("ID");
         rs.close();

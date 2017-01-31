@@ -109,7 +109,7 @@ public class CommandFindAdr extends AbstractCommand {
         ps.setString(5, kv);
         ResultSet rs = ps.executeQuery();
 
-        rs.next();
+        //todo rs.next(); -->  ...= rs.get... - нельзя получатьб просто так, вдрух нет результатаrs.next();
         int ls = rs.getInt("LS");
         rs.close();
         ps.close();
