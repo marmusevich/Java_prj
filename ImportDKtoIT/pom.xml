@@ -31,18 +31,7 @@
                     <target>${jdk.version}</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>myrmik.StartPoint</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -50,6 +39,21 @@
                 <configuration>
                     <executable>java</executable>
                     <mainClass>myrmik.StartPoint</mainClass>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!--<addClasspath>true</addClasspath>-->
+                            <!--<classpathPrefix>d:/_GitHub/Java_prj/ImportDKtoIT/target/lib/</classpathPrefix>-->
+                            <mainClass>myrmik.StartPoint</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
 
