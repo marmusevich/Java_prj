@@ -27,8 +27,8 @@ public final class Server {
      */
     public static void main(String[] args) {
         logger.info(" Before start server...");
-        start();
 
+        start();
     }
 
 
@@ -40,6 +40,7 @@ public final class Server {
         try {
             //инитить пул БД
             DBContext.init(parameters);
+
 
             commandServer = new CommandServer(parameters.commandExecutorThreads, parameters.blockingQueueCapacity, parameters.commandAdTimeout);
 
