@@ -32,16 +32,20 @@
                 </configuration>
             </plugin>
 
+            <!--плагин для запуска из под итдеи-->
+            <!--в конфигурации запуска добавить мавен запуск-->
+            <!--командная строка = "compile exec:java"-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <configuration>
                     <executable>java</executable>
-                    <mainClass>myrmik.StartPoint</mainClass>
+                    <mainClass>myrmik.StartPoint</mainClass> <!--точька ыхода-->
                 </configuration>
             </plugin>
 
+            <!--для сборки JAR  - пустой без библиотек-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -51,12 +55,13 @@
                         <manifest>
                             <!--<addClasspath>true</addClasspath>-->
                             <!--<classpathPrefix>d:/_GitHub/Java_prj/ImportDKtoIT/target/lib/</classpathPrefix>-->
-                            <mainClass>myrmik.StartPoint</mainClass>
+                            <mainClass>myrmik.StartPoint</mainClass> <!--точька ыхода-->
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
 
+            <!--для сборки JAR со всеми библиотеками-->
            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -68,11 +73,11 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>myrmik.StartPoint</mainClass>
+                            <mainClass>myrmik.StartPoint</mainClass> <!--точька ыхода-->
                         </manifest>
                     </archive>
                 </configuration>
-                <executions>
+                <executions> <!--для автосборки при обычном при другой фазе, здесь package-->
                     <execution>
                         <id>make-assembly</id> <!-- this is used for inheritance merges -->
                         <phase>package</phase> <!-- bind to the packaging phase -->
@@ -86,6 +91,8 @@
     </build>
 
 
+
+    <!--баблиотеки-->
     <dependencies>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
