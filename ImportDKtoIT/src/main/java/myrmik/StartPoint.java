@@ -169,77 +169,77 @@ public class StartPoint {
 
     }
 
-    public void updateDB(Connection con, int numer, String code, String caption) throws SQLException {
-        //private static final String GRUP = "W210000000";
-        //SKM = 'W100000000'
-        //      'W10000000008991'
-        String KMAT = String.format("%s%05d", GRUP, numer);
-
-
-
-
-        Statement statement = null;
-        ResultSet resultSet = null;
-
-        // проверить есть ли такой код
-
-        // нет  - добавить
-        PreparedStatement prepsInsertProduct = null;
-
-//                String insertSql = "INSERT INTO SalesLT.Product (Name, ProductNumber, Color, StandardCost, ListPrice, SellStartDate) VALUES "
-//                        + "('NewBike', 'BikeNew', 'Blue', 50, 120, '2016-01-01');";
-
-
-        String insertSql = "INSERT INTO KSM "
-                + "(KMAT,NMAT,NAIMKM_S,N_RES,N_RES_DOC,PRNAIM,SKM,KKST,EDI,EDI_NORM,EDI_NORMP,KPER_NORM,KPER_N_I "
-                + ",EDI2,KPER2,KPER2_I,EDI3,KPER3,KPER3_I,EDI_NKALK,BCH_SIZE,KMAT_MAT1,NMAT_MAT1,KMAT_MAT2,N1_MAT "
-                + ",RESGZ,MODELST,KODZAG,KP001,NUMIOT,GOST,ARTIKUL,RN_SERT,UN_SERT,D_SERT,KSKL,KBLS,BS,KAU "
-                + ",PR_OTH,KMAT_OTH,CENA_PL,CENA_PLU,DATECENPL,PR_TPR,CEH_N,PCIK,KOLMP,NZAPK,NZAPD,PR_CESZ,KCESZ "
-                + ",OLDKMAT,OLDKMAT1,OLDKMAT2,KMATGP_O,KMATGP_O1,KMAT_KALK,KKS1,KKS2,KKS3,KSBG,KF1,KF2,KF3,KF4,PR_DM "
-                + ",COMM,KOKP,KTNVED,KMATGP_PMZ,HKMAT,ORG_IZG,KSP1,KTKP,KFRM,PRGRSPEC,PR_NORMAL,BARCODE,NMAT_PR,KDSN "
-                + ",PR_DO,BS_Z,KAU_Z,ABC,PLZAKUP,FIO_R,DATE_R,PR_CH_NDOC,KTKP_VP,KMAT_GOST1,KMAT_GOST2,KMAT_GOST3,PRC_TOLR "
-                + ",KTTII,UNTTII,FIO_O,DATE_K,STDCURR,FIO_D,DATE_D,HEIGHT,LENGHT,WIDTH,MASS,DENSITY,PRIORITET,KMPS1 "
-                + ",NZAPPK,PCIKP,PCIKM,KEEP_TIME,KOLMPR,PLPRV,PLPRVDATA,KFPU,VZAK,RZAP1D,UNKSM,KGKD) "
-                + "VALUES ("
-                +KMAT + ", "
-        (<KMAT, char(15),>,<NMAT, varchar(200),>,<NAIMKM_S, varchar(30),>,<N_RES, varchar(254),>,<N_RES_DOC, varchar(254),>,<PRNAIM, smallint,>
-           ,<SKM, char(15),>,<KKST, char(1),>,<EDI, smallint,>,<EDI_NORM, smallint,>,<EDI_NORMP, smallint,>,<KPER_NORM, decimal(14,6),>,<KPER_N_I, decimal(14,6),>
-        ,<EDI2, smallint,>,<KPER2, decimal(14,6),>,<KPER2_I, decimal(14,6),>,<EDI3, smallint,>,<KPER3, decimal(14,6),>,<KPER3_I, decimal(14,6),>
-        ,<EDI_NKALK, smallint,>,<BCH_SIZE, varchar(40),>,<KMAT_MAT1, char(15),>,<NMAT_MAT1, varchar,>,<KMAT_MAT2, char(15),>,<N1_MAT, char(1),>
-        ,<RESGZ, varchar(40),>,<MODELST, varchar(25),>,<KODZAG, decimal(10,0),>,<KP001, char(10),>,<NUMIOT, char(10),>,<GOST, varchar(50),>
-        ,<ARTIKUL, varchar(30),>,<RN_SERT, char(20),>,<UN_SERT, char(10),>,<D_SERT, datetime,>,<KSKL, int,>,<KBLS, char(5),>,<BS, char(10),>
-        ,<KAU, varchar(12),>,<PR_OTH, smallint,>,<KMAT_OTH, char(15),>,<CENA_PL, decimal(12,2),>,<CENA_PLU, decimal(12,2),>,<DATECENPL, datetime,>
-           ,<PR_TPR, char(1),>,<CEH_N, int,>,<PCIK, smallint,>,<KOLMP, decimal(13,6),>,<NZAPK, decimal(13,6),>,<NZAPD, decimal(5,1),>,<PR_CESZ, char(1),>
-        ,<KCESZ, char(2),>,<OLDKMAT, varchar(30),>,<OLDKMAT1, varchar(30),>,<OLDKMAT2, varchar(254),>,<KMATGP_O, char(15),>,<KMATGP_O1, char(15),>
-        ,<KMAT_KALK, char(15),>,<KKS1, char(5),>,<KKS2, char(3),>,<KKS3, char(4),>,<KSBG, char(3),>,<KF1, decimal(11,4),>,<KF2, decimal(11,4),>,<KF3, decimal(11,4),>
-        ,<KF4, decimal(11,4),>,<PR_DM, char(1),>,<COMM, varchar(35),>,<KOKP, varchar(15),>,<KTNVED, varchar(12),>,<KMATGP_PMZ, char(15),>,<HKMAT, varchar,>
-           ,<ORG_IZG, int,>,<KSP1, smallint,>,<KTKP, char(2),>,<KFRM, char(2),>,<PRGRSPEC, smallint,>,<PR_NORMAL, char(1),>,<BARCODE, varchar(13),>
-        ,<NMAT_PR, varchar(30),>,<KDSN, smallint,>,<PR_DO, char(1),>,<BS_Z, char(10),>,<KAU_Z, varchar(12),>,<ABC, char(1),>,<PLZAKUP, char(1),>,<FIO_R, varchar(10),>
-        ,<DATE_R, datetime,>,<PR_CH_NDOC, char(1),>,<KTKP_VP, char(2),>,<KMAT_GOST1, char(15),>,<KMAT_GOST2, char(15),>,<KMAT_GOST3, char(15),>,<PRC_TOLR, decimal(4,1),>
-        ,<KTTII, varchar(30),>,<UNTTII, int,>,<FIO_O, varchar(10),>,<DATE_K, datetime,>,<STDCURR, char(1),>,<FIO_D, varchar(10),>,<DATE_D, datetime,>,<HEIGHT, decimal(13,6),>
-        ,<LENGHT, decimal(13,6),>,<WIDTH, decimal(13,6),>,<MASS, decimal(13,6),>,<DENSITY, decimal(13,6),>,<PRIORITET, smallint,>,<KMPS1, char(1),>,<NZAPPK, decimal(13,6),>
-        ,<PCIKP, smallint,>,<PCIKM, smallint,>,<KEEP_TIME, smallint,>,<KOLMPR, decimal(13,6),>,<PLPRV, char(1),>,<PLPRVDATA, smallint,>,<KFPU, varchar(3),>,<VZAK, decimal(13,6),>
-        ,<RZAP1D, decimal(13,6),>,<UNKSM, decimal(10,0),>,<KGKD, char(6),>)
-        KMAT	NMAT	NAIMKM_S	N_RES	N_RES_DOC	PRNAIM	SKM	KKST	EDI	EDI_NORM	EDI_NORMP	KPER_NORM	KPER_N_I	EDI2	KPER2	KPER2_I	EDI3	KPER3	KPER3_I	EDI_NKALK	BCH_SIZE	KMAT_MAT1	NMAT_MAT1	KMAT_MAT2	N1_MAT	RESGZ	MODELST	KODZAG	KP001	NUMIOT	GOST ARTIKUL	RN_SERT	UN_SERT	D_SERT	KSKL	KBLS	BS	KAU	PR_OTH	KMAT_OTH	CENA_PL	CENA_PLU	DATECENPL	PR_TPR	CEH_N	PCIK	KOLMP	NZAPK	NZAPD	PR_CESZ	KCESZ	OLDKMAT	OLDKMAT1	OLDKMAT2	KMATGP_O	KMATGP_O1	KMAT_KALK	KKS1	KKS2	KKS3	KSBG	KF1	KF2	KF3	KF4	PR_DM	COMM	KOKP	KTNVED	KMATGP_PMZ	HKMAT	ORG_IZG	KSP1	KTKP	KFRM	PRGRSPEC	PR_NORMAL	BARCODE	NMAT_PR	KDSN	PR_DO	BS_Z	KAU_Z	ABC	PLZAKUP	FIO_R	DATE_R	PR_CH_NDOC	KTKP_VP	KMAT_GOST1	KMAT_GOST2	KMAT_GOST3	PRC_TOLR	KTTII	UNTTII	FIO_O	DATE_K	STDCURR	FIO_D	DATE_D	HEIGHT	LENGHT	WIDTH	MASS	DENSITY	PRIORITET	KMPS1	NZAPPK	PCIKP	PCIKM	KEEP_TIME	KOLMPR	PLPRV	PLPRVDATA	KFPU	VZAK	RZAP1D	UNKSM	KGKD
-        W10000000045202	Технічне обслуговування та ремонтування інших автотранспортних засобів	45.20.2	45.20.2 Технічне обслуговування та ремонтування інших автотранспортних засобів	45.20.2 Технічне обслуговування та ремонтування інших автотранспортних засобів	0	W100000000     	Б	999	999	999	1.000000	1.000000	999	1.000000	1.000000	999	1.000000	1.000000	999		               	NULL	NULL	 	NULL	NULL	NULL	NULL	NULL			                    	          	NULL	NULL	УКР  	364/6     	NULL	0	NULL	0.00	0.00	NULL	 	NULL	0	0.000000	0.000000	0.0	 	NULL				NULL	NULL	NULL	     	   	    	   	0.0000	0.0000	0.0000	0.0000	 				NULL	NULL	0	0	NULL	  	0	 			0	 	NULL	NULL	 	 		NULL	 	NULL	               	               	               	0.0		0		NULL	 	ФУРМАН	2013-10-23 12:04:15.000	0.000000	0.000000	0.000000	0.000000	0.000000	0	 	0.000000	0	0	0	0.000000	 	0	NULL	0.000000	0.000000	21162
-
-
-
-        prepsInsertProduct = con.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS);
-        prepsInsertProduct.execute();
-
-        // Retrieve the generated key from the insert.
-        resultSet = prepsInsertProduct.getGeneratedKeys();
-
-        // Print the ID of the inserted row.
-        while (resultSet.next()) {
-            System.out.println("Generated: " + resultSet.getString(1));
-        }
-
-
-
-
-        // да обновить
+//    public void updateDB(Connection con, int numer, String code, String caption) throws SQLException {
+//        //private static final String GRUP = "W210000000";
+//        //SKM = 'W100000000'
+//        //      'W10000000008991'
+//        String KMAT = String.format("%s%05d", GRUP, numer);
+//
+//
+//
+//
+//        Statement statement = null;
+//        ResultSet resultSet = null;
+//
+//        // проверить есть ли такой код
+//
+//        // нет  - добавить
+//        PreparedStatement prepsInsertProduct = null;
+//
+////                String insertSql = "INSERT INTO SalesLT.Product (Name, ProductNumber, Color, StandardCost, ListPrice, SellStartDate) VALUES "
+////                        + "('NewBike', 'BikeNew', 'Blue', 50, 120, '2016-01-01');";
+//
+//
+//        String insertSql = "INSERT INTO KSM "
+//                + "(KMAT,NMAT,NAIMKM_S,N_RES,N_RES_DOC,PRNAIM,SKM,KKST,EDI,EDI_NORM,EDI_NORMP,KPER_NORM,KPER_N_I "
+//                + ",EDI2,KPER2,KPER2_I,EDI3,KPER3,KPER3_I,EDI_NKALK,BCH_SIZE,KMAT_MAT1,NMAT_MAT1,KMAT_MAT2,N1_MAT "
+//                + ",RESGZ,MODELST,KODZAG,KP001,NUMIOT,GOST,ARTIKUL,RN_SERT,UN_SERT,D_SERT,KSKL,KBLS,BS,KAU "
+//                + ",PR_OTH,KMAT_OTH,CENA_PL,CENA_PLU,DATECENPL,PR_TPR,CEH_N,PCIK,KOLMP,NZAPK,NZAPD,PR_CESZ,KCESZ "
+//                + ",OLDKMAT,OLDKMAT1,OLDKMAT2,KMATGP_O,KMATGP_O1,KMAT_KALK,KKS1,KKS2,KKS3,KSBG,KF1,KF2,KF3,KF4,PR_DM "
+//                + ",COMM,KOKP,KTNVED,KMATGP_PMZ,HKMAT,ORG_IZG,KSP1,KTKP,KFRM,PRGRSPEC,PR_NORMAL,BARCODE,NMAT_PR,KDSN "
+//                + ",PR_DO,BS_Z,KAU_Z,ABC,PLZAKUP,FIO_R,DATE_R,PR_CH_NDOC,KTKP_VP,KMAT_GOST1,KMAT_GOST2,KMAT_GOST3,PRC_TOLR "
+//                + ",KTTII,UNTTII,FIO_O,DATE_K,STDCURR,FIO_D,DATE_D,HEIGHT,LENGHT,WIDTH,MASS,DENSITY,PRIORITET,KMPS1 "
+//                + ",NZAPPK,PCIKP,PCIKM,KEEP_TIME,KOLMPR,PLPRV,PLPRVDATA,KFPU,VZAK,RZAP1D,UNKSM,KGKD) "
+//                + "VALUES ("
+//                +KMAT + ", "
+//        (<KMAT, char(15),>,<NMAT, varchar(200),>,<NAIMKM_S, varchar(30),>,<N_RES, varchar(254),>,<N_RES_DOC, varchar(254),>,<PRNAIM, smallint,>
+//           ,<SKM, char(15),>,<KKST, char(1),>,<EDI, smallint,>,<EDI_NORM, smallint,>,<EDI_NORMP, smallint,>,<KPER_NORM, decimal(14,6),>,<KPER_N_I, decimal(14,6),>
+//        ,<EDI2, smallint,>,<KPER2, decimal(14,6),>,<KPER2_I, decimal(14,6),>,<EDI3, smallint,>,<KPER3, decimal(14,6),>,<KPER3_I, decimal(14,6),>
+//        ,<EDI_NKALK, smallint,>,<BCH_SIZE, varchar(40),>,<KMAT_MAT1, char(15),>,<NMAT_MAT1, varchar,>,<KMAT_MAT2, char(15),>,<N1_MAT, char(1),>
+//        ,<RESGZ, varchar(40),>,<MODELST, varchar(25),>,<KODZAG, decimal(10,0),>,<KP001, char(10),>,<NUMIOT, char(10),>,<GOST, varchar(50),>
+//        ,<ARTIKUL, varchar(30),>,<RN_SERT, char(20),>,<UN_SERT, char(10),>,<D_SERT, datetime,>,<KSKL, int,>,<KBLS, char(5),>,<BS, char(10),>
+//        ,<KAU, varchar(12),>,<PR_OTH, smallint,>,<KMAT_OTH, char(15),>,<CENA_PL, decimal(12,2),>,<CENA_PLU, decimal(12,2),>,<DATECENPL, datetime,>
+//           ,<PR_TPR, char(1),>,<CEH_N, int,>,<PCIK, smallint,>,<KOLMP, decimal(13,6),>,<NZAPK, decimal(13,6),>,<NZAPD, decimal(5,1),>,<PR_CESZ, char(1),>
+//        ,<KCESZ, char(2),>,<OLDKMAT, varchar(30),>,<OLDKMAT1, varchar(30),>,<OLDKMAT2, varchar(254),>,<KMATGP_O, char(15),>,<KMATGP_O1, char(15),>
+//        ,<KMAT_KALK, char(15),>,<KKS1, char(5),>,<KKS2, char(3),>,<KKS3, char(4),>,<KSBG, char(3),>,<KF1, decimal(11,4),>,<KF2, decimal(11,4),>,<KF3, decimal(11,4),>
+//        ,<KF4, decimal(11,4),>,<PR_DM, char(1),>,<COMM, varchar(35),>,<KOKP, varchar(15),>,<KTNVED, varchar(12),>,<KMATGP_PMZ, char(15),>,<HKMAT, varchar,>
+//           ,<ORG_IZG, int,>,<KSP1, smallint,>,<KTKP, char(2),>,<KFRM, char(2),>,<PRGRSPEC, smallint,>,<PR_NORMAL, char(1),>,<BARCODE, varchar(13),>
+//        ,<NMAT_PR, varchar(30),>,<KDSN, smallint,>,<PR_DO, char(1),>,<BS_Z, char(10),>,<KAU_Z, varchar(12),>,<ABC, char(1),>,<PLZAKUP, char(1),>,<FIO_R, varchar(10),>
+//        ,<DATE_R, datetime,>,<PR_CH_NDOC, char(1),>,<KTKP_VP, char(2),>,<KMAT_GOST1, char(15),>,<KMAT_GOST2, char(15),>,<KMAT_GOST3, char(15),>,<PRC_TOLR, decimal(4,1),>
+//        ,<KTTII, varchar(30),>,<UNTTII, int,>,<FIO_O, varchar(10),>,<DATE_K, datetime,>,<STDCURR, char(1),>,<FIO_D, varchar(10),>,<DATE_D, datetime,>,<HEIGHT, decimal(13,6),>
+//        ,<LENGHT, decimal(13,6),>,<WIDTH, decimal(13,6),>,<MASS, decimal(13,6),>,<DENSITY, decimal(13,6),>,<PRIORITET, smallint,>,<KMPS1, char(1),>,<NZAPPK, decimal(13,6),>
+//        ,<PCIKP, smallint,>,<PCIKM, smallint,>,<KEEP_TIME, smallint,>,<KOLMPR, decimal(13,6),>,<PLPRV, char(1),>,<PLPRVDATA, smallint,>,<KFPU, varchar(3),>,<VZAK, decimal(13,6),>
+//        ,<RZAP1D, decimal(13,6),>,<UNKSM, decimal(10,0),>,<KGKD, char(6),>)
+//        KMAT	NMAT	NAIMKM_S	N_RES	N_RES_DOC	PRNAIM	SKM	KKST	EDI	EDI_NORM	EDI_NORMP	KPER_NORM	KPER_N_I	EDI2	KPER2	KPER2_I	EDI3	KPER3	KPER3_I	EDI_NKALK	BCH_SIZE	KMAT_MAT1	NMAT_MAT1	KMAT_MAT2	N1_MAT	RESGZ	MODELST	KODZAG	KP001	NUMIOT	GOST ARTIKUL	RN_SERT	UN_SERT	D_SERT	KSKL	KBLS	BS	KAU	PR_OTH	KMAT_OTH	CENA_PL	CENA_PLU	DATECENPL	PR_TPR	CEH_N	PCIK	KOLMP	NZAPK	NZAPD	PR_CESZ	KCESZ	OLDKMAT	OLDKMAT1	OLDKMAT2	KMATGP_O	KMATGP_O1	KMAT_KALK	KKS1	KKS2	KKS3	KSBG	KF1	KF2	KF3	KF4	PR_DM	COMM	KOKP	KTNVED	KMATGP_PMZ	HKMAT	ORG_IZG	KSP1	KTKP	KFRM	PRGRSPEC	PR_NORMAL	BARCODE	NMAT_PR	KDSN	PR_DO	BS_Z	KAU_Z	ABC	PLZAKUP	FIO_R	DATE_R	PR_CH_NDOC	KTKP_VP	KMAT_GOST1	KMAT_GOST2	KMAT_GOST3	PRC_TOLR	KTTII	UNTTII	FIO_O	DATE_K	STDCURR	FIO_D	DATE_D	HEIGHT	LENGHT	WIDTH	MASS	DENSITY	PRIORITET	KMPS1	NZAPPK	PCIKP	PCIKM	KEEP_TIME	KOLMPR	PLPRV	PLPRVDATA	KFPU	VZAK	RZAP1D	UNKSM	KGKD
+//        W10000000045202	Технічне обслуговування та ремонтування інших автотранспортних засобів	45.20.2	45.20.2 Технічне обслуговування та ремонтування інших автотранспортних засобів	45.20.2 Технічне обслуговування та ремонтування інших автотранспортних засобів	0	W100000000     	Б	999	999	999	1.000000	1.000000	999	1.000000	1.000000	999	1.000000	1.000000	999		               	NULL	NULL	 	NULL	NULL	NULL	NULL	NULL			                    	          	NULL	NULL	УКР  	364/6     	NULL	0	NULL	0.00	0.00	NULL	 	NULL	0	0.000000	0.000000	0.0	 	NULL				NULL	NULL	NULL	     	   	    	   	0.0000	0.0000	0.0000	0.0000	 				NULL	NULL	0	0	NULL	  	0	 			0	 	NULL	NULL	 	 		NULL	 	NULL	               	               	               	0.0		0		NULL	 	ФУРМАН	2013-10-23 12:04:15.000	0.000000	0.000000	0.000000	0.000000	0.000000	0	 	0.000000	0	0	0	0.000000	 	0	NULL	0.000000	0.000000	21162
+//
+//
+//
+//        prepsInsertProduct = con.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS);
+//        prepsInsertProduct.execute();
+//
+//        // Retrieve the generated key from the insert.
+//        resultSet = prepsInsertProduct.getGeneratedKeys();
+//
+//        // Print the ID of the inserted row.
+//        while (resultSet.next()) {
+//            System.out.println("Generated: " + resultSet.getString(1));
+//        }
+//
+//
+//
+//
+//        // да обновить
 
 
     }
