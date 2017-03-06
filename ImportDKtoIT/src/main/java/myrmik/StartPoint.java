@@ -14,7 +14,7 @@ import java.sql.*;
 public class StartPoint {
     private static final String FILE_NAME = "DK_021_2015.txt";
 
-    private static final String DB_NAME = "iot_test";
+    private static final String DB_NAME = "iot";
 
     private static final String GRUP = "W210000000";
 
