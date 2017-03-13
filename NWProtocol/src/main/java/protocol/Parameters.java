@@ -86,7 +86,8 @@ public class Parameters {
     /**
      * строка подключения к базе
      */
-    public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB";
+    //public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB";
+    public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/DB_Firebird/TERMINAL.FDB";
     //"localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB"
     //"E:\a.marmusevich\TERMINAL\TERMINAL.FDB"
 
@@ -136,7 +137,7 @@ public class Parameters {
     /**
      * строка подключения к базе
      */
-    public String workingDBDatabase = "jdbc:firebirdsql:localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB";
+    public String workingDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/DB_Firebird/WORKING.FDB";
     //"localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB"
     //"E:\a.marmusevich\WORKING\WORKING.FDB"
     /**
