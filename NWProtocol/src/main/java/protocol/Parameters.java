@@ -1,7 +1,5 @@
 package protocol;
 
-import com.sun.java.swing.plaf.windows.resources.windows;
-
 import java.nio.charset.Charset;
 
 /**
@@ -87,7 +85,7 @@ public class Parameters {
      * строка подключения к базе
      */
     //public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB";
-    public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/DB_Firebird/TERMINAL.FDB";
+    public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/TERMINAL/TERMINAL.FDB";
     //"localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB"
     //"E:\a.marmusevich\TERMINAL\TERMINAL.FDB"
 
@@ -137,7 +135,7 @@ public class Parameters {
     /**
      * строка подключения к базе
      */
-    public String workingDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/DB_Firebird/WORKING.FDB";
+    public String workingDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/WORKING/WORKING.FDB";
     //"localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB"
     //"E:\a.marmusevich\WORKING\WORKING.FDB"
     /**
