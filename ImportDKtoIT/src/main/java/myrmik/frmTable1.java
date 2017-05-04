@@ -121,18 +121,29 @@ public class frmTable1 extends AbstractTableModel {
 
             Connection con = DriverManager.getConnection(connectionString);
 
-            String query = "select * from dog";  //your data
+            String query = "select TOP 1000 * from DOG order by KDOG";  //your data
+            //String query = "select TOP 1000 UNDOG,ORG,KDGT,KDOG from DOG order by KDOG";  //your data
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             //DatabaseTableModel model = new DatabaseTableModel();
             frmTable1 model = new frmTable1();
             model.setDataSource(rs);
+
+
+            con.close();
+
+
             JTable table = new JTable(model);
 
             JPanel panel = new JPanel(new BorderLayout());
-            panel.add(new JScrollPane(table), BorderLayout.CENTER);
 
+            JScrollPane scrollPane1 = new JScrollPane(table);
+            scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+            scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+
+            panel.add(scrollPane1, BorderLayout.CENTER);
             JFrame frame = new JFrame("Database Table Model");
             frame.setLocationRelativeTo(null);
             frame.setSize(500, 400);

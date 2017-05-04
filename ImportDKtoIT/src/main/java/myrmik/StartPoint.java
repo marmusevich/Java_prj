@@ -12,9 +12,10 @@ import java.sql.*;
  * Created by asus on 22.02.2017.
  */
 public class StartPoint {
-    private static final String FILE_NAME = "DK_021_2015.txt";
+    private static final String FILE_NAME1 = "DK_021_2015.txt";
+    private static final String FILE_NAME2 = "2DK.csv";
 
-    private static final String DB_NAME = "iot_test";
+    private static final String DB_NAME = "iot";
 
     private static final String GRUP = "W210000000";
 
@@ -121,7 +122,9 @@ public class StartPoint {
         try {
             connection = DriverManager.getConnection(connectionString);
 
-            readFile(connection);
+            //readFile1(connection);
+            readFile2(connection);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -133,10 +136,10 @@ public class StartPoint {
     }
 
     //прочитать файл и записать в бд
-    public void readFile(Connection con) {
+    public void readFile1(Connection con) {
         int count = 0;
         try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(new FileInputStream(FILE_NAME), Charset.forName("windows-1251")))) {
+                new InputStreamReader(new FileInputStream(FILE_NAME1), Charset.forName("windows-1251")))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line != null && line.length() > 0) {
@@ -148,7 +151,7 @@ public class StartPoint {
                         String caption = caption_.replace("'", "’");
 
                         //---
-                        updateDB(con, count, code, caption);
+                        updateDB1(con, count, code, caption);
 
                         count++;
                     } else {
@@ -168,7 +171,7 @@ public class StartPoint {
 
     }
 
-    public void updateDB(Connection con, int numer, String code, String caption) throws SQLException {
+    public void updateDB1(Connection con, int numer, String code, String caption) throws SQLException {
         //private static final String GRUP = "W210000000";
         //SKM = 'W100000000'
         //      'W10000000008991'
@@ -222,6 +225,60 @@ public class StartPoint {
 //                + "0.000000, 0, 0, 0, 0.000000, '', 0, NULL, 0.000000, 0.000000, "
 //                + ")";
     }
+
+
+    //прочитать файл и записать в бд
+    public void readFile2(Connection con) {
+        int count = 0;
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(new FileInputStream(FILE_NAME2), Charset.forName("windows-1251")))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line != null && line.length() > 0) {
+
+                    String[] words = line.split(";");
+                    if (words != null && words.length == 2) {
+                        String dk16 = words[0].trim();
+                        String dk21 = words[1].trim();
+
+                        //---
+                        updateDB2(con, dk16, dk21);
+
+                        count++;
+                    } else {
+                        System.out.println("line is not world  ->" + line);
+                    }
+                } else {
+                    System.out.println("line is NULL ->" + line);
+                }
+            }
+            System.out.println("count = " + count);
+        } catch (IOException e) {
+            // log error
+            count = -1;
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+    }
+
+    public void updateDB2(Connection con, String dk16, String dk21) throws SQLException {
+
+
+        Statement statement = null;
+        ResultSet resultSet = null;
+        // проверить есть ли такой код
+
+        // нет  - добавить
+        PreparedStatement prepsInsertProduct = null;
+        String insertSql = "update ksm "
+                + "set KMAT_MAT2 = (SELECT TOP 1 KMAT FROM KSM where NAIMKM_S like '" + dk21 + "')"
+                + "where KMAT_MAT1 = (SELECT TOP 1 KMAT FROM KSM where NAIMKM_S like '" + dk16 + "')";
+
+        prepsInsertProduct = con.prepareStatement(insertSql);
+        prepsInsertProduct.execute();
+    }
+
 }
 
 

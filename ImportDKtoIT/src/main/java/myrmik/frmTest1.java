@@ -13,6 +13,7 @@ public class frmTest1 extends JFrame {
 
 
     private JPanel panel1;
+    private JTable table1;
 
     public frmTest1() {
         Object[] columnNames = {"Type", "Company", "Shares", "Price", "Boolean"};
@@ -83,6 +84,12 @@ public class frmTest1 extends JFrame {
     private void $$$setupUI$$$() {
         panel1 = new JPanel();
         panel1.setLayout(new BorderLayout(0, 0));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        scrollPane1.setHorizontalScrollBarPolicy(32);
+        scrollPane1.setVerticalScrollBarPolicy(22);
+        panel1.add(scrollPane1, BorderLayout.CENTER);
+        table1 = new JTable();
+        scrollPane1.setViewportView(table1);
     }
 
     /**
