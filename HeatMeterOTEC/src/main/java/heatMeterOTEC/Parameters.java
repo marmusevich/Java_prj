@@ -98,56 +98,6 @@ public class Parameters {
      */
     public String terminalDBPassword = "masterkey";
 
-    //Working DB
-    /**
-     * максимальное количество подключений к базе
-     */
-    public int workingDBMaxPoolSize = 5;
-    /**
-     * количество одновременных запросов в одном подключении
-     */
-    public int workingDBMinPoolSize = 2;
-    /**
-     * количество закешированых запросов в одном подключении
-     */
-    public int workingDBMaxStatements = 4;
-    /**
-     * тайм аут простоя подключенийя в секундах
-     */
-    public long workingDBMaxIdleTime = 30 * 60;
-    /**
-     * время ожидания при подключении
-     */
-    public long workingDBConnectionTimeout = 500;
-
-    /**
-     * кодировка для сообщений в базе - намиенование БД
-     */
-    public String workingDBEncoding = "WIN1251";
-    /**
-     * кодировка для сообщений в базе - намиенование JAVA для преобразования
-     */
-    public String workingDBCharset = "windows-1251";
-    /**
-     * диалект SQL
-     */
-    public String workingDBSqlDialect = "3";
-    /**
-     * строка подключения к базе
-     */
-    public String workingDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/WORKING/WORKING.FDB";
-    //"localhost/3050:E:/a.marmusevich/WORKING/WORKING.FDB"
-    //"E:\a.marmusevich\WORKING\WORKING.FDB"
-    /**
-     * имя пользователя
-     */
-    public String workingDBUserName = "SYSDBA";
-    /**
-     * пароль
-     */
-    public String workingDBPassword = "masterkey";
-
-
     /**
      * здесь при необходимости, загрузить откудото или переопределить
      */

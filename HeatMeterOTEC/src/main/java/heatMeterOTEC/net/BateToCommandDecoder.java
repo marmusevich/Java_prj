@@ -10,8 +10,8 @@ import io.netty.handler.codec.TooLongFrameException;
 import io.netty.util.ByteProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import protocol.commands.AbstractCommand;
-import protocol.commands.Parser;
+import heatMeterOTEC.commands.AbstractCommand;
+import heatMeterOTEC.commands.Parser;
 
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;

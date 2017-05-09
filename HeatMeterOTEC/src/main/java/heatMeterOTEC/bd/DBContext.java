@@ -3,7 +3,7 @@ package heatMeterOTEC.bd;
 
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
-import protocol.Parameters;
+import heatMeterOTEC.Parameters;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,6 +13,9 @@ public class DBContext {
     // ссылки на пулы
     static private BoneCP pooledConToTerminalDB = null;
 
+	//	User ID=root;Password=myPassword;Host=localhost;Port=5432;Database=myDataBase;
+	//	Pooling=true;Min Pool Size=0;Max Pool Size=100;Connection Lifetime=0;
+	
     /**
      * инициация подключений к базе данных
      *

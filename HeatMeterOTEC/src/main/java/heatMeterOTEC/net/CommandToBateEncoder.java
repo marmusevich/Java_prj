@@ -6,8 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import protocol.commands.AbstractCommand;
-import protocol.commands.CommandUpdatePrg;
+import heatMeterOTEC.commands.AbstractCommand;
 
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
@@ -40,10 +39,6 @@ public class CommandToBateEncoder extends MessageToByteEncoder<Object> {
         } else if (msg instanceof AbstractCommand) {
             AbstractCommand сommand = (AbstractCommand) msg;
 
-            if (сommand instanceof CommandUpdatePrg) {
-                //todo отправить обновления
-            } else { // остальные команды
-
                 ArrayList<String> res = сommand.getResult();
                 if (res != null && !res.isEmpty()) {
                     //todo переработать ответ согласно описанию
@@ -51,7 +46,7 @@ public class CommandToBateEncoder extends MessageToByteEncoder<Object> {
                     for (String str : res) {
                         out.writeBytes(ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap( str + "\n"), charset)); //+ "\n\r"
                     }
-                }
+
             }
         } else {
             // что тут делать то

@@ -2,7 +2,7 @@ package heatMeterOTEC.commands;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import protocol.Server;
+import heatMeterOTEC.Server;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;

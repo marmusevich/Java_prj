@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b39362c8-aadb-4f3c-bf91-5c52c6608529" name="Default" comment="todo">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NWProtocol.iml" afterPath="$PROJECT_DIR$/NWProtocol.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HeatMeterOTEC/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../HeatMeterOTEC/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/CommandExecutor.java" afterPath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/CommandExecutor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/Parameters.java" afterPath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/Parameters.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/bd/DBContext.java" afterPath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/bd/DBContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/commands/AbstractCommand.java" afterPath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/commands/AbstractCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/commands/Parser.java" afterPath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/commands/Parser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/commands/StopServerCommand.java" afterPath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/commands/StopServerCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/net/BateToCommandDecoder.java" afterPath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/net/BateToCommandDecoder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/net/CommandHandler.java" afterPath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/net/CommandHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/net/CommandToBateEncoder.java" afterPath="$PROJECT_DIR$/../HeatMeterOTEC/src/main/java/heatMeterOTEC/net/CommandToBateEncoder.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -88,12 +96,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-              <folding />
+            <state relative-caret-position="30">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,7 +118,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parameters.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Parameters.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Parameters.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -409,6 +419,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -485,8 +497,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -703,6 +713,7 @@
       <updated>1480848029834</updated>
       <workItem from="1493970919007" duration="568000" />
       <workItem from="1494350971649" duration="219000" />
+      <workItem from="1494354246679" duration="317000" />
     </task>
     <task id="LOCAL-00007" summary="**">
       <created>1483358017695</created>
@@ -1051,7 +1062,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="787000" />
+    <option name="totallyTimeSpent" value="1104000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1076,7 +1087,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293124" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16689466" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16894665" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2489712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1473,19 +1484,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Parameters.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="87" column="94" lean-forward="false" selection-start-line="87" selection-start-column="94" selection-end-line="87" selection-end-column="94" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/protocol/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

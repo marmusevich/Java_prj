@@ -3,7 +3,7 @@ package heatMeterOTEC.commands;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import protocol.bd.DBContext;
+import heatMeterOTEC.bd.DBContext;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
