@@ -52,51 +52,57 @@ public class Parameters {
     /**
      * максимальное количество подключений к базе
      */
-    public int terminalDBMaxPoolSize = 5;
+    public int _DBMaxPoolSize = 5;
     /**
      * минимальное количество подключений
      */
-    public int terminalDBMinPoolSize = 2;
+    public int _DBMinPoolSize = 2;
     /**
      * количество закешированых запросов в одном подключении
      */
-    public int terminalDBMaxStatements = 4;
+    public int _DBMaxStatements = 4;
     /**
      * тайм аут простоя подключенийя в секундах
      */
-    public long terminalDBMaxIdleTime = 30 * 60;
+    public long _DBMaxIdleTime = 30 * 60;
     /**
      * время ожидания при подключении
      */
-    public long terminalDBConnectionTimeout = 500;
-    /**
-     * кодировка для сообщений в базе - намиенование БД
-     */
-    public String terminalDBEncoding = "WIN1251";
-    /**
-     * кодировка для сообщений в базе - намиенование JAVA для преобразования
-     */
-    public String terminalDBCharset = "windows-1251";
-    /**
-     * диалект SQL
-     */
-    public String terminalDBSqlDialect = "3";
-    /**
-     * строка подключения к базе
-     */
-    //public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB";
-    public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/TERMINAL/TERMINAL.FDB";
-    //"localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB"
-    //"E:\a.marmusevich\TERMINAL\TERMINAL.FDB"
+    public long _DBConnectionTimeout = 500;
 
-    /**
-     * имя пользователя
-     */
-    public String terminalDBUserName = "SYSDBA";
-    /**
-     * пароль
-     */
-    public String terminalDBPassword = "masterkey";
+
+
+
+//    /**
+//     * кодировка для сообщений в базе - намиенование БД
+//     */
+//    public String terminalDBEncoding = "WIN1251";
+//    /**
+//     * кодировка для сообщений в базе - намиенование JAVA для преобразования
+//     */
+//    public String terminalDBCharset = "windows-1251";
+//    /**
+//     * диалект SQL
+//     */
+//    public String terminalDBSqlDialect = "3";
+//    /**
+//     * строка подключения к базе
+//     */
+//    //public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB";
+//    public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/TERMINAL/TERMINAL.FDB";
+//    //"localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB"
+//    //"E:\a.marmusevich\TERMINAL\TERMINAL.FDB"
+//
+//    /**
+//     * имя пользователя
+//     */
+//    public String terminalDBUserName = "SYSDBA";
+//    /**
+//     * пароль
+//     */
+//    public String terminalDBPassword = "masterkey";
+
+
 
     /**
      * здесь при необходимости, загрузить откудото или переопределить

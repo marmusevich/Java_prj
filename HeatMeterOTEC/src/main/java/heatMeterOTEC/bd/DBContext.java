@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class DBContext {
     // ссылки на пулы
-    static private BoneCP pooledConToTerminalDB = null;
+    static private BoneCP pooledConnection = null;
 
 	//	User ID=root;Password=myPassword;Host=localhost;Port=5432;Database=myDataBase;
 	//	Pooling=true;Min Pool Size=0;Max Pool Size=100;Connection Lifetime=0;
@@ -27,24 +27,24 @@ public class DBContext {
 
         // Terminal DB
         BoneCPConfig configToTerminalDB = new BoneCPConfig();
-        String propTerminalDB = "?encoding="+parameters.terminalDBEncoding+"&charSet="+parameters.terminalDBCharset+"&sql_dialect="+parameters.terminalDBSqlDialect;
-        configToTerminalDB.setJdbcUrl(parameters.terminalDBDatabase + propTerminalDB);
-        configToTerminalDB.setUsername(parameters.terminalDBUserName);
-        configToTerminalDB.setPassword(parameters.terminalDBPassword);
-        configToTerminalDB.setPoolName("Terminal DB");
-        configToTerminalDB.setMinConnectionsPerPartition(parameters.terminalDBMinPoolSize);
-        configToTerminalDB.setMaxConnectionsPerPartition(parameters.terminalDBMaxPoolSize);
-        configToTerminalDB.setPartitionCount(parameters.terminalDBMaxStatements);
-        configToTerminalDB.setConnectionTimeoutInMs(parameters.terminalDBConnectionTimeout);
-        configToTerminalDB.setIdleMaxAgeInSeconds(parameters.terminalDBMaxIdleTime);
-        pooledConToTerminalDB = new BoneCP(configToTerminalDB); // setup the connection pool
+//        String propTerminalDB = "?encoding="+parameters.terminalDBEncoding+"&charSet="+parameters.terminalDBCharset+"&sql_dialect="+parameters.terminalDBSqlDialect;
+//        configToTerminalDB.setJdbcUrl(parameters.terminalDBDatabase + propTerminalDB);
+//        configToTerminalDB.setUsername(parameters.terminalDBUserName);
+//        configToTerminalDB.setPassword(parameters.terminalDBPassword);
+//        configToTerminalDB.setPoolName("Terminal DB");
+//        configToTerminalDB.setMinConnectionsPerPartition(parameters.terminalDBMinPoolSize);
+//        configToTerminalDB.setMaxConnectionsPerPartition(parameters.terminalDBMaxPoolSize);
+//        configToTerminalDB.setPartitionCount(parameters.terminalDBMaxStatements);
+//        configToTerminalDB.setConnectionTimeoutInMs(parameters.terminalDBConnectionTimeout);
+//        configToTerminalDB.setIdleMaxAgeInSeconds(parameters.terminalDBMaxIdleTime);
+        pooledConnection = new BoneCP(configToTerminalDB); // setup the connection pool
 
     }
 
 
     public static void close() {
-        if (pooledConToTerminalDB != null)
-            pooledConToTerminalDB.shutdown();
+        if (pooledConnection != null)
+            pooledConnection.shutdown();
 
     }
 
@@ -56,8 +56,8 @@ public class DBContext {
      * @throws SQLException
      */
     static public Connection getConnectionToTerminalDB() throws SQLException {
-        if (pooledConToTerminalDB != null)
-            return pooledConToTerminalDB.getConnection();
+        if (pooledConnection != null)
+            return pooledConnection.getConnection();
         return null;
     }
 
