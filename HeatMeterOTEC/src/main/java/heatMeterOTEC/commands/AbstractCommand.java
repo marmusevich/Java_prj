@@ -16,11 +16,6 @@ import java.util.ArrayList;
  * все остальные команды наследовать от нее
  */
 public abstract class AbstractCommand {
-    /**
-     * название параметров имени и пароля пользователя
-     */
-    public static final String UserParametrName = "ID_TERM";
-    public static final String PassParametrName = "PASSWORD";
     private static final Logger logger = LoggerFactory.getLogger(AbstractCommand.class);
     /**
      * контекст сетевого подключения
@@ -51,21 +46,11 @@ public abstract class AbstractCommand {
     /**
      * проверить уровень доступа
      *
-     * @param connectionToTerminalDB - подключение к БД
+     * @param connection - подключение к БД
      * @return
      */
-    final public boolean checkUserNameAndPass(Connection connectionToTerminalDB) throws SQLException {
-        return GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB) != 0;
-    }
+    final public boolean checkUserNameAndPass(Connection connection) throws SQLException {
 
-    /**
-     * Получает ID терминала с проверкой на открытую смену
-     *
-     * @param connectionToTerminalDB
-     * @return
-     * @throws SQLException
-     */
-    final public int GetTerminalIDAndCheckSmenaIsOpen(Connection connectionToTerminalDB) throws SQLException {
         int terminalID = 0;
 
         String SQLText =
@@ -73,7 +58,7 @@ public abstract class AbstractCommand {
                         "    TERMINAL_ID= ? AND BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN= ?) AND " +
                         "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
 
-        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
+        PreparedStatement ps = connection.prepareStatement(SQLText);
         ps.setString(1, userAuthenticationData.name);
         ps.setString(2, userAuthenticationData.pass);
 
@@ -83,71 +68,28 @@ public abstract class AbstractCommand {
         }
         ps.close();
 
-        return terminalID;
+
+        return terminalID != 0;
     }
 
-    /**
-     * Получим внутренний ID терминала
-     *
-     * @param connectionToTerminalDB
-     * @param terminalId             Идентификатор терминала, обязательный параметр;
-     * @return
-     * @throws SQLException
-     */
-    //
-    final public int GetTerminalID(Connection connectionToTerminalDB, String terminalId) throws SQLException {
-        int terminalID = 0;
 
-        String SQLText = "SELECT ID FROM TERMINAL WHERE terminal_id= ? ";
 
-        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setString(1, terminalId);
-
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            terminalID = rs.getInt("ID");
-        }
-        ps.close();
-
-        return terminalID;
-
-//        function TDM1.GetTermnalID(ID_TERMINAL: string):integer;
-//        begin
-//        Result:=0;
-//        sqlFreeReturn.Close;
-//        sqlFreeReturn.SelectSQL.Text:='SELECT ID FROM TERMINAL WHERE terminal_id=:ID_TERMINAL';
-//        sqlFreeReturn.ParamByName('ID_TERMINAL').asString:=ID_TERMINAL;
-//        sqlFreeReturn.Open;
-//        Result:=sqlFreeReturn.FieldByName('ID').asInteger;
-
-    }
 
 
 //todo  передавать ошибки, при соеденении и т.п.
-//        AContext.Connection.Socket.WriteLn('200 OK',TEncoding.UTF8);
-//        GET_USLUGA.Free;
-//        end
-//        else
-//                    except
-//                    Result:='500 Error open SQL';
-//                    result:='500 Error connect FIB';
-//        AContext.Connection.Socket.WriteLn(Results);
-//        AContext.Connection.Socket.Close;
-//        end
+
 
     /**
      * Выполнить команду
      */
     final public void execute() {
-        Connection connectionToTerminalDB = null;
-        Connection connectionToWorkingDB = null;
+        Connection connection = null;
         try {
-            connectionToTerminalDB = DBContext.getConnectionToTerminalDB();
-            connectionToWorkingDB = DBContext.getConnectionToWorkingDB();
+            connection = DBContext.getConnectionDB();
 
-            if (checkUserNameAndPass(connectionToTerminalDB)) {
+            if (checkUserNameAndPass(connection)) {
                 result = new ArrayList<String>();
-                doWorck(result, connectionToTerminalDB, connectionToWorkingDB);
+                doWorck(result, connection);
                 sendResult();
             } else
                 sendError(ErrorFactory.Error.AccessDenied);
@@ -156,16 +98,9 @@ public abstract class AbstractCommand {
             //TODO SQLException
             logger.error("getConnection() and work", e);
         } finally {
-            if (connectionToTerminalDB != null)
+            if (connection != null)
                 try {
-                    connectionToTerminalDB.close(); // вернуть соеденение в пул
-                } catch (SQLException e) {
-                    //TODO SQLException
-                    logger.error("connection.close()", e);
-                }
-            if (connectionToWorkingDB != null)
-                try {
-                    connectionToWorkingDB.close(); // вернуть соеденение в пул
+                    connection.close(); // вернуть соеденение в пул
                 } catch (SQLException e) {
                     //TODO SQLException
                     logger.error("connection.close()", e);
@@ -177,10 +112,9 @@ public abstract class AbstractCommand {
      * переопределить в наследниках
      *
      * @param result                 результат - массив строк
-     * @param connectionToTerminalDB - соеденение к базе данных
-     * @param connectionToWorkingDB  - соеденение к базе данных
+     * @param connection - соеденение к базе данных
      */
-    public abstract void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException;
+    public abstract void doWorck(ArrayList<String> result, Connection connection) throws SQLException;
 
     /**
      * Вернуть результат

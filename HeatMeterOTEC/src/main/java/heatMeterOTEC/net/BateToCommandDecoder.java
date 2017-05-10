@@ -165,7 +165,7 @@ class BateToCommandDecoder extends ByteToMessageDecoder {
         String cammandName = Parser.getCammandName(msgString);
         if (cammandName != null) {
             //значит добавить, отправить первый ответ
-            String firstResponse = Parser.getFirstResponse(cammandName);
+            String firstResponse = "Parser.getFirstResponse(cammandName)";
             if (firstResponse != null) {
                 CommandStateDescriptor csd = new CommandStateDescriptor();
                 csd.state = CommandStateDescriptor.CommandState.FirstResponseResive;

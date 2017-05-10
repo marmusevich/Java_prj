@@ -45,21 +45,21 @@ public class CommandInsertHeat extends AbstractCommand {
     }
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
-        String SQLText = " INSERT INTO TERMINAL_ERRORS (ID_TERMINAL ,ERROR_MSG)" +
-                " VALUES (?, ?) ";
-
-        int id_term = GetTerminalIDAndCheckSmenaIsOpen(connectionToTerminalDB);
-        PreparedStatement ps = connectionToTerminalDB.prepareStatement(SQLText);
-        ps.setInt(1, id_term);
-        ps.setString(1, error_msg);
-        int countChangeString = ps.executeUpdate();
-        if (countChangeString != -1) { // ok
-
-        } else { //error
-            result.add("500 Error insert record");
-        }
-        ps.close();
+    public void doWorck(ArrayList<String> result, Connection connection) throws SQLException {
+//        String SQLText = " INSERT INTO TERMINAL_ERRORS (ID_TERMINAL ,ERROR_MSG)" +
+//                " VALUES (?, ?) ";
+//
+//        int id_term = GetTerminalIDAndCheckSmenaIsOpen(connection);
+//        PreparedStatement ps = connection.prepareStatement(SQLText);
+//        ps.setInt(1, id_term);
+//        ps.setString(1, error_msg);
+//        int countChangeString = ps.executeUpdate();
+//        if (countChangeString != -1) { // ok
+//
+//        } else { //error
+//            result.add("500 Error insert record");
+//        }
+//        ps.close();
 
         //todo как возращать результат для сетерных команд
 

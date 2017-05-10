@@ -29,7 +29,7 @@ public class UnknownCommand extends AbstractCommand {
 
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
+    public void doWorck(ArrayList<String> result, Connection connection) throws SQLException {
         result.add("Unknown command");
     }
 }

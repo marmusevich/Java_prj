@@ -48,59 +48,40 @@ public class Parameters {
     public long commandAdTimeout = 10;
 
     // ---------- ГРУППА БД -------------------
-    //TerminalDB
     /**
      * максимальное количество подключений к базе
      */
-    public int _DBMaxPoolSize = 5;
+    public int dbMaxPoolSize = 5;
     /**
      * минимальное количество подключений
      */
-    public int _DBMinPoolSize = 2;
+    public int dbMinPoolSize = 2;
     /**
      * количество закешированых запросов в одном подключении
      */
-    public int _DBMaxStatements = 4;
+    public int dbMaxStatements = 4;
     /**
      * тайм аут простоя подключенийя в секундах
      */
-    public long _DBMaxIdleTime = 30 * 60;
+    public long dbMaxIdleTime = 30 * 60;
     /**
      * время ожидания при подключении
      */
-    public long _DBConnectionTimeout = 500;
+    public long dbConnectionTimeout = 500;
+   /**
+     * строка подключения к базе
+     */
+    //public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/TERMINAL/TERMINAL.FDB";
+    public String dbDatabase = "jdbc:postgresql://localhost/heatMeterOTEC";
 
-
-
-
-//    /**
-//     * кодировка для сообщений в базе - намиенование БД
-//     */
-//    public String terminalDBEncoding = "WIN1251";
-//    /**
-//     * кодировка для сообщений в базе - намиенование JAVA для преобразования
-//     */
-//    public String terminalDBCharset = "windows-1251";
-//    /**
-//     * диалект SQL
-//     */
-//    public String terminalDBSqlDialect = "3";
-//    /**
-//     * строка подключения к базе
-//     */
-//    //public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB";
-//    public String terminalDBDatabase = "jdbc:firebirdsql:localhost/3050:c:/_lexa/java/TERMINAL/TERMINAL.FDB";
-//    //"localhost/3050:E:/a.marmusevich/TERMINAL/TERMINAL.FDB"
-//    //"E:\a.marmusevich\TERMINAL\TERMINAL.FDB"
-//
-//    /**
-//     * имя пользователя
-//     */
-//    public String terminalDBUserName = "SYSDBA";
-//    /**
-//     * пароль
-//     */
-//    public String terminalDBPassword = "masterkey";
+   /**
+     * имя пользователя
+     */
+    public String dbUserName = "javaServer";
+   /**
+     * пароль
+     */
+    public String dbPassword = "123456";
 
 
 

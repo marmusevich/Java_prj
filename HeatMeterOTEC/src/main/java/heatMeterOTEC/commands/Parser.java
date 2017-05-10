@@ -20,33 +20,6 @@ public class Parser {
         return getParametrData(cd, "CMD");
     }
 
-    /**
-     * вернуть первый ответ
-     *
-     * @param commandName имя команды
-     * @return
-     */
-    public static String getFirstResponse(String commandName) {
-        String ret = null;
-
-        switch (commandName.toUpperCase()) {
-            case "STOP_SERVER":
-                ret = StopServerCommand.firstResponse;
-                break;
-
-            case "STATISTIC_SERVER":
-                ret = StatisticServerCommand.firstResponse;
-                break;
-
-            case "DATE": // получить время
-                ret = CommandData.firstResponse;
-                break;
-
-            default: // неопознаная командв
-                ret = UnknownCommand.firstResponse;
-        }
-        return ret;
-    }
 
     /**
      * распарсить и проверить имя пользователя и пароль
@@ -56,8 +29,8 @@ public class Parser {
      */
     public static boolean parseUserAndPassword(String commandData, UserAuthenticationData uad) {
         boolean flOK = false;
-        uad.name = getParametrData(commandData, AbstractCommand.UserParametrName);
-        uad.pass = getParametrData(commandData, AbstractCommand.PassParametrName);
+        uad.name = getParametrData(commandData, "AbstractCommand.UserParametrName");
+        uad.pass = getParametrData(commandData, "AbstractCommand.PassParametrName");
         flOK = uad.name != null && uad.pass != null;
         return flOK;
     }
@@ -83,14 +56,9 @@ public class Parser {
                 ret = StatisticServerCommand.tryParseCommand(commandData);
                 break;
 
-            case "DATE": // получить время
-                ret = CommandData.tryParseCommand(commandData);
-                break;
-
-
 
             default: // неопознаная командв
-                ret = UnknownCommand.tryParseCommand(commandData);
+                ret = CommandInsertHeat.tryParseCommand(commandData);
         }
         return ret;
     }

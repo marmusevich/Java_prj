@@ -42,11 +42,29 @@ public final class Server {
             DBContext.init(parameters);
 
 
-            commandServer = new CommandServer(parameters.commandExecutorThreads, parameters.blockingQueueCapacity, parameters.commandAdTimeout);
+            Connection connection = DBContext.getConnectionDB();
 
-            netServer = new NetServer(parameters.netBossThreads, parameters.netWorkerThreads);
-            netServer.ConfigureSSL(parameters.isSSL);
-            netServer.start(parameters.port, parameters.netCharset);
+
+            String SQLText = " SELECT id, title FROM test ";
+            PreparedStatement ps = connection.prepareStatement(SQLText);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                System.out.println( "id = " + rs.getInt("id") +
+                                    " - title =" +rs.getString("title").trim()
+                );
+                ps.close();
+            }
+
+
+
+
+
+//            commandServer = new CommandServer(parameters.commandExecutorThreads, parameters.blockingQueueCapacity, parameters.commandAdTimeout);
+//
+//            netServer = new NetServer(parameters.netBossThreads, parameters.netWorkerThreads);
+//            netServer.ConfigureSSL(parameters.isSSL);
+//            netServer.start(parameters.port, parameters.netCharset);
         } catch (Exception e) {
             stop();
             logger.error(" server stoped on start. ERROR= ", e);

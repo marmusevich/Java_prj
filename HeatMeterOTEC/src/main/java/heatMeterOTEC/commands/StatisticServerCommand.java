@@ -42,7 +42,7 @@ public class StatisticServerCommand extends AbstractCommand {
     }
 
     @Override
-    public void doWorck(ArrayList<String> result, Connection connectionToTerminalDB, Connection connectionToWorkingDB) throws SQLException {
+    public void doWorck(ArrayList<String> result, Connection connection) throws SQLException {
         InetAddress remoteAddress = ((InetSocketAddress) ctx.pipeline().channel().remoteAddress()).getAddress();
         InetAddress localAddress = ((InetSocketAddress) ctx.pipeline().channel().localAddress()).getAddress();
 
