@@ -66,25 +66,25 @@ public abstract class AbstractCommand {
      */
     final public boolean checkUserNameAndPass(Connection connection) throws SQLException {
 
-        int terminalID = 0;
-
-        String SQLText =
-                "SELECT ADDRES, ID, BANK_ID FROM TERMINAL WHERE " +
-                        "    TERMINAL_ID= ? AND BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN= ?) AND " +
-                        "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
-
-        PreparedStatement ps = connection.prepareStatement(SQLText);
-        ps.setString(1, mUserName);
-        ps.setString(2, mUserPass);
-
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            terminalID = rs.getInt("ID");
-        }
-        ps.close();
-
-
-        return terminalID != 0;
+//        int terminalID = 0;
+//
+//        String SQLText =
+//                "SELECT ADDRES, ID, BANK_ID FROM TERMINAL WHERE " +
+//                        "    TERMINAL_ID= ? AND BANK_ID =(SELECT BANK FROM USERS WHERE LOGIN= ?) AND " +
+//                        "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
+//
+//        PreparedStatement ps = connection.prepareStatement(SQLText);
+//        ps.setString(1, mUserName);
+//        ps.setString(2, mUserPass);
+//
+//        ResultSet rs = ps.executeQuery();
+//        while (rs.next()) {
+//            terminalID = rs.getInt("ID");
+//        }
+//        ps.close();
+//
+//        return terminalID != 0;
+        return true;
     }
 
 //todo  передавать ошибки, при соеденении и т.п.

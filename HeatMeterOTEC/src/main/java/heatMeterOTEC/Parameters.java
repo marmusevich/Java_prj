@@ -15,7 +15,7 @@ public class Parameters {
     /**
      * слушаемый порт
      */
-    public int port = 5051;
+    public int port = 50500;
 
     /**
      * кодировка для сообщений из сети

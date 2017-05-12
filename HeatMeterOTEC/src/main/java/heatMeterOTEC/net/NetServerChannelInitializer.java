@@ -37,7 +37,7 @@ class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
             pipeline.addLast(sslCtx.newHandler(ch.alloc()));
         }
 
-        pipeline.addLast("Log", new LoggingHandler(LogLevel.DEBUG));
+        //pipeline.addLast("Log", new LoggingHandler(LogLevel.DEBUG));
 
         pipeline.addLast("Json", new JsonObjectDecoder());
         pipeline.addLast("Command", new CommandHandler());

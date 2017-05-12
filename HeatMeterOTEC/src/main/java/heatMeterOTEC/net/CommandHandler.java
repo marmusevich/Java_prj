@@ -7,13 +7,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import heatMeterOTEC.Server;
 import heatMeterOTEC.commands.AbstractCommand;
+
+import java.nio.charset.Charset;
 import java.util.List;
 import heatMeterOTEC.commands.*;
 
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 
 
 /**
@@ -23,10 +26,18 @@ class CommandHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        String json = msg.toString();
+        ByteBuf buf = (ByteBuf)msg;
+        String json = buf.toString(Charset.forName("utf-8"));
         System.out.println("json = " + json);
-//        AbstractCommand newCommand = Parser.tryParseCommand(json);
-//        System.out.println("newCommand ->  " + newCommand.toString());
+        AbstractCommand сommand = Parser.tryParseCommand(json);
+
+
+        if (сommand != null) {
+            System.out.println("сommand ->  " + сommand.toString());
+            сommand.setChannelHandlerContext(ctx);
+            Server.getCommandServer().addCommandToProcess(сommand);
+        }
+
     }
 
     @Override

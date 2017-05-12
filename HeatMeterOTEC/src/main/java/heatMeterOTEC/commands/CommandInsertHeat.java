@@ -20,7 +20,7 @@ public class CommandInsertHeat extends AbstractCommand {
     }
 
     @SerializedName("Serial_Number")
-    private String mSerialNumber = "";
+    private String mSerialNumber = "проверка русской раскладки";
     @SerializedName("Data Time")
     private java.util.Date mDataTime = new java.util.Date();
     @SerializedName("Power")
@@ -42,7 +42,7 @@ public class CommandInsertHeat extends AbstractCommand {
     @Override
     public void doWorck(ArrayList<String> result, Connection connection) throws SQLException {
 
-        System.out.println("newCommand ->  " + toString());
+        System.out.println("doWorck ->  " + toString());
 
 
 
@@ -63,19 +63,19 @@ public class CommandInsertHeat extends AbstractCommand {
 
 
 
-//        connection = DBContext.getConnectionDB();
-//        String SQLText = " SELECT id, title FROM test ";
-//        Statement ps = connection.createStatement();// prepareStatement(SQLText);
-//        ResultSet rs = ps.executeQuery(SQLText);
-//
-//        while (rs.next()) {
-//            System.out.println( "id = " + rs.getInt("id") +
-//                    " - title =" +rs.getString("title").trim()
-//            );
-//        }
-//
-//        ps.close();
-//        connection.close();
+        connection = DBContext.getConnectionDB();
+        String SQLText = " SELECT id, title FROM test ";
+        Statement ps = connection.createStatement();// prepareStatement(SQLText);
+        ResultSet rs = ps.executeQuery(SQLText);
+
+        while (rs.next()) {
+            System.out.println( "id = " + rs.getInt("id") +
+                    " - title =" +rs.getString("title").trim()
+            );
+        }
+
+        ps.close();
+        connection.close();
 
         //todo как возращать результат для сетерных команд
     }

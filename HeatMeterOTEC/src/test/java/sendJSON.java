@@ -25,11 +25,12 @@ public class sendJSON {
         try{
             Socket socket = new Socket("127.0.0.1", parameters.port);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            for(int i = 0; i < 1; i++){
-                System.out.println("i = " + i + " --> " + jsonString);
+            for(int i = 0; i < 10; /*i++*/){
+                //System.out.println("i = " + i + " --> " + jsonString);
                 out.println(jsonString);
-                Thread.sleep(1000);
+                Thread.sleep(100);
             }
+            socket.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
