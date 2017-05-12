@@ -15,12 +15,12 @@ public class Parameters {
     /**
      * слушаемый порт
      */
-    public int port = 5050;
+    public int port = 5051;
 
     /**
      * кодировка для сообщений из сети
      */
-    public Charset netCharset = Charset.forName("windows-1251");
+    public Charset netCharset = Charset.forName("utf-16");
 
     /**
      * количество слушающих сеть потоков

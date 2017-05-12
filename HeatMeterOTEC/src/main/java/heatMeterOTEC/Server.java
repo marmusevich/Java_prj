@@ -5,13 +5,6 @@ import org.slf4j.LoggerFactory;
 import heatMeterOTEC.bd.DBContext;
 import heatMeterOTEC.net.NetServer;
 
-import java.io.UnsupportedEncodingException;
-import java.sql.*;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import com.google.gson.Gson;
 
 import heatMeterOTEC.commands.*;
 
@@ -34,24 +27,23 @@ public final class Server {
 
 
 
-        CommandInsertHeat command = new CommandInsertHeat();
-
-        // convert to json
-        Gson gson = new Gson();
-        String jsonString = gson.toJson(command);
-//jsonString =  {"Serial_Number":"","Data Time":"May 12, 2017 2:39:22 PM","Power":0.0,"Temp 1":0.0,"Temp 2":0.0,"Energy":0.0,"Manuals":0,"Command_Type":"class heatMeterOTEC.commands.CommandInsertHeat","User_Name":"","User_Pass":""}
-//jsonString =  "{\"mDataTime\":\"May 12, 2017 09:11:36 AM\"}";
-        System.out.println("json " + jsonString);
-
-//        // convert from json
-//        CommandInsertHeat newCommand = gson.fromJson(jsonString, CommandInsertHeat.class);
+//        CommandInsertHeat command = new CommandInsertHeat();
+//
+//        // convert to json
+//        Gson gson = new Gson();
+//        String jsonString = gson.toJson(command);
+////jsonString =  {"Serial_Number":"","Data Time":"May 12, 2017 2:39:22 PM","Power":0.0,"Temp 1":0.0,"Temp 2":0.0,"Energy":0.0,"Manuals":0,"Command_Type":"class heatMeterOTEC.commands.CommandInsertHeat","User_Name":"","User_Pass":""}
+//        System.out.println("json " + jsonString);
+//
+////        // convert from json
+////        CommandInsertHeat newCommand = gson.fromJson(jsonString, CommandInsertHeat.class);
+////        System.out.println("newCommand ->  " + newCommand.toString());
+//
+//
+//        AbstractCommand newCommand = Parser.tryParseCommand(jsonString);
 //        System.out.println("newCommand ->  " + newCommand.toString());
 
-
-        AbstractCommand newCommand = Parser.tryParseCommand(jsonString);
-        System.out.println("newCommand ->  " + newCommand.toString());
-
-        //start();
+        start();
     }
 
 
