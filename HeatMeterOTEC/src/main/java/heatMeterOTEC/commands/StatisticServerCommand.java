@@ -19,27 +19,7 @@ public class StatisticServerCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(StatisticServerCommand.class);
 
     {
-        mCommandType = "Statistic Server Command";
-    }
-
-
-    /**
-     * попытатся распарсить данные команды
-     *
-     * @param commandData
-     */
-    public static StatisticServerCommand tryParseCommand(String commandData) {
-        StatisticServerCommand ret = null;
-        boolean flOK = false;
-
-        //UserAuthenticationData uad = new UserAuthenticationData();
-        //flOK = Parser.parseUserAndPassword(commandData, uad);
-
-        if (flOK) {
-            ret = new StatisticServerCommand();
-            //ret.setUserNameAndPass(uad);
-        }
-        return ret;
+        mCommandType = StatisticServerCommand.class.toString();
     }
 
     @Override

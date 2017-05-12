@@ -27,7 +27,8 @@ public abstract class AbstractCommand {
     protected ChannelHandlerContext ctx;
 
     @SerializedName("Command_Type")
-    protected String mCommandType = "Abstract Command";
+    protected String mCommandType = AbstractCommand.class.toString();
+
     @SerializedName("User_Name")
     protected String mUserName = "";
     @SerializedName("User_Pass")

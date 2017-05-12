@@ -15,20 +15,8 @@ public class UnknownCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(UnknownCommand.class);
 
     {
-        mCommandType = "Unknown Command";
+        mCommandType = UnknownCommand.class.toString();
     }
-
-
-    /**
-     * попытатся распарсить данные команды
-     *
-     * @param commandData
-     */
-    public static UnknownCommand tryParseCommand(String commandData) {
-
-        return null;
-    }
-
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connection) throws SQLException {

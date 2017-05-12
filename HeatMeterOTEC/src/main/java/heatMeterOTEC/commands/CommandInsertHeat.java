@@ -16,9 +16,8 @@ public class CommandInsertHeat extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(CommandInsertHeat.class);
 
     {
-        mCommandType = "Insert Heat Command";
+        mCommandType = CommandInsertHeat.class.toString();
     }
-
 
     @SerializedName("Serial_Number")
     private String mSerialNumber = "";
@@ -40,35 +39,14 @@ public class CommandInsertHeat extends AbstractCommand {
 //    $result2 = ibase_query ($dbh, "INSERT INTO PARAMS (HEATMETER_ID, DATA, TIMES, POWER, TEMP1, TEMP2, ENERGY1, MANUALS)
 //                            VALUES((select id from heatmeter where sn='$serial_number'), '$data', '$time', '0', '0', '0', '$energy', 1)") or die(ibase_errmsg());
 
-
-    /**
-     * попытатся распарсить данные команды
-     *
-     * @param commandData
-     */
-    public static CommandInsertHeat tryParseCommand(String commandData) {
-        CommandInsertHeat ret = null;
-        boolean flOK = false;
-
-        //UserAuthenticationData uad = new UserAuthenticationData();
-//        flOK = Parser.parseUserAndPassword(commandData, uad);
-//
-//        String _error_msg = Parser.getParametrData(commandData, "ERROR_MSG");
-        String _error_msg =  "ERROR_MSG";
-
-        flOK = flOK && (_error_msg != null);
-
-        if (flOK) {
-            ret = new CommandInsertHeat();
-            //ret.setUserNameAndPass(uad);
-        }
-
-        return ret;
-    }
-
     @Override
     public void doWorck(ArrayList<String> result, Connection connection) throws SQLException {
-//        String SQLText = " INSERT INTO TERMINAL_ERRORS (ID_TERMINAL ,ERROR_MSG)" +
+
+        System.out.println("newCommand ->  " + toString());
+
+
+
+        //        String SQLText = " INSERT INTO TERMINAL_ERRORS (ID_TERMINAL ,ERROR_MSG)" +
 //                " VALUES (?, ?) ";
 //
 //        int id_term = GetTerminalIDAndCheckSmenaIsOpen(connection);
@@ -85,19 +63,19 @@ public class CommandInsertHeat extends AbstractCommand {
 
 
 
-        connection = DBContext.getConnectionDB();
-        String SQLText = " SELECT id, title FROM test ";
-        Statement ps = connection.createStatement();// prepareStatement(SQLText);
-        ResultSet rs = ps.executeQuery(SQLText);
-
-        while (rs.next()) {
-            System.out.println( "id = " + rs.getInt("id") +
-                    " - title =" +rs.getString("title").trim()
-            );
-        }
-
-        ps.close();
-        connection.close();
+//        connection = DBContext.getConnectionDB();
+//        String SQLText = " SELECT id, title FROM test ";
+//        Statement ps = connection.createStatement();// prepareStatement(SQLText);
+//        ResultSet rs = ps.executeQuery(SQLText);
+//
+//        while (rs.next()) {
+//            System.out.println( "id = " + rs.getInt("id") +
+//                    " - title =" +rs.getString("title").trim()
+//            );
+//        }
+//
+//        ps.close();
+//        connection.close();
 
         //todo как возращать результат для сетерных команд
     }

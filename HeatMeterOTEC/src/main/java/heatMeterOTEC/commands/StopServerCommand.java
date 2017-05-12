@@ -19,29 +19,8 @@ public class StopServerCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(StopServerCommand.class);
 
     {
-        mCommandType = "Stop Server Command";
+        mCommandType = StopServerCommand.class.toString();
     }
-
-
-    /**
-     * попытатся распарсить данные команды
-     *
-     * @param commandData
-     */
-    public static StopServerCommand tryParseCommand(String commandData) {
-        StopServerCommand ret = null;
-        boolean flOK = false;
-
-        //UserAuthenticationData uad = new UserAuthenticationData();
-        //flOK = Parser.parseUserAndPassword(commandData, uad);
-
-        if (flOK) {
-            ret = new StopServerCommand();
-            //ret.setUserNameAndPass(uad);
-        }
-        return ret;
-    }
-
 
     @Override
     public void doWorck(ArrayList<String> result, Connection connection) throws SQLException {

@@ -39,14 +39,17 @@ public final class Server {
         // convert to json
         Gson gson = new Gson();
         String jsonString = gson.toJson(command);
-//jsonString =  {"mSerialNumber":"","mDataTime":"May 12, 2017 10:11:36 AM","mPower":0.0,"mTemp1":0.0,"mTemp2":0.0,"mEnergy":0.0,"mManuals":0}
-        //jsonString =  "{\"mDataTime\":\"May 12, 2017 09:11:36 AM\"}";
+//jsonString =  {"Serial_Number":"","Data Time":"May 12, 2017 2:39:22 PM","Power":0.0,"Temp 1":0.0,"Temp 2":0.0,"Energy":0.0,"Manuals":0,"Command_Type":"class heatMeterOTEC.commands.CommandInsertHeat","User_Name":"","User_Pass":""}
+//jsonString =  "{\"mDataTime\":\"May 12, 2017 09:11:36 AM\"}";
         System.out.println("json " + jsonString);
 
-        // convert from json
-        CommandInsertHeat newCommand = gson.fromJson(jsonString, CommandInsertHeat.class);
-        System.out.println("newCommand ->  " + newCommand.toString());
+//        // convert from json
+//        CommandInsertHeat newCommand = gson.fromJson(jsonString, CommandInsertHeat.class);
+//        System.out.println("newCommand ->  " + newCommand.toString());
 
+
+        AbstractCommand newCommand = Parser.tryParseCommand(jsonString);
+        System.out.println("newCommand ->  " + newCommand.toString());
 
         //start();
     }
