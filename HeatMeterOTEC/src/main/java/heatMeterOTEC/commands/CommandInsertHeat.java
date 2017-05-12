@@ -1,22 +1,45 @@
 package heatMeterOTEC.commands;
 
+import com.google.gson.annotations.SerializedName;
+import heatMeterOTEC.bd.DBContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.*;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  */
 public class CommandInsertHeat extends AbstractCommand {
-    /**
-     * первый ответ
-     */
-    public static final String firstResponse = "SETERRORMSG";
     private static final Logger logger = LoggerFactory.getLogger(CommandInsertHeat.class);
-    String error_msg = "";
+
+    {
+        mCommandType = "Insert Heat Command";
+    }
+
+
+    @SerializedName("Serial_Number")
+    private String mSerialNumber = "";
+    @SerializedName("Data Time")
+    private java.util.Date mDataTime = new java.util.Date();
+    @SerializedName("Power")
+    private double mPower = 0.0;
+    @SerializedName("Temp 1")
+    private float mTemp1 = 0;
+    @SerializedName("Temp 2")
+    private float mTemp2 = 0;
+    @SerializedName("Energy")
+    private double mEnergy = 0.0;
+    @SerializedName("Manuals")
+    private int mManuals = 0;
+
+
+
+//    $result2 = ibase_query ($dbh, "INSERT INTO PARAMS (HEATMETER_ID, DATA, TIMES, POWER, TEMP1, TEMP2, ENERGY1, MANUALS)
+//                            VALUES((select id from heatmeter where sn='$serial_number'), '$data', '$time', '0', '0', '0', '$energy', 1)") or die(ibase_errmsg());
+
 
     /**
      * попытатся распарсить данные команды
@@ -27,21 +50,20 @@ public class CommandInsertHeat extends AbstractCommand {
         CommandInsertHeat ret = null;
         boolean flOK = false;
 
-        UserAuthenticationData uad = new UserAuthenticationData();
-        flOK = Parser.parseUserAndPassword(commandData, uad);
-
-        String _error_msg = Parser.getParametrData(commandData, "ERROR_MSG");
+        //UserAuthenticationData uad = new UserAuthenticationData();
+//        flOK = Parser.parseUserAndPassword(commandData, uad);
+//
+//        String _error_msg = Parser.getParametrData(commandData, "ERROR_MSG");
+        String _error_msg =  "ERROR_MSG";
 
         flOK = flOK && (_error_msg != null);
 
         if (flOK) {
             ret = new CommandInsertHeat();
-            ret.setUserNameAndPass(uad);
-            ret.error_msg = _error_msg;
+            //ret.setUserNameAndPass(uad);
         }
 
         return ret;
-
     }
 
     @Override
@@ -61,10 +83,37 @@ public class CommandInsertHeat extends AbstractCommand {
 //        }
 //        ps.close();
 
-        //todo как возращать результат для сетерных команд
 
+
+        connection = DBContext.getConnectionDB();
+        String SQLText = " SELECT id, title FROM test ";
+        Statement ps = connection.createStatement();// prepareStatement(SQLText);
+        ResultSet rs = ps.executeQuery(SQLText);
+
+        while (rs.next()) {
+            System.out.println( "id = " + rs.getInt("id") +
+                    " - title =" +rs.getString("title").trim()
+            );
+        }
+
+        ps.close();
+        connection.close();
+
+        //todo как возращать результат для сетерных команд
+    }
+
+
+    @Override
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+
+        return super.toString() + " --> " +
+                "Serial Number = <" + mSerialNumber + ">, " +
+                "Data Time = " + dateFormat.format(mDataTime) + ", " +
+                "Power = " + mPower + ", " +
+                "(Temp 1 = " + mTemp1 + ", " +
+                "Temp 2 = " + mTemp2 + "), " +
+                "Energy = " + mEnergy + ", " +
+                "Manuals = " + mManuals + ", ";
     }
 }
-
-
-

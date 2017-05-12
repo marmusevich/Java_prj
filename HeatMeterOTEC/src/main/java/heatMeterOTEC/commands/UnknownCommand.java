@@ -5,17 +5,19 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
  *
  */
 public class UnknownCommand extends AbstractCommand {
-    /**
-     * первый ответ
-     */
-    public static final String firstResponse = "UnknownCommand";
     private static final Logger logger = LoggerFactory.getLogger(UnknownCommand.class);
+
+    {
+        mCommandType = "Unknown Command";
+    }
+
 
     /**
      * попытатся распарсить данные команды
@@ -32,4 +34,10 @@ public class UnknownCommand extends AbstractCommand {
     public void doWorck(ArrayList<String> result, Connection connection) throws SQLException {
         result.add("Unknown command");
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " --> " ;
+    }
+
 }

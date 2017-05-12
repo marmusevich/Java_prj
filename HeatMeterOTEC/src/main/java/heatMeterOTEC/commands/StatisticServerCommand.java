@@ -16,11 +16,12 @@ import java.util.ArrayList;
  * вызов только с локальной машины
  */
 public class StatisticServerCommand extends AbstractCommand {
-    /**
-     * первый ответ
-     */
-    public static final String firstResponse = "StatisticServer";
     private static final Logger logger = LoggerFactory.getLogger(StatisticServerCommand.class);
+
+    {
+        mCommandType = "Statistic Server Command";
+    }
+
 
     /**
      * попытатся распарсить данные команды
@@ -31,12 +32,12 @@ public class StatisticServerCommand extends AbstractCommand {
         StatisticServerCommand ret = null;
         boolean flOK = false;
 
-        UserAuthenticationData uad = new UserAuthenticationData();
-        flOK = Parser.parseUserAndPassword(commandData, uad);
+        //UserAuthenticationData uad = new UserAuthenticationData();
+        //flOK = Parser.parseUserAndPassword(commandData, uad);
 
         if (flOK) {
             ret = new StatisticServerCommand();
-            ret.setUserNameAndPass(uad);
+            //ret.setUserNameAndPass(uad);
         }
         return ret;
     }
@@ -47,8 +48,13 @@ public class StatisticServerCommand extends AbstractCommand {
         InetAddress localAddress = ((InetSocketAddress) ctx.pipeline().channel().localAddress()).getAddress();
 
         if (remoteAddress.equals(localAddress)) {
-            logger.info("Command = 'Statistic Server' in adress ({}) user = '{}'", remoteAddress.getHostAddress(), userAuthenticationData.name);
+            //logger.info("Command = 'Statistic Server' in adress ({}) user = '{}'", remoteAddress.getHostAddress(), userAuthenticationData.name);
             //todo StatisticServerCommand
         }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " --> " ;
     }
 }

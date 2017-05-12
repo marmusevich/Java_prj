@@ -4,7 +4,6 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import heatMeterOTEC.commands.AbstractCommand;
-import heatMeterOTEC.commands.ErrorFactory;
 
 import java.util.concurrent.*;
 
@@ -44,7 +43,7 @@ public class CommandServer {
             try {
                 if (!commandQueue.offer(сommand, this.commandAdTimeout, TimeUnit.MILLISECONDS)) {
                     logger.info(" commandQueue.size() = {}}", commandQueue.size());
-                    сommand.sendError(ErrorFactory.Error.Timeout);
+                    сommand.sendError("Error.Timeout");
                 } else {
 
                 }

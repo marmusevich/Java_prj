@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import heatMeterOTEC.Server;
 import heatMeterOTEC.commands.AbstractCommand;
 
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * получатьль команд, ставит на выполнение
@@ -17,10 +16,8 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
     private static final Logger logger = LoggerFactory.getLogger(CommandHandler.class);
 
 
-    private ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands;
 
-    public CommandHandler(ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands) {
-        this.decodetCommands = decodetCommands;
+    public CommandHandler() {
     }
 
     @Override
@@ -35,8 +32,7 @@ class CommandHandler extends SimpleChannelInboundHandler<AbstractCommand> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         logger.info("channelInactive {}", ctx.pipeline().channel().remoteAddress().toString());
-        // канал отключен, удалить все связаные команды
-        decodetCommands.remove(ctx);
+
     }
 
     @Override

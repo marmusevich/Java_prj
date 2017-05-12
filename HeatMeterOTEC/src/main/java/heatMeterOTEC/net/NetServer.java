@@ -23,7 +23,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class NetServer {
 
     private static final Logger logger = LoggerFactory.getLogger(NetServer.class);
-    ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor> decodetCommands;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
     private SslContext sslCtx;
@@ -47,12 +46,8 @@ public final class NetServer {
 
         if (workerThreads == 0) {
             workerGroup = new NioEventLoopGroup();
-            //todo настройки для initialCapacity, loadFactor
-            decodetCommands = new ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor>(128, 32);
         } else {
             workerGroup = new NioEventLoopGroup(workerThreads);
-            //todo настройки для initialCapacity, loadFactor
-            decodetCommands = new ConcurrentHashMap<ChannelHandlerContext, CommandStateDescriptor>(128, 32, workerThreads);
         }
     }
 
@@ -75,7 +70,7 @@ public final class NetServer {
                     //.option(ChannelOption.SO_BACKLOG,128) // количество одновременных подключени
                     //.childOption(ChannelOption.SO_TIMEOUT,128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true) // проверить а соеденение активно ли?
-                    .childHandler(new NetServerChannelInitializer(sslCtx, netCharset, decodetCommands));
+                    .childHandler(new NetServerChannelInitializer(sslCtx, netCharset));
 
             //поиск утечьки буфера
             //ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.PARANOID);

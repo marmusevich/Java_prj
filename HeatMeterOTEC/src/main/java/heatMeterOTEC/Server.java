@@ -7,9 +7,13 @@ import heatMeterOTEC.net.NetServer;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Properties;
+import java.util.*;
 
+import com.google.gson.Gson;
+
+import heatMeterOTEC.commands.*;
 
 //TODO правильно перехватывать исключения из потоков
 
@@ -28,7 +32,23 @@ public final class Server {
     public static void main(String[] args) {
         logger.info(" Before start server...");
 
-        start();
+
+
+        CommandInsertHeat command = new CommandInsertHeat();
+
+        // convert to json
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(command);
+//jsonString =  {"mSerialNumber":"","mDataTime":"May 12, 2017 10:11:36 AM","mPower":0.0,"mTemp1":0.0,"mTemp2":0.0,"mEnergy":0.0,"mManuals":0}
+        //jsonString =  "{\"mDataTime\":\"May 12, 2017 09:11:36 AM\"}";
+        System.out.println("json " + jsonString);
+
+        // convert from json
+        CommandInsertHeat newCommand = gson.fromJson(jsonString, CommandInsertHeat.class);
+        System.out.println("newCommand ->  " + newCommand.toString());
+
+
+        //start();
     }
 
 
@@ -41,30 +61,11 @@ public final class Server {
             //инитить пул БД
             DBContext.init(parameters);
 
+            commandServer = new CommandServer(parameters.commandExecutorThreads, parameters.blockingQueueCapacity, parameters.commandAdTimeout);
 
-            Connection connection = DBContext.getConnectionDB();
-
-
-            String SQLText = " SELECT id, title FROM test ";
-            PreparedStatement ps = connection.prepareStatement(SQLText);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                System.out.println( "id = " + rs.getInt("id") +
-                                    " - title =" +rs.getString("title").trim()
-                );
-                ps.close();
-            }
-
-
-
-
-
-//            commandServer = new CommandServer(parameters.commandExecutorThreads, parameters.blockingQueueCapacity, parameters.commandAdTimeout);
-//
-//            netServer = new NetServer(parameters.netBossThreads, parameters.netWorkerThreads);
-//            netServer.ConfigureSSL(parameters.isSSL);
-//            netServer.start(parameters.port, parameters.netCharset);
+            netServer = new NetServer(parameters.netBossThreads, parameters.netWorkerThreads);
+            netServer.ConfigureSSL(parameters.isSSL);
+            netServer.start(parameters.port, parameters.netCharset);
         } catch (Exception e) {
             stop();
             logger.error(" server stoped on start. ERROR= ", e);

@@ -1,5 +1,6 @@
 package heatMeterOTEC.commands;
 
+import com.google.gson.annotations.SerializedName;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import com.google.gson.annotations.Expose;
 
 /**
  * Абстастная команда
@@ -20,8 +23,17 @@ public abstract class AbstractCommand {
     /**
      * контекст сетевого подключения
      */
+    @Expose
     protected ChannelHandlerContext ctx;
-    protected UserAuthenticationData userAuthenticationData;
+
+    @SerializedName("Command_Type")
+    protected String mCommandType = "Abstract Command";
+    @SerializedName("User_Name")
+    protected String mUserName = "";
+    @SerializedName("User_Pass")
+    protected String mUserPass = "";
+
+
     // результат
     private ArrayList<String> result;
 
@@ -37,10 +49,12 @@ public abstract class AbstractCommand {
     /**
      * установить имя пользователя и пароль
      *
-     * @param uad -
+     * @param userName -
+     * @param userPass -
      */
-    final public void setUserNameAndPass(UserAuthenticationData uad) {
-        this.userAuthenticationData = uad;
+    final public void setUserNameAndPass(String userName, String userPass) {
+        this.mUserName = userName;
+        this.mUserPass = userPass;
     }
 
     /**
@@ -59,8 +73,8 @@ public abstract class AbstractCommand {
                         "    (SELECT count(*) FROM SMENA WHERE DATA_K is null and SMENA.id_terminal=TERMINAL.ID)>0";
 
         PreparedStatement ps = connection.prepareStatement(SQLText);
-        ps.setString(1, userAuthenticationData.name);
-        ps.setString(2, userAuthenticationData.pass);
+        ps.setString(1, mUserName);
+        ps.setString(2, mUserPass);
 
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
@@ -72,13 +86,7 @@ public abstract class AbstractCommand {
         return terminalID != 0;
     }
 
-
-
-
-
 //todo  передавать ошибки, при соеденении и т.п.
-
-
     /**
      * Выполнить команду
      */
@@ -92,7 +100,7 @@ public abstract class AbstractCommand {
                 doWorck(result, connection);
                 sendResult();
             } else
-                sendError(ErrorFactory.Error.AccessDenied);
+                sendError("AccessDenied");
 
         } catch (SQLException e) {
             //TODO SQLException
@@ -137,9 +145,9 @@ public abstract class AbstractCommand {
         //result = null;
     }
 
-    final public void sendError(ErrorFactory.Error error) {
+    final public void sendError(String error) {
         result = new ArrayList<String>();
-        ErrorFactory.convertError(error, result);
+        result.add(error);
         sendResult();
     }
 
@@ -148,5 +156,12 @@ public abstract class AbstractCommand {
     @Override
     public void finalize() {
         logger.info("finalize");
+    }
+
+    @Override
+    public String toString() {
+        return  "Command Type = <" + mCommandType + ">, " +
+                "[ User Name = " + mUserName + ", "+
+                "User Pass = " + mUserPass + "] ";
     }
 }

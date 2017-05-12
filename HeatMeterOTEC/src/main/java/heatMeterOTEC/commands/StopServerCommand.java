@@ -8,6 +8,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -15,11 +16,12 @@ import java.util.ArrayList;
  * вызов только с локальной машины
  */
 public class StopServerCommand extends AbstractCommand {
-    /**
-     * первый ответ
-     */
-    public static final String firstResponse = "STOP_SERVER";
     private static final Logger logger = LoggerFactory.getLogger(StopServerCommand.class);
+
+    {
+        mCommandType = "Stop Server Command";
+    }
+
 
     /**
      * попытатся распарсить данные команды
@@ -30,12 +32,12 @@ public class StopServerCommand extends AbstractCommand {
         StopServerCommand ret = null;
         boolean flOK = false;
 
-        UserAuthenticationData uad = new UserAuthenticationData();
-        flOK = Parser.parseUserAndPassword(commandData, uad);
+        //UserAuthenticationData uad = new UserAuthenticationData();
+        //flOK = Parser.parseUserAndPassword(commandData, uad);
 
         if (flOK) {
             ret = new StopServerCommand();
-            ret.setUserNameAndPass(uad);
+            //ret.setUserNameAndPass(uad);
         }
         return ret;
     }
@@ -47,8 +49,14 @@ public class StopServerCommand extends AbstractCommand {
         InetAddress localAddress = ((InetSocketAddress) ctx.pipeline().channel().localAddress()).getAddress();
 
         if (remoteAddress.equals(localAddress)) {
-            logger.info("Command = 'Stop Server' in adress ({}) user = '{}'", remoteAddress.getHostAddress(), userAuthenticationData.name);
+            //logger.info("Command = 'Stop Server' in adress ({}) user = '{}'", remoteAddress.getHostAddress(), userAuthenticationData.name);
             Server.stop();
         }
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " --> " ;
+    }
+
 }
