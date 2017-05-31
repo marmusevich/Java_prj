@@ -23,17 +23,24 @@ import io.netty.buffer.ByteBufUtil;
  * получатьль команд, ставит на выполнение
  */
 class CommandHandler extends ChannelInboundHandlerAdapter {
+    Charset jsonCharset = null;
+
+
+    public CommandHandler(Charset jsonCharset){
+        this.jsonCharset = jsonCharset;
+    }
+
+
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf buf = (ByteBuf)msg;
-        String json = buf.toString(Charset.forName("utf-8"));
-        System.out.println("json = " + json);
+        String json = buf.toString(jsonCharset);
+        //System.out.println("json = " + json);
         AbstractCommand сommand = Parser.tryParseCommand(json);
 
-
         if (сommand != null) {
-            System.out.println("сommand ->  " + сommand.toString());
+            //System.out.println("сommand ->  " + сommand.toString());
             сommand.setChannelHandlerContext(ctx);
             Server.getCommandServer().addCommandToProcess(сommand);
         }

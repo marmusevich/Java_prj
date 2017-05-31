@@ -40,7 +40,7 @@ class NetServerChannelInitializer extends ChannelInitializer<SocketChannel> {
         //pipeline.addLast("Log", new LoggingHandler(LogLevel.DEBUG));
 
         pipeline.addLast("Json", new JsonObjectDecoder());
-        pipeline.addLast("Command", new CommandHandler());
+        pipeline.addLast("Command", new CommandHandler(netCharset));
     }
 
 

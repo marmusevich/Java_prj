@@ -20,7 +20,7 @@ public class Parameters {
     /**
      * кодировка для сообщений из сети
      */
-    public Charset netCharset = Charset.forName("utf-16");
+    public Charset netCharset = Charset.forName("utf-8");
 
     /**
      * количество слушающих сеть потоков

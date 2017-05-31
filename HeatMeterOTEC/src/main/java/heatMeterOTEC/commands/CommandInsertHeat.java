@@ -69,7 +69,7 @@ public class CommandInsertHeat extends AbstractCommand {
         ResultSet rs = ps.executeQuery(SQLText);
 
         while (rs.next()) {
-            System.out.println( "id = " + rs.getInt("id") +
+            System.out.println( "       id = " + rs.getInt("id") +
                     " - title =" +rs.getString("title").trim()
             );
         }
