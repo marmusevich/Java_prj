@@ -10,14 +10,15 @@ import static org.junit.Assert.*;
 /**
  * Created by a.marmusevich on 05.09.2017.
  */
-public class BubbleSortTest {
+public class SelectionSortTest {
+
     private List<Integer> list;
     private Sorter sorter;
 
     @Before
     public void setUp() throws Exception {
         list = Arrays.asList(5, 4, 3, 2, 1);
-        sorter = new BubbleSort();
+        sorter = new SelectionSort();
     }
 
 
