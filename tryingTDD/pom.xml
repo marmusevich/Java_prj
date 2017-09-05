@@ -44,44 +44,44 @@
                 </configuration>
             </plugin>
 
-            <!--<plugin>-->
-                <!--<groupId>org.codehaus.mojo</groupId>-->
-                <!--<artifactId>exec-maven-plugin</artifactId>-->
-                <!--<version>1.4.0</version>-->
-                <!--<configuration>-->
-                    <!--<executable>java</executable>-->
-                    <!--<mainClass>BenchmarkSortedAlgorithm</mainClass>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-
-            <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>build-classpath</id>
-                        <goals>
-                            <goal>build-classpath</goal>
-                        </goals>
-                        <configuration>
-                            <includeScope>runtime</includeScope>
-                            <outputProperty>depClasspath</outputProperty>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
                 <configuration>
+                    <executable>java</executable>
                     <mainClass>BenchmarkSortedAlgorithm</mainClass>
-                    <systemProperties>
-                        <systemProperty>
-                            <key>java.class.path</key>
-                            <value>${project.build.outputDirectory}${path.separator}${depClasspath}</value>
-                        </systemProperty>
-                    </systemProperties>
                 </configuration>
             </plugin>
+
+            <!--<plugin>-->
+                <!--<artifactId>maven-dependency-plugin</artifactId>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>build-classpath</id>-->
+                        <!--<goals>-->
+                            <!--<goal>build-classpath</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<includeScope>runtime</includeScope>-->
+                            <!--<outputProperty>depClasspath</outputProperty>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>exec-maven-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<mainClass>BenchmarkSortedAlgorithm</mainClass>-->
+                    <!--<systemProperties>-->
+                        <!--<systemProperty>-->
+                            <!--<key>java.class.path</key>-->
+                            <!--<value>${project.build.outputDirectory}${path.separator}${depClasspath}</value>-->
+                        <!--</systemProperty>-->
+                    <!--</systemProperties>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
         </plugins>
     </build>
@@ -118,6 +118,15 @@
             <version>1.19</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-generator-annprocess -->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>1.19</version>
+            <scope>provided</scope>
+        </dependency>
+
 
     </dependencies>
 </project>
+

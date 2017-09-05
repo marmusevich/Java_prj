@@ -1,3 +1,7 @@
+package sorter;
+
+import org.openjdk.jmh.annotations.Benchmark;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,6 +10,8 @@ import java.util.List;
  */
 public class MainStart {
     static private final int listSize = 15;
+
+
 
     public static void main(String[] args)  {
         Sorter insertionSort = new InsertionSort();
@@ -51,6 +57,6 @@ public class MainStart {
         return clone;
     }
 
-
+    //mvn archetype:generate -DinteractiveMode=false -DarchetypeGroupId=org.openjdk.jmh -DarchetypeArtifactId=jmh-java-benchmark-archetype -DgroupId=org.sample -DartifactId=test-Dversion=1.0
 
 }

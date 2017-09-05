@@ -1,7 +1,5 @@
-import org.openjdk.jmh.annotations.Benchmark;
+package sorter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
