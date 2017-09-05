@@ -11,7 +11,7 @@ public class RandomFiller implements FillerList {
         List<Integer> list = new ArrayList<>(countElements);
         Random rand = new Random();
         for (int i = 0; i< countElements; i++) {
-            list.add(rand.nextInt());
+            list.add(rand.nextInt(100));
         }
         return list;
     }
