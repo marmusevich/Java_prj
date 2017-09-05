@@ -37,7 +37,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>heatMeterOTEC.Server</mainClass>
+                            <mainClass>BenchmarkSortedAlgorithm</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -48,7 +48,7 @@
                 <version>1.4.0</version>
                 <configuration>
                     <executable>java</executable>
-                    <mainClass>heatMeterOTEC.Server</mainClass>
+                    <mainClass>BenchmarkSortedAlgorithm</mainClass>
                 </configuration>
             </plugin>
         </plugins>

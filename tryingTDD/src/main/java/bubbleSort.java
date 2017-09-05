@@ -1,3 +1,5 @@
+import org.openjdk.jmh.annotations.Benchmark;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -6,8 +8,6 @@ import java.util.List;
  * Created by a.marmusevich on 05.09.2017.
  */
 public class BubbleSort implements Sorter  {
-    public BubbleSort() {
-    }
 
     @Override
     public List<Integer> doSort(List<Integer> list) {
@@ -29,6 +29,7 @@ public class BubbleSort implements Sorter  {
         list.set(i, list.get(k));
         list.set(k, temp);
     }
+
 
 
 }
